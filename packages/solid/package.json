@@ -60,7 +60,7 @@
 		"**/*.css"
 	],
 	"dependencies": {
-		"@ark-ui/solid": "5.34.1",
+		"@ark-ui/solid": "5.36.0",
 		"@tanstack/solid-table": "8.21.3",
 		"@temporal-ui/core": "workspace:*"
 	},
