@@ -81,7 +81,7 @@
 		"storybook-solidjs-vite": "10.0.9",
 		"tailwindcss": "4.2.1",
 		"tsdown": "0.21.1",
-		"vite": "7.3.1",
+		"vite": "7.3.2",
 		"vite-plugin-solid": "2.11.10",
 		"vitest": "4.0.18"
 	},
