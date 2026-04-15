@@ -67,3 +67,10 @@ When given a Linear issue ID (e.g. `TMPRL-123`):
 - Do not use `npm install`, `yarn`, or `pnpm`
 - Do not run `eslint` or `prettier`; use Biome
 - Do not run `lint` or `typecheck` without first running `build` (or expect a build to run as part of the pipeline)
+
+## Cursor Cloud specific instructions
+
+- **Bun is installed at `~/.bun/bin/bun`**. The update script handles installation. If running bun in a fresh tmux session, ensure `~/.bun/bin` is on `PATH` (e.g. `source ~/.bashrc` or `export PATH="$HOME/.bun/bin:$PATH"`).
+- **Lefthook postinstall may fail** due to Cursor's `core.hooksPath` git config. Use `bun install --ignore-scripts` if `bun install` fails, then run `bunx lefthook install --force` separately. This is a non-blocking issue — lefthook hooks are optional for agent workflows.
+- **No external services required**. This is a pure frontend component library; all tests run in-memory (happy-dom/jsdom).
+- **Lint warning is expected**: Biome reports 1 CSS specificity warning in the core package — this is pre-existing and not a failure.
