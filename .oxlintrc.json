@@ -1,0 +1,19 @@
+{
+	"$schema": "./node_modules/oxlint/configuration_schema.json",
+	"plugins": ["import", "typescript", "vitest"],
+	"rules": {
+		"typescript/no-deprecated": "warn",
+		"vitest/no-alias-methods": "warn",
+		"typescript/unbound-method": "off",
+		"typescript/no-base-to-string": "off",
+		"typescript/no-redundant-type-constituents": "off",
+		// Solid JS refs appear unassigned. See https://github.com/oxc-project/oxc/issues/14621
+		"eslint/init-declarations": "off",
+		"eslint/no-unassigned-vars": "off",
+		"vitest/require-mock-type-parameters": "off" // too many test files to change, maybe revisit later
+	},
+	"ignorePatterns": [".idea", "dist", "node_modules", ".turbo"],
+	"options": {
+		"typeAware": true
+	}
+}

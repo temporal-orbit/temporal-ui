@@ -27,7 +27,7 @@
 		"clean": {
 			"cache": false
 		},
-		"format:fix": {
+		"format": {
 			"cache": false
 		},
 		"dev": {
