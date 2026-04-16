@@ -6,8 +6,7 @@ import { TooltipContent } from "./TooltipContent";
 import { testId as testIdFn } from "@temporal-ui/core/utils/string";
 
 export interface TooltipProps
-	extends CoreTooltipProps<React.ReactNode>,
-		Omit<React.ComponentProps<typeof ArkTooltip.Root>, "onOpenChange"> {
+	extends CoreTooltipProps<React.ReactNode>, Omit<React.ComponentProps<typeof ArkTooltip.Root>, "onOpenChange"> {
 	trigger?: React.ReactNode;
 }
 
@@ -30,12 +29,7 @@ export function Tooltip(props: TooltipProps) {
 	const tid = testIdFn(testId);
 
 	const content = (
-		<TooltipContent
-			testId={testId}
-			className={className}
-			classes={classes}
-			showArrow={showArrow}
-		>
+		<TooltipContent testId={testId} className={className} classes={classes} showArrow={showArrow}>
 			{children}
 		</TooltipContent>
 	);
@@ -50,11 +44,7 @@ export function Tooltip(props: TooltipProps) {
 			data-testid={tid("--root")}
 		>
 			{trigger && (
-				<ArkTooltip.Trigger
-					asChild
-					className={props.classes?.trigger}
-					data-testid={tid("--trigger")}
-				>
+				<ArkTooltip.Trigger asChild className={props.classes?.trigger} data-testid={tid("--trigger")}>
 					{trigger}
 				</ArkTooltip.Trigger>
 			)}
