@@ -7,10 +7,7 @@ import { MenuRadioItemGroup } from "./MenuRadioItemGroup";
 
 describe("MenuRadioItemGroup Component", () => {
 	const MenuWrapper = ({ children, ...props }: Omit<MenuProps, "trigger">) => (
-		<Menu
-			trigger={<button type="button">Trigger</button>}
-			{...props}
-		>
+		<Menu trigger={<button type="button">Trigger</button>} {...props}>
 			{children}
 		</Menu>
 	);
@@ -19,10 +16,7 @@ describe("MenuRadioItemGroup Component", () => {
 		const user = userEvent.setup();
 		render(
 			<MenuWrapper>
-				<MenuRadioItemGroup
-					label="Choose Option"
-					value="option1"
-				>
+				<MenuRadioItemGroup label="Choose Option" value="option1">
 					<MenuRadioItem value="option1">Option 1</MenuRadioItem>
 					<MenuRadioItem value="option2">Option 2</MenuRadioItem>
 				</MenuRadioItemGroup>
@@ -44,10 +38,7 @@ describe("MenuRadioItemGroup Component", () => {
 
 		render(
 			<MenuWrapper closeOnSelect={false}>
-				<MenuRadioItemGroup
-					value="option1"
-					onValueChange={onValueChange}
-				>
+				<MenuRadioItemGroup value="option1" onValueChange={onValueChange}>
 					<MenuRadioItem value="option1">Option 1</MenuRadioItem>
 					<MenuRadioItem value="option2">Option 2</MenuRadioItem>
 				</MenuRadioItemGroup>

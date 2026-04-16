@@ -6,10 +6,7 @@ import { Dialog, type DialogProps } from "./Dialog";
 describe("Dialog Component", () => {
 	const defaultProps: DialogProps = {
 		trigger: (props) => (
-			<button
-				type="button"
-				{...props}
-			>
+			<button type="button" {...props}>
 				Open Dialog
 			</button>
 		),
@@ -42,34 +39,19 @@ describe("Dialog Component", () => {
 	});
 
 	it("respects defaultOpen prop", () => {
-		render(() => (
-			<Dialog
-				{...defaultProps}
-				defaultOpen
-			/>
-		));
+		render(() => <Dialog {...defaultProps} defaultOpen />);
 		expect(screen.getByText("Dialog content")).toBeVisible();
 	});
 
 	it("respects controlled open=false prop", async () => {
-		render(() => (
-			<Dialog
-				{...defaultProps}
-				open={false}
-			/>
-		));
+		render(() => <Dialog {...defaultProps} open={false} />);
 		await waitFor(() => {
 			expect(screen.queryByText("Dialog content")).not.toBeInTheDocument();
 		});
 	});
 
 	it("respects controlled open=true prop", async () => {
-		render(() => (
-			<Dialog
-				{...defaultProps}
-				open={true}
-			/>
-		));
+		render(() => <Dialog {...defaultProps} open={true} />);
 		await waitFor(() => {
 			expect(screen.getByText("Dialog content")).toBeVisible();
 		});
@@ -78,12 +60,7 @@ describe("Dialog Component", () => {
 	it("calls onOpenChange when dialog state changes", async () => {
 		const user = userEvent.setup();
 		const onOpenChange = vi.fn();
-		render(() => (
-			<Dialog
-				{...defaultProps}
-				onOpenChange={onOpenChange}
-			/>
-		));
+		render(() => <Dialog {...defaultProps} onOpenChange={onOpenChange} />);
 
 		const trigger = screen.getByRole("button", { name: "Open Dialog" });
 		await user.click(trigger);
@@ -95,13 +72,7 @@ describe("Dialog Component", () => {
 
 	it("closes dialog when close button is clicked (using testId)", async () => {
 		const user = userEvent.setup();
-		render(() => (
-			<Dialog
-				{...defaultProps}
-				defaultOpen
-				testId="test-dialog"
-			/>
-		));
+		render(() => <Dialog {...defaultProps} defaultOpen testId="test-dialog" />);
 
 		expect(screen.getByText("Dialog content")).toBeVisible();
 
@@ -135,14 +106,7 @@ describe("Dialog Component", () => {
 	});
 
 	it("applies root className to content", () => {
-		render(() => (
-			<Dialog
-				{...defaultProps}
-				defaultOpen
-				className="root-class"
-				testId="test-dialog"
-			/>
-		));
+		render(() => <Dialog {...defaultProps} defaultOpen className="root-class" testId="test-dialog" />);
 		expect(screen.getByTestId("test-dialog--content")).toHaveClass("root-class");
 	});
 
@@ -156,10 +120,7 @@ describe("Dialog Component", () => {
 		);
 
 		render(() => (
-			<Dialog
-				{...defaultProps}
-				defaultOpen
-			>
+			<Dialog {...defaultProps} defaultOpen>
 				{complexContent}
 			</Dialog>
 		));
@@ -170,7 +131,7 @@ describe("Dialog Component", () => {
 	});
 
 	it("renders title only when provided", () => {
-		const { title, ...propsWithoutTitle } = defaultProps;
+		const { title: _title, ...propsWithoutTitle } = defaultProps;
 
 		render(() => (
 			<Dialog
@@ -185,16 +146,9 @@ describe("Dialog Component", () => {
 	});
 
 	it("renders description only when provided", () => {
-		const { description, ...propsWithoutDesc } = defaultProps;
+		const { description: _description, ...propsWithoutDesc } = defaultProps;
 
-		render(() => (
-			<Dialog
-				{...propsWithoutDesc}
-				description={undefined}
-				defaultOpen
-				testId="no-desc"
-			/>
-		));
+		render(() => <Dialog {...propsWithoutDesc} description={undefined} defaultOpen testId="no-desc" />);
 		expect(screen.queryByTestId("no-desc--description")).not.toBeInTheDocument();
 	});
 });

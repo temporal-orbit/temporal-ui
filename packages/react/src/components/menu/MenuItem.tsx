@@ -8,10 +8,7 @@ export function MenuItem(props: MenuItemProps) {
 	const { testId, ...rest } = props;
 
 	return (
-		<ArkMenu.Item
-			{...rest}
-			data-testid={testId}
-		>
+		<ArkMenu.Item {...rest} data-testid={testId}>
 			{props.children}
 		</ArkMenu.Item>
 	);

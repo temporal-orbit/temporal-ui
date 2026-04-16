@@ -10,10 +10,7 @@ export function MenuItemGroup(props: MenuItemGroupProps) {
 	const tid = testIdFn(testId);
 
 	return (
-		<ArkMenu.ItemGroup
-			{...restProps}
-			data-testid={tid("--group")}
-		>
+		<ArkMenu.ItemGroup {...restProps} data-testid={tid("--group")}>
 			{label && <ArkMenu.ItemGroupLabel data-testid={tid("--label")}>{label}</ArkMenu.ItemGroupLabel>}
 			{children}
 		</ArkMenu.ItemGroup>

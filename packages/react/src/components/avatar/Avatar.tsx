@@ -12,18 +12,9 @@ export const Avatar = forwardRef<HTMLDivElement, AvatarProps & ArkAvatar.RootPro
 	const size = props.size !== "md" ? props.size : "";
 	const baseClass = ["avatar", size].filter(Boolean).join("-");
 	return (
-		<ArkAvatar.Root
-			ref={ref}
-			className={cx(baseClass, className)}
-			data-testid={testId}
-			{...rootProps}
-		>
+		<ArkAvatar.Root ref={ref} className={cx(baseClass, className)} data-testid={testId} {...rootProps}>
 			<ArkAvatar.Fallback>{getInitials(name) || <UserIcon />}</ArkAvatar.Fallback>
-			<ArkAvatar.Image
-				src={src}
-				alt={name}
-				data-testid={testId ? `${testId}--image` : undefined}
-			/>
+			<ArkAvatar.Image src={src} alt={name} data-testid={testId ? `${testId}--image` : undefined} />
 		</ArkAvatar.Root>
 	);
 });

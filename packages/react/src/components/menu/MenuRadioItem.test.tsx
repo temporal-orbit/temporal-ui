@@ -6,10 +6,7 @@ import { MenuRadioItemGroup } from "./MenuRadioItemGroup";
 
 describe("MenuRadioItem Component", () => {
 	const MenuWrapper = ({ children, ...props }: Omit<MenuProps, "trigger">) => (
-		<Menu
-			trigger={<button type="button">Trigger</button>}
-			{...props}
-		>
+		<Menu trigger={<button type="button">Trigger</button>} {...props}>
 			{children}
 		</Menu>
 	);
@@ -48,7 +45,9 @@ describe("MenuRadioItem Component", () => {
 		await user.click(screen.getByRole("button"));
 
 		await waitFor(() => {
-			const radioItem = screen.getByRole("menuitemradio", { name: "Selected Option" });
+			const radioItem = screen.getByRole("menuitemradio", {
+				name: "Selected Option",
+			});
 			expect(radioItem).toBeVisible();
 			expect(radioItem).toHaveAttribute("data-state", "checked");
 		});

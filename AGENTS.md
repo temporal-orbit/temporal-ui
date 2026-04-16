@@ -40,8 +40,8 @@ bun run test -- <path to file>
 
 ### Development servers
 
-| Command | Server | Port |
-|---------|--------|------|
+| Command         | Server          | Port |
+| --------------- | --------------- | ---- |
 | `bun run react` | React Storybook | 6006 |
 | `bun run solid` | Solid Storybook | 6007 |
 

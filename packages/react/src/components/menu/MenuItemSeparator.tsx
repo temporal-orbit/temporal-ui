@@ -3,16 +3,10 @@ import { Menu as ArkMenu } from "@ark-ui/react/menu";
 import type React from "react";
 
 export interface MenuItemSeparatorProps
-	extends CoreMenuItemSeparatorProps,
-		React.ComponentProps<typeof ArkMenu.Separator> {}
+	extends CoreMenuItemSeparatorProps, React.ComponentProps<typeof ArkMenu.Separator> {}
 
 export function MenuItemSeparator(props: MenuItemSeparatorProps) {
 	const { testId, ...rest } = props;
 
-	return (
-		<ArkMenu.Separator
-			{...rest}
-			data-testid={testId}
-		/>
-	);
+	return <ArkMenu.Separator {...rest} data-testid={testId} />;
 }

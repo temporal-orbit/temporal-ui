@@ -7,11 +7,7 @@ export interface TableProps extends CoreTableProps<JSX.Element>, HTMLProps<"tabl
 export function Table(_props: TableProps) {
 	const [props, elementProps] = splitProps(_props, ["className", "class", "children", "testId"]);
 	return (
-		<div
-			data-scope="table"
-			data-part="container"
-			data-testid={props.testId ? `${props.testId}--container` : undefined}
-		>
+		<div data-scope="table" data-part="container" data-testid={props.testId ? `${props.testId}--container` : undefined}>
 			<table
 				{...elementProps}
 				class={props.className ?? props.class}

@@ -36,13 +36,7 @@ export const ControlledExample: Story = {
 	},
 	render: (args: NumberInputProps) => {
 		const [value, setValue] = createSignal(75);
-		return (
-			<NumberInput
-				{...args}
-				value={value()}
-				onValueChange={setValue}
-			/>
-		);
+		return <NumberInput {...args} value={value()} onValueChange={setValue} />;
 	},
 };
 

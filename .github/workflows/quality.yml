@@ -3,7 +3,7 @@ name: Quality
 on:
   push:
     branches:
-      - '**'
+      - "**"
 
 jobs:
   build:
@@ -35,8 +35,18 @@ jobs:
       - name: Run tests
         run: bun run test
 
+  format:
+    name: Format Check
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout branch
+        uses: actions/checkout@v6
+
+      - name: Run format
+        run: bun run format:check
+
   lint:
-    name: Lint
+    name: Lint Check
     runs-on: ubuntu-latest
     steps:
       - name: Checkout branch

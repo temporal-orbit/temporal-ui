@@ -54,12 +54,7 @@ describe("Menu Component", () => {
 	it("calls onSelect when menu item is clicked", async () => {
 		const user = userEvent.setup();
 		const onSelect = vi.fn();
-		render(
-			<Menu
-				{...defaultProps}
-				onSelect={onSelect}
-			/>,
-		);
+		render(<Menu {...defaultProps} onSelect={onSelect} />);
 
 		const trigger = screen.getByRole("button", { name: "Open Menu" });
 		await user.click(trigger);
@@ -76,12 +71,7 @@ describe("Menu Component", () => {
 
 	it("closes menu after item selection when closeOnSelect is true", async () => {
 		const user = userEvent.setup();
-		render(
-			<Menu
-				{...defaultProps}
-				closeOnSelect
-			/>,
-		);
+		render(<Menu {...defaultProps} closeOnSelect />);
 
 		const trigger = screen.getByRole("button", { name: "Open Menu" });
 		await user.click(trigger);
@@ -100,12 +90,7 @@ describe("Menu Component", () => {
 
 	it("keeps menu open after item selection when closeOnSelect is false", async () => {
 		const user = userEvent.setup();
-		render(
-			<Menu
-				{...defaultProps}
-				closeOnSelect={false}
-			/>,
-		);
+		render(<Menu {...defaultProps} closeOnSelect={false} />);
 
 		const trigger = screen.getByRole("button", { name: "Open Menu" });
 		await user.click(trigger);
@@ -123,12 +108,7 @@ describe("Menu Component", () => {
 
 	it("applies custom className to menu content", async () => {
 		const user = userEvent.setup();
-		render(
-			<Menu
-				{...defaultProps}
-				className="custom-menu-class"
-			/>,
-		);
+		render(<Menu {...defaultProps} className="custom-menu-class" />);
 
 		const trigger = screen.getByRole("button", { name: "Open Menu" });
 		await user.click(trigger);

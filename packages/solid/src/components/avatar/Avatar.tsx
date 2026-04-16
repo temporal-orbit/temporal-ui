@@ -11,16 +11,9 @@ export const Avatar = (_props: AvatarProps & ArkAvatar.RootProps) => {
 	const [props, rootProps] = splitProps(_props, ["name", "src", "size", "className", "class", "testId"]);
 	const baseClass = ["avatar", props.size !== "md" ? props.size : ""].filter(Boolean).join("-");
 	return (
-		<ArkAvatar.Root
-			class={cx(baseClass, props.className, props.class)}
-			{...rootProps}
-			data-testid={props.testId}
-		>
+		<ArkAvatar.Root class={cx(baseClass, props.className, props.class)} {...rootProps} data-testid={props.testId}>
 			<ArkAvatar.Fallback data-testid={props.testId ? `${props.testId}--fallback` : undefined}>
-				<Show
-					when={props.name}
-					fallback={<UserIcon />}
-				>
+				<Show when={props.name} fallback={<UserIcon />}>
 					{getInitials(props.name)}
 				</Show>
 			</ArkAvatar.Fallback>

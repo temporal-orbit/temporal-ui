@@ -11,13 +11,7 @@ import { mergeProps, splitProps, type JSX, type ParentProps } from "solid-js";
 export interface SidebarMenuProps extends HTMLProps<"ul"> {}
 
 export function SidebarMenu(props: SidebarMenuProps) {
-	return (
-		<ul
-			{...props}
-			data-scope="sidebar"
-			data-part="menu"
-		/>
-	);
+	return <ul {...props} data-scope="sidebar" data-part="menu" />;
 }
 
 export interface SidebarMenuItemProps extends HTMLProps<"li"> {}
@@ -25,14 +19,7 @@ export interface SidebarMenuItemProps extends HTMLProps<"li"> {}
 export function SidebarMenuItem(_props: SidebarMenuItemProps) {
 	const [props, elementProps] = splitProps(_props, ["class"]);
 
-	return (
-		<li
-			{...elementProps}
-			data-scope="sidebar"
-			data-part="menu-item"
-			class={cx("group/menu-item", props.class)}
-		/>
-	);
+	return <li {...elementProps} data-scope="sidebar" data-part="menu-item" class={cx("group/menu-item", props.class)} />;
 }
 
 export interface SidebarMenuButtonProps extends HTMLProps<"button">, CoreSidebarMenuButtonProps {}
@@ -83,37 +70,20 @@ export function SidebarMenuAction(_props: SidebarMenuActionProps) {
 	const [props, elementProps] = splitProps(_props, ["showOnHover"]);
 
 	return (
-		<button
-			{...elementProps}
-			data-scope="sidebar"
-			data-part="menu-action"
-			data-show-on-hover={props.showOnHover}
-		/>
+		<button {...elementProps} data-scope="sidebar" data-part="menu-action" data-show-on-hover={props.showOnHover} />
 	);
 }
 
 export interface SidebarMenuBadgeProps extends HTMLProps<"div"> {}
 
 export function SidebarMenuBadge(props: SidebarMenuBadgeProps) {
-	return (
-		<div
-			{...props}
-			data-scope="sidebar"
-			data-part="menu-badge"
-		/>
-	);
+	return <div {...props} data-scope="sidebar" data-part="menu-badge" />;
 }
 
 export interface SidebarMenuSubProps extends HTMLProps<"ul"> {}
 
 export function SidebarMenuSub(props: SidebarMenuSubProps) {
-	return (
-		<ul
-			{...props}
-			data-scope="sidebar"
-			data-part="menu-sub"
-		/>
-	);
+	return <ul {...props} data-scope="sidebar" data-part="menu-sub" />;
 }
 
 export interface SidebarMenuSubItemProps extends HTMLProps<"li"> {}

@@ -7,8 +7,7 @@ import { testId } from "@temporal-ui/core/utils/string";
 import { cx } from "@temporal-ui/core/utils/cx";
 
 export interface DialogProps
-	extends CoreDialogProps<JSX.Element>,
-		Omit<ComponentProps<typeof ArkDialog.Root>, "onOpenChange"> {
+	extends CoreDialogProps<JSX.Element>, Omit<ComponentProps<typeof ArkDialog.Root>, "onOpenChange"> {
 	trigger?: (props: Record<string, unknown>) => JSX.Element;
 }
 
@@ -34,40 +33,24 @@ export function Dialog(props: DialogProps) {
 				/>
 			</Show>
 			<Portal>
-				<ArkDialog.Backdrop
-					data-testid={tid("--backdrop")}
-					class={localProps.classes?.backdrop}
-				/>
+				<ArkDialog.Backdrop data-testid={tid("--backdrop")} class={localProps.classes?.backdrop} />
 				<ArkDialog.Positioner data-testid={tid("--positioner")}>
 					<ArkDialog.Content
 						data-testid={tid("--content")}
 						class={cx(localProps.classes?.content, localProps.className)}
 					>
-						<div
-							data-scope="dialog"
-							data-part="header"
-							class={localProps.classes?.header}
-						>
+						<div data-scope="dialog" data-part="header" class={localProps.classes?.header}>
 							<Show when={localProps.title}>
-								<ArkDialog.Title
-									class={localProps.classes?.title}
-									data-testid={tid("--title")}
-								>
+								<ArkDialog.Title class={localProps.classes?.title} data-testid={tid("--title")}>
 									{localProps.title}
 								</ArkDialog.Title>
 							</Show>
 							<Show when={localProps.description}>
-								<ArkDialog.Description
-									class={localProps.classes?.description}
-									data-testid={tid("--description")}
-								>
+								<ArkDialog.Description class={localProps.classes?.description} data-testid={tid("--description")}>
 									{localProps.description}
 								</ArkDialog.Description>
 							</Show>
-							<ArkDialog.CloseTrigger
-								class={localProps.classes?.closeTrigger}
-								data-testid={tid("--close-trigger")}
-							>
+							<ArkDialog.CloseTrigger class={localProps.classes?.closeTrigger} data-testid={tid("--close-trigger")}>
 								<X />
 							</ArkDialog.CloseTrigger>
 						</div>

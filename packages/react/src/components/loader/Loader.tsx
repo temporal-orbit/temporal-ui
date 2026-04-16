@@ -8,11 +8,5 @@ export function Loader(props: LoaderProps) {
 	const { size = "md", className, testId, ...rest } = props;
 	const baseClass = ["loader", size !== "md" ? size : ""].filter(Boolean).join("-");
 
-	return (
-		<div
-			className={cx(baseClass, className)}
-			data-testid={testId}
-			{...rest}
-		/>
-	);
+	return <div className={cx(baseClass, className)} data-testid={testId} {...rest} />;
 }

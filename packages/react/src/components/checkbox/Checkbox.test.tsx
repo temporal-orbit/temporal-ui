@@ -9,22 +9,12 @@ describe("Checkbox", () => {
 	});
 
 	it('should be disabled when "disabled" prop is true', () => {
-		render(
-			<Checkbox
-				label="Accept terms and conditions"
-				disabled
-			/>,
-		);
+		render(<Checkbox label="Accept terms and conditions" disabled />);
 		expect(screen.getByLabelText("Accept terms and conditions")).toBeDisabled();
 	});
 
 	it('should be checked when "checked" prop is true', () => {
-		render(
-			<Checkbox
-				label="Accept terms and conditions"
-				checked
-			/>,
-		);
+		render(<Checkbox label="Accept terms and conditions" checked />);
 		expect(screen.getByLabelText("Accept terms and conditions")).toBeChecked();
 	});
 });

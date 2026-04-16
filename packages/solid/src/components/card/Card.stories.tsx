@@ -46,25 +46,16 @@ export const LoginForm: Story = {
 				<section>
 					<Stack gap={6}>
 						<TextInput label={"Email"} />
-						<TextInput
-							label={"Password"}
-							type={"password"}
-						/>
+						<TextInput label={"Password"} type={"password"} />
 					</Stack>
 				</section>
 				<footer>
-					<Stack
-						gap={2}
-						className={"w-full"}
-					>
+					<Stack gap={2} className={"w-full"}>
 						<Button>Login</Button>
 						<Button variant={"secondary"}>Login with Google</Button>
 						<p class="mt-4 text-center text-sm">
 							Don't have an account?{" "}
-							<a
-								href="#123"
-								class="underline-offset-4 hover:underline"
-							>
+							<a href="#123" class="underline-offset-4 hover:underline">
 								Sign up
 							</a>
 						</p>

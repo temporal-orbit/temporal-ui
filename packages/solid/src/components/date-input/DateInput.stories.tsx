@@ -34,13 +34,7 @@ export const Controlled: Story = {
 	...Default.args,
 	render: (args: DateInputProps) => {
 		const [value, setValue] = createSignal<string[]>(["2024-01-01"]);
-		return (
-			<DateInput
-				{...args}
-				value={value()}
-				onValueChange={setValue}
-			/>
-		);
+		return <DateInput {...args} value={value()} onValueChange={setValue} />;
 	},
 };
 

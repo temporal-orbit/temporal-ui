@@ -6,7 +6,8 @@ import { forwardRef } from "react";
 import { Field } from "../field";
 
 export interface ColorInputProps
-	extends CoreColorInputProps<React.ReactNode>,
+	extends
+		CoreColorInputProps<React.ReactNode>,
 		Omit<React.InputHTMLAttributes<HTMLInputElement>, "defaultValue" | "value"> {}
 
 export const ColorInput = forwardRef<HTMLInputElement, ColorInputProps>((props, ref) => {
@@ -44,10 +45,7 @@ export const ColorInput = forwardRef<HTMLInputElement, ColorInputProps>((props, 
 				openAutoFocus={false}
 				positioning={{ placement: "bottom-start", ...position }}
 			>
-				<ColorPicker.Control
-					data-scope={"color-input"}
-					data-testid={testId ? `${testId}--control` : undefined}
-				>
+				<ColorPicker.Control data-scope={"color-input"} data-testid={testId ? `${testId}--control` : undefined}>
 					<ColorPicker.Trigger
 						data-scope={"color-input"}
 						className={className}
@@ -67,18 +65,9 @@ export const ColorInput = forwardRef<HTMLInputElement, ColorInputProps>((props, 
 					</ColorPicker.Trigger>
 				</ColorPicker.Control>
 				<Portal>
-					<ColorPicker.Positioner
-						data-scope={"color-input"}
-						data-testid={testId ? `${testId}--positioner` : undefined}
-					>
-						<ColorPicker.Content
-							data-scope={"color-input"}
-							data-testid={testId ? `${testId}--content` : undefined}
-						>
-							<ColorPicker.Area
-								data-scope={"color-input"}
-								data-testid={testId ? `${testId}--area` : undefined}
-							>
+					<ColorPicker.Positioner data-scope={"color-input"} data-testid={testId ? `${testId}--positioner` : undefined}>
+						<ColorPicker.Content data-scope={"color-input"} data-testid={testId ? `${testId}--content` : undefined}>
+							<ColorPicker.Area data-scope={"color-input"} data-testid={testId ? `${testId}--area` : undefined}>
 								<ColorPicker.AreaBackground
 									data-scope={"color-input"}
 									data-testid={testId ? `${testId}--area-background` : undefined}

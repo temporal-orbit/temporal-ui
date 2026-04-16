@@ -23,30 +23,19 @@ import { Portal } from "solid-js/web";
 import { testId } from "@temporal-ui/core/utils/string";
 
 export interface DateInputProps
-	extends CoreDateInputProps<JSX.Element>,
+	extends
+		CoreDateInputProps<JSX.Element>,
 		Omit<ComponentProps<typeof DatePicker.Root>, "value" | "defaultValue" | "onValueChange"> {}
 
 export function DateInput(props: DateInputProps) {
 	const [fieldProps, controlProps, rootProps] = splitProps(
 		props,
 		["label", "hint", "error", "required", "readOnly", "disabled", "classes", "testId"],
-		[
-			"placeholder",
-			"value",
-			"defaultValue",
-			"onValueChange",
-			"position",
-			"startSection",
-			"endSection",
-			"rangeFormat",
-		],
+		["placeholder", "value", "defaultValue", "onValueChange", "position", "startSection", "endSection", "rangeFormat"],
 	);
 	const tid = testId(fieldProps.testId);
 	return (
-		<Field
-			{...fieldProps}
-			testId={tid("-field")}
-		>
+		<Field {...fieldProps} testId={tid("-field")}>
 			<DateInputRoot
 				{...rootProps}
 				value={controlProps.value?.map((date) => parseDate(date))}
@@ -57,20 +46,12 @@ export function DateInput(props: DateInputProps) {
 			>
 				<DateInputControl data-testid={tid("--control")}>
 					<Show when={controlProps.startSection || controlProps.endSection}>
-						<div
-							data-scope={"date-input"}
-							data-part={"start-section"}
-							data-testid={tid("--start-section")}
-						>
+						<div data-scope={"date-input"} data-part={"start-section"} data-testid={tid("--start-section")}>
 							{controlProps.startSection}
 						</div>
 					</Show>
 					<Show when={controlProps.endSection}>
-						<div
-							data-scope={"date-input"}
-							data-part={"end-section"}
-							data-testid={tid("--end-section")}
-						>
+						<div data-scope={"date-input"} data-part={"end-section"} data-testid={tid("--end-section")}>
 							{controlProps.endSection}
 						</div>
 					</Show>
@@ -90,17 +71,13 @@ export function DateInput(props: DateInputProps) {
 											`Select a date${rootProps.selectionMode === "range" ? " range" : ""}...`
 										}
 									>
-										{controlProps.rangeFormat?.(datePicker().valueAsDate) ??
-											datePicker().valueAsString.join(" - ")}
+										{controlProps.rangeFormat?.(datePicker().valueAsDate) ?? datePicker().valueAsString.join(" - ")}
 									</Show>
 								</DateInputTrigger>
 							);
 						}}
 					</DateInputContext>
-					<DateInputInput
-						data-testid={tid("--input")}
-						hidden
-					/>
+					<DateInputInput data-testid={tid("--input")} hidden />
 				</DateInputControl>
 				<Portal>
 					<DateInputPositioner data-testid={tid("--positioner")}>

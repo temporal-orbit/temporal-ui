@@ -22,7 +22,8 @@ import {
 import { testId as testIdFn } from "@temporal-ui/core/utils/string";
 
 export interface DateInputProps
-	extends CoreDateInputProps<React.ReactNode>,
+	extends
+		CoreDateInputProps<React.ReactNode>,
 		Omit<React.ComponentProps<typeof DatePicker.Root>, "value" | "defaultValue" | "onValueChange"> {}
 
 export function DateInput(props: DateInputProps) {
@@ -67,20 +68,12 @@ export function DateInput(props: DateInputProps) {
 			>
 				<DateInputControl data-testid={tid("--control")}>
 					{startSection && (
-						<div
-							data-scope={"date-input"}
-							data-part={"start-section"}
-							data-testid={tid("--start-section")}
-						>
+						<div data-scope={"date-input"} data-part={"start-section"} data-testid={tid("--start-section")}>
 							{startSection}
 						</div>
 					)}
 					{endSection && (
-						<div
-							data-scope={"date-input"}
-							data-part={"end-section"}
-							data-testid={tid("--end-section")}
-						>
+						<div data-scope={"date-input"} data-part={"end-section"} data-testid={tid("--end-section")}>
 							{endSection}
 						</div>
 					)}
@@ -94,18 +87,13 @@ export function DateInput(props: DateInputProps) {
 									data-with-end-section={endSection ? true : undefined}
 								>
 									{datePicker.valueAsString.length
-										? (rangeFormat?.(datePicker.valueAsDate) ??
-											datePicker.valueAsString.join(" - "))
-										: (placeholder ??
-											`Select a date${rootProps.selectionMode === "range" ? " range" : ""}...`)}
+										? (rangeFormat?.(datePicker.valueAsDate) ?? datePicker.valueAsString.join(" - "))
+										: (placeholder ?? `Select a date${rootProps.selectionMode === "range" ? " range" : ""}...`)}
 								</DateInputTrigger>
 							);
 						}}
 					</DateInputContext>
-					<DateInputInput
-						data-testid={tid("--input")}
-						hidden
-					/>
+					<DateInputInput data-testid={tid("--input")} hidden />
 				</DateInputControl>
 				<Portal>
 					<DateInputPositioner data-testid={tid("--positioner")}>

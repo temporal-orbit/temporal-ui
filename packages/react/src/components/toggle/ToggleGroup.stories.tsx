@@ -45,10 +45,7 @@ export const Default: Story = {
 
 export const Multiple: Story = {
 	render: (args) => (
-		<ToggleGroup
-			{...args}
-			multiple
-		>
+		<ToggleGroup {...args} multiple>
 			<ToggleGroupItem value="bold">
 				<BoldIcon size={16} />
 			</ToggleGroupItem>
@@ -64,10 +61,7 @@ export const Multiple: Story = {
 
 export const WithDefaultValue: Story = {
 	render: (args) => (
-		<ToggleGroup
-			{...args}
-			defaultValue={["bold"]}
-		>
+		<ToggleGroup {...args} defaultValue={["bold"]}>
 			<ToggleGroupItem value="bold">
 				<BoldIcon size={16} />
 			</ToggleGroupItem>
@@ -83,11 +77,7 @@ export const WithDefaultValue: Story = {
 
 export const WithMultipleDefaults: Story = {
 	render: (args) => (
-		<ToggleGroup
-			{...args}
-			multiple
-			defaultValue={["bold", "italic"]}
-		>
+		<ToggleGroup {...args} multiple defaultValue={["bold", "italic"]}>
 			<ToggleGroupItem value="bold">
 				<BoldIcon size={16} />
 			</ToggleGroupItem>
@@ -103,10 +93,7 @@ export const WithMultipleDefaults: Story = {
 
 export const Disabled: Story = {
 	render: (args) => (
-		<ToggleGroup
-			{...args}
-			disabled
-		>
+		<ToggleGroup {...args} disabled>
 			<ToggleGroupItem value="bold">
 				<BoldIcon size={16} />
 			</ToggleGroupItem>
@@ -122,10 +109,7 @@ export const Disabled: Story = {
 
 export const Vertical: Story = {
 	render: (args) => (
-		<ToggleGroup
-			{...args}
-			orientation="vertical"
-		>
+		<ToggleGroup {...args} orientation="vertical">
 			<ToggleGroupItem value="left">
 				<AlignLeftIcon size={16} />
 			</ToggleGroupItem>
@@ -141,10 +125,7 @@ export const Vertical: Story = {
 
 export const SingleSelection: Story = {
 	render: (args) => (
-		<ToggleGroup
-			{...args}
-			defaultValue={["left"]}
-		>
+		<ToggleGroup {...args} defaultValue={["left"]}>
 			<ToggleGroupItem value="left">
 				<AlignLeftIcon size={16} />
 			</ToggleGroupItem>
@@ -164,10 +145,7 @@ export const WithDisabledItem: Story = {
 			<ToggleGroupItem value="bold">
 				<BoldIcon size={16} />
 			</ToggleGroupItem>
-			<ToggleGroupItem
-				value="italic"
-				disabled
-			>
+			<ToggleGroupItem value="italic" disabled>
 				<ItalicIcon size={16} />
 			</ToggleGroupItem>
 			<ToggleGroupItem value="underline">

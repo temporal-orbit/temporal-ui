@@ -3,11 +3,18 @@ import type { AccordionProps as CoreAccordionProps } from "@temporal-ui/core/acc
 import { mergeProps, splitProps, type JSX } from "solid-js";
 
 export interface AccordionProps
-	extends CoreAccordionProps<JSX.Element>,
-		Omit<AccordionRootBaseProps, "onValueChange"> {}
+	extends CoreAccordionProps<JSX.Element>, Omit<AccordionRootBaseProps, "onValueChange"> {}
 
 export function Accordion(props: AccordionProps) {
-	const merged = mergeProps({ variant: "default", collapsible: true, lazyMount: true, unmountOnExit: true }, props);
+	const merged = mergeProps(
+		{
+			variant: "default",
+			collapsible: true,
+			lazyMount: true,
+			unmountOnExit: true,
+		},
+		props,
+	);
 	const [controlProps, rootProps] = splitProps(merged, ["variant", "className", "testId", "onValueChange"]);
 
 	return (

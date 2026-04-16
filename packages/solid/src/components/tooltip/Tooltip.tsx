@@ -6,8 +6,7 @@ import { Portal } from "solid-js/web";
 import { TooltipContent as TemporalTooltipContent } from "./TooltipContent";
 
 export interface TooltipProps
-	extends CoreTooltipProps<JSX.Element>,
-		Omit<ComponentProps<typeof ArkTooltip.Root>, "onOpenChange"> {
+	extends CoreTooltipProps<JSX.Element>, Omit<ComponentProps<typeof ArkTooltip.Root>, "onOpenChange"> {
 	trigger?: (props: Record<string, unknown>) => JSX.Element;
 }
 

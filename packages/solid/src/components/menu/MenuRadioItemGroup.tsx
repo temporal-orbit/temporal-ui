@@ -5,8 +5,7 @@ import type { ComponentProps } from "solid-js";
 import { testId } from "@temporal-ui/core/utils/string";
 
 export interface MenuRadioItemGroupProps
-	extends CoreMenuRadioItemGroupProps,
-		Omit<ComponentProps<typeof ArkMenu.RadioItemGroup>, "onValueChange"> {}
+	extends CoreMenuRadioItemGroupProps, Omit<ComponentProps<typeof ArkMenu.RadioItemGroup>, "onValueChange"> {}
 
 export function MenuRadioItemGroup(props: MenuRadioItemGroupProps) {
 	const [localProps, radioItemGroupProps] = splitProps(props, [

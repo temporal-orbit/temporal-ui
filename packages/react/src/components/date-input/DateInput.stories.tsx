@@ -33,13 +33,7 @@ export const Controlled: Story = {
 	...Default.args,
 	render: (args) => {
 		const [value, setValue] = React.useState<string[]>(["2024-01-01"]);
-		return (
-			<DateInput
-				{...args}
-				value={value}
-				onValueChange={setValue}
-			/>
-		);
+		return <DateInput {...args} value={value} onValueChange={setValue} />;
 	},
 };
 

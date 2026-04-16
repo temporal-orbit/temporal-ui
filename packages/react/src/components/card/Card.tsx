@@ -7,11 +7,7 @@ export function Card(props: CardProps) {
 	const { className, testId, ...rest } = props;
 
 	return (
-		<div
-			{...rest}
-			className={cx("card", className)}
-			data-testid={testId}
-		>
+		<div {...rest} className={cx("card", className)} data-testid={testId}>
 			{props.children}
 		</div>
 	);

@@ -18,12 +18,7 @@ export function Alert(props: AlertProps) {
 	const { variant, icon, title, description, children, testId, ...divProps } = props;
 	const baseClass = ["alert", variant || "default"].filter(Boolean).join("-");
 	return (
-		<div
-			{...divProps}
-			role="alert"
-			className={cx(baseClass, props.className)}
-			data-testid={testId}
-		>
+		<div {...divProps} role="alert" className={cx(baseClass, props.className)} data-testid={testId}>
 			{icon !== undefined ? icon : icons[variant || "default"]}
 			{title && <h2>{title}</h2>}
 			{description && <section>{description}</section>}

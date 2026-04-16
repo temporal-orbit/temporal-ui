@@ -14,11 +14,11 @@ A modern, framework-agnostic design system built for speed and consistency. Temp
 
 ## 📦 Packages
 
-| Package | Description | Framework |
-|---------|-------------|-----------|
-| `@temporal-ui/core` | Framework-agnostic component definitions and styles | Universal |
-| `@temporal-ui/react` | React component implementations | React |
-| `@temporal-ui/solid` | Solid.js component implementations | Solid.js |
+| Package              | Description                                         | Framework |
+| -------------------- | --------------------------------------------------- | --------- |
+| `@temporal-ui/core`  | Framework-agnostic component definitions and styles | Universal |
+| `@temporal-ui/react` | React component implementations                     | React     |
+| `@temporal-ui/solid` | Solid.js component implementations                  | Solid.js  |
 
 ## 🚀 Quick Start
 
@@ -28,81 +28,87 @@ A modern, framework-agnostic design system built for speed and consistency. Temp
 # For React projects
 npm install @temporal-ui/react
 
-# For Solid.js projects  
+# For Solid.js projects
 npm install @temporal-ui/solid
 ```
 
 ### Basic Usage
 
 ```tsx
-import { Button, Alert, Card } from '@temporal-ui/react'
+import { Button, Alert, Card } from "@temporal-ui/react";
 
 function App() {
-  return (
-    <Card>
-      <Alert variant="info">Welcome to Temporal UI!</Alert>
-      <Button variant="primary">Get Started</Button>
-    </Card>
-  )
+	return (
+		<Card>
+			<Alert variant="info">Welcome to Temporal UI!</Alert>
+			<Button variant="primary">Get Started</Button>
+		</Card>
+	);
 }
 ```
 
 ## 🧱 Components
 
 ### Layout & Structure
-| Component | Description |
-|-----------|-------------|
-| `Box` | Basic layout primitive |
-| `Stack` | Vertical/horizontal stack layout |
-| `Card` | Container with card styling |
-| `Separator` | Visual divider |
-| `Sidebar` | Collapsible sidebar navigation |
-| `ScrollArea` | Custom scrollable area |
+
+| Component    | Description                      |
+| ------------ | -------------------------------- |
+| `Box`        | Basic layout primitive           |
+| `Stack`      | Vertical/horizontal stack layout |
+| `Card`       | Container with card styling      |
+| `Separator`  | Visual divider                   |
+| `Sidebar`    | Collapsible sidebar navigation   |
+| `ScrollArea` | Custom scrollable area           |
 
 ### Forms & Inputs
-| Component | Description |
-|-----------|-------------|
-| `Button` | Primary action button with variants |
-| `TextInput` | Text input field |
-| `Textarea` | Multi-line text input |
-| `NumberInput` | Numeric input with controls |
-| `Checkbox` | Checkbox with label support |
-| `RadioGroup` | Radio button group |
-| `Select` | Dropdown selection |
-| `Slider` | Range slider input |
-| `ColorInput` | Color picker input |
-| `DateInput` | Date picker input |
-| `Field` | Form field wrapper with label/error |
-| `Toggle` | Two-state toggle button |
-| `ToggleGroup` | Group of toggle buttons |
+
+| Component     | Description                         |
+| ------------- | ----------------------------------- |
+| `Button`      | Primary action button with variants |
+| `TextInput`   | Text input field                    |
+| `Textarea`    | Multi-line text input               |
+| `NumberInput` | Numeric input with controls         |
+| `Checkbox`    | Checkbox with label support         |
+| `RadioGroup`  | Radio button group                  |
+| `Select`      | Dropdown selection                  |
+| `Slider`      | Range slider input                  |
+| `ColorInput`  | Color picker input                  |
+| `DateInput`   | Date picker input                   |
+| `Field`       | Form field wrapper with label/error |
+| `Toggle`      | Two-state toggle button             |
+| `ToggleGroup` | Group of toggle buttons             |
 
 ### Data Display
-| Component | Description |
-|-----------|-------------|
-| `Table` | Basic table component |
+
+| Component   | Description                       |
+| ----------- | --------------------------------- |
+| `Table`     | Basic table component             |
 | `DataTable` | Advanced data table with features |
-| `Badge` | Status/label badge |
-| `Avatar` | User avatar display |
+| `Badge`     | Status/label badge                |
+| `Avatar`    | User avatar display               |
 
 ### Feedback & Overlays
-| Component | Description |
-|-----------|-------------|
-| `Alert` | Alert/notification banner |
-| `Dialog` | Modal dialog |
-| `Popover` | Floating popover content |
-| `Menu` | Dropdown menu |
+
+| Component       | Description               |
+| --------------- | ------------------------- |
+| `Alert`         | Alert/notification banner |
+| `Dialog`        | Modal dialog              |
+| `Popover`       | Floating popover content  |
+| `Menu`          | Dropdown menu             |
 | `Notifications` | Toast notification system |
-| `Loader` | Loading spinner/indicator |
+| `Loader`        | Loading spinner/indicator |
 
 ### Navigation
-| Component | Description |
-|-----------|-------------|
-| `Tabs` | Tabbed navigation |
+
+| Component     | Description                    |
+| ------------- | ------------------------------ |
+| `Tabs`        | Tabbed navigation              |
 | `Collapsible` | Expandable/collapsible section |
 
 ## 🛠 Development
 
 ### Prerequisites
+
 - [Bun](https://bun.sh/) (package manager)
 - Node.js 18+
 

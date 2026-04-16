@@ -26,15 +26,9 @@ export function CheckboxGroup(props: CheckboxGroupProps) {
 	} = props;
 
 	return (
-		<fieldset
-			className={cx("field-root", classes?.root)}
-			data-testid={testId ? `${testId}--fieldset` : undefined}
-		>
+		<fieldset className={cx("field-root", classes?.root)} data-testid={testId ? `${testId}--fieldset` : undefined}>
 			{label && (
-				<legend
-					className={cx("field-label", classes?.label)}
-					data-testid={testId ? `${testId}--legend` : undefined}
-				>
+				<legend className={cx("field-label", classes?.label)} data-testid={testId ? `${testId}--legend` : undefined}>
 					{label}
 					{required && <span title="required">*</span>}
 				</legend>
@@ -77,10 +71,7 @@ export function CheckboxGroup(props: CheckboxGroupProps) {
 				))}
 			</ArkCheckbox.Group>
 			{error && (
-				<div
-					className={cx("field-error", classes?.error)}
-					data-testid={testId ? `${testId}--error` : undefined}
-				>
+				<div className={cx("field-error", classes?.error)} data-testid={testId ? `${testId}--error` : undefined}>
 					{error}
 				</div>
 			)}

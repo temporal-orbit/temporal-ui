@@ -10,11 +10,7 @@ export function Badge(props: BadgeProps) {
 	const baseClass = ["badge", variant].filter(Boolean).join("-");
 
 	return (
-		<span
-			className={cx(baseClass, className)}
-			data-testid={testId}
-			{...rest}
-		>
+		<span className={cx(baseClass, className)} data-testid={testId} {...rest}>
 			{props.children}
 		</span>
 	);

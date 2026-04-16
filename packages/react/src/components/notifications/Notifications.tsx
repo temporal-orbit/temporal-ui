@@ -38,11 +38,7 @@ export function Notifications(props: NotificationsProps) {
 					<Toast.Description>{toast.description}</Toast.Description>
 					{toast.action && <Toast.ActionTrigger>{toast.action.label}</Toast.ActionTrigger>}
 					<Toast.CloseTrigger aria-label="Close notification">
-						<XIcon
-							size={16}
-							aria-hidden="true"
-							focusable="false"
-						/>
+						<XIcon size={16} aria-hidden="true" focusable="false" />
 					</Toast.CloseTrigger>
 				</Toast.Root>
 			)}

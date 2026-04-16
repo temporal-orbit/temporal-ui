@@ -9,31 +9,18 @@ export function DayView(props: DayViewProps) {
 	const { numOfMonths = 1 } = props;
 
 	return (
-		<DatePicker.View
-			view="day"
-			data-scope={"date-input"}
-			data-view="day"
-		>
-			<div
-				data-scope={"date-input"}
-				data-part="months-container"
-			>
+		<DatePicker.View view="day" data-scope={"date-input"} data-view="day">
+			<div data-scope={"date-input"} data-part="months-container">
 				<DatePicker.Context>
 					{(datePicker) =>
 						Array.from({ length: numOfMonths }).map((_, i) => {
 							const offset = datePicker.getOffset({ months: i });
 							return (
-								<DatePicker.Table
-									key={i}
-									data-scope={"date-input"}
-								>
+								<DatePicker.Table key={i} data-scope={"date-input"}>
 									<DatePicker.TableHead data-scope={"date-input"}>
 										<DatePicker.TableRow data-scope={"date-input"}>
 											{datePicker.weekDays.map((weekDay, id) => (
-												<DatePicker.TableHeader
-													data-scope={"date-input"}
-													key={id}
-												>
+												<DatePicker.TableHeader data-scope={"date-input"} key={id}>
 													{weekDay.short}
 												</DatePicker.TableHeader>
 											))}
@@ -41,10 +28,7 @@ export function DayView(props: DayViewProps) {
 									</DatePicker.TableHead>
 									<DatePicker.TableBody data-scope={"date-input"}>
 										{offset.weeks.map((week, id) => (
-											<DatePicker.TableRow
-												data-scope={"date-input"}
-												key={id}
-											>
+											<DatePicker.TableRow data-scope={"date-input"} key={id}>
 												{week.map((day, id) => (
 													<DatePicker.TableCell
 														data-scope={"date-input"}

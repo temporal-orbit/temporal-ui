@@ -8,11 +8,7 @@ export function Card(_props: CardProps) {
 	const [props, elementProps] = splitProps(_props, ["className", "class", "children", "testId"]);
 
 	return (
-		<div
-			{...elementProps}
-			class={cx("card", props.className, props.class)}
-			data-testid={props.testId}
-		>
+		<div {...elementProps} class={cx("card", props.className, props.class)} data-testid={props.testId}>
 			{props.children}
 		</div>
 	);

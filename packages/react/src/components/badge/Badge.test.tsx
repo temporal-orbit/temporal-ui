@@ -20,35 +20,20 @@ describe("Badge Component", () => {
 	});
 
 	it("renders with a specified variant", () => {
-		render(
-			<Badge
-				{...defaultProps}
-				variant="primary"
-			/>,
-		);
+		render(<Badge {...defaultProps} variant="primary" />);
 		const badgeElement = screen.getByText("Test Badge");
 		expect(badgeElement).toHaveClass("badge-primary");
 	});
 
 	it("renders with an undefined variant (should only have base class)", () => {
-		render(
-			<Badge
-				{...defaultProps}
-				variant={undefined}
-			/>,
-		);
+		render(<Badge {...defaultProps} variant={undefined} />);
 		const badgeElement = screen.getByText("Test Badge");
 		expect(badgeElement).toHaveClass("badge");
 		expect(badgeElement).not.toHaveClass("badge-undefined"); // Ensure it doesn't literally append "undefined"
 	});
 
 	it("applies custom className", () => {
-		render(
-			<Badge
-				{...defaultProps}
-				className="custom-class"
-			/>,
-		);
+		render(<Badge {...defaultProps} className="custom-class" />);
 		const badgeElement = screen.getByText("Test Badge");
 		expect(badgeElement).toHaveClass("badge");
 		expect(badgeElement).toHaveClass("custom-class");
@@ -56,12 +41,7 @@ describe("Badge Component", () => {
 
 	it("applies custom style", () => {
 		const style: React.CSSProperties = { color: "red", fontSize: "16px" };
-		render(
-			<Badge
-				{...defaultProps}
-				style={style}
-			/>,
-		);
+		render(<Badge {...defaultProps} style={style} />);
 		const badgeElement = screen.getByText("Test Badge");
 		expect(badgeElement).toHaveStyle("color: red");
 		expect(badgeElement).toHaveStyle("font-size: 16px");
@@ -79,13 +59,7 @@ describe("Badge Component", () => {
 	});
 
 	it("handles variant and custom class together", () => {
-		render(
-			<Badge
-				{...defaultProps}
-				variant="secondary"
-				className="extra-style"
-			/>,
-		);
+		render(<Badge {...defaultProps} variant="secondary" className="extra-style" />);
 		const badgeElement = screen.getByText("Test Badge");
 		expect(badgeElement).toHaveClass("badge-secondary");
 		expect(badgeElement).toHaveClass("extra-style");

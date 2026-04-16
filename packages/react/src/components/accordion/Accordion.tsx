@@ -2,8 +2,7 @@ import { type AccordionRootBaseProps, Accordion as ArkAccordion } from "@ark-ui/
 import type { AccordionProps as CoreAccordionProps } from "@temporal-ui/core/accordion";
 
 export interface AccordionProps
-	extends CoreAccordionProps<React.ReactNode>,
-		Omit<AccordionRootBaseProps, "onValueChange"> {}
+	extends CoreAccordionProps<React.ReactNode>, Omit<AccordionRootBaseProps, "onValueChange"> {}
 
 export function Accordion(props: AccordionProps) {
 	const {

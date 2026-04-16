@@ -10,30 +10,10 @@ export interface AlertProps extends CoreAlertProps<JSX.Element>, HTMLProps<"div"
 
 const icons: Record<string, Accessor<JSX.Element>> = {
 	default: () => null,
-	info: () => (
-		<Info
-			data-scope="alert"
-			data-part="icon"
-		/>
-	),
-	success: () => (
-		<CircleCheck
-			data-scope="alert"
-			data-part="icon"
-		/>
-	),
-	warning: () => (
-		<TriangleAlert
-			data-scope="alert"
-			data-part="icon"
-		/>
-	),
-	error: () => (
-		<CircleX
-			data-scope="alert"
-			data-part="icon"
-		/>
-	),
+	info: () => <Info data-scope="alert" data-part="icon" />,
+	success: () => <CircleCheck data-scope="alert" data-part="icon" />,
+	warning: () => <TriangleAlert data-scope="alert" data-part="icon" />,
+	error: () => <CircleX data-scope="alert" data-part="icon" />,
 };
 
 export function Alert(_props: AlertProps) {
@@ -58,11 +38,7 @@ export function Alert(_props: AlertProps) {
 		>
 			{props.icon !== undefined ? props.icon() : icons[props.variant]?.()}
 			{props.title && (
-				<h2
-					data-scope="alert"
-					data-part="title"
-					data-testid={props.testId ? `${props.testId}--title` : undefined}
-				>
+				<h2 data-scope="alert" data-part="title" data-testid={props.testId ? `${props.testId}--title` : undefined}>
 					{props.title}
 				</h2>
 			)}
@@ -76,10 +52,7 @@ export function Alert(_props: AlertProps) {
 				</section>
 			)}
 			{props.children && (
-				<section
-					data-scope="alert"
-					data-part="content"
-				>
+				<section data-scope="alert" data-part="content">
 					{props.children}
 				</section>
 			)}

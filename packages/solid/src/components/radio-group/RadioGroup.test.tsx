@@ -23,12 +23,7 @@ const items: RadioGroupItem[] = [
 
 describe("RadioGroup", () => {
 	it("should render all items", () => {
-		render(() => (
-			<RadioGroup
-				label="Select options"
-				items={items}
-			/>
-		));
+		render(() => <RadioGroup label="Select options" items={items} />);
 		expect(screen.getByText("Select options")).toBeInTheDocument();
 		items.forEach((item) => {
 			expect(screen.getByLabelText(item.label)).toBeInTheDocument();

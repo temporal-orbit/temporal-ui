@@ -43,11 +43,7 @@ export function TeamSwitcher(props: {
 					<MenuItemGroup>
 						<For each={props.teams}>
 							{(team) => (
-								<MenuItem
-									value={team.name}
-									onClick={() => setActiveTeam(team)}
-									class="gap-2 p-2"
-								>
+								<MenuItem value={team.name} onClick={() => setActiveTeam(team)} class="gap-2 p-2">
 									<div class="flex size-6 items-center justify-center rounded-md border">
 										<team.logo class="size-3.5 shrink-0" />
 									</div>
@@ -56,10 +52,7 @@ export function TeamSwitcher(props: {
 							)}
 						</For>
 						<MenuSeparator />
-						<MenuItem
-							value="add-team"
-							class="gap-2 p-2"
-						>
+						<MenuItem value="add-team" class="gap-2 p-2">
 							<div class="flex size-6 items-center justify-center rounded-md border bg-transparent">
 								<Plus class="size-4" />
 							</div>

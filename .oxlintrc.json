@@ -12,8 +12,5 @@
 		"eslint/no-unassigned-vars": "off",
 		"vitest/require-mock-type-parameters": "off" // too many test files to change, maybe revisit later
 	},
-	"ignorePatterns": [".idea", "dist", "node_modules", ".turbo"],
-	"options": {
-		"typeAware": true
-	}
+	"ignorePatterns": [".idea", "dist", "node_modules", ".turbo"]
 }

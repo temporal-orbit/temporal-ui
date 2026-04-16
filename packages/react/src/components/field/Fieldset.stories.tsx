@@ -18,14 +18,8 @@ export const Basic: Story = {
 		hint: "Please fill out all required fields.",
 		children: (
 			<>
-				<TextInput
-					label="First Name"
-					name="firstName"
-				/>
-				<TextInput
-					label="Last Name"
-					name="lastName"
-				/>
+				<TextInput label="First Name" name="firstName" />
+				<TextInput label="Last Name" name="lastName" />
 			</>
 		),
 	},
@@ -38,14 +32,8 @@ export const Disabled: Story = {
 		disabled: true,
 		children: (
 			<>
-				<TextInput
-					label="Username"
-					name="username"
-				/>
-				<TextInput
-					label="Email"
-					name="email"
-				/>
+				<TextInput label="Username" name="username" />
+				<TextInput label="Email" name="email" />
 			</>
 		),
 	},
@@ -58,11 +46,7 @@ export const WithError: Story = {
 		error: "Phone number is required.",
 		children: (
 			<>
-				<TextInput
-					label="Phone"
-					name="phone"
-					error="Required"
-				/>
+				<TextInput label="Phone" name="phone" error="Required" />
 			</>
 		),
 	},

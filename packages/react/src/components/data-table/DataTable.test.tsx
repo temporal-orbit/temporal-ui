@@ -21,13 +21,7 @@ const mockColumns = [
 
 describe("DataTable", () => {
 	it("renders table elements properly", () => {
-		render(
-			<DataTable
-				data={mockData}
-				columns={mockColumns}
-				testId="test-table"
-			/>,
-		);
+		render(<DataTable data={mockData} columns={mockColumns} testId="test-table" />);
 
 		expect(screen.getByTestId("test-table--container")).toBeInTheDocument();
 		expect(screen.getByTestId("test-table--table")).toBeInTheDocument();
@@ -40,27 +34,13 @@ describe("DataTable", () => {
 	});
 
 	it("renders loading state when loading is true", () => {
-		render(
-			<DataTable
-				data={mockData}
-				columns={mockColumns}
-				loading={true}
-				testId="test-table"
-			/>,
-		);
+		render(<DataTable data={mockData} columns={mockColumns} loading={true} testId="test-table" />);
 
 		expect(screen.getByTestId("test-table--loading")).toBeInTheDocument();
 	});
 
 	it("does not render loading state when loading is false", () => {
-		render(
-			<DataTable
-				data={mockData}
-				columns={mockColumns}
-				loading={false}
-				testId="test-table"
-			/>,
-		);
+		render(<DataTable data={mockData} columns={mockColumns} loading={false} testId="test-table" />);
 
 		expect(screen.queryByTestId("test-table--loading")).not.toBeInTheDocument();
 	});

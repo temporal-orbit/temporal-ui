@@ -23,26 +23,10 @@ describe("Alert Component", () => {
 	it("applies variant classes correctly", () => {
 		render(() => (
 			<>
-				<Alert
-					{...defaultProps}
-					testId="info-alert"
-					variant="info"
-				/>
-				<Alert
-					{...defaultProps}
-					testId="success-alert"
-					variant="success"
-				/>
-				<Alert
-					{...defaultProps}
-					testId="warning-alert"
-					variant="warning"
-				/>
-				<Alert
-					{...defaultProps}
-					testId="error-alert"
-					variant="error"
-				/>
+				<Alert {...defaultProps} testId="info-alert" variant="info" />
+				<Alert {...defaultProps} testId="success-alert" variant="success" />
+				<Alert {...defaultProps} testId="warning-alert" variant="warning" />
+				<Alert {...defaultProps} testId="error-alert" variant="error" />
 			</>
 		));
 		expect(screen.getByTestId("info-alert")).toHaveClass("alert-info");
@@ -54,26 +38,10 @@ describe("Alert Component", () => {
 	it("renders default icon for each variant", () => {
 		render(() => (
 			<>
-				<Alert
-					{...defaultProps}
-					testId="info-alert"
-					variant="info"
-				/>
-				<Alert
-					{...defaultProps}
-					testId="success-alert"
-					variant="success"
-				/>
-				<Alert
-					{...defaultProps}
-					testId="warning-alert"
-					variant="warning"
-				/>
-				<Alert
-					{...defaultProps}
-					testId="error-alert"
-					variant="error"
-				/>
+				<Alert {...defaultProps} testId="info-alert" variant="info" />
+				<Alert {...defaultProps} testId="success-alert" variant="success" />
+				<Alert {...defaultProps} testId="warning-alert" variant="warning" />
+				<Alert {...defaultProps} testId="error-alert" variant="error" />
 			</>
 		));
 
@@ -84,48 +52,28 @@ describe("Alert Component", () => {
 	});
 
 	it("renders without icon when icon prop is not set", () => {
-		render(() => (
-			<Alert
-				{...defaultProps}
-				variant="info"
-			/>
-		));
+		render(() => <Alert {...defaultProps} variant="info" />);
 
 		expect(screen.queryByRole("svg", { hidden: true })).not.toBeInTheDocument();
 		expect(screen.getByRole("heading", { level: 2 })).toHaveTextContent("Please confirm");
 	});
 
 	it("renders without title when title is not set", () => {
-		render(() => (
-			<Alert
-				description="This alert has no title but has a description."
-				title={undefined}
-			/>
-		));
+		render(() => <Alert description="This alert has no title but has a description." title={undefined} />);
 
 		expect(screen.queryByRole("heading")).not.toBeInTheDocument();
 		expect(screen.getByText("This alert has no title but has a description.")).toBeInTheDocument();
 	});
 
 	it("renders without description when description is not set", () => {
-		render(() => (
-			<Alert
-				title="Alert without description"
-				description={undefined}
-			/>
-		));
+		render(() => <Alert title="Alert without description" description={undefined} />);
 
 		expect(screen.getByRole("heading", { level: 2 })).toHaveTextContent("Alert without description");
 		expect(screen.queryByText("This is an alert with title and description.")).not.toBeInTheDocument();
 	});
 
 	it("renders custom icon when provided", () => {
-		render(() => (
-			<Alert
-				title="Alert with custom icon"
-				icon={() => <svg data-testid="custom-icon" />}
-			/>
-		));
+		render(() => <Alert title="Alert with custom icon" icon={() => <svg data-testid="custom-icon" />} />);
 
 		expect(screen.getByTestId("custom-icon")).toBeInTheDocument();
 		expect(screen.getByRole("heading", { level: 2 })).toHaveTextContent("Alert with custom icon");
@@ -133,31 +81,18 @@ describe("Alert Component", () => {
 
 	it("renders children content", () => {
 		const children = () => (
-			<Stack
-				row
-				gap={1}
-				mt={1}
-			>
-				<Button
-					variant="primary"
-					size="xs"
-				>
+			<Stack row gap={1} mt={1}>
+				<Button variant="primary" size="xs">
 					Action
 				</Button>
-				<Button
-					variant="secondary"
-					size="xs"
-				>
+				<Button variant="secondary" size="xs">
 					Secondary
 				</Button>
 			</Stack>
 		);
 
 		render(() => (
-			<Alert
-				{...defaultProps}
-				title="Alert with children"
-			>
+			<Alert {...defaultProps} title="Alert with children">
 				{children()}
 			</Alert>
 		));
@@ -168,12 +103,7 @@ describe("Alert Component", () => {
 	});
 
 	it("applies custom className alongside base classes", () => {
-		render(() => (
-			<Alert
-				{...defaultProps}
-				className="custom-class another-custom"
-			/>
-		));
+		render(() => <Alert {...defaultProps} className="custom-class another-custom" />);
 
 		const alertElement = screen.getByRole("alert");
 		expect(alertElement).toHaveClass("alert-default");
@@ -182,12 +112,7 @@ describe("Alert Component", () => {
 	});
 
 	it("spreads additional div props", () => {
-		render(() => (
-			<Alert
-				{...defaultProps}
-				testId="custom-alert"
-			/>
-		));
+		render(() => <Alert {...defaultProps} testId="custom-alert" />);
 
 		const alertElement = screen.getByTestId("custom-alert");
 		expect(alertElement).toBeInTheDocument();

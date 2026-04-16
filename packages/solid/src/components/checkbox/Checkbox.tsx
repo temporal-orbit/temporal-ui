@@ -8,8 +8,7 @@ import { CheckIcon } from "lucide-solid";
 import { testId } from "@temporal-ui/core/utils/string";
 
 export interface CheckboxProps
-	extends CoreCheckboxProps<JSX.Element>,
-		Omit<HTMLProps<"input">, "checked" | "onInput"> {}
+	extends CoreCheckboxProps<JSX.Element>, Omit<HTMLProps<"input">, "checked" | "onInput"> {}
 
 export function Checkbox(_props: CheckboxProps) {
 	const [fieldProps, rootProps] = splitProps(
@@ -41,29 +40,17 @@ export function Checkbox(_props: CheckboxProps) {
 				required={fieldProps.required}
 				data-testid={tid("--root")}
 			>
-				<ArkCheckbox.Control
-					data-testid={tid("--control")}
-					class={fieldProps.classes?.control}
-				>
-					<ArkCheckbox.Indicator
-						data-testid={tid("--indicator")}
-						class={fieldProps.classes?.indicator}
-					>
+				<ArkCheckbox.Control data-testid={tid("--control")} class={fieldProps.classes?.control}>
+					<ArkCheckbox.Indicator data-testid={tid("--indicator")} class={fieldProps.classes?.indicator}>
 						<CheckIcon />
 					</ArkCheckbox.Indicator>
 				</ArkCheckbox.Control>
 				<Show when={fieldProps.label}>
-					<ArkCheckbox.Label
-						data-testid={tid("--label")}
-						class={fieldProps.classes?.label}
-					>
+					<ArkCheckbox.Label data-testid={tid("--label")} class={fieldProps.classes?.label}>
 						{fieldProps.label}
 					</ArkCheckbox.Label>
 				</Show>
-				<ArkCheckbox.HiddenInput
-					data-testid={tid("--input")}
-					class={fieldProps.classes?.input}
-				/>
+				<ArkCheckbox.HiddenInput data-testid={tid("--input")} class={fieldProps.classes?.input} />
 			</ArkCheckbox.Root>
 		</Field>
 	);

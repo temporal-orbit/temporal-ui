@@ -9,12 +9,7 @@ export interface ToggleProps extends ComponentProps<typeof ArkToggle.Root> {
 export function Toggle(props: ToggleProps) {
 	const [local, rest] = splitProps(props, ["testId"]);
 
-	return (
-		<ArkToggle.Root
-			data-testid={local.testId}
-			{...rest}
-		/>
-	);
+	return <ArkToggle.Root data-testid={local.testId} {...rest} />;
 }
 
 export const ToggleIndicator = ArkToggle.Indicator;

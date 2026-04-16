@@ -19,124 +19,61 @@ describe("Button Component", () => {
 	});
 
 	it("applies variant attributes correctly", () => {
-		const { rerender } = render(
-			<Button
-				{...defaultProps}
-				variant="secondary"
-			/>,
-		);
+		const { rerender } = render(<Button {...defaultProps} variant="secondary" />);
 		expect(screen.getByRole("button", { name: "Test Button" })).toHaveAttribute("data-variant", "secondary");
 
-		rerender(
-			<Button
-				{...defaultProps}
-				variant="destructive"
-			/>,
-		);
+		rerender(<Button {...defaultProps} variant="destructive" />);
 		expect(screen.getByRole("button", { name: "Test Button" })).toHaveAttribute("data-variant", "destructive");
 	});
 
 	it("applies size attributes correctly", () => {
-		const { rerender } = render(
-			<Button
-				{...defaultProps}
-				size="sm"
-			/>,
-		);
+		const { rerender } = render(<Button {...defaultProps} size="sm" />);
 		expect(screen.getByRole("button", { name: "Test Button" })).toHaveAttribute("data-size", "sm");
 
-		rerender(
-			<Button
-				{...defaultProps}
-				size="lg"
-			/>,
-		);
+		rerender(<Button {...defaultProps} size="lg" />);
 		expect(screen.getByRole("button", { name: "Test Button" })).toHaveAttribute("data-size", "lg");
 
-		rerender(
-			<Button
-				{...defaultProps}
-				size="md"
-			/>,
-		);
+		rerender(<Button {...defaultProps} size="md" />);
 		expect(screen.getByRole("button", { name: "Test Button" })).toHaveAttribute("data-size", "md");
 	});
 
 	it("renders as an icon button with correct attribute", () => {
-		render(
-			<Button
-				{...defaultProps}
-				icon
-			/>,
-		);
+		render(<Button {...defaultProps} icon />);
 		const buttonElement = screen.getByRole("button", { name: "Test Button" });
 		expect(buttonElement).toHaveAttribute("data-icon");
 	});
 
 	it("handles disabled state", () => {
-		render(
-			<Button
-				{...defaultProps}
-				disabled
-			/>,
-		);
+		render(<Button {...defaultProps} disabled />);
 		expect(screen.getByRole("button", { name: "Test Button" })).toBeDisabled();
 	});
 
 	it("is disabled if loading is true, even if disabled prop is false", () => {
-		render(
-			<Button
-				{...defaultProps}
-				loading
-				disabled={false}
-			/>,
-		);
+		render(<Button {...defaultProps} loading disabled={false} />);
 		expect(screen.getByRole("button", { name: "Test Button" })).toBeDisabled();
 	});
 
 	it("is disabled if disabled prop is true, even if loading is false", () => {
-		render(
-			<Button
-				{...defaultProps}
-				disabled
-				loading={false}
-			/>,
-		);
+		render(<Button {...defaultProps} disabled loading={false} />);
 		expect(screen.getByRole("button", { name: "Test Button" })).toBeDisabled();
 	});
 
 	it("calls onClick handler when not disabled or loading", () => {
 		const handleClick = vi.fn();
-		render(
-			<Button
-				{...defaultProps}
-				onClick={handleClick}
-			/>,
-		);
+		render(<Button {...defaultProps} onClick={handleClick} />);
 		fireEvent.click(screen.getByRole("button", { name: "Test Button" }));
 		expect(handleClick).toHaveBeenCalledTimes(1);
 	});
 
 	it("does not call onClick handler when disabled", () => {
 		const handleClick = vi.fn();
-		render(
-			<Button
-				{...defaultProps}
-				onClick={handleClick}
-				disabled
-			/>,
-		);
+		render(<Button {...defaultProps} onClick={handleClick} disabled />);
 		fireEvent.click(screen.getByRole("button", { name: "Test Button" }));
 		expect(handleClick).not.toHaveBeenCalled();
 	});
 
 	it("applies custom className", () => {
-		render(
-			<Button
-				{...defaultProps}
-				className="custom-class another-custom"
-			/>,
-		);
+		render(<Button {...defaultProps} className="custom-class another-custom" />);
 		const buttonElement = screen.getByRole("button", { name: "Test Button" });
 		expect(buttonElement).toHaveAttribute("data-scope", "button");
 		expect(buttonElement).toHaveClass("custom-class");
@@ -144,14 +81,7 @@ describe("Button Component", () => {
 	});
 
 	it("handles combination of props: variant, size, and icon", () => {
-		render(
-			<Button
-				{...defaultProps}
-				variant="destructive"
-				size="lg"
-				icon
-			/>,
-		);
+		render(<Button {...defaultProps} variant="destructive" size="lg" icon />);
 		const buttonElement = screen.getByRole("button", { name: "Test Button" });
 		expect(buttonElement).toHaveAttribute("data-variant", "destructive");
 		expect(buttonElement).toHaveAttribute("data-size", "lg");

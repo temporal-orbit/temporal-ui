@@ -32,12 +32,7 @@ export function Stack({
 	}
 
 	return (
-		<Box
-			{...rest}
-			className={cx(baseClass, className)}
-			style={{ ...style, ...rest.style }}
-			data-testid={testId}
-		>
+		<Box {...rest} className={cx(baseClass, className)} style={{ ...style, ...rest.style }} data-testid={testId}>
 			{children}
 		</Box>
 	);

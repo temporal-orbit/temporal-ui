@@ -7,11 +7,5 @@ export interface MenuItemSeparatorProps extends CoreMenuItemSeparatorProps, Comp
 
 export function MenuItemSeparator(props: MenuItemSeparatorProps) {
 	const [localProps, separatorProps] = splitProps(props, ["className", "testId"]);
-	return (
-		<ArkMenu.Separator
-			{...separatorProps}
-			class={localProps.className}
-			data-testid={localProps.testId}
-		/>
-	);
+	return <ArkMenu.Separator {...separatorProps} class={localProps.className} data-testid={localProps.testId} />;
 }

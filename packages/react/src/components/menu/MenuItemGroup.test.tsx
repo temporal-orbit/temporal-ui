@@ -6,10 +6,7 @@ import { MenuItemGroup } from "./MenuItemGroup";
 
 describe("MenuItemGroup Component", () => {
 	const MenuWrapper = ({ children, ...props }: Omit<MenuProps, "trigger">) => (
-		<Menu
-			trigger={<button type="button">Trigger</button>}
-			{...props}
-		>
+		<Menu trigger={<button type="button">Trigger</button>} {...props}>
 			{children}
 		</Menu>
 	);

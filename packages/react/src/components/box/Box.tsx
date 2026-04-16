@@ -64,11 +64,7 @@ export function Box({
 	}
 
 	return (
-		<div
-			{...rest}
-			style={{ ...style, ...rest.style }}
-			data-testid={testId}
-		>
+		<div {...rest} style={{ ...style, ...rest.style }} data-testid={testId}>
 			{children}
 		</div>
 	);

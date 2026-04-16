@@ -2,8 +2,17 @@
 	"name": "@temporal-ui/core",
 	"version": "0.8.0",
 	"description": "Framework-agnostic core definitions, utils and styles for Temporal UI components",
+	"bugs": {
+		"url": "https://github.com/temporal-app/temporal-ui/issues"
+	},
 	"license": "MIT",
+	"files": [
+		"dist"
+	],
 	"type": "module",
+	"sideEffects": [
+		"**/*.css"
+	],
 	"exports": {
 		"./*": "./src/components/*/index.ts",
 		"./base": "./src/components/base.ts",
@@ -11,15 +20,6 @@
 		"./styles.css": "./src/styles.css",
 		"./package.json": "./package.json"
 	},
-	"bugs": {
-		"url": "https://github.com/temporal-app/temporal-ui/issues"
-	},
-	"files": [
-		"dist"
-	],
-	"sideEffects": [
-		"**/*.css"
-	],
 	"publishConfig": {
 		"access": "public"
 	},

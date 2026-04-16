@@ -19,14 +19,8 @@ export const Basic: Story = {
 	},
 	render: (props) => (
 		<Fieldset {...props}>
-			<TextInput
-				label="First Name"
-				name="firstName"
-			/>
-			<TextInput
-				label="Last Name"
-				name="lastName"
-			/>
+			<TextInput label="First Name" name="firstName" />
+			<TextInput label="Last Name" name="lastName" />
 		</Fieldset>
 	),
 };
@@ -39,14 +33,8 @@ export const Disabled: Story = {
 	},
 	render: (props) => (
 		<Fieldset {...props}>
-			<TextInput
-				label="Username"
-				name="username"
-			/>
-			<TextInput
-				label="Email"
-				name="email"
-			/>
+			<TextInput label="Username" name="username" />
+			<TextInput label="Email" name="email" />
 		</Fieldset>
 	),
 };
@@ -59,11 +47,7 @@ export const WithError: Story = {
 	},
 	render: (props) => (
 		<Fieldset {...props}>
-			<TextInput
-				label="Phone"
-				name="phone"
-				error="Required"
-			/>
+			<TextInput label="Phone" name="phone" error="Required" />
 		</Fieldset>
 	),
 };

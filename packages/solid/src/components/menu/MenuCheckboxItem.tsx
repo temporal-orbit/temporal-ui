@@ -10,11 +10,7 @@ export function MenuCheckboxItem(props: MenuCheckboxItemProps) {
 	const [localProps, itemProps] = splitProps(props, ["className", "testId", "children"]);
 	const tid = testId(localProps.testId);
 	return (
-		<ArkMenu.CheckboxItem
-			{...itemProps}
-			class={localProps.className}
-			data-testid={tid("--checkbox-item")}
-		>
+		<ArkMenu.CheckboxItem {...itemProps} class={localProps.className} data-testid={tid("--checkbox-item")}>
 			<div data-part="item-indicator-container">
 				<ArkMenu.ItemIndicator data-testid={tid("--checkbox-item-indicator")}>
 					<CheckIcon />
