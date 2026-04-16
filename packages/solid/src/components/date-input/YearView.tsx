@@ -3,11 +3,7 @@ import { Index } from "solid-js";
 
 export function YearView() {
 	return (
-		<DatePicker.View
-			view="year"
-			data-scope={"date-input"}
-			data-view="year"
-		>
+		<DatePicker.View view="year" data-scope={"date-input"} data-view="year">
 			<DatePicker.Context>
 				{(datePicker) => (
 					<>
@@ -18,10 +14,7 @@ export function YearView() {
 										<DatePicker.TableRow data-scope={"date-input"}>
 											<Index each={years()}>
 												{(year) => (
-													<DatePicker.TableCell
-														data-scope={"date-input"}
-														value={year().value}
-													>
+													<DatePicker.TableCell data-scope={"date-input"} value={year().value}>
 														<DatePicker.TableCellTrigger data-scope={"date-input"}>
 															{year().label}
 														</DatePicker.TableCellTrigger>

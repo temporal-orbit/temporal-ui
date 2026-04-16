@@ -39,23 +39,14 @@ export const Default: Story = {
 };
 
 export const Pills: Story = {
-	render: (props: TabsProps) => (
-		<Basic
-			{...props}
-			variant="pills"
-		/>
-	),
+	render: (props: TabsProps) => <Basic {...props} variant="pills" />,
 };
 
 export const Controlled: Story = {
 	render: (props: TabsProps) => {
 		const [value, setValue] = createSignal<string>("vue");
 		return (
-			<Tabs
-				{...props}
-				value={value()}
-				onValueChange={setValue}
-			>
+			<Tabs {...props} value={value()} onValueChange={setValue}>
 				<TabsList>
 					<TabsTrigger value="react">React</TabsTrigger>
 					<TabsTrigger value="vue">Vue</TabsTrigger>

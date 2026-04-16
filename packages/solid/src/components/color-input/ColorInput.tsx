@@ -17,10 +17,7 @@ export function ColorInput(_props: ColorInputProps) {
 	);
 
 	return (
-		<Field
-			{...fieldProps}
-			testId={fieldProps.testId ? `${fieldProps.testId}-field` : undefined}
-		>
+		<Field {...fieldProps} testId={fieldProps.testId ? `${fieldProps.testId}-field` : undefined}>
 			<ColorPicker.Root
 				value={rootProps.value ? parseColor(String(rootProps.value)) : undefined}
 				defaultValue={rootProps.defaultValue ? parseColor(String(rootProps.defaultValue)) : undefined}
@@ -67,9 +64,7 @@ export function ColorInput(_props: ColorInputProps) {
 							>
 								<ColorPicker.AreaBackground
 									data-scope={"color-input"}
-									data-testid={
-										fieldProps.testId ? `${fieldProps.testId}--area-background` : undefined
-									}
+									data-testid={fieldProps.testId ? `${fieldProps.testId}--area-background` : undefined}
 								/>
 								<ColorPicker.AreaThumb
 									data-scope={"color-input"}
@@ -83,15 +78,11 @@ export function ColorInput(_props: ColorInputProps) {
 							>
 								<ColorPicker.ChannelSliderTrack
 									data-scope={"color-input"}
-									data-testid={
-										fieldProps.testId ? `${fieldProps.testId}--channel-slider-track` : undefined
-									}
+									data-testid={fieldProps.testId ? `${fieldProps.testId}--channel-slider-track` : undefined}
 								/>
 								<ColorPicker.ChannelSliderThumb
 									data-scope={"color-input"}
-									data-testid={
-										fieldProps.testId ? `${fieldProps.testId}--channel-slider-thumb` : undefined
-									}
+									data-testid={fieldProps.testId ? `${fieldProps.testId}--channel-slider-thumb` : undefined}
 								/>
 							</ColorPicker.ChannelSlider>
 						</ColorPicker.Content>

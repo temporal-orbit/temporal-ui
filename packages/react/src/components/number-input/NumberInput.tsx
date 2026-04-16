@@ -6,7 +6,8 @@ import { ChevronDown, ChevronUp } from "lucide-react";
 import { forwardRef } from "react";
 
 export interface NumberInputProps
-	extends CoreNumberInputProps<React.ReactNode>,
+	extends
+		CoreNumberInputProps<React.ReactNode>,
 		Omit<React.InputHTMLAttributes<HTMLInputElement>, "max" | "min" | "step" | "defaultValue" | "value"> {}
 
 export const NumberInput = forwardRef<HTMLInputElement, NumberInputProps>((props, ref) => {

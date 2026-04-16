@@ -12,11 +12,7 @@ export function MenuItemGroup(props: MenuItemGroupProps) {
 	const tid = testId(localProps.testId);
 
 	return (
-		<ArkMenu.ItemGroup
-			{...itemGroupProps}
-			class={localProps.className}
-			data-testid={tid("--group")}
-		>
+		<ArkMenu.ItemGroup {...itemGroupProps} class={localProps.className} data-testid={tid("--group")}>
 			<Show when={localProps.label}>
 				<ArkMenu.ItemGroupLabel data-testid={tid("--label")}>{localProps.label}</ArkMenu.ItemGroupLabel>
 			</Show>

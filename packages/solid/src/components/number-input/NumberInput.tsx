@@ -6,8 +6,7 @@ import { Field } from "../field";
 import { ChevronDown, ChevronUp } from "lucide-solid";
 
 export interface NumberInputProps
-	extends CoreNumberInputProps<JSX.Element>,
-		Omit<HTMLProps<"input">, "max" | "min" | "step" | "value"> {}
+	extends CoreNumberInputProps<JSX.Element>, Omit<HTMLProps<"input">, "max" | "min" | "step" | "value"> {}
 
 export function NumberInput(_props: NumberInputProps) {
 	const [fieldProps, rootProps, inputProps] = splitProps(
@@ -17,17 +16,12 @@ export function NumberInput(_props: NumberInputProps) {
 	);
 
 	return (
-		<Field
-			{...fieldProps}
-			testId={fieldProps.testId ? `${fieldProps.testId}-field` : undefined}
-		>
+		<Field {...fieldProps} testId={fieldProps.testId ? `${fieldProps.testId}-field` : undefined}>
 			<ArkNumberInput.Root
 				min={rootProps.min}
 				max={rootProps.max}
 				step={rootProps.step}
-				value={
-					rootProps.value !== undefined ? String(rootProps.value != null ? rootProps.value : "") : undefined
-				}
+				value={rootProps.value !== undefined ? String(rootProps.value != null ? rootProps.value : "") : undefined}
 				defaultValue={rootProps.defaultValue !== undefined ? String(rootProps.defaultValue) : undefined}
 				onValueChange={(details) => {
 					rootProps.onValueChange?.(details.value !== "" ? details.valueAsNumber : null);

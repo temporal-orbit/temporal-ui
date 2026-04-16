@@ -5,12 +5,7 @@ import { Field } from "./Field";
 describe("Field", () => {
 	it("renders root, label, hint, error and children", () => {
 		render(
-			<Field
-				label="My Label"
-				hint="Helpful hint"
-				error="Something went wrong"
-				testId="field"
-			>
+			<Field label="My Label" hint="Helpful hint" error="Something went wrong" testId="field">
 				<div data-testid="child">child</div>
 			</Field>,
 		);

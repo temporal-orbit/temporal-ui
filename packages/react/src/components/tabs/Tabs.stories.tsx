@@ -38,10 +38,5 @@ export const Default: Story = {
 };
 
 export const Pills: Story = {
-	render: (props) => (
-		<Basic
-			{...props}
-			variant="pills"
-		/>
-	),
+	render: (props) => <Basic {...props} variant="pills" />,
 };

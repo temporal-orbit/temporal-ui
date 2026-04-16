@@ -3,7 +3,7 @@ name: Quality
 on:
   push:
     branches:
-      - '**'
+      - "**"
 
 jobs:
   build:
@@ -12,14 +12,6 @@ jobs:
     steps:
       - name: Checkout branch
         uses: actions/checkout@v6
-
-#      - name: Cache turbo build setup
-#        uses: actions/cache@v4
-#        with:
-#          path: .turbo
-#          key: ${{ runner.os }}-turbo-${{ github.sha }}
-#          restore-keys: |
-#            ${{ runner.os }}-turbo-
 
       - name: Install
         uses: ./.github/actions/install
@@ -43,8 +35,21 @@ jobs:
       - name: Run tests
         run: bun run test
 
+  format:
+    name: Format Check
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout branch
+        uses: actions/checkout@v6
+
+      - name: Install
+        uses: ./.github/actions/install
+
+      - name: Run format
+        run: bun run format:check
+
   lint:
-    name: Lint
+    name: Lint Check
     runs-on: ubuntu-latest
     steps:
       - name: Checkout branch

@@ -32,26 +32,12 @@ export function Select<D = unknown>(_props: SelectProps<D>) {
 	const tid = testId(fieldProps.testId);
 
 	return (
-		<Field
-			{...fieldProps}
-			testId={tid("-field")}
-		>
-			<ArkSelect.RootProvider
-				value={select}
-				class={fieldProps.classes?.selectRoot}
-				data-testid={tid("--root")}
-			>
-				<ArkSelect.Control
-					aria-invalid={!!fieldProps.error}
-					class={controlProps.class}
-					data-testid={tid("--control")}
-				>
+		<Field {...fieldProps} testId={tid("-field")}>
+			<ArkSelect.RootProvider value={select} class={fieldProps.classes?.selectRoot} data-testid={tid("--root")}>
+				<ArkSelect.Control aria-invalid={!!fieldProps.error} class={controlProps.class} data-testid={tid("--control")}>
 					<ArkSelect.Trigger data-testid={tid("--trigger")}>
 						{select().selectedItems[0]?.icon || controlProps.icon}
-						<ArkSelect.ValueText
-							placeholder={controlProps.placeholder}
-							data-testid={tid("--value-text")}
-						/>
+						<ArkSelect.ValueText placeholder={controlProps.placeholder} data-testid={tid("--value-text")} />
 						<Show when={!controlProps.deselectable || !select().hasSelectedItems}>
 							<ChevronsUpDown />
 						</Show>
@@ -64,19 +50,11 @@ export function Select<D = unknown>(_props: SelectProps<D>) {
 				</ArkSelect.Control>
 				<Show when={controlProps.portal}>
 					<Portal>
-						<SelectContent
-							tid={tid}
-							maxHeight={controlProps.maxDropdownHeight}
-							classes={fieldProps.classes}
-						/>
+						<SelectContent tid={tid} maxHeight={controlProps.maxDropdownHeight} classes={fieldProps.classes} />
 					</Portal>
 				</Show>
 				<Show when={!controlProps.portal}>
-					<SelectContent
-						tid={tid}
-						maxHeight={controlProps.maxDropdownHeight}
-						classes={fieldProps.classes}
-					/>
+					<SelectContent tid={tid} maxHeight={controlProps.maxDropdownHeight} classes={fieldProps.classes} />
 				</Show>
 				<ArkSelect.HiddenSelect data-testid={tid("--input")} />
 			</ArkSelect.RootProvider>

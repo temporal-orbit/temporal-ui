@@ -45,10 +45,7 @@ describe("ToggleGroup", () => {
 		render(
 			<ToggleGroup>
 				<ToggleGroupItem value="bold">B</ToggleGroupItem>
-				<ToggleGroupItem
-					value="italic"
-					disabled
-				>
+				<ToggleGroupItem value="italic" disabled>
 					I
 				</ToggleGroupItem>
 				<ToggleGroupItem value="underline">U</ToggleGroupItem>

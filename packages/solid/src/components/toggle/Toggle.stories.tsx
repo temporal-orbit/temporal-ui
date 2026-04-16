@@ -53,10 +53,7 @@ export const WithIndicator: Story = {
 	render: () => (
 		<Toggle>
 			<ToggleIndicator fallback={<BoldIcon size={16} />}>
-				<BoldIcon
-					size={16}
-					stroke-width={3}
-				/>
+				<BoldIcon size={16} stroke-width={3} />
 			</ToggleIndicator>
 		</Toggle>
 	),

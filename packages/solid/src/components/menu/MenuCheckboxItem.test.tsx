@@ -6,10 +6,7 @@ import { MenuCheckboxItem } from "./MenuCheckboxItem";
 
 describe("MenuCheckboxItem Component", () => {
 	const MenuWrapper = (props: Omit<MenuProps, "trigger">) => (
-		<Menu
-			{...props}
-			trigger={(props) => <Button {...props}>Trigger</Button>}
-		>
+		<Menu {...props} trigger={(props) => <Button {...props}>Trigger</Button>}>
 			{props.children}
 		</Menu>
 	);
@@ -24,11 +21,7 @@ describe("MenuCheckboxItem Component", () => {
 
 		render(() => (
 			<MenuWrapper>
-				<MenuCheckboxItem
-					value="checkbox"
-					checked={false}
-					onCheckedChange={onCheckedChange}
-				>
+				<MenuCheckboxItem value="checkbox" checked={false} onCheckedChange={onCheckedChange}>
 					Checkbox Item
 				</MenuCheckboxItem>
 			</MenuWrapper>
@@ -47,11 +40,7 @@ describe("MenuCheckboxItem Component", () => {
 
 		render(() => (
 			<MenuWrapper>
-				<MenuCheckboxItem
-					value="checkbox"
-					checked={true}
-					onCheckedChange={onCheckedChange}
-				>
+				<MenuCheckboxItem value="checkbox" checked={true} onCheckedChange={onCheckedChange}>
 					Checked Item
 				</MenuCheckboxItem>
 			</MenuWrapper>
@@ -60,7 +49,9 @@ describe("MenuCheckboxItem Component", () => {
 		await user.click(screen.getByRole("button"));
 
 		await waitFor(() => {
-			const checkboxItem = screen.getByRole("menuitemcheckbox", { name: "Checked Item" });
+			const checkboxItem = screen.getByRole("menuitemcheckbox", {
+				name: "Checked Item",
+			});
 			expect(checkboxItem).toBeVisible();
 			expect(checkboxItem).toHaveAttribute("data-state", "checked");
 		});
@@ -72,11 +63,7 @@ describe("MenuCheckboxItem Component", () => {
 
 		render(() => (
 			<MenuWrapper closeOnSelect={false}>
-				<MenuCheckboxItem
-					value="checkbox"
-					checked={false}
-					onCheckedChange={onCheckedChange}
-				>
+				<MenuCheckboxItem value="checkbox" checked={false} onCheckedChange={onCheckedChange}>
 					Toggle Item
 				</MenuCheckboxItem>
 			</MenuWrapper>
@@ -88,7 +75,9 @@ describe("MenuCheckboxItem Component", () => {
 			expect(screen.getByRole("menuitemcheckbox", { name: "Toggle Item" })).toBeVisible();
 		});
 
-		const checkboxItem = screen.getByRole("menuitemcheckbox", { name: "Toggle Item" });
+		const checkboxItem = screen.getByRole("menuitemcheckbox", {
+			name: "Toggle Item",
+		});
 		await user.click(checkboxItem);
 
 		expect(onCheckedChange).toHaveBeenCalledWith(true);

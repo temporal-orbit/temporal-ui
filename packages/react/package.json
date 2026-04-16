@@ -2,8 +2,17 @@
 	"name": "@temporal-ui/react",
 	"version": "0.8.0",
 	"description": "React bindings for Temporal UI components",
+	"bugs": {
+		"url": "https://github.com/temporal-app/temporal-ui/issues"
+	},
 	"license": "MIT",
+	"files": [
+		"dist"
+	],
 	"type": "module",
+	"sideEffects": [
+		"**/*.css"
+	],
 	"module": "./dist/index.js",
 	"types": "./dist/index.d.ts",
 	"exports": {
@@ -30,36 +39,27 @@
 		"./styles.css": "./dist/styles.css",
 		"./package.json": "./package.json"
 	},
-	"bugs": {
-		"url": "https://github.com/temporal-app/temporal-ui/issues"
+	"publishConfig": {
+		"access": "public"
 	},
-	"files": [
-		"dist"
-	],
 	"scripts": {
 		"build": "tsdown && node ../../scripts/copy-core-styles.mjs",
 		"dev": "bun run storybook",
-		"lint": "biome lint ./src",
-		"format": "biome format ./src",
-		"format:fix": "biome format --write ./src",
-		"check": "biome check ./src",
 		"test": "vitest run",
 		"test:watch": "vitest",
 		"test:coverage": "vitest run --coverage",
 		"test:ci": "vitest run",
-		"typecheck": "tsc --noEmit",
 		"clean": "rimraf dist node_modules .turbo",
+		"format": "oxfmt",
+		"format:check": "oxfmt --check",
+		"lint": "oxlint",
+		"lint:fix": "oxlint --fix",
+		"typecheck": "tsgo --noEmit",
 		"storybook": "storybook dev -p 6006",
 		"build-storybook": "storybook build",
 		"prepack": "node ../../scripts/replace-protocols.mjs",
 		"postpublish": "node ../../scripts/restore-protocols.mjs"
 	},
-	"publishConfig": {
-		"access": "public"
-	},
-	"sideEffects": [
-		"**/*.css"
-	],
 	"dependencies": {
 		"@ark-ui/react": "5.36.0",
 		"@tanstack/react-table": "8.21.3",

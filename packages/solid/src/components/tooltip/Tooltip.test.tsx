@@ -6,10 +6,7 @@ import { Tooltip, type TooltipProps } from "./Tooltip";
 describe("Tooltip Component", () => {
 	const defaultProps: TooltipProps = {
 		trigger: (props) => (
-			<button
-				type="button"
-				{...props}
-			>
+			<button type="button" {...props}>
 				Hover me
 			</button>
 		),
@@ -57,12 +54,7 @@ describe("Tooltip Component", () => {
 
 	it("renders without portal when portal=false", async () => {
 		const user = userEvent.setup();
-		render(() => (
-			<Tooltip
-				{...defaultProps}
-				portal={false}
-			/>
-		));
+		render(() => <Tooltip {...defaultProps} portal={false} />);
 
 		const trigger = screen.getByRole("button", { name: "Hover me" });
 		await user.hover(trigger);
@@ -76,50 +68,27 @@ describe("Tooltip Component", () => {
 	});
 
 	it("respects defaultOpen prop", () => {
-		render(() => (
-			<Tooltip
-				{...defaultProps}
-				defaultOpen
-			/>
-		));
+		render(() => <Tooltip {...defaultProps} defaultOpen />);
 		expect(screen.getByText("Tooltip content")).toBeVisible();
 	});
 
 	it("respects controlled open=false prop", async () => {
-		render(() => (
-			<Tooltip
-				{...defaultProps}
-				open={false}
-			/>
-		));
+		render(() => <Tooltip {...defaultProps} open={false} />);
 		// When controlled with open={false}, content should not be visible
 		await waitFor(() => {
-			const content = screen.queryByText("Tooltip content");
-			if (content) {
-				expect(content).not.toBeVisible();
-			}
+			expect(screen.queryByText("Tooltip content")).not.toBeInTheDocument();
 		});
 	});
 
 	it("respects controlled open=true prop", () => {
-		render(() => (
-			<Tooltip
-				{...defaultProps}
-				open={true}
-			/>
-		));
+		render(() => <Tooltip {...defaultProps} open={true} />);
 		expect(screen.getByText("Tooltip content")).toBeVisible();
 	});
 
 	it("calls onOpenChange when tooltip state changes", async () => {
 		const user = userEvent.setup();
 		const onOpenChange = vi.fn();
-		render(() => (
-			<Tooltip
-				{...defaultProps}
-				onOpenChange={onOpenChange}
-			/>
-		));
+		render(() => <Tooltip {...defaultProps} onOpenChange={onOpenChange} />);
 
 		const trigger = screen.getByRole("button", { name: "Hover me" });
 		await user.hover(trigger);
@@ -133,24 +102,13 @@ describe("Tooltip Component", () => {
 	});
 
 	it("applies custom classes to trigger", () => {
-		render(() => (
-			<Tooltip
-				{...defaultProps}
-				classes={{ trigger: "custom-trigger-class" }}
-			/>
-		));
+		render(() => <Tooltip {...defaultProps} classes={{ trigger: "custom-trigger-class" }} />);
 		const trigger = screen.getByRole("button", { name: "Hover me" });
 		expect(trigger).toHaveClass("custom-trigger-class");
 	});
 
 	it("renders with testId for selectors", () => {
-		render(() => (
-			<Tooltip
-				{...defaultProps}
-				testId="tooltip-test"
-				defaultOpen
-			/>
-		));
+		render(() => <Tooltip {...defaultProps} testId="tooltip-test" defaultOpen />);
 		expect(screen.getByTestId("tooltip-test--trigger")).toBeInTheDocument();
 		expect(screen.getByTestId("tooltip-test--content")).toBeInTheDocument();
 		expect(screen.getByTestId("tooltip-test--positioner")).toBeInTheDocument();
@@ -158,13 +116,7 @@ describe("Tooltip Component", () => {
 
 	it("handles positioning prop", () => {
 		const position = { placement: "bottom-start" as const };
-		render(() => (
-			<Tooltip
-				{...defaultProps}
-				position={position}
-				defaultOpen
-			/>
-		));
+		render(() => <Tooltip {...defaultProps} position={position} defaultOpen />);
 		expect(screen.getByText("Tooltip content")).toBeVisible();
 	});
 
@@ -177,10 +129,7 @@ describe("Tooltip Component", () => {
 		);
 
 		render(() => (
-			<Tooltip
-				{...defaultProps}
-				defaultOpen
-			>
+			<Tooltip {...defaultProps} defaultOpen>
 				{complexContent}
 			</Tooltip>
 		));
@@ -190,14 +139,7 @@ describe("Tooltip Component", () => {
 	});
 
 	it("renders arrow when showArrow is true", () => {
-		render(() => (
-			<Tooltip
-				{...defaultProps}
-				showArrow
-				testId="tooltip-arrow"
-				defaultOpen
-			/>
-		));
+		render(() => <Tooltip {...defaultProps} showArrow testId="tooltip-arrow" defaultOpen />);
 		expect(screen.getByTestId("tooltip-arrow--arrow")).toBeInTheDocument();
 	});
 });

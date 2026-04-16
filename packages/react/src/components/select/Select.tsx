@@ -7,8 +7,7 @@ import { testId } from "@temporal-ui/core/utils/string";
 import { ChevronsUpDown, X } from "lucide-react";
 
 export interface SelectProps<D extends CollectionItem = never>
-	extends CoreSelectProps<React.ReactNode>,
-		ArkSelect.RootProps<SelectItem<D>> {}
+	extends CoreSelectProps<React.ReactNode>, ArkSelect.RootProps<SelectItem<D>> {}
 
 export function Select<D extends CollectionItem>(props: SelectProps<D>) {
 	const {
@@ -50,22 +49,11 @@ export function Select<D extends CollectionItem>(props: SelectProps<D>) {
 			disabled={disabled}
 			testId={tid("-field")}
 		>
-			<ArkSelect.RootProvider
-				value={select}
-				className={classes?.selectRoot}
-				data-testid={tid("--root")}
-			>
-				<ArkSelect.Control
-					aria-invalid={!!error}
-					className={className}
-					data-testid={tid("--control")}
-				>
+			<ArkSelect.RootProvider value={select} className={classes?.selectRoot} data-testid={tid("--root")}>
+				<ArkSelect.Control aria-invalid={!!error} className={className} data-testid={tid("--control")}>
 					<ArkSelect.Trigger data-testid={tid("--trigger")}>
 						{select.selectedItems[0]?.icon || icon}
-						<ArkSelect.ValueText
-							placeholder={placeholder}
-							data-testid={tid("--value-text")}
-						/>
+						<ArkSelect.ValueText placeholder={placeholder} data-testid={tid("--value-text")} />
 						{(!deselectable || !select.hasSelectedItems) && <ChevronsUpDown />}
 					</ArkSelect.Trigger>
 					{deselectable && select.hasSelectedItems && (
@@ -76,20 +64,10 @@ export function Select<D extends CollectionItem>(props: SelectProps<D>) {
 				</ArkSelect.Control>
 				{portal && (
 					<Portal>
-						<SelectContent
-							tid={tid}
-							maxHeight={maxDropdownHeight}
-							classes={classes}
-						/>
+						<SelectContent tid={tid} maxHeight={maxDropdownHeight} classes={classes} />
 					</Portal>
 				)}
-				{!portal && (
-					<SelectContent
-						tid={tid}
-						maxHeight={maxDropdownHeight}
-						classes={classes}
-					/>
-				)}
+				{!portal && <SelectContent tid={tid} maxHeight={maxDropdownHeight} classes={classes} />}
 				<ArkSelect.HiddenSelect data-testid={tid("--input")} />
 			</ArkSelect.RootProvider>
 		</Field>

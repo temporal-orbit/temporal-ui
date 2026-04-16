@@ -9,13 +9,7 @@ export interface ToggleProps extends React.ComponentProps<typeof ArkToggle.Root>
 export const Toggle = forwardRef<HTMLButtonElement, ToggleProps>((props, ref) => {
 	const { testId, ...rest } = props;
 
-	return (
-		<ArkToggle.Root
-			ref={ref}
-			data-testid={testId}
-			{...rest}
-		/>
-	);
+	return <ArkToggle.Root ref={ref} data-testid={testId} {...rest} />;
 });
 
 export const ToggleIndicator = ArkToggle.Indicator;

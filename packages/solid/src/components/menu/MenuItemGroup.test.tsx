@@ -8,10 +8,7 @@ describe("MenuItemGroup Component", () => {
 	const MenuWrapper = (props: Omit<MenuProps, "trigger">) => (
 		<Menu
 			trigger={(_props) => (
-				<button
-					type="button"
-					{..._props}
-				>
+				<button type="button" {..._props}>
 					Trigger
 				</button>
 			)}

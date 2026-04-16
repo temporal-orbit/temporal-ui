@@ -44,15 +44,8 @@ function SampleTrigger(props: Record<string, unknown>) {
 function SampleForm() {
 	return (
 		<Stack gap={3}>
-			<TextInput
-				label="Email"
-				placeholder="jdutton@example.com"
-			/>
-			<TextInput
-				label="Password"
-				type="password"
-				placeholder="Enter your password"
-			/>
+			<TextInput label="Email" placeholder="jdutton@example.com" />
+			<TextInput label="Password" type="password" placeholder="Enter your password" />
 		</Stack>
 	);
 }

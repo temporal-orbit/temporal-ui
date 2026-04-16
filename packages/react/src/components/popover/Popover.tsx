@@ -6,8 +6,7 @@ import { PopoverContent } from "./PopoverContent";
 import { testId as testIdFn } from "@temporal-ui/core/utils/string";
 
 export interface PopoverProps
-	extends CorePopoverProps<React.ReactNode>,
-		Omit<React.ComponentProps<typeof ArkPopover.Root>, "onOpenChange"> {
+	extends CorePopoverProps<React.ReactNode>, Omit<React.ComponentProps<typeof ArkPopover.Root>, "onOpenChange"> {
 	trigger?: React.ReactNode;
 }
 
@@ -41,11 +40,7 @@ export function Popover(props: PopoverProps) {
 			data-testid={tid("--root")}
 		>
 			{trigger && (
-				<ArkPopover.Trigger
-					asChild
-					className={props.classes?.trigger}
-					data-testid={tid("--trigger")}
-				>
+				<ArkPopover.Trigger asChild className={props.classes?.trigger} data-testid={tid("--trigger")}>
 					{trigger}
 				</ArkPopover.Trigger>
 			)}
@@ -63,13 +58,7 @@ export function Popover(props: PopoverProps) {
 				</Portal>
 			)}
 			{!portal && (
-				<PopoverContent
-					testId={testId}
-					title={title}
-					description={description}
-					className={className}
-					classes={classes}
-				>
+				<PopoverContent testId={testId} title={title} description={description} className={className} classes={classes}>
 					{children}
 				</PopoverContent>
 			)}

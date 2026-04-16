@@ -6,10 +6,7 @@ import { MenuItem } from "./MenuItem";
 
 describe("MenuItem Component", () => {
 	const MenuWrapper = ({ children, ...props }: Omit<MenuProps, "trigger">) => (
-		<Menu
-			{...props}
-			trigger={<Button>Trigger</Button>}
-		>
+		<Menu {...props} trigger={<Button>Trigger</Button>}>
 			{children}
 		</Menu>
 	);
@@ -39,10 +36,7 @@ describe("MenuItem Component", () => {
 
 		render(
 			<MenuWrapper onSelect={onSelect}>
-				<MenuItem
-					value="disabled"
-					disabled
-				>
+				<MenuItem value="disabled" disabled>
 					Disabled Item
 				</MenuItem>
 			</MenuWrapper>,
@@ -59,10 +53,7 @@ describe("MenuItem Component", () => {
 		const user = userEvent.setup();
 		render(
 			<MenuWrapper>
-				<MenuItem
-					value="test"
-					testId="custom-menu-item"
-				>
+				<MenuItem value="test" testId="custom-menu-item">
 					Test Item
 				</MenuItem>
 			</MenuWrapper>,

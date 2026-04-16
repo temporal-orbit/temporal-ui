@@ -36,13 +36,7 @@ export const ControlledExample: Story = {
 	},
 	render: (args) => {
 		const [value, setValue] = React.useState<number | null>(75);
-		return (
-			<NumberInput
-				{...args}
-				value={value ?? undefined}
-				onValueChange={setValue}
-			/>
-		);
+		return <NumberInput {...args} value={value ?? undefined} onValueChange={setValue} />;
 	},
 };
 

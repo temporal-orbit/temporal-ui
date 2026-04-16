@@ -20,37 +20,22 @@ describe("Menu Integration Tests", () => {
 		const onCheckboxChange = vi.fn();
 
 		render(
-			<Menu
-				trigger={<button type="button">Complex Menu</button>}
-				onSelect={onSelect}
-			>
+			<Menu trigger={<button type="button">Complex Menu</button>} onSelect={onSelect}>
 				<MenuItemGroup label="Basic Items">
 					<MenuItem value="basic1">Basic Item 1</MenuItem>
 					<MenuItem value="basic2">Basic Item 2</MenuItem>
 				</MenuItemGroup>
 				<MenuItemSeparator />
 				<MenuItemGroup label="Checkboxes">
-					<MenuCheckboxItem
-						value="check1"
-						checked={false}
-						onCheckedChange={onCheckboxChange}
-					>
+					<MenuCheckboxItem value="check1" checked={false} onCheckedChange={onCheckboxChange}>
 						Checkbox 1
 					</MenuCheckboxItem>
-					<MenuCheckboxItem
-						value="check2"
-						checked={true}
-						onCheckedChange={onCheckboxChange}
-					>
+					<MenuCheckboxItem value="check2" checked={true} onCheckedChange={onCheckboxChange}>
 						Checkbox 2
 					</MenuCheckboxItem>
 				</MenuItemGroup>
 				<MenuItemSeparator />
-				<MenuRadioItemGroup
-					label="Radio Options"
-					value="radio1"
-					onValueChange={onRadioChange}
-				>
+				<MenuRadioItemGroup label="Radio Options" value="radio1" onValueChange={onRadioChange}>
 					<MenuRadioItem value="radio1">Radio 1</MenuRadioItem>
 					<MenuRadioItem value="radio2">Radio 2</MenuRadioItem>
 				</MenuRadioItemGroup>
@@ -81,22 +66,12 @@ describe("Menu Integration Tests", () => {
 		const onRadioChange = vi.fn();
 
 		render(
-			<Menu
-				trigger={<button type="button">Mixed Menu</button>}
-				closeOnSelect={false}
-			>
+			<Menu trigger={<button type="button">Mixed Menu</button>} closeOnSelect={false}>
 				<MenuItem value="regular">Regular Item</MenuItem>
-				<MenuCheckboxItem
-					value="checkbox"
-					checked={false}
-					onCheckedChange={onCheckboxChange}
-				>
+				<MenuCheckboxItem value="checkbox" checked={false} onCheckedChange={onCheckboxChange}>
 					Checkbox Item
 				</MenuCheckboxItem>
-				<MenuRadioItemGroup
-					value="option1"
-					onValueChange={onRadioChange}
-				>
+				<MenuRadioItemGroup value="option1" onValueChange={onRadioChange}>
 					<MenuRadioItem value="option1">Radio Option 1</MenuRadioItem>
 					<MenuRadioItem value="option2">Radio Option 2</MenuRadioItem>
 				</MenuRadioItemGroup>
@@ -112,8 +87,12 @@ describe("Menu Integration Tests", () => {
 		});
 
 		// All items should be interactive
-		const checkboxItem = screen.getByRole("menuitemcheckbox", { name: "Checkbox Item" });
-		const radioItem = screen.getByRole("menuitemradio", { name: "Radio Option 2" });
+		const checkboxItem = screen.getByRole("menuitemcheckbox", {
+			name: "Checkbox Item",
+		});
+		const radioItem = screen.getByRole("menuitemradio", {
+			name: "Radio Option 2",
+		});
 
 		await user.click(checkboxItem);
 		expect(onCheckboxChange).toHaveBeenCalledWith(true);

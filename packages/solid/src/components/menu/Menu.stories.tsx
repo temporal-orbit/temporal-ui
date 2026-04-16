@@ -35,10 +35,7 @@ type Story = StoryObj<typeof meta>;
 
 function SampleTrigger(props: Record<string, unknown>) {
 	return (
-		<Button
-			variant="outline"
-			{...props}
-		>
+		<Button variant="outline" {...props}>
 			Open Menu
 		</Button>
 	);
@@ -117,56 +114,28 @@ function SampleCheckboxMenuItems() {
 	return (
 		<>
 			<MenuItemGroup label="View Options">
-				<MenuCheckboxItem
-					value="sidebar"
-					checked={true}
-					onCheckedChange={fn()}
-				>
+				<MenuCheckboxItem value="sidebar" checked={true} onCheckedChange={fn()}>
 					Show Sidebar
 				</MenuCheckboxItem>
-				<MenuCheckboxItem
-					value="toolbar"
-					checked={false}
-					onCheckedChange={fn()}
-				>
+				<MenuCheckboxItem value="toolbar" checked={false} onCheckedChange={fn()}>
 					Show Toolbar
 				</MenuCheckboxItem>
-				<MenuCheckboxItem
-					value="statusbar"
-					checked={true}
-					onCheckedChange={fn()}
-				>
+				<MenuCheckboxItem value="statusbar" checked={true} onCheckedChange={fn()}>
 					Show Status Bar
 				</MenuCheckboxItem>
-				<MenuCheckboxItem
-					value="minimap"
-					checked={false}
-					onCheckedChange={fn()}
-				>
+				<MenuCheckboxItem value="minimap" checked={false} onCheckedChange={fn()}>
 					Show Minimap
 				</MenuCheckboxItem>
 			</MenuItemGroup>
 			<MenuItemSeparator />
 			<MenuItemGroup label="Editor Options">
-				<MenuCheckboxItem
-					value="wordwrap"
-					checked={false}
-					onCheckedChange={fn()}
-				>
+				<MenuCheckboxItem value="wordwrap" checked={false} onCheckedChange={fn()}>
 					Word Wrap
 				</MenuCheckboxItem>
-				<MenuCheckboxItem
-					value="linenumbers"
-					checked={true}
-					onCheckedChange={fn()}
-				>
+				<MenuCheckboxItem value="linenumbers" checked={true} onCheckedChange={fn()}>
 					Line Numbers
 				</MenuCheckboxItem>
-				<MenuCheckboxItem
-					value="autocomplete"
-					checked={true}
-					onCheckedChange={fn()}
-				>
+				<MenuCheckboxItem value="autocomplete" checked={true} onCheckedChange={fn()}>
 					Auto Complete
 				</MenuCheckboxItem>
 			</MenuItemGroup>
@@ -177,21 +146,13 @@ function SampleCheckboxMenuItems() {
 function SampleRadioMenuItems() {
 	return (
 		<>
-			<MenuRadioItemGroup
-				label="Theme"
-				value="light"
-				onValueChange={() => fn()}
-			>
+			<MenuRadioItemGroup label="Theme" value="light" onValueChange={() => fn()}>
 				<MenuRadioItem value="light">Light Theme</MenuRadioItem>
 				<MenuRadioItem value="dark">Dark Theme</MenuRadioItem>
 				<MenuRadioItem value="auto">Auto</MenuRadioItem>
 			</MenuRadioItemGroup>
 			<MenuItemSeparator />
-			<MenuRadioItemGroup
-				label="Font Size"
-				value="medium"
-				onValueChange={() => fn()}
-			>
+			<MenuRadioItemGroup label="Font Size" value="medium" onValueChange={() => fn()}>
 				<MenuRadioItem value="small">Small</MenuRadioItem>
 				<MenuRadioItem value="medium">Medium</MenuRadioItem>
 				<MenuRadioItem value="large">Large</MenuRadioItem>
@@ -208,27 +169,15 @@ function SampleMixedMenuItems() {
 			<MenuItem value="open">Open File</MenuItem>
 			<MenuItemSeparator />
 			<MenuItemGroup label="View">
-				<MenuCheckboxItem
-					value="sidebar"
-					checked={true}
-					onCheckedChange={fn()}
-				>
+				<MenuCheckboxItem value="sidebar" checked={true} onCheckedChange={fn()}>
 					Show Sidebar
 				</MenuCheckboxItem>
-				<MenuCheckboxItem
-					value="minimap"
-					checked={false}
-					onCheckedChange={fn()}
-				>
+				<MenuCheckboxItem value="minimap" checked={false} onCheckedChange={fn()}>
 					Show Minimap
 				</MenuCheckboxItem>
 			</MenuItemGroup>
 			<MenuItemSeparator />
-			<MenuRadioItemGroup
-				label="Theme"
-				value="dark"
-				onValueChange={() => fn()}
-			>
+			<MenuRadioItemGroup label="Theme" value="dark" onValueChange={() => fn()}>
 				<MenuRadioItem value="light">Light</MenuRadioItem>
 				<MenuRadioItem value="dark">Dark</MenuRadioItem>
 			</MenuRadioItemGroup>
@@ -431,32 +380,16 @@ export const CheckboxOnly: Story = {
 	},
 	render: (props: MenuProps) => (
 		<Menu {...props}>
-			<MenuCheckboxItem
-				value="option1"
-				checked={true}
-				onCheckedChange={fn()}
-			>
+			<MenuCheckboxItem value="option1" checked={true} onCheckedChange={fn()}>
 				Option 1
 			</MenuCheckboxItem>
-			<MenuCheckboxItem
-				value="option2"
-				checked={false}
-				onCheckedChange={fn()}
-			>
+			<MenuCheckboxItem value="option2" checked={false} onCheckedChange={fn()}>
 				Option 2
 			</MenuCheckboxItem>
-			<MenuCheckboxItem
-				value="option3"
-				checked={true}
-				onCheckedChange={fn()}
-			>
+			<MenuCheckboxItem value="option3" checked={true} onCheckedChange={fn()}>
 				Option 3
 			</MenuCheckboxItem>
-			<MenuCheckboxItem
-				value="option4"
-				checked={false}
-				onCheckedChange={fn()}
-			>
+			<MenuCheckboxItem value="option4" checked={false} onCheckedChange={fn()}>
 				Option 4
 			</MenuCheckboxItem>
 		</Menu>
@@ -469,10 +402,7 @@ export const RadioOnly: Story = {
 	},
 	render: (props: MenuProps) => (
 		<Menu {...props}>
-			<MenuRadioItemGroup
-				value="option1"
-				onValueChange={fn()}
-			>
+			<MenuRadioItemGroup value="option1" onValueChange={fn()}>
 				<MenuRadioItem value="option1">Option 1</MenuRadioItem>
 				<MenuRadioItem value="option2">Option 2</MenuRadioItem>
 				<MenuRadioItem value="option3">Option 3</MenuRadioItem>

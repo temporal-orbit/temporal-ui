@@ -17,10 +17,7 @@ export function NavProjects({
 			<SidebarGroupLabel>Projects</SidebarGroupLabel>
 			<SidebarMenu>
 				{projects.map((item) => (
-					<SidebarMenuItem
-						key={item.name}
-						className=""
-					>
+					<SidebarMenuItem key={item.name} className="">
 						<SidebarMenuLink href={item.url}>
 							<item.icon />
 							<span>{item.name}</span>

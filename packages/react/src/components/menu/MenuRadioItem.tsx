@@ -10,10 +10,7 @@ export function MenuRadioItem(props: MenuRadioItemProps) {
 	const tid = testIdFn(testId);
 
 	return (
-		<ArkMenu.RadioItem
-			{...rest}
-			data-testid={tid("--radio-item")}
-		>
+		<ArkMenu.RadioItem {...rest} data-testid={tid("--radio-item")}>
 			<ArkMenu.ItemIndicator data-testid={tid("--indicator")}>
 				<div data-part="item-radio-indicator" />
 			</ArkMenu.ItemIndicator>

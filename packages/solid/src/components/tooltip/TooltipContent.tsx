@@ -24,10 +24,7 @@ export function TooltipContent(props: TooltipContentProps) {
 					<ArkTooltip.ArrowTip class={props.classes?.arrow} />
 				</ArkTooltip.Arrow>
 			</Show>
-			<ArkTooltip.Content
-				data-testid={tid("--content")}
-				class={cx(props.classes?.content, props.className)}
-			>
+			<ArkTooltip.Content data-testid={tid("--content")} class={cx(props.classes?.content, props.className)}>
 				{props.children}
 			</ArkTooltip.Content>
 		</ArkTooltip.Positioner>

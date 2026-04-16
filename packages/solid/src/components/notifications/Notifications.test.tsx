@@ -17,12 +17,7 @@ describe("Notifications", () => {
 	});
 
 	it("respects placement and gap props", () => {
-		render(() => (
-			<Notifications
-				placement="top-start"
-				gap={10}
-			/>
-		));
+		render(() => <Notifications placement="top-start" gap={10} />);
 
 		const region = screen.getByRole("region", { name: /Notifications/i });
 		expect(region).toHaveAttribute("data-placement", "top-start");

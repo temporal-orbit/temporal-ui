@@ -32,10 +32,7 @@ export const Default: Story = {
 		description: "Dialog Description",
 	},
 	render: (props: DialogProps) => (
-		<Dialog
-			{...props}
-			trigger={(props) => <SampleTrigger {...props} />}
-		>
+		<Dialog {...props} trigger={(props) => <SampleTrigger {...props} />}>
 			<SampleContent />
 		</Dialog>
 	),

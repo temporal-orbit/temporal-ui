@@ -51,18 +51,13 @@ export function CheckboxGroup(_props: CheckboxGroupProps) {
 			>
 				<For each={groupProps.items}>
 					{(item, i) => (
-						<ArkCheckbox.Root
-							value={item.value}
-							data-testid={`${fieldProps.testId}--item-${i()}`}
-						>
+						<ArkCheckbox.Root value={item.value} data-testid={`${fieldProps.testId}--item-${i()}`}>
 							<ArkCheckbox.Control data-testid={`${fieldProps.testId}--control-${i()}`}>
 								<ArkCheckbox.Indicator data-testid={`${fieldProps.testId}--indicator-${i()}`}>
 									<CheckIcon />
 								</ArkCheckbox.Indicator>
 							</ArkCheckbox.Control>
-							<ArkCheckbox.Label data-testid={`${fieldProps.testId}--label-${i()}`}>
-								{item.label}
-							</ArkCheckbox.Label>
+							<ArkCheckbox.Label data-testid={`${fieldProps.testId}--label-${i()}`}>{item.label}</ArkCheckbox.Label>
 							<ArkCheckbox.HiddenInput data-testid={`${fieldProps.testId}--input-${i()}`} />
 						</ArkCheckbox.Root>
 					)}

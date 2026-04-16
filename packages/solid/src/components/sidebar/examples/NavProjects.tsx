@@ -28,10 +28,7 @@ export function NavProjects(props: {
 									placement: "right-start",
 								}}
 								trigger={(triggerProps) => (
-									<SidebarMenuAction
-										showOnHover
-										{...triggerProps}
-									>
+									<SidebarMenuAction showOnHover {...triggerProps}>
 										<MoreHorizontal />
 										<span class="sr-only">More</span>
 									</SidebarMenuAction>

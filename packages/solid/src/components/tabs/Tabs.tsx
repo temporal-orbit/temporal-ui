@@ -3,14 +3,10 @@ import type { TabsProps as CoreTabsProps } from "@temporal-ui/core/tabs";
 import { mergeProps, splitProps, type JSX } from "solid-js";
 
 export interface TabsProps
-	extends CoreTabsProps<JSX.Element>,
-		Omit<TabsRootBaseProps, "defaultValue" | "onValueChange" | "value"> {}
+	extends CoreTabsProps<JSX.Element>, Omit<TabsRootBaseProps, "defaultValue" | "onValueChange" | "value"> {}
 
 export function Tabs(props: TabsProps) {
-	const [controlProps, rootProps] = splitProps(mergeProps({ variant: "default" }, props), [
-		"variant",
-		"onValueChange",
-	]);
+	const [controlProps, rootProps] = splitProps(mergeProps({ variant: "default" }, props), ["variant", "onValueChange"]);
 
 	return (
 		<ArkTabs.Root

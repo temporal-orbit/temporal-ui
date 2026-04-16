@@ -30,10 +30,7 @@ export function NavMain(props: {
 			<SidebarMenu>
 				<For each={props.items}>
 					{(item) => (
-						<Collapsible.Root
-							defaultOpen={item.isActive}
-							class="group/collapsible"
-						>
+						<Collapsible.Root defaultOpen={item.isActive} class="group/collapsible">
 							<SidebarMenuItem>
 								<Collapsible.Trigger
 									asChild={(props) => (

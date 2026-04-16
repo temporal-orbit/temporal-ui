@@ -21,10 +21,7 @@ export function NavUser(props: {
 							class="data-[state=open]:bg-sidebar-accent data-[state=open]:text-sidebar-accent-foreground"
 							{...triggerProps}
 						>
-							<Avatar
-								class="h-8 w-8 rounded-lg"
-								src={props.user.avatar}
-							/>
+							<Avatar class="h-8 w-8 rounded-lg" src={props.user.avatar} />
 							<ChevronsUpDown class="ml-auto size-4" />
 						</SidebarMenuButton>
 					)}
@@ -32,10 +29,7 @@ export function NavUser(props: {
 				>
 					<MenuItemGroup class="p-0 font-normal">
 						<div class="flex items-center gap-2 px-1 py-1.5 text-left text-sm">
-							<Avatar
-								class="h-8 w-8 rounded-lg"
-								src={props.user.avatar}
-							/>
+							<Avatar class="h-8 w-8 rounded-lg" src={props.user.avatar} />
 							<div class="grid flex-1 text-left text-sm leading-tight">
 								<span class="truncate font-medium">{props.user.name}</span>
 								<span class="truncate text-xs">{props.user.email}</span>

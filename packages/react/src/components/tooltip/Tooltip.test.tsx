@@ -1,7 +1,7 @@
 import { cleanup, render, screen, waitFor } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
-import { Tooltip } from "./Tooltip";
 import { vi } from "vitest";
+import { Tooltip } from "./Tooltip";
 
 describe("Tooltip Component", () => {
 	const defaultProps = {
@@ -50,12 +50,7 @@ describe("Tooltip Component", () => {
 
 	it("renders without portal when portal=false", async () => {
 		const user = userEvent.setup();
-		render(
-			<Tooltip
-				{...defaultProps}
-				portal={false}
-			/>,
-		);
+		render(<Tooltip {...defaultProps} portal={false} />);
 
 		const trigger = screen.getByRole("button", { name: "Hover me" });
 		await user.hover(trigger);
@@ -69,36 +64,18 @@ describe("Tooltip Component", () => {
 	});
 
 	it("respects defaultOpen prop", () => {
-		render(
-			<Tooltip
-				{...defaultProps}
-				defaultOpen
-			/>,
-		);
+		render(<Tooltip {...defaultProps} defaultOpen />);
 		expect(screen.getByText("Tooltip content")).toBeVisible();
 	});
 
 	it("respects controlled open prop", async () => {
-		const { rerender } = render(
-			<Tooltip
-				{...defaultProps}
-				open={false}
-			/>,
-		);
+		const { rerender } = render(<Tooltip {...defaultProps} open={false} />);
 
 		await waitFor(() => {
-			const content = screen.queryByText("Tooltip content");
-			if (content) {
-				expect(content).not.toBeVisible();
-			}
+			expect(screen.queryByText("Tooltip content")).not.toBeInTheDocument();
 		});
 
-		rerender(
-			<Tooltip
-				{...defaultProps}
-				open={true}
-			/>,
-		);
+		rerender(<Tooltip {...defaultProps} open={true} />);
 		await waitFor(() => {
 			expect(screen.getByText("Tooltip content")).toBeVisible();
 		});
@@ -107,12 +84,7 @@ describe("Tooltip Component", () => {
 	it("calls onOpenChange when tooltip state changes", async () => {
 		const user = userEvent.setup();
 		const onOpenChange = vi.fn();
-		render(
-			<Tooltip
-				{...defaultProps}
-				onOpenChange={onOpenChange}
-			/>,
-		);
+		render(<Tooltip {...defaultProps} onOpenChange={onOpenChange} />);
 
 		const trigger = screen.getByRole("button", { name: "Hover me" });
 		await user.hover(trigger);
@@ -126,24 +98,13 @@ describe("Tooltip Component", () => {
 	});
 
 	it("applies custom classes to trigger", () => {
-		render(
-			<Tooltip
-				{...defaultProps}
-				classes={{ trigger: "custom-trigger-class" }}
-			/>,
-		);
+		render(<Tooltip {...defaultProps} classes={{ trigger: "custom-trigger-class" }} />);
 		const trigger = screen.getByRole("button", { name: "Hover me" });
 		expect(trigger).toHaveClass("custom-trigger-class");
 	});
 
 	it("renders with testId for selectors", () => {
-		render(
-			<Tooltip
-				{...defaultProps}
-				testId="tooltip-test"
-				defaultOpen
-			/>,
-		);
+		render(<Tooltip {...defaultProps} testId="tooltip-test" defaultOpen />);
 		// Root may not render a DOM element; verify trigger and content have testIds
 		expect(screen.getByTestId("tooltip-test--trigger")).toBeInTheDocument();
 		expect(screen.getByTestId("tooltip-test--content")).toBeInTheDocument();
@@ -152,13 +113,7 @@ describe("Tooltip Component", () => {
 
 	it("handles positioning prop", () => {
 		const position = { placement: "bottom-start" as const };
-		render(
-			<Tooltip
-				{...defaultProps}
-				position={position}
-				defaultOpen
-			/>,
-		);
+		render(<Tooltip {...defaultProps} position={position} defaultOpen />);
 		expect(screen.getByText("Tooltip content")).toBeVisible();
 	});
 
@@ -171,10 +126,7 @@ describe("Tooltip Component", () => {
 		);
 
 		render(
-			<Tooltip
-				{...defaultProps}
-				defaultOpen
-			>
+			<Tooltip {...defaultProps} defaultOpen>
 				{complexContent}
 			</Tooltip>,
 		);
@@ -184,14 +136,7 @@ describe("Tooltip Component", () => {
 	});
 
 	it("renders arrow when showArrow is true", () => {
-		render(
-			<Tooltip
-				{...defaultProps}
-				showArrow
-				testId="tooltip-arrow"
-				defaultOpen
-			/>,
-		);
+		render(<Tooltip {...defaultProps} showArrow testId="tooltip-arrow" defaultOpen />);
 		expect(screen.getByTestId("tooltip-arrow--arrow")).toBeInTheDocument();
 	});
 });

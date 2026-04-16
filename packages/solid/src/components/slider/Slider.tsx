@@ -11,10 +11,7 @@ export function Slider(props: SliderProps & ArkSlider.RootProps) {
 		["showValue", "marks", "showMarkDashes"],
 	);
 	return (
-		<Field
-			{...fieldProps}
-			testId={props.testId ? `${props.testId}-field` : undefined}
-		>
+		<Field {...fieldProps} testId={props.testId ? `${props.testId}-field` : undefined}>
 			<ArkSlider.Root
 				{...rootProps}
 				readOnly={fieldProps.readOnly}
@@ -26,9 +23,7 @@ export function Slider(props: SliderProps & ArkSlider.RootProps) {
 						<ArkSlider.Range />
 					</ArkSlider.Track>
 					<ArkSlider.Thumb index={0}>
-						<ArkSlider.HiddenInput
-							data-testid={fieldProps.testId ? `${fieldProps.testId}--input` : undefined}
-						/>
+						<ArkSlider.HiddenInput data-testid={fieldProps.testId ? `${fieldProps.testId}--input` : undefined} />
 						<Show when={controlProps.showValue}>
 							<ArkSlider.ValueText />
 						</Show>

@@ -31,13 +31,7 @@ export function Button(props: ButtonProps) {
 			data-loading={loading || undefined}
 			data-testid={testId}
 		>
-			{loading && (
-				<Loader
-					size={size}
-					className={"loading"}
-					data-testid={testId ? `${testId}--loader` : undefined}
-				/>
-			)}
+			{loading && <Loader size={size} className={"loading"} data-testid={testId ? `${testId}--loader` : undefined} />}
 			<span className={"inner"}>{children}</span>
 		</button>
 	);

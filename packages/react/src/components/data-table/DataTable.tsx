@@ -5,8 +5,7 @@ import { Loader } from "../loader";
 import { Table } from "../table";
 
 export interface DataTableProps<TData>
-	extends CoreDataTableProps<React.ReactNode>,
-		Omit<TableOptions<TData>, "getCoreRowModel"> {
+	extends CoreDataTableProps<React.ReactNode>, Omit<TableOptions<TData>, "getCoreRowModel"> {
 	getCoreRowModel?: TableOptions<TData>["getCoreRowModel"];
 }
 
@@ -20,15 +19,8 @@ export function DataTable<TData>(props: DataTableProps<TData>) {
 	});
 
 	return (
-		<div
-			data-scope="data-table"
-			data-part="container"
-			data-testid={tid("--container")}
-		>
-			<Table
-				testId={tid("--table")}
-				data-rows={loading ? undefined : table.getRowModel().rows?.length}
-			>
+		<div data-scope="data-table" data-part="container" data-testid={tid("--container")}>
+			<Table testId={tid("--table")} data-rows={loading ? undefined : table.getRowModel().rows?.length}>
 				<thead data-testid={tid("--head")}>
 					{table.getHeaderGroups().map((headerGroup, index) => (
 						<tr
@@ -39,13 +31,8 @@ export function DataTable<TData>(props: DataTableProps<TData>) {
 						>
 							{headerGroup.headers.map((header) => {
 								return (
-									<th
-										key={header.id}
-										data-testid={tid(`--header-cell-${header.id}`)}
-									>
-										{header.isPlaceholder
-											? null
-											: flexRender(header.column.columnDef.header, header.getContext())}
+									<th key={header.id} data-testid={tid(`--header-cell-${header.id}`)}>
+										{header.isPlaceholder ? null : flexRender(header.column.columnDef.header, header.getContext())}
 									</th>
 								);
 							})}
@@ -76,12 +63,7 @@ export function DataTable<TData>(props: DataTableProps<TData>) {
 						))
 					) : (
 						<tr data-testid={tid("--empty-row")}>
-							<td
-								colSpan={props.columns.length}
-								data-scope="data-table"
-								data-part="empty"
-								data-testid={tid("--empty")}
-							>
+							<td colSpan={props.columns.length} data-scope="data-table" data-part="empty" data-testid={tid("--empty")}>
 								{loading ? "Loading..." : "No results."}
 							</td>
 						</tr>
@@ -89,15 +71,8 @@ export function DataTable<TData>(props: DataTableProps<TData>) {
 				</tbody>
 			</Table>
 			{loading && (
-				<div
-					data-scope="data-table"
-					data-part="loading"
-					data-testid={tid("--loading")}
-				>
-					<Loader
-						size="xl"
-						testId={tid("--loader")}
-					/>
+				<div data-scope="data-table" data-part="loading" data-testid={tid("--loading")}>
+					<Loader size="xl" testId={tid("--loader")} />
 				</div>
 			)}
 		</div>

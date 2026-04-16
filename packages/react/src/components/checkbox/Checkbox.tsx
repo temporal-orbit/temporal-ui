@@ -43,29 +43,15 @@ export const Checkbox = forwardRef<HTMLInputElement, CheckboxProps>((props, ref)
 				onCheckedChange={(details) => onCheckedChange?.(details.checked)}
 				data-testid={tid("--root")}
 			>
-				<ArkCheckbox.Control
-					data-testid={tid("--control")}
-					className={classes?.control}
-				>
-					<ArkCheckbox.Indicator
-						data-testid={tid("--indicator")}
-						className={classes?.indicator}
-					>
+				<ArkCheckbox.Control data-testid={tid("--control")} className={classes?.control}>
+					<ArkCheckbox.Indicator data-testid={tid("--indicator")} className={classes?.indicator}>
 						<CheckIcon />
 					</ArkCheckbox.Indicator>
 				</ArkCheckbox.Control>
-				<ArkCheckbox.Label
-					data-testid={tid("--label")}
-					className={classes?.label}
-				>
+				<ArkCheckbox.Label data-testid={tid("--label")} className={classes?.label}>
 					{label}
 				</ArkCheckbox.Label>
-				<ArkCheckbox.HiddenInput
-					ref={ref}
-					data-testid={tid("--input")}
-					className={classes?.input}
-					{...rest}
-				/>
+				<ArkCheckbox.HiddenInput ref={ref} data-testid={tid("--input")} className={classes?.input} {...rest} />
 			</ArkCheckbox.Root>
 		</Field>
 	);

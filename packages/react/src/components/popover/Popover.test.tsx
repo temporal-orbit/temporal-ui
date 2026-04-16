@@ -1,7 +1,7 @@
 import { cleanup, render, screen, waitFor } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
-import { Popover } from "./Popover";
 import { vi } from "vitest";
+import { Popover } from "./Popover";
 
 describe("Popover Component", () => {
 	const defaultProps = {
@@ -19,23 +19,12 @@ describe("Popover Component", () => {
 	});
 
 	it("renders with portal by default", () => {
-		render(
-			<Popover
-				{...defaultProps}
-				defaultOpen
-			/>,
-		);
+		render(<Popover {...defaultProps} defaultOpen />);
 		expect(screen.getByText("Popover content")).toBeVisible();
 	});
 
 	it("renders without portal when portal=false", () => {
-		render(
-			<Popover
-				{...defaultProps}
-				portal={false}
-				defaultOpen
-			/>,
-		);
+		render(<Popover {...defaultProps} portal={false} defaultOpen />);
 		expect(screen.getByText("Popover content")).toBeVisible();
 	});
 
@@ -52,36 +41,18 @@ describe("Popover Component", () => {
 	});
 
 	it("respects defaultOpen prop", () => {
-		render(
-			<Popover
-				{...defaultProps}
-				defaultOpen
-			/>,
-		);
+		render(<Popover {...defaultProps} defaultOpen />);
 		expect(screen.getByText("Popover content")).toBeVisible();
 	});
 
 	it("respects controlled open prop", async () => {
-		const { rerender } = render(
-			<Popover
-				{...defaultProps}
-				open={false}
-			/>,
-		);
+		const { rerender } = render(<Popover {...defaultProps} open={false} />);
 		// When controlled with open={false}, content should not be visible
 		await waitFor(() => {
-			const content = screen.queryByText("Popover content");
-			if (content) {
-				expect(content).not.toBeVisible();
-			}
+			expect(screen.queryByText("Popover content")).not.toBeInTheDocument();
 		});
 
-		rerender(
-			<Popover
-				{...defaultProps}
-				open={true}
-			/>,
-		);
+		rerender(<Popover {...defaultProps} open={true} />);
 		await waitFor(() => {
 			expect(screen.getByText("Popover content")).toBeVisible();
 		});
@@ -90,12 +61,7 @@ describe("Popover Component", () => {
 	it("calls onOpenChange when popover state changes", async () => {
 		const user = userEvent.setup();
 		const onOpenChange = vi.fn();
-		render(
-			<Popover
-				{...defaultProps}
-				onOpenChange={onOpenChange}
-			/>,
-		);
+		render(<Popover {...defaultProps} onOpenChange={onOpenChange} />);
 
 		const trigger = screen.getByRole("button", { name: "Open Popover" });
 		await user.click(trigger);
@@ -106,79 +72,44 @@ describe("Popover Component", () => {
 	});
 
 	it("renders title when provided", () => {
-		render(
-			<Popover
-				{...defaultProps}
-				title="Test Title"
-				defaultOpen
-			/>,
-		);
+		render(<Popover {...defaultProps} title="Test Title" defaultOpen />);
 		expect(screen.getByText("Test Title")).toBeVisible();
 	});
 
 	it("renders description when provided", () => {
-		render(
-			<Popover
-				{...defaultProps}
-				description="Test Description"
-				defaultOpen
-			/>,
-		);
+		render(<Popover {...defaultProps} description="Test Description" defaultOpen />);
 		expect(screen.getByText("Test Description")).toBeVisible();
 	});
 
 	it("applies custom classes to trigger", () => {
-		render(
-			<Popover
-				{...defaultProps}
-				classes={{ trigger: "custom-trigger-class" }}
-			/>,
-		);
+		render(<Popover {...defaultProps} classes={{ trigger: "custom-trigger-class" }} />);
 		const trigger = screen.getByRole("button", { name: "Open Popover" });
 		expect(trigger).toHaveClass("custom-trigger-class");
 	});
 
 	it("applies custom classes to content", () => {
-		render(
-			<Popover
-				{...defaultProps}
-				classes={{ content: "custom-content-class" }}
-				defaultOpen
-			/>,
-		);
+		render(<Popover {...defaultProps} classes={{ content: "custom-content-class" }} defaultOpen />);
 		// The content class is applied to the Ark UI Popover.Content element
 		// We can test this by checking if the popover content exists and is visible
 		expect(screen.getByText("Popover content")).toBeVisible();
 	});
 
-	it.skip("closes on escape key when closeOnEscape is true", async () => {
+	it("closes on escape key when closeOnEscape is true", async () => {
 		const user = userEvent.setup();
-		render(
-			<Popover
-				{...defaultProps}
-				closeOnEscape
-				defaultOpen
-			/>,
-		);
+		render(<Popover {...defaultProps} closeOnEscape defaultOpen />);
 
 		expect(screen.getByText("Popover content")).toBeVisible();
 
 		await user.keyboard("{Escape}");
 
 		await waitFor(() => {
-			expect(screen.getByText("Popover content")).not.toBeVisible();
+			expect(screen.queryByText("Popover content")).not.toBeInTheDocument();
 		});
 	});
 
 	it("does not close on escape key when closeOnEscape is false", async () => {
 		const user = userEvent.setup();
-		render(
-			<Popover
-				{...defaultProps}
-				closeOnEscape={false}
-				defaultOpen
-			/>,
-		);
+		render(<Popover {...defaultProps} closeOnEscape={false} defaultOpen />);
 
 		expect(screen.getByText("Popover content")).toBeVisible();
 
@@ -189,25 +120,13 @@ describe("Popover Component", () => {
 	});
 
 	it("respects modal prop", () => {
-		render(
-			<Popover
-				{...defaultProps}
-				modal
-				defaultOpen
-			/>,
-		);
+		render(<Popover {...defaultProps} modal defaultOpen />);
 		// When modal=true, the popover should trap focus and prevent interaction with other elements
 		expect(screen.getByText("Popover content")).toBeVisible();
 	});
 
 	it("respects autoFocus prop", () => {
-		render(
-			<Popover
-				{...defaultProps}
-				autoFocus
-				defaultOpen
-			/>,
-		);
+		render(<Popover {...defaultProps} autoFocus defaultOpen />);
 		expect(screen.getByText("Popover content")).toBeVisible();
 		// The popover content should receive focus when autoFocus is true
 	});
@@ -227,13 +146,7 @@ describe("Popover Component", () => {
 
 	it("handles positioning prop", () => {
 		const position = { placement: "bottom-start" as const };
-		render(
-			<Popover
-				{...defaultProps}
-				position={position}
-				defaultOpen
-			/>,
-		);
+		render(<Popover {...defaultProps} position={position} defaultOpen />);
 		expect(screen.getByText("Popover content")).toBeVisible();
 	});
 
@@ -247,10 +160,7 @@ describe("Popover Component", () => {
 		);
 
 		render(
-			<Popover
-				{...defaultProps}
-				defaultOpen
-			>
+			<Popover {...defaultProps} defaultOpen>
 				{complexContent}
 			</Popover>,
 		);

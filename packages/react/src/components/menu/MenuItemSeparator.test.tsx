@@ -6,10 +6,7 @@ import { MenuItemSeparator } from "./MenuItemSeparator";
 
 describe("MenuItemSeparator Component", () => {
 	const MenuWrapper = ({ children, ...props }: Omit<MenuProps, "trigger">) => (
-		<Menu
-			trigger={<button type="button">Trigger</button>}
-			{...props}
-		>
+		<Menu trigger={<button type="button">Trigger</button>} {...props}>
 			{children}
 		</Menu>
 	);

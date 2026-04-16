@@ -11,12 +11,7 @@ export interface ToggleGroupItemProps extends ComponentProps<typeof ArkToggleGro
 export function ToggleGroup(props: ToggleGroupProps) {
 	const [local, rest] = splitProps(props, ["testId"]);
 
-	return (
-		<ArkToggleGroup.Root
-			data-testid={local.testId}
-			{...rest}
-		/>
-	);
+	return <ArkToggleGroup.Root data-testid={local.testId} {...rest} />;
 }
 
 export const ToggleGroupItem = ArkToggleGroup.Item;

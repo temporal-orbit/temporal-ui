@@ -5,8 +5,7 @@ import { Portal } from "@ark-ui/react/portal";
 import { testId as testIdFn } from "@temporal-ui/core/utils/string";
 
 export interface MenuProps
-	extends CoreMenuProps<React.ReactNode>,
-		Omit<React.ComponentProps<typeof ArkMenu.Root>, "onSelect"> {
+	extends CoreMenuProps<React.ReactNode>, Omit<React.ComponentProps<typeof ArkMenu.Root>, "onSelect"> {
 	trigger: React.ReactNode;
 }
 
@@ -22,18 +21,12 @@ export function Menu(props: MenuProps) {
 			data-testid={tid("--root")}
 			positioning={position}
 		>
-			<ArkMenu.Trigger
-				data-testid={tid("--trigger")}
-				asChild
-			>
+			<ArkMenu.Trigger data-testid={tid("--trigger")} asChild>
 				{trigger}
 			</ArkMenu.Trigger>
 			<Portal>
 				<ArkMenu.Positioner data-testid={tid("--positioner")}>
-					<ArkMenu.Content
-						className={className}
-						data-testid={tid("--content")}
-					>
+					<ArkMenu.Content className={className} data-testid={tid("--content")}>
 						{children}
 					</ArkMenu.Content>
 				</ArkMenu.Positioner>

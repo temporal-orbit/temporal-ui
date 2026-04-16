@@ -40,12 +40,7 @@ export function TeamSwitcher({
 				>
 					<MenuItemGroup label="Teams">
 						{teams.map((team) => (
-							<MenuItem
-								key={team.name}
-								value={team.name}
-								onClick={() => setActiveTeam(team)}
-								className="gap-2 p-2"
-							>
+							<MenuItem key={team.name} value={team.name} onClick={() => setActiveTeam(team)} className="gap-2 p-2">
 								<div className="flex size-6 items-center justify-center rounded-md border">
 									<team.logo className="size-3.5 shrink-0" />
 								</div>
@@ -53,10 +48,7 @@ export function TeamSwitcher({
 							</MenuItem>
 						))}
 						<MenuItemSeparator />
-						<MenuItem
-							value="add-team"
-							className="gap-2 p-2"
-						>
+						<MenuItem value="add-team" className="gap-2 p-2">
 							<div className="flex size-6 items-center justify-center rounded-md border bg-transparent">
 								<Plus className="size-4" />
 							</div>

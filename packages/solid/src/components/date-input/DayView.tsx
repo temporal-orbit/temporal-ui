@@ -9,15 +9,8 @@ export function DayView(props: DayViewProps) {
 	const { numOfMonths = 1 } = props;
 
 	return (
-		<DatePicker.View
-			view="day"
-			data-scope={"date-input"}
-			data-view="day"
-		>
-			<div
-				data-scope={"date-input"}
-				data-part="months-container"
-			>
+		<DatePicker.View view="day" data-scope={"date-input"} data-view="day">
+			<div data-scope={"date-input"} data-part="months-container">
 				<DatePicker.Context>
 					{(datePicker) => (
 						<Index each={Array.from({ length: numOfMonths })}>
@@ -29,9 +22,7 @@ export function DayView(props: DayViewProps) {
 											<DatePicker.TableRow data-scope={"date-input"}>
 												<Index each={datePicker().weekDays}>
 													{(weekDay) => (
-														<DatePicker.TableHeader data-scope={"date-input"}>
-															{weekDay().short}
-														</DatePicker.TableHeader>
+														<DatePicker.TableHeader data-scope={"date-input"}>{weekDay().short}</DatePicker.TableHeader>
 													)}
 												</Index>
 											</DatePicker.TableRow>
@@ -47,9 +38,7 @@ export function DayView(props: DayViewProps) {
 																	visibleRange={offset().visibleRange}
 																	data-scope={"date-input"}
 																>
-																	<DatePicker.TableCellTrigger
-																		data-scope={"date-input"}
-																	>
+																	<DatePicker.TableCellTrigger data-scope={"date-input"}>
 																		{day().day}
 																	</DatePicker.TableCellTrigger>
 																</DatePicker.TableCell>

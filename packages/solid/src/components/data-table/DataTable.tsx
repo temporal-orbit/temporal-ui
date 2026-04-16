@@ -12,8 +12,7 @@ import { Table } from "../table";
 import { testId } from "@temporal-ui/core/utils/string";
 
 export interface DataTableProps<TData>
-	extends CoreDataTableProps<JSX.Element>,
-		Omit<TableOptions<TData>, "getCoreRowModel"> {
+	extends CoreDataTableProps<JSX.Element>, Omit<TableOptions<TData>, "getCoreRowModel"> {
 	getCoreRowModel?: TableOptions<TData>["getCoreRowModel"];
 }
 
@@ -30,15 +29,8 @@ export function DataTable<TData>(props: DataTableProps<TData>) {
 	const tid = testId(props.testId);
 
 	return (
-		<div
-			data-scope="data-table"
-			data-part="container"
-			data-testid={tid("--container")}
-		>
-			<Table
-				testId={tid("--table")}
-				data-rows={controlProps.loading ? undefined : table.getRowModel().rows?.length}
-			>
+		<div data-scope="data-table" data-part="container" data-testid={tid("--container")}>
+			<Table testId={tid("--table")} data-rows={controlProps.loading ? undefined : table.getRowModel().rows?.length}>
 				<thead data-testid={tid("--head")}>
 					<For each={table.getHeaderGroups()}>
 						{(headerGroup, index) => (
@@ -50,10 +42,7 @@ export function DataTable<TData>(props: DataTableProps<TData>) {
 								<For each={headerGroup.headers}>
 									{(header) => (
 										<th data-testid={tid(`--header-cell-${header.id}`)}>
-											<Show
-												when={!header.isPlaceholder}
-												fallback={null}
-											>
+											<Show when={!header.isPlaceholder} fallback={null}>
 												{flexRender(header.column.columnDef.header, header.getContext())}
 											</Show>
 										</th>
@@ -75,11 +64,7 @@ export function DataTable<TData>(props: DataTableProps<TData>) {
 								>
 									<For each={row.getVisibleCells()}>
 										{(cell, cellIndex) => (
-											<td
-												data-testid={tid(`--cell-${cell.id}`)}
-												data-cell-id={cell.id}
-												data-cell-index={cellIndex()}
-											>
+											<td data-testid={tid(`--cell-${cell.id}`)} data-cell-id={cell.id} data-cell-index={cellIndex()}>
 												{flexRender(cell.column.columnDef.cell, cell.getContext())}
 											</td>
 										)}
@@ -90,12 +75,7 @@ export function DataTable<TData>(props: DataTableProps<TData>) {
 					</Show>
 					<Show when={!table.getRowModel().rows?.length}>
 						<tr data-testid={tid("--empty-row")}>
-							<td
-								colSpan={props.columns.length}
-								data-scope="data-table"
-								data-part="empty"
-								data-testid={tid("--empty")}
-							>
+							<td colSpan={props.columns.length} data-scope="data-table" data-part="empty" data-testid={tid("--empty")}>
 								<Show when={controlProps.loading}>Loading...</Show>
 								<Show when={!controlProps.loading}>No results.</Show>
 							</td>
@@ -104,15 +84,8 @@ export function DataTable<TData>(props: DataTableProps<TData>) {
 				</tbody>
 			</Table>
 			<Show when={controlProps.loading}>
-				<div
-					data-scope="data-table"
-					data-part="loading"
-					data-testid={tid("--loading")}
-				>
-					<Loader
-						size="xl"
-						testId={tid("--loader")}
-					/>
+				<div data-scope="data-table" data-part="loading" data-testid={tid("--loading")}>
+					<Loader size="xl" testId={tid("--loader")} />
 				</div>
 			</Show>
 		</div>

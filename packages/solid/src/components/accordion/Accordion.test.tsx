@@ -22,10 +22,7 @@ function AccordionDemo(props: AccordionProps) {
 		<Accordion {...props}>
 			<For each={items}>
 				{(item) => (
-					<AccordionItem
-						value={item.value}
-						data-testid={`accordion-item-${item.value}`}
-					>
+					<AccordionItem value={item.value} data-testid={`accordion-item-${item.value}`}>
 						<AccordionItemTrigger data-testid={`accordion-trigger-${item.value}`}>
 							{item.title}
 							<AccordionItemIndicator>
@@ -112,12 +109,7 @@ describe("Accordion", () => {
 
 	it("allows multiple items to be open when multiple prop is set", async () => {
 		const user = userEvent.setup();
-		render(() => (
-			<AccordionDemo
-				multiple
-				defaultValue={["item-1"]}
-			/>
-		));
+		render(() => <AccordionDemo multiple defaultValue={["item-1"]} />);
 
 		const trigger2 = screen.getByTestId("accordion-trigger-item-2");
 		await user.click(trigger2);
@@ -154,12 +146,7 @@ describe("Accordion", () => {
 	});
 
 	it("applies className to the root element", () => {
-		render(() => (
-			<AccordionDemo
-				className="custom-class"
-				testId="accordion-root"
-			/>
-		));
+		render(() => <AccordionDemo className="custom-class" testId="accordion-root" />);
 
 		expect(screen.getByTestId("accordion-root")).toHaveClass("custom-class");
 	});
@@ -171,12 +158,7 @@ describe("Accordion", () => {
 	});
 
 	it("applies data-variant attribute with boxed value", () => {
-		render(() => (
-			<AccordionDemo
-				variant="boxed"
-				testId="boxed-accordion"
-			/>
-		));
+		render(() => <AccordionDemo variant="boxed" testId="boxed-accordion" />);
 
 		expect(screen.getByTestId("boxed-accordion")).toHaveAttribute("data-variant", "boxed");
 	});

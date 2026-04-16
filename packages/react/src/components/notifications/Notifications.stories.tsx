@@ -37,15 +37,9 @@ export const Default: Story = {
 		gap: 12,
 	},
 	render: (args) => (
-		<Stack
-			p={5}
-			h={600}
-		>
+		<Stack p={5} h={600}>
 			<Notifications {...args} />
-			<Stack
-				row
-				gap={2}
-			>
+			<Stack row gap={2}>
 				<Button
 					onClick={() =>
 						showNotification({
@@ -105,11 +99,7 @@ export const WithAction: Story = {
 		gap: 10,
 	},
 	render: (args) => (
-		<Stack
-			p={5}
-			h={600}
-			row
-		>
+		<Stack p={5} h={600} row>
 			<Notifications {...args} />
 			<Stack gap={2}>
 				<Button
@@ -140,11 +130,7 @@ export const TopStart: Story = {
 		gap: 10,
 	},
 	render: (args) => (
-		<Stack
-			p={5}
-			h={600}
-			row
-		>
+		<Stack p={5} h={600} row>
 			<Notifications {...args} />
 			<Stack gap={2}>
 				<Button
@@ -170,11 +156,7 @@ export const TopEnd: Story = {
 		gap: 10,
 	},
 	render: (args) => (
-		<Stack
-			p={5}
-			h={600}
-			row
-		>
+		<Stack p={5} h={600} row>
 			<Notifications {...args} />
 			<Stack gap={2}>
 				<Button
@@ -200,11 +182,7 @@ export const BottomStart: Story = {
 		gap: 10,
 	},
 	render: (args) => (
-		<Stack
-			p={5}
-			h={600}
-			row
-		>
+		<Stack p={5} h={600} row>
 			<Notifications {...args} />
 			<Stack gap={2}>
 				<Button
@@ -230,11 +208,7 @@ export const BottomEnd: Story = {
 		gap: 10,
 	},
 	render: (args) => (
-		<Stack
-			p={5}
-			h={600}
-			row
-		>
+		<Stack p={5} h={600} row>
 			<Notifications {...args} />
 			<Stack gap={2}>
 				<Button
@@ -260,16 +234,9 @@ export const LongDescription: Story = {
 		gap: 10,
 	},
 	render: (args) => (
-		<Stack
-			p={5}
-			h={600}
-			row
-		>
+		<Stack p={5} h={600} row>
 			<Notifications {...args} />
-			<Stack
-				gap={2}
-				row
-			>
+			<Stack gap={2} row>
 				<Button
 					onClick={() =>
 						showNotification({
@@ -294,11 +261,7 @@ export const MultipleNotifications: Story = {
 		gap: 15,
 	},
 	render: (args) => (
-		<Stack
-			p={5}
-			h={600}
-			row
-		>
+		<Stack p={5} h={600} row>
 			<Notifications {...args} />
 			<Stack gap={2}>
 				<Button
@@ -338,11 +301,7 @@ export const CustomDuration: Story = {
 		gap: 12,
 	},
 	render: (args) => (
-		<Stack
-			p={5}
-			h={600}
-			row
-		>
+		<Stack p={5} h={600} row>
 			<Notifications {...args} />
 			<Stack gap={2}>
 				<Button
@@ -393,16 +352,10 @@ export const AllTypes: Story = {
 		gap: 12,
 	},
 	render: (args) => (
-		<Stack
-			p={5}
-			h={600}
-		>
+		<Stack p={5} h={600}>
 			<Notifications {...args} />
 			<Stack gap={2}>
-				<Stack
-					row
-					gap={2}
-				>
+				<Stack row gap={2}>
 					<Button
 						onClick={() =>
 							showNotification({
@@ -428,10 +381,7 @@ export const AllTypes: Story = {
 					</Button>
 				</Stack>
 
-				<Stack
-					row
-					gap={2}
-				>
+				<Stack row gap={2}>
 					<Button
 						onClick={() =>
 							showNotification({
@@ -457,10 +407,7 @@ export const AllTypes: Story = {
 					</Button>
 				</Stack>
 
-				<Stack
-					row
-					gap={2}
-				>
+				<Stack row gap={2}>
 					<Button
 						onClick={() =>
 							showNotification({
@@ -486,10 +433,7 @@ export const AllTypes: Story = {
 					</Button>
 				</Stack>
 
-				<Stack
-					row
-					gap={2}
-				>
+				<Stack row gap={2}>
 					<Button
 						onClick={() =>
 							showNotification({
@@ -515,10 +459,7 @@ export const AllTypes: Story = {
 					</Button>
 				</Stack>
 
-				<Stack
-					row
-					gap={2}
-				>
+				<Stack row gap={2}>
 					<Button
 						onClick={() =>
 							showNotification({
@@ -544,10 +485,7 @@ export const AllTypes: Story = {
 					</Button>
 				</Stack>
 
-				<Stack
-					row
-					gap={2}
-				>
+				<Stack row gap={2}>
 					<Button
 						onClick={() =>
 							showNotification({

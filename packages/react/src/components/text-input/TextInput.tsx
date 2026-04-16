@@ -5,7 +5,8 @@ import { forwardRef } from "react";
 import { Field } from "../field";
 
 export interface TextInputProps
-	extends CoreTextInputProps<React.ReactNode>,
+	extends
+		CoreTextInputProps<React.ReactNode>,
 		Omit<React.InputHTMLAttributes<HTMLInputElement>, "defaultValue" | "value"> {}
 
 export const TextInput = forwardRef<HTMLInputElement, TextInputProps>((props, ref) => {
@@ -35,10 +36,7 @@ export const TextInput = forwardRef<HTMLInputElement, TextInputProps>((props, re
 			disabled={disabled}
 			testId={testId ? `${testId}-field` : undefined}
 		>
-			<div
-				data-scope={"text-input"}
-				data-part={"wrapper"}
-			>
+			<div data-scope={"text-input"} data-part={"wrapper"}>
 				{startSection && (
 					<div
 						data-scope={"text-input"}

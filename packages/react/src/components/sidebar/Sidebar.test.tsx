@@ -59,10 +59,7 @@ describe("Sidebar", () => {
 	it("applies correct data attributes for collapsible sidebar", () => {
 		render(
 			<SidebarProvider>
-				<Sidebar
-					collapsible="offcanvas"
-					variant="sidebar"
-				>
+				<Sidebar collapsible="offcanvas" variant="sidebar">
 					<div data-testid="sidebar-content">Content</div>
 				</Sidebar>
 			</SidebarProvider>,
@@ -88,11 +85,7 @@ describe("SidebarProvider", () => {
 					<span data-testid="state">{state}</span>
 					<span data-testid="open">{open.toString()}</span>
 					<span data-testid="is-mobile">{isMobile.toString()}</span>
-					<button
-						type="button"
-						data-testid="toggle"
-						onClick={toggleSidebar}
-					>
+					<button type="button" data-testid="toggle" onClick={toggleSidebar}>
 						Toggle
 					</button>
 				</div>
@@ -123,11 +116,7 @@ describe("SidebarProvider", () => {
 		const TestComponent = () => {
 			const { setOpen } = useSidebar();
 			return (
-				<button
-					type="button"
-					data-testid="close"
-					onClick={() => setOpen(false)}
-				>
+				<button type="button" data-testid="close" onClick={() => setOpen(false)}>
 					Close
 				</button>
 			);
@@ -184,11 +173,7 @@ describe("SidebarMenu Components", () => {
 				<Sidebar side="left">
 					<SidebarMenu>
 						<SidebarMenuItem>
-							<SidebarMenuButton
-								variant="default"
-								size="default"
-								isActive={false}
-							>
+							<SidebarMenuButton variant="default" size="default" isActive={false}>
 								Menu Item
 							</SidebarMenuButton>
 						</SidebarMenuItem>
@@ -216,10 +201,7 @@ describe("SidebarMenu Components", () => {
 				<Sidebar side="left">
 					<SidebarMenu>
 						<SidebarMenuItem>
-							<SidebarMenuLink
-								href="/test"
-								isActive={true}
-							>
+							<SidebarMenuLink href="/test" isActive={true}>
 								Link Item
 							</SidebarMenuLink>
 						</SidebarMenuItem>
@@ -242,10 +224,7 @@ describe("SidebarMenu Components", () => {
 						<SidebarMenuItem>
 							<SidebarMenuSub>
 								<SidebarMenuSubItem>
-									<SidebarMenuSubButton
-										size="md"
-										isActive={false}
-									>
+									<SidebarMenuSubButton size="md" isActive={false}>
 										Sub Item
 									</SidebarMenuSubButton>
 								</SidebarMenuSubItem>

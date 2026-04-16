@@ -59,10 +59,7 @@ const items = [
 const AccordionDemo = (props: AccordionProps) => (
 	<Accordion {...props}>
 		{items.map((item) => (
-			<AccordionItem
-				key={item.value}
-				value={item.value}
-			>
+			<AccordionItem key={item.value} value={item.value}>
 				<AccordionItemTrigger>
 					{item.title}
 					<AccordionItemIndicator>
@@ -82,52 +79,24 @@ export const Default: Story = {
 };
 
 export const DefaultOpen: Story = {
-	render: (props) => (
-		<AccordionDemo
-			{...props}
-			defaultValue={["item-1"]}
-		/>
-	),
+	render: (props) => <AccordionDemo {...props} defaultValue={["item-1"]} />,
 };
 
 export const Multiple: Story = {
-	render: (props) => (
-		<AccordionDemo
-			{...props}
-			multiple
-			defaultValue={["item-1", "item-2"]}
-		/>
-	),
+	render: (props) => <AccordionDemo {...props} multiple defaultValue={["item-1", "item-2"]} />,
 };
 
 export const Disabled: Story = {
-	render: (props) => (
-		<AccordionDemo
-			{...props}
-			disabled
-		/>
-	),
+	render: (props) => <AccordionDemo {...props} disabled />,
 };
 
 export const Boxed: Story = {
-	render: (props) => (
-		<AccordionDemo
-			{...props}
-			variant="boxed"
-			defaultValue={["item-1"]}
-		/>
-	),
+	render: (props) => <AccordionDemo {...props} variant="boxed" defaultValue={["item-1"]} />,
 };
 
 export const Controlled: Story = {
 	render: (props) => {
 		const [value, setValue] = useState<string[]>(["item-1"]);
-		return (
-			<AccordionDemo
-				{...props}
-				value={value}
-				onValueChange={setValue}
-			/>
-		);
+		return <AccordionDemo {...props} value={value} onValueChange={setValue} />;
 	},
 };

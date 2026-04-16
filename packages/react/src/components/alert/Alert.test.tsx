@@ -22,94 +22,43 @@ describe("Alert Component", () => {
 	});
 
 	it("applies variant classes correctly", () => {
-		const { rerender } = render(
-			<Alert
-				{...defaultProps}
-				variant="info"
-			/>,
-		);
+		const { rerender } = render(<Alert {...defaultProps} variant="info" />);
 		expect(screen.getByRole("alert")).toHaveClass("alert-info");
 
-		rerender(
-			<Alert
-				{...defaultProps}
-				variant="success"
-			/>,
-		);
+		rerender(<Alert {...defaultProps} variant="success" />);
 		expect(screen.getByRole("alert")).toHaveClass("alert-success");
 
-		rerender(
-			<Alert
-				{...defaultProps}
-				variant="warning"
-			/>,
-		);
+		rerender(<Alert {...defaultProps} variant="warning" />);
 		expect(screen.getByRole("alert")).toHaveClass("alert-warning");
 
-		rerender(
-			<Alert
-				{...defaultProps}
-				variant="error"
-			/>,
-		);
+		rerender(<Alert {...defaultProps} variant="error" />);
 		expect(screen.getByRole("alert")).toHaveClass("alert-error");
 	});
 
 	it("renders default icon for each variant", () => {
-		const { rerender } = render(
-			<Alert
-				{...defaultProps}
-				variant="default"
-			/>,
-		);
+		const { rerender } = render(<Alert {...defaultProps} variant="default" />);
 		// Default variant has no icon
 		expect(screen.queryByTestId("info-icon")).not.toBeInTheDocument();
 
-		rerender(
-			<Alert
-				{...defaultProps}
-				variant="info"
-			/>,
-		);
+		rerender(<Alert {...defaultProps} variant="info" />);
 		// Info icon should be present (Info component from lucide-react)
 		expect(screen.getByRole("alert")).toContainHTML("<svg");
 
-		rerender(
-			<Alert
-				{...defaultProps}
-				variant="success"
-			/>,
-		);
+		rerender(<Alert {...defaultProps} variant="success" />);
 		// Success icon should be present (CircleCheck component)
 		expect(screen.getByRole("alert")).toContainHTML("<svg");
 
-		rerender(
-			<Alert
-				{...defaultProps}
-				variant="warning"
-			/>,
-		);
+		rerender(<Alert {...defaultProps} variant="warning" />);
 		// Warning icon should be present (TriangleAlert component)
 		expect(screen.getByRole("alert")).toContainHTML("<svg");
 
-		rerender(
-			<Alert
-				{...defaultProps}
-				variant="error"
-			/>,
-		);
+		rerender(<Alert {...defaultProps} variant="error" />);
 		// Error icon should be present (CircleX component)
 		expect(screen.getByRole("alert")).toContainHTML("<svg");
 	});
 
 	it("renders without icon when icon prop is null", () => {
-		render(
-			<Alert
-				{...defaultProps}
-				variant="info"
-				icon={null}
-			/>,
-		);
+		render(<Alert {...defaultProps} variant="info" icon={null} />);
 
 		// Check that no SVG elements are present in the alert
 		expect(screen.queryByRole("img", { hidden: true })).not.toBeInTheDocument();
@@ -117,24 +66,14 @@ describe("Alert Component", () => {
 	});
 
 	it("renders without title when title is not set", () => {
-		render(
-			<Alert
-				description="This alert has no title but has a description."
-				title={undefined}
-			/>,
-		);
+		render(<Alert description="This alert has no title but has a description." title={undefined} />);
 
 		expect(screen.queryByRole("heading")).not.toBeInTheDocument();
 		expect(screen.getByText("This alert has no title but has a description.")).toBeInTheDocument();
 	});
 
 	it("renders without description when description is not set", () => {
-		render(
-			<Alert
-				title="Alert without description"
-				description={undefined}
-			/>,
-		);
+		render(<Alert title="Alert without description" description={undefined} />);
 
 		expect(screen.getByRole("heading", { level: 2 })).toHaveTextContent("Alert without description");
 		expect(screen.queryByText("This is an alert with title and description.")).not.toBeInTheDocument();
@@ -142,11 +81,7 @@ describe("Alert Component", () => {
 
 	it("renders custom icon when provided", () => {
 		render(
-			<Alert
-				{...defaultProps}
-				title="Alert with custom icon"
-				icon={<AlarmClockCheck data-testid="custom-icon" />}
-			/>,
+			<Alert {...defaultProps} title="Alert with custom icon" icon={<AlarmClockCheck data-testid="custom-icon" />} />,
 		);
 
 		expect(screen.getByTestId("custom-icon")).toBeInTheDocument();
@@ -155,31 +90,18 @@ describe("Alert Component", () => {
 
 	it("renders children content", () => {
 		const children = (
-			<Stack
-				row
-				gap={1}
-				mt={1}
-			>
-				<Button
-					variant="primary"
-					size="xs"
-				>
+			<Stack row gap={1} mt={1}>
+				<Button variant="primary" size="xs">
 					Action
 				</Button>
-				<Button
-					variant="secondary"
-					size="xs"
-				>
+				<Button variant="secondary" size="xs">
 					Secondary
 				</Button>
 			</Stack>
 		);
 
 		render(
-			<Alert
-				{...defaultProps}
-				title="Alert with children"
-			>
+			<Alert {...defaultProps} title="Alert with children">
 				{children}
 			</Alert>,
 		);
@@ -190,12 +112,7 @@ describe("Alert Component", () => {
 	});
 
 	it("applies custom className alongside base classes", () => {
-		render(
-			<Alert
-				{...defaultProps}
-				className="custom-class another-custom"
-			/>,
-		);
+		render(<Alert {...defaultProps} className="custom-class another-custom" />);
 
 		const alertElement = screen.getByRole("alert");
 		expect(alertElement).toHaveClass("alert-default");
@@ -204,12 +121,7 @@ describe("Alert Component", () => {
 	});
 
 	it("spreads additional div props", () => {
-		render(
-			<Alert
-				{...defaultProps}
-				testId="custom-alert"
-			/>,
-		);
+		render(<Alert {...defaultProps} testId="custom-alert" />);
 
 		const alertElement = screen.getByTestId("custom-alert");
 		expect(alertElement).toBeInTheDocument();

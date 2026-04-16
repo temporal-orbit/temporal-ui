@@ -5,18 +5,14 @@ import { CheckIcon } from "lucide-react";
 import { testId as testIdFn } from "@temporal-ui/core/utils/string";
 
 export interface MenuCheckboxItemProps
-	extends CoreMenuCheckboxItemProps,
-		React.ComponentProps<typeof ArkMenu.CheckboxItem> {}
+	extends CoreMenuCheckboxItemProps, React.ComponentProps<typeof ArkMenu.CheckboxItem> {}
 
 export function MenuCheckboxItem(props: MenuCheckboxItemProps) {
 	const { testId, children, ...rest } = props;
 	const tid = testIdFn(testId);
 
 	return (
-		<ArkMenu.CheckboxItem
-			{...rest}
-			data-testid={tid("--checkbox-item")}
-		>
+		<ArkMenu.CheckboxItem {...rest} data-testid={tid("--checkbox-item")}>
 			<div data-part="item-indicator-container">
 				<ArkMenu.ItemIndicator data-testid={tid("--checkbox-item-indicator")}>
 					<CheckIcon />
