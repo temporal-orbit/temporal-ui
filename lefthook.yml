@@ -1,10 +1,10 @@
 pre-commit:
   parallel: true
   jobs:
-    - run: npm run format '--' --no-error-on-unmatched-pattern {staged_files}
+    - run: bun run format '--' --no-error-on-unmatched-pattern {staged_files}
       stage_fixed: true
 
-    - run: npm run lint:fix '--' {staged_files}
+    - run: bun run lint:fix '--' --no-error-on-unmatched-pattern {staged_files}
       stage_fixed: true
 
-    - run: npm run typecheck
+    - run: bun run typecheck

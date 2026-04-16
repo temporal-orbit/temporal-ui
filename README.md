@@ -190,4 +190,4 @@ MIT License - see [LICENSE](LICENSE) file for details.
 
 ---
 
-Built with ❤️ by the Temporal team
+Built with ❤️ by the Temporal UI team
