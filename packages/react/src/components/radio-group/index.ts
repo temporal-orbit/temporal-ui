@@ -1,1 +1,1 @@
-export { RadioGroup, type RadioGroupItem, type RadioGroupProps } from "./RadioGroup";
+export { RadioGroup, type RadioGroupClasses, type RadioGroupItem, type RadioGroupProps } from "./RadioGroup";

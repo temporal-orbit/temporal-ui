@@ -1,6 +1,7 @@
 import { Select as ArkSelect, useSelect, type CollectionItem } from "@ark-ui/react/select";
 import { Portal } from "@ark-ui/react/portal";
 import type { SelectProps as CoreSelectProps } from "@temporal-ui/core/select";
+import { cx } from "@temporal-ui/core/utils/cx";
 import { Field } from "../field";
 import { SelectContent, type SelectItem } from "./SelectContent";
 import { testId } from "@temporal-ui/core/utils/string";
@@ -50,10 +51,18 @@ export function Select<D extends CollectionItem>(props: SelectProps<D>) {
 			testId={tid("-field")}
 		>
 			<ArkSelect.RootProvider value={select} className={classes?.selectRoot} data-testid={tid("--root")}>
-				<ArkSelect.Control aria-invalid={!!error} className={className} data-testid={tid("--control")}>
-					<ArkSelect.Trigger data-testid={tid("--trigger")}>
+				<ArkSelect.Control
+					aria-invalid={!!error}
+					className={cx(classes?.control, className)}
+					data-testid={tid("--control")}
+				>
+					<ArkSelect.Trigger className={classes?.trigger} data-testid={tid("--trigger")}>
 						{select.selectedItems[0]?.icon || icon}
-						<ArkSelect.ValueText placeholder={placeholder} data-testid={tid("--value-text")} />
+						<ArkSelect.ValueText
+							className={classes?.valueText}
+							placeholder={placeholder}
+							data-testid={tid("--value-text")}
+						/>
 						{(!deselectable || !select.hasSelectedItems) && <ChevronsUpDown />}
 					</ArkSelect.Trigger>
 					{deselectable && select.hasSelectedItems && (
