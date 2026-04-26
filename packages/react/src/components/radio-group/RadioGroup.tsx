@@ -5,7 +5,7 @@ import { Field } from "../field";
 
 export interface RadioGroupProps extends CoreRadioGroupProps<React.ReactNode> {}
 
-export type { RadioGroupItem } from "@temporal-ui/core/radio-group";
+export type { RadioGroupClasses, RadioGroupItem } from "@temporal-ui/core/radio-group";
 
 export function RadioGroup(props: RadioGroupProps) {
 	const {
@@ -14,6 +14,7 @@ export function RadioGroup(props: RadioGroupProps) {
 		error,
 		disabled,
 		items,
+		classes,
 		defaultValue,
 		value,
 		required,
@@ -31,9 +32,11 @@ export function RadioGroup(props: RadioGroupProps) {
 			disabled={disabled}
 			required={required}
 			readOnly={readOnly}
+			classes={classes}
 			testId={testId ? `${testId}-field` : undefined}
 		>
 			<ArkRadioGroup.Root
+				className={classes?.group}
 				defaultValue={defaultValue}
 				disabled={disabled}
 				value={value}
@@ -43,20 +46,30 @@ export function RadioGroup(props: RadioGroupProps) {
 				aria-required={required}
 				data-testid={testId ? `${testId}--root` : undefined}
 			>
-				<ArkRadioGroup.Indicator />
+				<ArkRadioGroup.Indicator className={classes?.indicator} />
 				{items.map((item) => (
 					<ArkRadioGroup.Item
 						key={item.value}
+						className={classes?.item}
 						value={item.value}
 						disabled={item.disabled}
 						invalid={!!error}
 						data-testid={testId ? `${testId}--item-${item.value}` : undefined}
 					>
-						<ArkRadioGroup.ItemControl data-testid={testId ? `${testId}--item-control-${item.value}` : undefined} />
-						<ArkRadioGroup.ItemText data-testid={testId ? `${testId}--item-text-${item.value}` : undefined}>
+						<ArkRadioGroup.ItemControl
+							className={classes?.itemControl}
+							data-testid={testId ? `${testId}--item-control-${item.value}` : undefined}
+						/>
+						<ArkRadioGroup.ItemText
+							className={classes?.itemText}
+							data-testid={testId ? `${testId}--item-text-${item.value}` : undefined}
+						>
 							{item.label}
 						</ArkRadioGroup.ItemText>
-						<ArkRadioGroup.ItemHiddenInput data-testid={testId ? `${testId}--item-input-${item.value}` : undefined} />
+						<ArkRadioGroup.ItemHiddenInput
+							className={classes?.itemInput}
+							data-testid={testId ? `${testId}--item-input-${item.value}` : undefined}
+						/>
 					</ArkRadioGroup.Item>
 				))}
 			</ArkRadioGroup.Root>

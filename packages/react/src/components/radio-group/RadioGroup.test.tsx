@@ -29,4 +29,27 @@ describe("RadioGroup", () => {
 			expect(screen.getByLabelText(item.label)).toBeInTheDocument();
 		});
 	});
+
+	it("applies classes to Ark radio group parts", () => {
+		render(
+			<RadioGroup
+				testId="rg"
+				label="Pick one"
+				items={items.slice(0, 2)}
+				classes={{
+					group: "slot-group",
+					indicator: "slot-indicator",
+					item: "slot-item",
+					itemControl: "slot-control",
+					itemText: "slot-text",
+					itemInput: "slot-input",
+				}}
+			/>,
+		);
+		expect(screen.getByTestId("rg--root")).toHaveClass("slot-group");
+		expect(screen.getByTestId("rg--item-option1")).toHaveClass("slot-item");
+		expect(screen.getByTestId("rg--item-control-option1")).toHaveClass("slot-control");
+		expect(screen.getByTestId("rg--item-text-option1")).toHaveClass("slot-text");
+		expect(screen.getByTestId("rg--item-input-option1")).toHaveClass("slot-input");
+	});
 });

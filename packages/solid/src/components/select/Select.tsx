@@ -1,5 +1,6 @@
 import { Select as ArkSelect, useSelect } from "@ark-ui/solid/select";
 import type { SelectProps as CoreSelectProps } from "@temporal-ui/core/select";
+import { cx } from "@temporal-ui/core/utils/cx";
 import { testId } from "@temporal-ui/core/utils/string";
 import { ChevronsUpDown, X } from "lucide-solid";
 import { mergeProps, Show, splitProps, type JSX } from "solid-js";
@@ -34,10 +35,18 @@ export function Select<D = unknown>(_props: SelectProps<D>) {
 	return (
 		<Field {...fieldProps} testId={tid("-field")}>
 			<ArkSelect.RootProvider value={select} class={fieldProps.classes?.selectRoot} data-testid={tid("--root")}>
-				<ArkSelect.Control aria-invalid={!!fieldProps.error} class={controlProps.class} data-testid={tid("--control")}>
-					<ArkSelect.Trigger data-testid={tid("--trigger")}>
+				<ArkSelect.Control
+					aria-invalid={!!fieldProps.error}
+					class={cx(fieldProps.classes?.control, controlProps.class)}
+					data-testid={tid("--control")}
+				>
+					<ArkSelect.Trigger class={fieldProps.classes?.trigger} data-testid={tid("--trigger")}>
 						{select().selectedItems[0]?.icon || controlProps.icon}
-						<ArkSelect.ValueText placeholder={controlProps.placeholder} data-testid={tid("--value-text")} />
+						<ArkSelect.ValueText
+							class={fieldProps.classes?.valueText}
+							placeholder={controlProps.placeholder}
+							data-testid={tid("--value-text")}
+						/>
 						<Show when={!controlProps.deselectable || !select().hasSelectedItems}>
 							<ChevronsUpDown />
 						</Show>
