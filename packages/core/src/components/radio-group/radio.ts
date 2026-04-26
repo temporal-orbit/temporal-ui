@@ -7,7 +7,10 @@ export type RadioGroupItem = {
 };
 
 /** Class slots for Field layout plus Ark `RadioGroup` parts. */
-export type RadioGroupClasses = Pick<NonNullable<FieldProps<unknown>["classes"]>, "root" | "label" | "hint" | "error"> & {
+export type RadioGroupClasses = Pick<
+	NonNullable<FieldProps<unknown>["classes"]>,
+	"root" | "label" | "hint" | "error"
+> & {
 	/** `RadioGroup.Root` */
 	group?: string;
 	/** `RadioGroup.Indicator` */
