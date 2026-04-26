@@ -1,6 +1,6 @@
 {
 	"name": "@temporal-ui/solid",
-	"version": "0.8.0",
+	"version": "0.8.1",
 	"description": "Solid.JS bindings for Temporal UI components",
 	"bugs": {
 		"url": "https://github.com/temporal-app/temporal-ui/issues"
@@ -61,7 +61,7 @@
 		"postpublish": "node ../../scripts/restore-protocols.mjs"
 	},
 	"dependencies": {
-		"@ark-ui/solid": "5.36.0",
+		"@ark-ui/solid": "5.36.2",
 		"@tanstack/solid-table": "8.21.3",
 		"@temporal-ui/core": "workspace:*"
 	},
@@ -73,18 +73,18 @@
 		"@storybook/addon-links": "10.3.5",
 		"@storybook/addon-themes": "10.3.5",
 		"@storybook/addon-vitest": "10.3.5",
-		"@tailwindcss/vite": "4.2.2",
+		"@tailwindcss/vite": "4.2.4",
 		"@testing-library/jest-dom": "6.9.1",
 		"@testing-library/user-event": "14.6.1",
 		"happy-dom": "20.9.0",
-		"lucide-solid": "1.8.0",
+		"lucide-solid": "1.11.0",
 		"storybook": "10.3.5",
 		"storybook-solidjs-vite": "10.0.12",
-		"tailwindcss": "4.2.2",
-		"tsdown": "0.21.8",
-		"vite": "8.0.8",
+		"tailwindcss": "4.2.4",
+		"tsdown": "0.21.10",
+		"vite": "8.0.10",
 		"vite-plugin-solid": "2.11.12",
-		"vitest": "4.1.4"
+		"vitest": "4.1.5"
 	},
 	"peerDependencies": {
 		"solid-js": ">=1.0.0"
