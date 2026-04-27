@@ -37,11 +37,7 @@ export function ColorInput(_props: ColorInputProps) {
 						aria-invalid={fieldProps.error ? true : undefined}
 						data-testid={tid("--trigger")}
 					>
-						<ColorPicker.ChannelInput
-							channel="hex"
-							data-scope={"color-input"}
-							data-testid={tid("--channel-input")}
-						/>
+						<ColorPicker.ChannelInput channel="hex" data-scope={"color-input"} data-testid={tid("--channel-input")} />
 						<ColorPicker.ValueSwatch
 							style={{ position: "absolute" }}
 							data-scope={"color-input"}
@@ -53,20 +49,10 @@ export function ColorInput(_props: ColorInputProps) {
 					<ColorPicker.Positioner data-scope={"color-input"} data-testid={tid("--positioner")}>
 						<ColorPicker.Content data-scope={"color-input"} data-testid={tid("--content")}>
 							<ColorPicker.Area data-scope={"color-input"} data-testid={tid("--area")}>
-								<ColorPicker.AreaBackground
-									data-scope={"color-input"}
-									data-testid={tid("--area-background")}
-								/>
-								<ColorPicker.AreaThumb
-									data-scope={"color-input"}
-									data-testid={tid("--area-thumb")}
-								/>
+								<ColorPicker.AreaBackground data-scope={"color-input"} data-testid={tid("--area-background")} />
+								<ColorPicker.AreaThumb data-scope={"color-input"} data-testid={tid("--area-thumb")} />
 							</ColorPicker.Area>
-							<ColorPicker.ChannelSlider
-								channel="hue"
-								data-scope={"color-input"}
-								data-testid={tid("--channel-slider")}
-							>
+							<ColorPicker.ChannelSlider channel="hue" data-scope={"color-input"} data-testid={tid("--channel-slider")}>
 								<ColorPicker.ChannelSliderTrack
 									data-scope={"color-input"}
 									data-testid={tid("--channel-slider-track")}
@@ -79,11 +65,7 @@ export function ColorInput(_props: ColorInputProps) {
 						</ColorPicker.Content>
 					</ColorPicker.Positioner>
 				</Portal>
-				<ColorPicker.HiddenInput
-					{...inputProps}
-					data-testid={tid("--input")}
-					data-scope={"color-input"}
-				/>
+				<ColorPicker.HiddenInput {...inputProps} data-testid={tid("--input")} data-scope={"color-input"} />
 			</ColorPicker.Root>
 		</Field>
 	);
