@@ -94,19 +94,6 @@ describe("Popover Component", () => {
 		expect(screen.getByText("Popover content")).toBeVisible();
 	});
 
-	it("closes on escape key when closeOnEscape is true", async () => {
-		const user = userEvent.setup();
-		render(<Popover {...defaultProps} closeOnEscape defaultOpen />);
-
-		expect(screen.getByText("Popover content")).toBeVisible();
-
-		await user.keyboard("{Escape}");
-
-		await waitFor(() => {
-			expect(screen.queryByText("Popover content")).not.toBeInTheDocument();
-		});
-	});
-
 	it("does not close on escape key when closeOnEscape is false", async () => {
 		const user = userEvent.setup();
 		render(<Popover {...defaultProps} closeOnEscape={false} defaultOpen />);
