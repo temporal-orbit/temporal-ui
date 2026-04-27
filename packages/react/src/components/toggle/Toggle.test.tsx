@@ -22,4 +22,17 @@ describe("Toggle", () => {
 		render(<Toggle pressed={false}>Toggle me</Toggle>);
 		expect(screen.getByRole("button", { name: "Toggle me" })).toHaveAttribute("data-state", "off");
 	});
+
+	it("wraps in Field and shows label, hint, and error", () => {
+		render(
+			<Toggle testId="my-toggle" label="Bold" hint="Applies bold formatting" error="Something went wrong">
+				B
+			</Toggle>,
+		);
+		expect(screen.getByText("Bold")).toBeInTheDocument();
+		expect(screen.getByText("Applies bold formatting")).toBeInTheDocument();
+		expect(screen.getByText("Something went wrong")).toBeInTheDocument();
+		expect(screen.getByTestId("my-toggle-field--root")).toBeInTheDocument();
+		expect(screen.getByRole("button", { name: "B" })).toHaveAttribute("aria-invalid", "true");
+	});
 });

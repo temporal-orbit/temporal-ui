@@ -1,1 +1,1 @@
-/* Core toggle exports - types are defined in framework packages */
+export type { ToggleClasses, ToggleGroupClasses, ToggleGroupProps, ToggleProps } from "./toggle";
