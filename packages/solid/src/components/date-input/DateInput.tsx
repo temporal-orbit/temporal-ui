@@ -46,12 +46,12 @@ export function DateInput(props: DateInputProps) {
 			>
 				<DateInputControl data-testid={tid("--control")}>
 					<Show when={controlProps.startSection || controlProps.endSection}>
-						<div data-scope={"date-input"} data-part={"start-section"} data-testid={tid("--start-section")}>
+						<div data-component={"date-input"} data-slot={"start-section"} data-testid={tid("--start-section")}>
 							{controlProps.startSection}
 						</div>
 					</Show>
 					<Show when={controlProps.endSection}>
-						<div data-scope={"date-input"} data-part={"end-section"} data-testid={tid("--end-section")}>
+						<div data-component={"date-input"} data-slot={"end-section"} data-testid={tid("--end-section")}>
 							{controlProps.endSection}
 						</div>
 					</Show>

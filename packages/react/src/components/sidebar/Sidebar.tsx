@@ -10,7 +10,7 @@ export function Sidebar(props: SidebarProps) {
 
 	if (collapsible === "none") {
 		return (
-			<Box data-scope="sidebar" data-part="root" data-collapsible={collapsible} {...boxProps}>
+			<Box data-component="sidebar" data-slot="root" data-collapsible={collapsible} {...boxProps}>
 				{children}
 			</Box>
 		);
@@ -18,8 +18,8 @@ export function Sidebar(props: SidebarProps) {
 
 	return (
 		<div
-			data-scope="sidebar"
-			data-part="root"
+			data-component="sidebar"
+			data-slot="root"
 			data-state={state}
 			data-collapsible={state === "collapsed" ? collapsible : ""}
 			data-variant={variant}
@@ -27,9 +27,9 @@ export function Sidebar(props: SidebarProps) {
 			className={"group peer"}
 		>
 			{/* This is what handles the sidebar gap on desktop */}
-			<div data-scope="sidebar" data-part="gap" data-variant={variant} data-side={side} />
-			<Box data-scope="sidebar" data-part="container" data-variant={variant} data-side={side} {...boxProps}>
-				<div data-scope="sidebar" data-part="inner">
+			<div data-component="sidebar" data-slot="gap" data-variant={variant} data-side={side} />
+			<Box data-component="sidebar" data-slot="container" data-variant={variant} data-side={side} {...boxProps}>
+				<div data-component="sidebar" data-slot="inner">
 					{children}
 				</div>
 			</Box>

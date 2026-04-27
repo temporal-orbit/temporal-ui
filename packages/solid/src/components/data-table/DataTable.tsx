@@ -29,7 +29,7 @@ export function DataTable<TData>(props: DataTableProps<TData>) {
 	const tid = testId(props.testId);
 
 	return (
-		<div data-scope="data-table" data-part="container" data-testid={tid("--container")}>
+		<div data-component="data-table" data-slot="container" data-testid={tid("--container")}>
 			<Table testId={tid("--table")} data-rows={controlProps.loading ? undefined : table.getRowModel().rows?.length}>
 				<thead data-testid={tid("--head")}>
 					<For each={table.getHeaderGroups()}>
@@ -75,7 +75,12 @@ export function DataTable<TData>(props: DataTableProps<TData>) {
 					</Show>
 					<Show when={!table.getRowModel().rows?.length}>
 						<tr data-testid={tid("--empty-row")}>
-							<td colSpan={props.columns.length} data-scope="data-table" data-part="empty" data-testid={tid("--empty")}>
+							<td
+								colSpan={props.columns.length}
+								data-component="data-table"
+								data-slot="empty"
+								data-testid={tid("--empty")}
+							>
 								<Show when={controlProps.loading}>Loading...</Show>
 								<Show when={!controlProps.loading}>No results.</Show>
 							</td>
@@ -84,7 +89,7 @@ export function DataTable<TData>(props: DataTableProps<TData>) {
 				</tbody>
 			</Table>
 			<Show when={controlProps.loading}>
-				<div data-scope="data-table" data-part="loading" data-testid={tid("--loading")}>
+				<div data-component="data-table" data-slot="loading" data-testid={tid("--loading")}>
 					<Loader size="xl" testId={tid("--loader")} />
 				</div>
 			</Show>

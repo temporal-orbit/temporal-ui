@@ -51,7 +51,7 @@ describe("Sidebar", () => {
 			</SidebarProvider>,
 		);
 
-		const sidebar = screen.getByTestId("sidebar-content").closest('[data-scope="sidebar"]');
+		const sidebar = screen.getByTestId("sidebar-content").closest('[data-component="sidebar"]');
 		expect(sidebar).toHaveAttribute("data-collapsible", "none");
 		expect(sidebar?.tagName).toBe("DIV"); // Should be Box component
 	});
@@ -65,7 +65,7 @@ describe("Sidebar", () => {
 			</SidebarProvider>,
 		);
 
-		const sidebar = screen.getByTestId("sidebar-content").closest('[data-scope="sidebar"][data-part="root"]');
+		const sidebar = screen.getByTestId("sidebar-content").closest('[data-component="sidebar"][data-slot="root"]');
 		expect(sidebar).toHaveAttribute("data-variant", "sidebar");
 		expect(sidebar).toHaveAttribute("data-side", "left");
 		expect(sidebar).toHaveAttribute("data-state");
@@ -145,9 +145,9 @@ describe("SidebarTrigger", () => {
 
 		const button = screen.getByRole("button");
 		expect(button).toBeInTheDocument();
-		// Uses Button component, so data-scope is "button"
-		expect(button).toHaveAttribute("data-scope", "button");
-		expect(button).toHaveAttribute("data-part", "trigger");
+		// Uses Button component, so data-component is "button"
+		expect(button).toHaveAttribute("data-component", "button");
+		expect(button).toHaveAttribute("data-slot", "trigger");
 	});
 });
 
@@ -161,8 +161,8 @@ describe("SidebarRail", () => {
 
 		const button = screen.getByRole("button");
 		expect(button).toBeInTheDocument();
-		expect(button).toHaveAttribute("data-scope", "sidebar");
-		expect(button).toHaveAttribute("data-part", "rail");
+		expect(button).toHaveAttribute("data-component", "sidebar");
+		expect(button).toHaveAttribute("data-slot", "rail");
 	});
 });
 
@@ -186,10 +186,10 @@ describe("SidebarMenu Components", () => {
 		const menuItem = screen.getByRole("listitem");
 		const button = screen.getByRole("button");
 
-		expect(menu).toHaveAttribute("data-scope", "sidebar");
-		expect(menu).toHaveAttribute("data-part", "menu");
-		expect(menuItem).toHaveAttribute("data-part", "menu-item");
-		expect(button).toHaveAttribute("data-part", "menu-button");
+		expect(menu).toHaveAttribute("data-component", "sidebar");
+		expect(menu).toHaveAttribute("data-slot", "menu");
+		expect(menuItem).toHaveAttribute("data-slot", "menu-item");
+		expect(button).toHaveAttribute("data-slot", "menu-button");
 		expect(button).toHaveAttribute("data-variant", "default");
 		expect(button).toHaveAttribute("data-size", "default");
 		expect(button).toHaveAttribute("data-active", "false");
@@ -211,7 +211,7 @@ describe("SidebarMenu Components", () => {
 		);
 
 		const link = screen.getByRole("link");
-		expect(link).toHaveAttribute("data-part", "menu-link");
+		expect(link).toHaveAttribute("data-slot", "menu-link");
 		expect(link).toHaveAttribute("data-active", "true");
 		expect(link).toHaveAttribute("href", "/test");
 	});
@@ -239,9 +239,9 @@ describe("SidebarMenu Components", () => {
 		const subItem = screen.getAllByRole("listitem")[1];
 		const subButton = screen.getByText("Sub Item");
 
-		expect(subMenu).toHaveAttribute("data-part", "menu-sub");
-		expect(subItem).toHaveAttribute("data-part", "menu-sub-item");
-		expect(subButton).toHaveAttribute("data-part", "menu-sub-button");
+		expect(subMenu).toHaveAttribute("data-slot", "menu-sub");
+		expect(subItem).toHaveAttribute("data-slot", "menu-sub-item");
+		expect(subButton).toHaveAttribute("data-slot", "menu-sub-button");
 		expect(subButton).toHaveAttribute("data-size", "md");
 		expect(subButton).toHaveAttribute("data-active", "false");
 	});

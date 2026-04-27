@@ -1,13 +1,13 @@
 @layer components {
-	[data-scope="data-table"][data-part="container"] {
+	[data-component="data-table"][data-slot="container"] {
 		@apply overflow-hidden rounded-md border relative;
 	}
 
-	[data-scope="data-table"][data-part="loading"] {
+	[data-component="data-table"][data-slot="loading"] {
 		@apply absolute inset-0 flex items-center justify-center bg-background/50 backdrop-blur-xs z-10;
 	}
 
-	[data-scope="data-table"][data-part="empty"] {
+	[data-component="data-table"][data-slot="empty"] {
 		@apply h-24 text-center;
 	}
 }

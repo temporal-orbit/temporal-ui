@@ -53,7 +53,8 @@
 	}
 
 	[data-scope="combobox"][data-part="item-group"],
-	[data-scope="select"][data-part="item-group"] {
+	[data-scope="select"][data-part="item-group"],
+	[data-component="select"][data-slot="list"] {
 		[data-part="item-group-label"] {
 			@apply text-muted-foreground px-2 py-1.5 text-xs;
 		}

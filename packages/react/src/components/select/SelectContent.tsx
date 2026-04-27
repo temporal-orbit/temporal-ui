@@ -30,7 +30,7 @@ export function SelectContent(props: SelectContentProps) {
 				data-testid={tid("--content")}
 				style={{ maxHeight: `${maxHeight}px` }}
 			>
-				<div data-scope="select" data-part="content-list" data-testid={tid("--content-list")}>
+				<div data-component="select" data-slot="list" data-testid={tid("--content-list")}>
 					{context.collection.group().map(([type, group]) => (
 						<ArkSelect.ItemGroup key={type} className={classes?.itemGroup} data-testid={tid("--item-group")}>
 							{type && (

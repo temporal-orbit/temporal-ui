@@ -11,7 +11,7 @@ import { mergeProps, splitProps, type JSX, type ParentProps } from "solid-js";
 export interface SidebarMenuProps extends HTMLProps<"ul"> {}
 
 export function SidebarMenu(props: SidebarMenuProps) {
-	return <ul {...props} data-scope="sidebar" data-part="menu" />;
+	return <ul {...props} data-component="sidebar" data-slot="menu" />;
 }
 
 export interface SidebarMenuItemProps extends HTMLProps<"li"> {}
@@ -19,7 +19,9 @@ export interface SidebarMenuItemProps extends HTMLProps<"li"> {}
 export function SidebarMenuItem(_props: SidebarMenuItemProps) {
 	const [props, elementProps] = splitProps(_props, ["class"]);
 
-	return <li {...elementProps} data-scope="sidebar" data-part="menu-item" class={cx("group/menu-item", props.class)} />;
+	return (
+		<li {...elementProps} data-component="sidebar" data-slot="menu-item" class={cx("group/menu-item", props.class)} />
+	);
 }
 
 export interface SidebarMenuButtonProps extends HTMLProps<"button">, CoreSidebarMenuButtonProps {}
@@ -34,8 +36,8 @@ export function SidebarMenuButton(_props: SidebarMenuButtonProps) {
 	return (
 		<button
 			{...elementProps}
-			data-scope="sidebar"
-			data-part="menu-button"
+			data-component="sidebar"
+			data-slot="menu-button"
 			data-variant={props.variant}
 			data-size={props.size}
 			data-active={props.isActive}
@@ -54,8 +56,8 @@ export function SidebarMenuLink(_props: SidebarMenuLinkProps) {
 	return (
 		<ark.a
 			{...elementProps}
-			data-scope="sidebar"
-			data-part="menu-link"
+			data-component="sidebar"
+			data-slot="menu-link"
 			data-active={props.isActive}
 			asChild={props.component}
 		/>
@@ -70,20 +72,20 @@ export function SidebarMenuAction(_props: SidebarMenuActionProps) {
 	const [props, elementProps] = splitProps(_props, ["showOnHover"]);
 
 	return (
-		<button {...elementProps} data-scope="sidebar" data-part="menu-action" data-show-on-hover={props.showOnHover} />
+		<button {...elementProps} data-component="sidebar" data-slot="menu-action" data-show-on-hover={props.showOnHover} />
 	);
 }
 
 export interface SidebarMenuBadgeProps extends HTMLProps<"div"> {}
 
 export function SidebarMenuBadge(props: SidebarMenuBadgeProps) {
-	return <div {...props} data-scope="sidebar" data-part="menu-badge" />;
+	return <div {...props} data-component="sidebar" data-slot="menu-badge" />;
 }
 
 export interface SidebarMenuSubProps extends HTMLProps<"ul"> {}
 
 export function SidebarMenuSub(props: SidebarMenuSubProps) {
-	return <ul {...props} data-scope="sidebar" data-part="menu-sub" />;
+	return <ul {...props} data-component="sidebar" data-slot="menu-sub" />;
 }
 
 export interface SidebarMenuSubItemProps extends HTMLProps<"li"> {}
@@ -94,8 +96,8 @@ export function SidebarMenuSubItem(_props: SidebarMenuSubItemProps) {
 	return (
 		<li
 			{...elementProps}
-			data-scope="sidebar"
-			data-part="menu-sub-item"
+			data-component="sidebar"
+			data-slot="menu-sub-item"
 			class={cx("group/menu-sub-item", props.class)}
 		/>
 	);
@@ -109,8 +111,8 @@ export function SidebarMenuSubButton(_props: SidebarMenuSubButtonProps) {
 	return (
 		<a
 			{...elementProps}
-			data-scope="sidebar"
-			data-part="menu-sub-button"
+			data-component="sidebar"
+			data-slot="menu-sub-button"
 			data-size={props.size}
 			data-active={props.isActive}
 		/>

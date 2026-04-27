@@ -17,7 +17,7 @@ export function Button(_props: ButtonProps) {
 			{...elementProps}
 			class={props.className || props.class}
 			disabled={props.disabled || props.loading}
-			data-scope="button"
+			data-component="button"
 			data-size={props.size}
 			data-variant={props.variant}
 			data-icon={props.icon || undefined}

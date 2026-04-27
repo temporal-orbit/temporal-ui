@@ -12,8 +12,8 @@ export function SidebarTrigger(props: SidebarTriggerProps) {
 		<Button
 			icon
 			variant="ghost"
-			data-scope="sidebar"
-			data-part="trigger"
+			data-component="sidebar"
+			data-slot="trigger"
 			aria-label="Toggle sidebar"
 			title="Toggle sidebar"
 			className={cx("size-7", props.className)}

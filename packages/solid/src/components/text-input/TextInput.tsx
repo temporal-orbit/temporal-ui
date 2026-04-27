@@ -22,11 +22,11 @@ export function TextInput(_props: TextInputProps) {
 
 	return (
 		<Field {...fieldProps} testId={fieldProps.testId ? `${fieldProps.testId}-field` : undefined}>
-			<div data-scope={"text-input"} data-part={"wrapper"}>
+			<div data-component={"text-input"} data-slot={"wrapper"}>
 				{inputProps.startSection && (
 					<div
-						data-scope={"text-input"}
-						data-part={"start-section"}
+						data-component={"text-input"}
+						data-slot={"start-section"}
 						data-testid={fieldProps.testId ? `${fieldProps.testId}--start-section` : undefined}
 					>
 						{inputProps.startSection}
@@ -34,15 +34,16 @@ export function TextInput(_props: TextInputProps) {
 				)}
 				{inputProps.endSection && (
 					<div
-						data-scope={"text-input"}
-						data-part={"end-section"}
+						data-component={"text-input"}
+						data-slot={"end-section"}
 						data-testid={fieldProps.testId ? `${fieldProps.testId}--end-section` : undefined}
 					>
 						{inputProps.endSection}
 					</div>
 				)}
 				<ArkField.Input
-					data-scope={"text-input"}
+					data-component={"text-input"}
+					data-slot={"input"}
 					{...restProps}
 					onInput={(e) => {
 						inputProps.onValueChange?.(e.currentTarget.value);

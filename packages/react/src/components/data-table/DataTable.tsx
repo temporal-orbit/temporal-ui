@@ -19,7 +19,7 @@ export function DataTable<TData>(props: DataTableProps<TData>) {
 	});
 
 	return (
-		<div data-scope="data-table" data-part="container" data-testid={tid("--container")}>
+		<div data-component="data-table" data-slot="container" data-testid={tid("--container")}>
 			<Table testId={tid("--table")} data-rows={loading ? undefined : table.getRowModel().rows?.length}>
 				<thead data-testid={tid("--head")}>
 					{table.getHeaderGroups().map((headerGroup, index) => (
@@ -63,7 +63,12 @@ export function DataTable<TData>(props: DataTableProps<TData>) {
 						))
 					) : (
 						<tr data-testid={tid("--empty-row")}>
-							<td colSpan={props.columns.length} data-scope="data-table" data-part="empty" data-testid={tid("--empty")}>
+							<td
+								colSpan={props.columns.length}
+								data-component="data-table"
+								data-slot="empty"
+								data-testid={tid("--empty")}
+							>
 								{loading ? "Loading..." : "No results."}
 							</td>
 						</tr>
@@ -71,7 +76,7 @@ export function DataTable<TData>(props: DataTableProps<TData>) {
 				</tbody>
 			</Table>
 			{loading && (
-				<div data-scope="data-table" data-part="loading" data-testid={tid("--loading")}>
+				<div data-component="data-table" data-slot="loading" data-testid={tid("--loading")}>
 					<Loader size="xl" testId={tid("--loader")} />
 				</div>
 			)}

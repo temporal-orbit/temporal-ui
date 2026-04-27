@@ -1,18 +1,19 @@
 @layer components {
-	[data-scope="text-input"][data-part="wrapper"] {
+	[data-component="text-input"][data-slot="wrapper"] {
 		@apply relative;
 	}
 
-	[data-scope="text-input"][data-part="input"] {
+	[data-scope="text-input"][data-part="input"],
+	[data-component="text-input"][data-slot="input"] {
 		@apply appearance-none placeholder:text-muted-foreground bg-transparent dark:bg-input/30 border-input flex h-9 w-full min-w-0 rounded-md border px-3 py-1 text-base shadow-xs transition selection:bg-primary selection:text-primary-foreground outline-none md:text-sm disabled:cursor-not-allowed disabled:opacity-50 file:text-foreground file:inline-flex file:h-7 file:border-0 file:bg-transparent file:text-sm file:font-medium focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive data-with-start-section:ps-9 data-with-end-section:pe-9;
 	}
 
-	[data-scope="text-input"][data-part="start-section"],
-	[data-scope="text-input"][data-part="end-section"] {
+	[data-component="text-input"][data-slot="start-section"],
+	[data-component="text-input"][data-slot="end-section"] {
 		@apply absolute text-muted-foreground pointer-events-none flex justify-center items-center h-9 w-9;
 	}
 
-	[data-scope="text-input"][data-part="end-section"] {
+	[data-component="text-input"][data-slot="end-section"] {
 		@apply end-0;
 	}
 }

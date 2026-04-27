@@ -16,7 +16,7 @@ export function Sidebar(_props: SidebarProps) {
 
 	if (props.collapsible === "none") {
 		return (
-			<Box data-scope="sidebar" data-part="root" data-collapsible={props.collapsible} {...boxProps}>
+			<Box data-component="sidebar" data-slot="root" data-collapsible={props.collapsible} {...boxProps}>
 				{props.children}
 			</Box>
 		);
@@ -24,17 +24,23 @@ export function Sidebar(_props: SidebarProps) {
 
 	return (
 		<div
-			data-scope="sidebar"
-			data-part="root"
+			data-component="sidebar"
+			data-slot="root"
 			data-state={state()}
 			data-collapsible={state() === "collapsed" ? props.collapsible : ""}
 			data-variant={props.variant}
 			data-side={props.side}
 			class="group peer"
 		>
-			<div data-scope="sidebar" data-part="gap" data-variant={props.variant} data-side={props.side} />
-			<Box data-scope="sidebar" data-part="container" data-variant={props.variant} data-side={props.side} {...boxProps}>
-				<div data-scope="sidebar" data-part="inner">
+			<div data-component="sidebar" data-slot="gap" data-variant={props.variant} data-side={props.side} />
+			<Box
+				data-component="sidebar"
+				data-slot="container"
+				data-variant={props.variant}
+				data-side={props.side}
+				{...boxProps}
+			>
+				<div data-component="sidebar" data-slot="inner">
 					{props.children}
 				</div>
 			</Box>

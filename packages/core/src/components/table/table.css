@@ -1,10 +1,10 @@
 @layer components {
-	[data-scope="table"] {
-		&[data-part="container"] {
+	[data-component="table"] {
+		&[data-slot="container"] {
 			@apply relative w-full overflow-x-auto;
 		}
 
-		[data-part="table"] {
+		[data-slot="table"] {
 			@apply w-full caption-bottom text-sm;
 
 			thead {

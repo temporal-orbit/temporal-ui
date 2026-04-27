@@ -32,8 +32,8 @@ export function NumberInput(_props: NumberInputProps) {
 				<ArkNumberInput.Control>
 					<Show when={rootProps.startSection}>
 						<div
-							data-scope={"number-input"}
-							data-part={"start-section"}
+							data-component={"number-input"}
+							data-slot={"start-section"}
 							data-testid={fieldProps.testId ? `${fieldProps.testId}--start-section` : undefined}
 						>
 							{rootProps.startSection}

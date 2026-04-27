@@ -85,8 +85,8 @@ export function SidebarProvider(_props: SidebarProviderProps) {
 		<SidebarContext.Provider value={contextValue}>
 			<Box
 				{...boxProps}
-				data-scope="sidebar"
-				data-part="wrapper"
+				data-component="sidebar"
+				data-slot="wrapper"
 				class={cx("group/sidebar-wrapper", props.className, props.class)}
 				style={props.style}
 			>

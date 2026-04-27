@@ -10,7 +10,7 @@ export function DayView(props: DayViewProps) {
 
 	return (
 		<DatePicker.View view="day" data-scope={"date-input"} data-view="day">
-			<div data-scope={"date-input"} data-part="months-container">
+			<div data-component={"date-input"} data-slot="months">
 				<DatePicker.Context>
 					{(datePicker) => (
 						<Index each={Array.from({ length: numOfMonths })}>

@@ -53,8 +53,8 @@ export const NumberInput = forwardRef<HTMLInputElement, NumberInputProps>((props
 				<ArkNumberInput.Control>
 					{startSection && (
 						<div
-							data-scope={"number-input"}
-							data-part={"start-section"}
+							data-component={"number-input"}
+							data-slot={"start-section"}
 							data-testid={testId ? `${testId}--start-section` : undefined}
 						>
 							{startSection}
