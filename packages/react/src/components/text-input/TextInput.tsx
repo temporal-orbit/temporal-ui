@@ -36,11 +36,11 @@ export const TextInput = forwardRef<HTMLInputElement, TextInputProps>((props, re
 			disabled={disabled}
 			testId={testId ? `${testId}-field` : undefined}
 		>
-			<div data-scope={"text-input"} data-part={"wrapper"}>
+			<div data-component={"text-input"} data-slot={"wrapper"}>
 				{startSection && (
 					<div
-						data-scope={"text-input"}
-						data-part={"start-section"}
+						data-component={"text-input"}
+						data-slot={"start-section"}
 						data-testid={testId ? `${testId}--start-section` : undefined}
 					>
 						{startSection}
@@ -48,15 +48,16 @@ export const TextInput = forwardRef<HTMLInputElement, TextInputProps>((props, re
 				)}
 				{endSection && (
 					<div
-						data-scope={"text-input"}
-						data-part={"end-section"}
+						data-component={"text-input"}
+						data-slot={"end-section"}
 						data-testid={testId ? `${testId}--end-section` : undefined}
 					>
 						{endSection}
 					</div>
 				)}
 				<ArkField.Input
-					data-scope={"text-input"}
+					data-component={"text-input"}
+					data-slot={"input"}
 					{...rest}
 					ref={ref}
 					onInput={(e: React.FormEvent<HTMLInputElement>) => {

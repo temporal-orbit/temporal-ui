@@ -21,7 +21,8 @@ export const Textarea = forwardRef<HTMLTextAreaElement, TextareaProps>((props, r
 			testId={testId ? `${testId}-field` : undefined}
 		>
 			<ArkField.Textarea
-				data-scope={"textarea"}
+				data-component={"textarea"}
+				data-slot={"field"}
 				{...rest}
 				ref={ref}
 				aria-invalid={error ? true : undefined}

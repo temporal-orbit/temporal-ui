@@ -10,8 +10,8 @@ export function SidebarRail(props: SidebarRailProps) {
 		<button
 			{...props}
 			type="button"
-			data-scope="sidebar"
-			data-part="rail"
+			data-component="sidebar"
+			data-slot="rail"
 			aria-label="Toggle sidebar"
 			title="Toggle sidebar"
 			onClick={toggleSidebar}

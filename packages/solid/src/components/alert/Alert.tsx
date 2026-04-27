@@ -10,10 +10,10 @@ export interface AlertProps extends CoreAlertProps<JSX.Element>, HTMLProps<"div"
 
 const icons: Record<string, Accessor<JSX.Element>> = {
 	default: () => null,
-	info: () => <Info data-scope="alert" data-part="icon" />,
-	success: () => <CircleCheck data-scope="alert" data-part="icon" />,
-	warning: () => <TriangleAlert data-scope="alert" data-part="icon" />,
-	error: () => <CircleX data-scope="alert" data-part="icon" />,
+	info: () => <Info />,
+	success: () => <CircleCheck />,
+	warning: () => <TriangleAlert />,
+	error: () => <CircleX />,
 };
 
 export function Alert(_props: AlertProps) {
@@ -31,28 +31,28 @@ export function Alert(_props: AlertProps) {
 		<div
 			{...divProps}
 			role="alert"
-			data-scope="alert"
-			data-part="root"
+			data-component="alert"
+			data-slot="root"
 			class={cx(baseClass, props.className)}
 			data-testid={props.testId}
 		>
 			{props.icon !== undefined ? props.icon() : icons[props.variant]?.()}
 			{props.title && (
-				<h2 data-scope="alert" data-part="title" data-testid={props.testId ? `${props.testId}--title` : undefined}>
+				<h2 data-component="alert" data-slot="title" data-testid={props.testId ? `${props.testId}--title` : undefined}>
 					{props.title}
 				</h2>
 			)}
 			{props.description && (
 				<section
-					data-scope="alert"
-					data-part="description"
+					data-component="alert"
+					data-slot="description"
 					data-testid={props.testId ? `${props.testId}--description` : undefined}
 				>
 					{props.description}
 				</section>
 			)}
 			{props.children && (
-				<section data-scope="alert" data-part="content">
+				<section data-component="alert" data-slot="content">
 					{props.children}
 				</section>
 			)}

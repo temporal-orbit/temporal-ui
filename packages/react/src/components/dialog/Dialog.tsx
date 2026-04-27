@@ -47,7 +47,7 @@ export function Dialog(props: DialogProps) {
 				<ArkDialog.Backdrop className={classes?.backdrop} data-testid={tid("--backdrop")} />
 				<ArkDialog.Positioner>
 					<ArkDialog.Content className={cx(classes?.content, className)} data-testid={tid("--content")}>
-						<div data-scope="dialog" data-part="header">
+						<div data-component="dialog" data-slot="header">
 							{rootProps.title && (
 								<ArkDialog.Title className={classes?.title} data-testid={tid("--title")}>
 									{rootProps.title}

@@ -11,7 +11,7 @@ describe("Button Component", () => {
 		const buttonElement = screen.getByRole("button", { name: "Test Button" });
 		expect(buttonElement).toBeInTheDocument();
 		// Default variant: "primary", Default size: "md"
-		expect(buttonElement).toHaveAttribute("data-scope", "button");
+		expect(buttonElement).toHaveAttribute("data-component", "button");
 		expect(buttonElement).toHaveAttribute("data-variant", "primary");
 		expect(buttonElement).toHaveAttribute("data-size", "md");
 		expect(buttonElement).not.toBeDisabled();
@@ -75,7 +75,7 @@ describe("Button Component", () => {
 	it("applies custom className", () => {
 		render(<Button {...defaultProps} className="custom-class another-custom" />);
 		const buttonElement = screen.getByRole("button", { name: "Test Button" });
-		expect(buttonElement).toHaveAttribute("data-scope", "button");
+		expect(buttonElement).toHaveAttribute("data-component", "button");
 		expect(buttonElement).toHaveClass("custom-class");
 		expect(buttonElement).toHaveClass("another-custom");
 	});

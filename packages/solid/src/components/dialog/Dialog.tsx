@@ -39,7 +39,7 @@ export function Dialog(props: DialogProps) {
 						data-testid={tid("--content")}
 						class={cx(localProps.classes?.content, localProps.className)}
 					>
-						<div data-scope="dialog" data-part="header" class={localProps.classes?.header}>
+						<div data-component="dialog" data-slot="header" class={localProps.classes?.header}>
 							<Show when={localProps.title}>
 								<ArkDialog.Title class={localProps.classes?.title} data-testid={tid("--title")}>
 									{localProps.title}

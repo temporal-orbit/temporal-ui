@@ -27,7 +27,8 @@ export function Textarea(_props: TextareaProps) {
 			testId={fieldProps.testId ? `${fieldProps.testId}-field` : undefined}
 		>
 			<ArkField.Textarea
-				data-scope={"textarea"}
+				data-component={"textarea"}
+				data-slot={"field"}
 				{...restProps}
 				onInput={(e) => {
 					textareaProps.onValueChange?.(e.target.value);

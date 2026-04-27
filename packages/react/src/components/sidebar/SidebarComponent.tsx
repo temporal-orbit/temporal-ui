@@ -13,13 +13,13 @@ type SidebarComponentType =
 export interface SidebarHeaderProps extends React.ComponentProps<"header"> {}
 
 export function SidebarHeader(props: SidebarHeaderProps) {
-	return <header {...props} data-scope="sidebar" data-part="header" />;
+	return <header {...props} data-component="sidebar" data-slot="header" />;
 }
 
 export interface SidebarFooterProps extends React.ComponentProps<"footer"> {}
 
 export function SidebarFooter(props: SidebarFooterProps) {
-	return <footer {...props} data-scope="sidebar" data-part="footer" />;
+	return <footer {...props} data-component="sidebar" data-slot="footer" />;
 }
 
 export interface SidebarContentProps extends React.ComponentProps<"div"> {}
@@ -53,23 +53,23 @@ export function SidebarSeparator(props: SidebarSeparatorProps) {
 }
 
 function SidebarComponent(props: React.ComponentProps<"div"> & { type: SidebarComponentType }) {
-	return <div {...props} data-scope="sidebar" data-part={props.type} />;
+	return <div {...props} data-component="sidebar" data-slot={props.type} />;
 }
 
 export interface SidebarGroupActionProps extends React.ComponentProps<"button"> {}
 
 export function SidebarGroupAction(props: SidebarGroupActionProps) {
-	return <button {...props} data-scope="sidebar" data-part="group-action" />;
+	return <button {...props} data-component="sidebar" data-slot="group-action" />;
 }
 
 export interface SidebarInputProps extends TextInputProps {}
 
 export function SidebarInput(props: SidebarInputProps) {
-	return <TextInput {...props} data-scope="sidebar" data-part="input" />;
+	return <TextInput {...props} data-component="sidebar" data-slot="input" />;
 }
 
 export interface SidebarInsetProps extends React.ComponentProps<"main"> {}
 
 export function SidebarInset(props: SidebarInsetProps) {
-	return <main {...props} data-scope="sidebar" data-part="inset" />;
+	return <main {...props} data-component="sidebar" data-slot="inset" />;
 }

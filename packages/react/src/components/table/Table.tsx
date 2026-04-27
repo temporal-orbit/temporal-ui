@@ -4,8 +4,8 @@ export interface TableProps extends CoreTableProps<React.ReactNode>, React.Compo
 
 export function Table({ testId, ...props }: TableProps) {
 	return (
-		<div data-scope="table" data-part="container" data-testid={testId ? `${testId}--container` : undefined}>
-			<table {...props} data-scope="table" data-part="table" data-testid={testId} />
+		<div data-component="table" data-slot="container" data-testid={testId ? `${testId}--container` : undefined}>
+			<table {...props} data-component="table" data-slot="table" data-testid={testId} />
 		</div>
 	);
 }
