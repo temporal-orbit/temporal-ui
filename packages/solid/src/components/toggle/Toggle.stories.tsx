@@ -58,3 +58,18 @@ export const WithIndicator: Story = {
 		</Toggle>
 	),
 };
+
+export const WithField: Story = {
+	args: {
+		...Default.args,
+		label: "Bold",
+		hint: "Toggles bold formatting for the selection.",
+	},
+};
+
+export const WithFieldError: Story = {
+	args: {
+		...WithField.args,
+		error: "Bold formatting is not available in this context.",
+	},
+};

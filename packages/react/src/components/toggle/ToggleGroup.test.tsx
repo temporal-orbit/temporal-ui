@@ -55,4 +55,20 @@ describe("ToggleGroup", () => {
 		expect(screen.getByRole("radio", { name: "I" })).toBeDisabled();
 		expect(screen.getByRole("radio", { name: "U" })).not.toBeDisabled();
 	});
+
+	it("wraps in Field and marks items invalid when error is set", () => {
+		render(
+			<ToggleGroup testId="fmt" label="Formatting" hint="Pick one or more" error="Required">
+				<ToggleGroupItem value="bold">B</ToggleGroupItem>
+				<ToggleGroupItem value="italic">I</ToggleGroupItem>
+			</ToggleGroup>,
+		);
+		expect(screen.getByText("Formatting")).toBeInTheDocument();
+		expect(screen.getByText("Pick one or more")).toBeInTheDocument();
+		expect(screen.getByText("Required")).toBeInTheDocument();
+		expect(screen.getByTestId("fmt-field--root")).toBeInTheDocument();
+		expect(screen.getByTestId("fmt--root")).toBeInTheDocument();
+		expect(screen.getByRole("radio", { name: "B" })).toHaveAttribute("aria-invalid", "true");
+		expect(screen.getByRole("radio", { name: "I" })).toHaveAttribute("aria-invalid", "true");
+	});
 });

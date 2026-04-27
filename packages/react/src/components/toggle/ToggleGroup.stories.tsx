@@ -154,3 +154,35 @@ export const WithDisabledItem: Story = {
 		</ToggleGroup>
 	),
 };
+
+export const WithField: Story = {
+	render: (args) => (
+		<ToggleGroup {...args} label="Text style" hint="Choose one or more styles to apply.">
+			<ToggleGroupItem value="bold">
+				<BoldIcon size={16} />
+			</ToggleGroupItem>
+			<ToggleGroupItem value="italic">
+				<ItalicIcon size={16} />
+			</ToggleGroupItem>
+			<ToggleGroupItem value="underline">
+				<UnderlineIcon size={16} />
+			</ToggleGroupItem>
+		</ToggleGroup>
+	),
+};
+
+export const WithFieldError: Story = {
+	render: (args) => (
+		<ToggleGroup {...args} label="Alignment" hint="Pick a horizontal alignment." error="Select an option.">
+			<ToggleGroupItem value="left">
+				<AlignLeftIcon size={16} />
+			</ToggleGroupItem>
+			<ToggleGroupItem value="center">
+				<AlignCenterIcon size={16} />
+			</ToggleGroupItem>
+			<ToggleGroupItem value="right">
+				<AlignRightIcon size={16} />
+			</ToggleGroupItem>
+		</ToggleGroup>
+	),
+};
