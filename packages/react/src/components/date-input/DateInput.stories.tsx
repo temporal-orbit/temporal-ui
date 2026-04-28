@@ -1,7 +1,13 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
-import { DateInput, Calendar } from ".";
-import React from "react";
 import { CalendarIcon } from "lucide-react";
+import React from "react";
+import { Calendar, DateInput, type DateInputProps } from ".";
+
+const rangePresets = {
+	last7Days: "Last 7 days",
+	last30Days: "Last 30 days",
+	thisMonth: "This month",
+} satisfies NonNullable<DateInputProps["presets"]>;
 
 const meta = {
 	title: "React/Date Input",
@@ -43,6 +49,15 @@ export const InputRange: Story = {
 		numOfMonths: 2,
 		fixedWeeks: true,
 		outsideDaySelectable: true,
+	},
+};
+
+export const RangeWithPresets: Story = {
+	args: {
+		...InputRange.args,
+		label: "Booking range",
+		defaultOpen: true,
+		presets: rangePresets,
 	},
 };
 

@@ -9,7 +9,7 @@
 	}
 
 	[data-component="date-input"][data-slot="end-section"] {
-		@apply end-0;
+		@apply inset-e-0;
 	}
 
 	[data-scope="date-input"][data-part="control"] {
@@ -18,6 +18,10 @@
 
 	[data-scope="date-input"][data-part="content"] {
 		@apply min-w-64 p-3 border rounded-md bg-popover text-popover-foreground flex flex-col gap-3;
+	}
+
+	[data-component="date-input"][data-slot="presets-toolbar"] {
+		@apply flex flex-row flex-wrap gap-3;
 	}
 
 	[data-scope="date-input"][data-part="view-control"] {
