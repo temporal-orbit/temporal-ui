@@ -13,7 +13,7 @@
 	}
 
 	[data-scope="date-input"][data-part="control"] {
-		@apply group w-fit relative;
+		@apply w-fit relative;
 	}
 
 	[data-scope="date-input"][data-part="content"] {

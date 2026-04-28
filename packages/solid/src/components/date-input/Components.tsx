@@ -1,12 +1,21 @@
 import { DatePicker } from "@ark-ui/solid";
-import type { ComponentProps } from "solid-js";
+import { cx } from "@temporal-ui/core/utils/cx";
+import { splitProps, type ComponentProps } from "solid-js";
 
 export const DateInputRoot = (props: ComponentProps<typeof DatePicker.Root>) => {
 	return <DatePicker.Root {...props} data-scope={"date-input"} />;
 };
 
 export const DateInputControl = (props: ComponentProps<typeof DatePicker.Control>) => {
-	return <DatePicker.Control {...props} data-scope={"date-input"} />;
+	const [local, others] = splitProps(props, ["class", "classList"]);
+	return (
+		<DatePicker.Control
+			{...others}
+			data-scope={"date-input"}
+			class={cx("group", local.class)}
+			classList={local.classList}
+		/>
+	);
 };
 
 export const DateInputTrigger = (props: ComponentProps<typeof DatePicker.Trigger>) => {
