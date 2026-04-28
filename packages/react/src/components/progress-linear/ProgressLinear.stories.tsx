@@ -4,7 +4,7 @@ import type { Meta, StoryObj } from "@storybook/react-vite";
 import { ProgressLinear } from "./ProgressLinear";
 
 const meta = {
-	title: "React/ProgressLinear",
+	title: "React/Progress Linear",
 	component: ProgressLinear,
 	tags: ["autodocs"],
 } satisfies Meta<typeof ProgressLinear>;

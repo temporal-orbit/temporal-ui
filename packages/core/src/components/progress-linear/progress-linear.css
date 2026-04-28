@@ -27,6 +27,15 @@
 		@apply bg-primary rounded-full transition-[width,height] duration-150 ease-out;
 	}
 
+	/* Zag only sets width (horizontal) or height (vertical) inline; empty range needs axis size from track */
+	[data-scope="progress"][data-part="range"][data-orientation="horizontal"] {
+		@apply h-full min-h-0;
+	}
+
+	[data-scope="progress"][data-part="range"][data-orientation="vertical"] {
+		@apply w-full min-w-0;
+	}
+
 	[data-scope="progress"][data-part="range"][data-orientation="horizontal"][data-state="indeterminate"] {
 		@apply absolute top-0 left-0 h-full w-2/5;
 		animation: progress-linear-indeterminate-x 1.2s ease-in-out infinite;

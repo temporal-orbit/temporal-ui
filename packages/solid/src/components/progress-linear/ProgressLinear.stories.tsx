@@ -4,7 +4,7 @@ import type { Meta, StoryObj } from "storybook-solidjs-vite";
 import { ProgressLinear } from "./ProgressLinear";
 
 const meta = {
-	title: "Solid/ProgressLinear",
+	title: "Solid/Progress Linear",
 	component: ProgressLinear,
 	tags: ["autodocs"],
 } satisfies Meta<typeof ProgressLinear>;
