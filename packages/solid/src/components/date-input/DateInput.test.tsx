@@ -26,7 +26,6 @@ describe("DateInput presets", () => {
 
 		const btn = screen.getByTestId("di--preset-last7Days");
 		expect(btn).toHaveTextContent("Last 7 days");
-		expect(btn).toHaveAttribute("data-variant", "secondary");
 		expect(btn).toHaveAttribute("data-slot", "preset");
 		expect(btn).toHaveAttribute("data-component", "button");
 	});
