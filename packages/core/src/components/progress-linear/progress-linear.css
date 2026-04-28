@@ -1,0 +1,61 @@
+@layer components {
+	[data-scope="progress"][data-part="root"] {
+		@apply w-full flex flex-col gap-1.5 data-disabled:opacity-50;
+	}
+
+	[data-scope="progress"][data-part="root"][data-orientation="vertical"] {
+		@apply w-auto h-full min-h-40;
+	}
+
+	[data-scope="progress"][data-part="label"] {
+		@apply text-sm font-medium text-foreground;
+	}
+
+	[data-scope="progress"][data-part="track"] {
+		@apply bg-muted relative overflow-hidden rounded-full;
+	}
+
+	[data-scope="progress"][data-part="track"][data-orientation="horizontal"] {
+		@apply h-2 w-full;
+	}
+
+	[data-scope="progress"][data-part="track"][data-orientation="vertical"] {
+		@apply h-full w-2 flex-1 min-h-0;
+	}
+
+	[data-scope="progress"][data-part="range"] {
+		@apply bg-primary rounded-full transition-[width,height] duration-150 ease-out;
+	}
+
+	[data-scope="progress"][data-part="range"][data-orientation="horizontal"][data-state="indeterminate"] {
+		@apply absolute top-0 left-0 h-full w-2/5;
+		animation: progress-linear-indeterminate-x 1.2s ease-in-out infinite;
+	}
+
+	[data-scope="progress"][data-part="range"][data-orientation="vertical"][data-state="indeterminate"] {
+		@apply absolute bottom-0 left-0 w-full h-2/5;
+		animation: progress-linear-indeterminate-y 1.2s ease-in-out infinite;
+	}
+
+	[data-scope="progress"][data-part="value-text"] {
+		@apply text-sm text-muted-foreground tabular-nums;
+	}
+}
+
+@keyframes progress-linear-indeterminate-x {
+	0% {
+		transform: translateX(-100%);
+	}
+	100% {
+		transform: translateX(350%);
+	}
+}
+
+@keyframes progress-linear-indeterminate-y {
+	0% {
+		transform: translateY(100%);
+	}
+	100% {
+		transform: translateY(-350%);
+	}
+}

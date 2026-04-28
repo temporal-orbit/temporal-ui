@@ -16,6 +16,7 @@ export * from "./components/menu";
 export * from "./components/notifications";
 export * from "./components/number-input";
 export * from "./components/popover";
+export * from "./components/progress-linear";
 export * from "./components/radio-group";
 export * from "./components/scroll-area";
 export * from "./components/select";
