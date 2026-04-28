@@ -1,11 +1,10 @@
-import { DatePicker, parseDate } from "@ark-ui/react/date-picker";
+import { DatePicker, parseDate, type DatePickerDateRangePreset } from "@ark-ui/react/date-picker";
 import { Portal } from "@ark-ui/react/portal";
 import type { DateInputProps as CoreDateInputProps } from "@temporal-ui/core/date-input";
+import { testId as testIdFn } from "@temporal-ui/core/utils/string";
 import { ChevronLeft, ChevronRight } from "lucide-react";
+import type { ButtonProps } from "../button";
 import { Field } from "../field";
-import { DayView } from "./DayView";
-import { MonthView } from "./MonthView";
-import { YearView } from "./YearView";
 import {
 	DateInputContent,
 	DateInputContext,
@@ -19,12 +18,18 @@ import {
 	DateInputViewControl,
 	DateInputViewTrigger,
 } from "./Components";
-import { testId as testIdFn } from "@temporal-ui/core/utils/string";
+import { DayView } from "./DayView";
+import { MonthView } from "./MonthView";
+import { PresetsToolbar } from "./PresetsToolbar";
+import { YearView } from "./YearView";
 
 export interface DateInputProps
 	extends
 		CoreDateInputProps<React.ReactNode>,
-		Omit<React.ComponentProps<typeof DatePicker.Root>, "value" | "defaultValue" | "onValueChange"> {}
+		Omit<React.ComponentProps<typeof DatePicker.Root>, "value" | "defaultValue" | "onValueChange"> {
+	presets?: Partial<Record<DatePickerDateRangePreset, string>>;
+	presetButtonProps?: ButtonProps;
+}
 
 export function DateInput(props: DateInputProps) {
 	const {
@@ -44,6 +49,8 @@ export function DateInput(props: DateInputProps) {
 		startSection,
 		endSection,
 		rangeFormat,
+		presets,
+		presetButtonProps,
 		...rootProps
 	} = props;
 	const tid = testIdFn(testId);
@@ -98,6 +105,9 @@ export function DateInput(props: DateInputProps) {
 				<Portal>
 					<DateInputPositioner data-testid={tid("--positioner")}>
 						<DateInputContent data-testid={tid("--content")}>
+							{presets && Object.keys(presets).length > 0 ? (
+								<PresetsToolbar presets={presets} presetButtonProps={presetButtonProps} tid={tid} />
+							) : null}
 							<DateInputViewControl data-testid={tid("--view-control")}>
 								<DateInputPrevTrigger data-testid={tid("--prev-trigger")}>
 									<ChevronLeft />

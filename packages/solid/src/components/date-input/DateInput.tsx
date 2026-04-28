@@ -1,10 +1,11 @@
-import { DatePicker, parseDate } from "@ark-ui/solid/date-picker";
+import { DatePicker, parseDate, type DatePickerDateRangePreset } from "@ark-ui/solid/date-picker";
 import type { DateInputProps as CoreDateInputProps } from "@temporal-ui/core/date-input";
+import { testId } from "@temporal-ui/core/utils/string";
 import { ChevronLeft, ChevronRight } from "lucide-solid";
+import { Show, splitProps, type ComponentProps, type JSX } from "solid-js";
+import { Portal } from "solid-js/web";
+import type { ButtonProps } from "../button";
 import { Field } from "../field";
-import { DayView } from "./DayView";
-import { MonthView } from "./MonthView";
-import { YearView } from "./YearView";
 import {
 	DateInputContent,
 	DateInputContext,
@@ -18,20 +19,35 @@ import {
 	DateInputViewControl,
 	DateInputViewTrigger,
 } from "./Components";
-import { Show, splitProps, type ComponentProps, type JSX } from "solid-js";
-import { Portal } from "solid-js/web";
-import { testId } from "@temporal-ui/core/utils/string";
+import { DayView } from "./DayView";
+import { MonthView } from "./MonthView";
+import { PresetsToolbar } from "./PresetsToolbar";
+import { YearView } from "./YearView";
 
 export interface DateInputProps
 	extends
 		CoreDateInputProps<JSX.Element>,
-		Omit<ComponentProps<typeof DatePicker.Root>, "value" | "defaultValue" | "onValueChange"> {}
+		Omit<ComponentProps<typeof DatePicker.Root>, "value" | "defaultValue" | "onValueChange"> {
+	presets?: Partial<Record<DatePickerDateRangePreset, string>>;
+	presetButtonProps?: ButtonProps;
+}
 
 export function DateInput(props: DateInputProps) {
 	const [fieldProps, controlProps, rootProps] = splitProps(
 		props,
 		["label", "hint", "error", "required", "readOnly", "disabled", "classes", "testId"],
-		["placeholder", "value", "defaultValue", "onValueChange", "position", "startSection", "endSection", "rangeFormat"],
+		[
+			"placeholder",
+			"value",
+			"defaultValue",
+			"onValueChange",
+			"position",
+			"startSection",
+			"endSection",
+			"rangeFormat",
+			"presets",
+			"presetButtonProps",
+		],
 	);
 	const tid = testId(fieldProps.testId);
 	return (
@@ -82,6 +98,15 @@ export function DateInput(props: DateInputProps) {
 				<Portal>
 					<DateInputPositioner data-testid={tid("--positioner")}>
 						<DateInputContent data-testid={tid("--content")}>
+							<Show
+								when={
+									controlProps.presets && Object.keys(controlProps.presets).length > 0 ? controlProps.presets : false
+								}
+							>
+								{(presets) => (
+									<PresetsToolbar presets={presets()} presetButtonProps={controlProps.presetButtonProps} tid={tid} />
+								)}
+							</Show>
 							<DateInputViewControl data-testid={tid("--view-control")}>
 								<DateInputPrevTrigger data-testid={tid("--prev-trigger")}>
 									<ChevronLeft />

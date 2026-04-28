@@ -1,8 +1,14 @@
+import type { DatePicker } from "@ark-ui/solid/date-picker";
 import { CalendarIcon } from "lucide-solid";
 import { createSignal, type ComponentProps } from "solid-js";
 import type { Meta, StoryObj } from "storybook-solidjs-vite";
 import { Calendar, DateInput, type DateInputProps } from ".";
-import type { DatePicker } from "@ark-ui/solid/date-picker";
+
+const rangePresets = {
+	last7Days: "Last 7 days",
+	last30Days: "Last 30 days",
+	thisMonth: "This month",
+} satisfies NonNullable<DateInputProps["presets"]>;
 
 const meta = {
 	title: "Solid/Date Input",
@@ -44,6 +50,15 @@ export const InputRange: Story = {
 		numOfMonths: 2,
 		fixedWeeks: true,
 		outsideDaySelectable: true,
+	},
+};
+
+export const RangeWithPresets: Story = {
+	args: {
+		...InputRange.args,
+		label: "Booking range",
+		defaultOpen: true,
+		presets: rangePresets,
 	},
 };
 
