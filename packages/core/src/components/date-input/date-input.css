@@ -5,7 +5,7 @@
 
 	[data-component="date-input"][data-slot="start-section"],
 	[data-component="date-input"][data-slot="end-section"] {
-		@apply absolute text-muted-foreground pointer-events-none flex justify-center items-center h-9 w-9;
+		@apply absolute text-muted-foreground pointer-events-none flex justify-center items-center h-9 w-9 group-hover:text-foreground dark:group-hover:text-muted-foreground;
 	}
 
 	[data-component="date-input"][data-slot="end-section"] {
@@ -13,7 +13,7 @@
 	}
 
 	[data-scope="date-input"][data-part="control"] {
-		@apply w-fit relative;
+		@apply group w-fit relative;
 	}
 
 	[data-scope="date-input"][data-part="content"] {
