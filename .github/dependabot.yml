@@ -10,17 +10,10 @@ updates:
       - /
       - /packages/*
     schedule:
-      interval: weekly
+      interval: monthly
     groups:
-      npm-non-major-updates:
+      bun-dependencies:
         applies-to: version-updates
-        dependency-type: production
-        update-types:
-          - minor
-          - patch
-      dev-dependencies-all:
-        applies-to: version-updates
-        dependency-type: development
         update-types:
           - major
           - minor
