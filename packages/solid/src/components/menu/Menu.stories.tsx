@@ -1,6 +1,6 @@
 // noinspection JSUnusedGlobalSymbols
 
-import { CreditCard, LogOut, Settings, UserIcon, UserPlus, UsersIcon } from "lucide-solid";
+import { ChevronRight, CreditCard, LogOut, Settings, UserIcon, UserPlus, UsersIcon } from "lucide-solid";
 import type { Meta, StoryObj } from "storybook-solidjs-vite";
 import { fn } from "storybook/test";
 import { Button } from "../button";
@@ -11,6 +11,9 @@ import { MenuItemGroup } from "./MenuItemGroup";
 import { MenuItemSeparator } from "./MenuItemSeparator";
 import { MenuRadioItem } from "./MenuRadioItem";
 import { MenuRadioItemGroup } from "./MenuRadioItemGroup";
+import { MenuSub } from "./MenuSub";
+import { MenuSubContent } from "./MenuSubContent";
+import { MenuSubTrigger } from "./MenuSubTrigger";
 
 const meta = {
 	title: "Solid/Menu",
@@ -370,6 +373,40 @@ export const MixedItemTypes: Story = {
 	render: (props: MenuProps) => (
 		<Menu {...props}>
 			<SampleMixedMenuItems />
+		</Menu>
+	),
+};
+
+export const NestedSubmenus: Story = {
+	args: {
+		trigger: (props: Record<string, unknown>) => <SampleTrigger {...props} />,
+		onSelect: fn(),
+	},
+	render: (props: MenuProps) => (
+		<Menu {...props}>
+			<MenuItem value="profile">
+				<UserIcon />
+				My Profile
+			</MenuItem>
+			<MenuSub>
+				<MenuSubTrigger>
+					Invite member
+					<ChevronRight aria-hidden />
+				</MenuSubTrigger>
+				<MenuSubContent>
+					<MenuItem value="invite-email">By email</MenuItem>
+					<MenuItem value="invite-link">Share link</MenuItem>
+				</MenuSubContent>
+			</MenuSub>
+			<MenuItem value="settings">
+				<Settings />
+				Settings
+			</MenuItem>
+			<MenuItemSeparator />
+			<MenuItem value="logout">
+				<LogOut />
+				Log out
+			</MenuItem>
 		</Menu>
 	),
 };
