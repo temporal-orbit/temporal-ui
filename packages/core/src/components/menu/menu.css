@@ -35,6 +35,22 @@
 			}
 		}
 
+		[data-part="trigger-item"] {
+			@apply relative flex items-center gap-2 rounded-sm px-2 py-1.5 text-sm outline-hidden select-none cursor-default w-full truncate justify-between;
+			& svg {
+				@apply size-4 text-muted-foreground shrink-0;
+			}
+			&[data-disabled] {
+				@apply opacity-50 pointer-events-none;
+			}
+			&:not([data-disabled]) {
+				@apply focus-visible:bg-accent focus-visible:text-accent-foreground;
+			}
+			&[data-highlighted] {
+				@apply bg-accent text-accent-foreground;
+			}
+		}
+
 		[data-part="item-radio-indicator"] {
 			@apply size-2 rounded-full bg-foreground;
 		}

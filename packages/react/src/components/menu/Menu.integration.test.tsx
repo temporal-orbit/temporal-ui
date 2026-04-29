@@ -1,5 +1,7 @@
 import { cleanup, render, screen, waitFor } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
+import { ChevronRight } from "lucide-react";
+import { vi } from "vitest";
 import { Menu } from "./Menu";
 import { MenuCheckboxItem } from "./MenuCheckboxItem";
 import { MenuItem } from "./MenuItem";
@@ -7,6 +9,9 @@ import { MenuItemGroup } from "./MenuItemGroup";
 import { MenuItemSeparator } from "./MenuItemSeparator";
 import { MenuRadioItem } from "./MenuRadioItem";
 import { MenuRadioItemGroup } from "./MenuRadioItemGroup";
+import { MenuSub } from "./MenuSub";
+import { MenuSubContent } from "./MenuSubContent";
+import { MenuSubTrigger } from "./MenuSubTrigger";
 
 describe("Menu Integration Tests", () => {
 	beforeEach(() => {
@@ -99,5 +104,45 @@ describe("Menu Integration Tests", () => {
 
 		await user.click(radioItem);
 		expect(onRadioChange).toHaveBeenCalledWith("option2");
+	});
+
+	it("opens nested submenu and selects a submenu item", async () => {
+		const user = userEvent.setup();
+		const onRootSelect = vi.fn();
+		const onSubSelect = vi.fn();
+
+		render(
+			<Menu trigger={<button type="button">Nested Menu</button>} onSelect={onRootSelect}>
+				<MenuItem value="top">Top action</MenuItem>
+				<MenuSub onSelect={onSubSelect} testId="sub-menu">
+					<MenuSubTrigger>
+						More
+						<ChevronRight aria-hidden />
+					</MenuSubTrigger>
+					<MenuSubContent>
+						<MenuItem value="nested-a">Nested A</MenuItem>
+						<MenuItem value="nested-b">Nested B</MenuItem>
+					</MenuSubContent>
+				</MenuSub>
+			</Menu>,
+		);
+
+		await user.click(screen.getByRole("button", { name: "Nested Menu" }));
+
+		await waitFor(() => {
+			expect(screen.getByRole("menu")).toBeVisible();
+		});
+
+		const triggerItem = screen.getByRole("menuitem", { name: /More/i });
+		await user.click(triggerItem);
+
+		await waitFor(() => {
+			expect(screen.getByRole("menuitem", { name: "Nested A" })).toBeVisible();
+		});
+
+		await user.click(screen.getByRole("menuitem", { name: "Nested A" }));
+
+		expect(onSubSelect).toHaveBeenCalledWith("nested-a");
+		expect(onRootSelect).not.toHaveBeenCalled();
 	});
 });

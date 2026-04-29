@@ -10,8 +10,11 @@ import { MenuItem } from "./MenuItem";
 import { MenuItemGroup } from "./MenuItemGroup";
 import { MenuItemSeparator } from "./MenuItemSeparator";
 import { MenuRadioItem } from "./MenuRadioItem";
-import { CreditCard, LogOut, Settings, UserIcon, UserPlus, UsersIcon } from "lucide-react";
 import { MenuRadioItemGroup } from "./MenuRadioItemGroup";
+import { CreditCard, LogOut, Settings, UserIcon, UserPlus, UsersIcon, ChevronRight } from "lucide-react";
+import { MenuSub } from "./MenuSub";
+import { MenuSubContent } from "./MenuSubContent";
+import { MenuSubTrigger } from "./MenuSubTrigger";
 
 const meta = {
 	title: "React/Menu",
@@ -427,6 +430,40 @@ export const MixedItemTypes: Story = {
 	args: {
 		trigger: <SampleTrigger />,
 		children: <SampleMixedMenuItems />,
+	},
+};
+
+export const NestedSubmenus: Story = {
+	args: {
+		trigger: <SampleTrigger />,
+		onSelect: fn(),
+		children: (
+			<>
+				<MenuItem value="profile">
+					<UserIcon />
+					My Profile
+				</MenuItem>
+				<MenuSub>
+					<MenuSubTrigger>
+						Invite member
+						<ChevronRight aria-hidden />
+					</MenuSubTrigger>
+					<MenuSubContent>
+						<MenuItem value="invite-email">By email</MenuItem>
+						<MenuItem value="invite-link">Share link</MenuItem>
+					</MenuSubContent>
+				</MenuSub>
+				<MenuItem value="settings">
+					<Settings />
+					Settings
+				</MenuItem>
+				<MenuItemSeparator />
+				<MenuItem value="logout">
+					<LogOut />
+					Log out
+				</MenuItem>
+			</>
+		),
 	},
 };
 

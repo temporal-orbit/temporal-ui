@@ -5,3 +5,6 @@ export { MenuRadioItem, type MenuRadioItemProps } from "./MenuRadioItem";
 export { MenuRadioItemGroup, type MenuRadioItemGroupProps } from "./MenuRadioItemGroup";
 export { MenuItemGroup, type MenuItemGroupProps } from "./MenuItemGroup";
 export { MenuItemSeparator, type MenuItemSeparatorProps } from "./MenuItemSeparator";
+export { MenuSub, type MenuSubProps } from "./MenuSub";
+export { MenuSubTrigger, type MenuSubTriggerProps } from "./MenuSubTrigger";
+export { MenuSubContent, type MenuSubContentProps } from "./MenuSubContent";

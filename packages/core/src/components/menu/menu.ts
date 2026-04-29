@@ -22,3 +22,13 @@ export interface MenuRadioItemGroupProps extends MenuItemProps {
 	label?: string;
 	onValueChange?: (value: string) => void;
 }
+
+/** Nested submenu root (`Menu.Root` inside parent menu content). */
+export interface MenuSubProps<T = unknown> extends BaseComponent<T> {
+	position?: Position;
+	onSelect?: (value: string) => void;
+}
+
+export interface MenuSubTriggerProps extends MenuItemProps {}
+
+export interface MenuSubContentProps extends MenuItemProps {}
