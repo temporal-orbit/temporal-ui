@@ -4,9 +4,7 @@ import type React from "react";
 import { Portal } from "@ark-ui/react/portal";
 import { testId as testIdFn } from "@temporal-ui/core/utils/string";
 
-export interface MenuSubContentProps
-	extends CoreMenuSubContentProps,
-		React.ComponentProps<typeof ArkMenu.Content> {}
+export interface MenuSubContentProps extends CoreMenuSubContentProps, React.ComponentProps<typeof ArkMenu.Content> {}
 
 export function MenuSubContent(props: MenuSubContentProps) {
 	const { testId, className, children, ...rest } = props;

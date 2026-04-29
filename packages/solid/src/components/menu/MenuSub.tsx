@@ -2,6 +2,7 @@ import { Menu as ArkMenu } from "@ark-ui/solid/menu";
 import type { MenuSubProps as CoreMenuSubProps } from "@temporal-ui/core/menu";
 import { testId } from "@temporal-ui/core/utils/string";
 import { splitProps, type ComponentProps, type JSX, type ParentProps } from "solid-js";
+import { Box } from "../box";
 
 const defaultSubPosition = {
 	placement: "right-start" as const,
@@ -9,7 +10,8 @@ const defaultSubPosition = {
 };
 
 export interface MenuSubProps
-	extends CoreMenuSubProps<JSX.Element>,
+	extends
+		CoreMenuSubProps<JSX.Element>,
 		Omit<ComponentProps<typeof ArkMenu.Root>, "positioning" | "children" | "onSelect">,
 		ParentProps {}
 
@@ -21,7 +23,6 @@ export function MenuSub(_props: MenuSubProps) {
 	return (
 		<ArkMenu.Root
 			{...rootProps}
-			class={localProps.className}
 			onSelect={(details) => localProps.onSelect?.(details.value)}
 			positioning={{
 				...defaultSubPosition,
@@ -29,7 +30,13 @@ export function MenuSub(_props: MenuSubProps) {
 			}}
 			data-testid={tid("--sub-root")}
 		>
-			{localProps.children}
+			{localProps.className !== undefined ? (
+				<Box class={localProps.className} testId={tid("--sub-inner")}>
+					{localProps.children}
+				</Box>
+			) : (
+				localProps.children
+			)}
 		</ArkMenu.Root>
 	);
 }

@@ -2,6 +2,7 @@ import type { MenuSubProps as CoreMenuSubProps } from "@temporal-ui/core/menu";
 import { Menu as ArkMenu } from "@ark-ui/react/menu";
 import type React from "react";
 import { testId as testIdFn } from "@temporal-ui/core/utils/string";
+import { Box } from "../box";
 
 const defaultSubPosition = {
 	placement: "right-start" as const,
@@ -9,7 +10,8 @@ const defaultSubPosition = {
 };
 
 export interface MenuSubProps
-	extends CoreMenuSubProps<React.ReactNode>,
+	extends
+		CoreMenuSubProps<React.ReactNode>,
 		Omit<React.ComponentProps<typeof ArkMenu.Root>, "positioning" | "children" | "onSelect"> {
 	children: React.ReactNode;
 }
@@ -21,7 +23,6 @@ export function MenuSub(props: MenuSubProps) {
 	return (
 		<ArkMenu.Root
 			{...rootProps}
-			className={className}
 			onSelect={(details) => onSelect?.(details.value)}
 			positioning={{
 				...defaultSubPosition,
@@ -29,7 +30,13 @@ export function MenuSub(props: MenuSubProps) {
 			}}
 			data-testid={tid("--sub-root")}
 		>
-			{children}
+			{className !== undefined ? (
+				<Box className={className} testId={tid("--sub-inner")}>
+					{children}
+				</Box>
+			) : (
+				children
+			)}
 		</ArkMenu.Root>
 	);
 }

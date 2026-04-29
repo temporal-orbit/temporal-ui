@@ -1,9 +1,9 @@
-import "@testing-library/jest-dom/vitest";
-
-class ResizeObserver {
-	observe() {}
-	unobserve() {}
-	disconnect() {}
+/** jsdom does not provide ResizeObserver; Ark positioning uses it asynchronously after unmount. */
+class ResizeObserverStub {
+	observe(): void {}
+	unobserve(): void {}
+	disconnect(): void {}
 }
+globalThis.ResizeObserver = ResizeObserverStub;
 
-globalThis.ResizeObserver = ResizeObserver;
+import "@testing-library/jest-dom/vitest";

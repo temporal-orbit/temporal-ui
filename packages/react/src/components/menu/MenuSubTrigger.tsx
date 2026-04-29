@@ -2,7 +2,8 @@ import type { MenuSubTriggerProps as CoreMenuSubTriggerProps } from "@temporal-u
 import { Menu as ArkMenu } from "@ark-ui/react/menu";
 import type React from "react";
 
-export interface MenuSubTriggerProps extends CoreMenuSubTriggerProps, React.ComponentProps<typeof ArkMenu.TriggerItem> {}
+export interface MenuSubTriggerProps
+	extends CoreMenuSubTriggerProps, React.ComponentProps<typeof ArkMenu.TriggerItem> {}
 
 export function MenuSubTrigger(props: MenuSubTriggerProps) {
 	const { testId, className, ...rest } = props;
