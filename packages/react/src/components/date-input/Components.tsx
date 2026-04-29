@@ -1,11 +1,13 @@
 import { DatePicker } from "@ark-ui/react";
+import { cx } from "@temporal-ui/core/utils/cx";
+import type React from "react";
 
 export const DateInputRoot = (props: React.ComponentProps<typeof DatePicker.Root>) => {
 	return <DatePicker.Root {...props} data-scope={"date-input"} />;
 };
 
-export const DateInputControl = (props: React.ComponentProps<typeof DatePicker.Control>) => {
-	return <DatePicker.Control {...props} data-scope={"date-input"} />;
+export const DateInputControl = ({ className, ...props }: React.ComponentProps<typeof DatePicker.Control>) => {
+	return <DatePicker.Control {...props} data-scope={"date-input"} className={cx("group", className)} />;
 };
 
 export const DateInputTrigger = (props: React.ComponentProps<typeof DatePicker.Trigger>) => {

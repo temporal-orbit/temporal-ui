@@ -21,6 +21,7 @@
 @import "./components/notifications/notifications.css";
 @import "./components/number-input/number-input.css";
 @import "./components/popover/popover.css";
+@import "./components/progress-linear/progress-linear.css";
 @import "./components/radio-group/radio.css";
 @import "./components/scroll-area/scroll-area.css";
 @import "./components/select/select.css";
