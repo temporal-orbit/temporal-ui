@@ -4,26 +4,14 @@
 	.avatar-lg {
 		@apply size-8 shrink-0 object-cover rounded-full border-1 bg-muted flex items-center justify-center text-primary overflow-hidden;
 	}
+	/* Lucide (and similar) icons default to a fixed 24px; scale nested svg with avatar size */
+	.avatar {
+		@apply [&_svg]:size-5 [&_svg]:shrink-0;
+	}
 	.avatar-sm {
-		@apply size-6 text-xs;
+		@apply size-6 text-xs [&_svg]:size-3.5 [&_svg]:shrink-0;
 	}
 	.avatar-lg {
-		@apply size-10 text-lg;
-	}
-	/* Lucide (and similar) icons default to a fixed 24px; scale with avatar size tokens */
-	.avatar-sm svg {
-		width: 0.875rem;
-		height: 0.875rem;
-		flex-shrink: 0;
-	}
-	.avatar svg {
-		width: 1.25rem;
-		height: 1.25rem;
-		flex-shrink: 0;
-	}
-	.avatar-lg svg {
-		width: 1.5rem;
-		height: 1.5rem;
-		flex-shrink: 0;
+		@apply size-10 text-lg [&_svg]:size-6 [&_svg]:shrink-0;
 	}
 }
