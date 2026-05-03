@@ -4,10 +4,14 @@
 	.avatar-lg {
 		@apply size-8 shrink-0 object-cover rounded-full border-1 bg-muted flex items-center justify-center text-primary overflow-hidden;
 	}
+	/* Lucide (and similar) icons default to a fixed 24px; scale nested svg with avatar size */
+	.avatar {
+		@apply [&_svg]:size-5 [&_svg]:shrink-0;
+	}
 	.avatar-sm {
-		@apply size-6 text-xs;
+		@apply size-6 text-xs [&_svg]:size-3.5 [&_svg]:shrink-0;
 	}
 	.avatar-lg {
-		@apply size-10 text-lg;
+		@apply size-10 text-lg [&_svg]:size-6 [&_svg]:shrink-0;
 	}
 }
