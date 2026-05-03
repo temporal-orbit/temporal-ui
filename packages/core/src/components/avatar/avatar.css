@@ -10,4 +10,20 @@
 	.avatar-lg {
 		@apply size-10 text-lg;
 	}
+	/* Lucide (and similar) icons default to a fixed 24px; scale with avatar size tokens */
+	.avatar-sm svg {
+		width: 0.875rem;
+		height: 0.875rem;
+		flex-shrink: 0;
+	}
+	.avatar svg {
+		width: 1.25rem;
+		height: 1.25rem;
+		flex-shrink: 0;
+	}
+	.avatar-lg svg {
+		width: 1.5rem;
+		height: 1.5rem;
+		flex-shrink: 0;
+	}
 }
