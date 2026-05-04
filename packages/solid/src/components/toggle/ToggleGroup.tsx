@@ -1,5 +1,6 @@
 import { ToggleGroup as ArkToggleGroup } from "@ark-ui/solid/toggle-group";
 import type { ToggleGroupProps as CoreToggleGroupProps } from "@temporal-ui/core/toggle";
+import { cx } from "@temporal-ui/core/utils/cx";
 import type { Accessor, ComponentProps, JSX } from "solid-js";
 import { createContext, createMemo, splitProps, useContext } from "solid-js";
 import { Field } from "../field";
@@ -23,20 +24,26 @@ export function ToggleGroup(_props: ToggleGroupProps) {
 		"disabled",
 		"classes",
 		"testId",
+		"children",
 	]);
 
 	const invalid = createMemo(() => !!fieldProps.error);
+	const [variantProps, arkRootProps] = splitProps(rootProps, ["variant"]);
+	const variant = createMemo(() => variantProps.variant ?? "default");
 
 	return (
 		<Field {...fieldProps} testId={fieldProps.testId ? `${fieldProps.testId}-field` : undefined}>
 			<ToggleGroupInvalidContext.Provider value={invalid}>
 				<ArkToggleGroup.Root
-					{...rootProps}
+					{...arkRootProps}
 					disabled={fieldProps.disabled}
 					aria-required={fieldProps.required}
-					class={fieldProps.classes?.group}
+					class={cx(fieldProps.classes?.group, arkRootProps.class)}
+					data-variant={variant()}
 					data-testid={fieldProps.testId ? `${fieldProps.testId}--root` : undefined}
-				/>
+				>
+					{fieldProps.children}
+				</ArkToggleGroup.Root>
 			</ToggleGroupInvalidContext.Provider>
 		</Field>
 	);

@@ -1,5 +1,6 @@
 import { ToggleGroup as ArkToggleGroup } from "@ark-ui/react/toggle-group";
 import type { ToggleGroupProps as CoreToggleGroupProps } from "@temporal-ui/core/toggle";
+import { cx } from "@temporal-ui/core/utils/cx";
 import type React from "react";
 import { createContext, useContext } from "react";
 import { Field } from "../field";
@@ -14,7 +15,20 @@ export interface ToggleGroupProps
 export interface ToggleGroupItemProps extends React.ComponentProps<typeof ArkToggleGroup.Item> {}
 
 export function ToggleGroup(props: ToggleGroupProps) {
-	const { label, hint, error, required, readOnly, disabled, classes, testId, children, ...rest } = props;
+	const {
+		label,
+		hint,
+		error,
+		required,
+		readOnly,
+		disabled,
+		classes,
+		testId,
+		children,
+		variant = "default",
+		className,
+		...rest
+	} = props;
 
 	const invalid = !!error;
 
@@ -34,7 +48,8 @@ export function ToggleGroup(props: ToggleGroupProps) {
 					{...rest}
 					disabled={disabled}
 					aria-required={required}
-					className={classes?.group}
+					className={cx(classes?.group, className)}
+					data-variant={variant}
 					data-testid={testId ? `${testId}--root` : undefined}
 				>
 					{children}

@@ -21,6 +21,10 @@ const meta = {
 			control: "select",
 			options: ["horizontal", "vertical"],
 		},
+		variant: {
+			control: "select",
+			options: ["default", "segmented"],
+		},
 	},
 } satisfies Meta<typeof ToggleGroup>;
 
@@ -174,6 +178,57 @@ export const WithField: Story = {
 export const WithFieldError: Story = {
 	render: (args) => (
 		<ToggleGroup {...args} label="Alignment" hint="Pick a horizontal alignment." error="Select an option.">
+			<ToggleGroupItem value="left">
+				<AlignLeftIcon size={16} />
+			</ToggleGroupItem>
+			<ToggleGroupItem value="center">
+				<AlignCenterIcon size={16} />
+			</ToggleGroupItem>
+			<ToggleGroupItem value="right">
+				<AlignRightIcon size={16} />
+			</ToggleGroupItem>
+		</ToggleGroup>
+	),
+};
+
+export const VariantDefault: Story = {
+	args: { variant: "default" },
+	render: (args) => (
+		<ToggleGroup {...args} defaultValue={["bold"]}>
+			<ToggleGroupItem value="bold">
+				<BoldIcon size={16} />
+			</ToggleGroupItem>
+			<ToggleGroupItem value="italic">
+				<ItalicIcon size={16} />
+			</ToggleGroupItem>
+			<ToggleGroupItem value="underline">
+				<UnderlineIcon size={16} />
+			</ToggleGroupItem>
+		</ToggleGroup>
+	),
+};
+
+export const VariantSegmented: Story = {
+	args: { variant: "segmented" },
+	render: (args) => (
+		<ToggleGroup {...args} defaultValue={["bold"]}>
+			<ToggleGroupItem value="bold">
+				<BoldIcon size={16} />
+			</ToggleGroupItem>
+			<ToggleGroupItem value="italic">
+				<ItalicIcon size={16} />
+			</ToggleGroupItem>
+			<ToggleGroupItem value="underline">
+				<UnderlineIcon size={16} />
+			</ToggleGroupItem>
+		</ToggleGroup>
+	),
+};
+
+export const VariantSegmentedVertical: Story = {
+	args: { variant: "segmented", orientation: "vertical" },
+	render: (args) => (
+		<ToggleGroup {...args} defaultValue={["left"]}>
 			<ToggleGroupItem value="left">
 				<AlignLeftIcon size={16} />
 			</ToggleGroupItem>

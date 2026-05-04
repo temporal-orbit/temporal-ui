@@ -21,4 +21,6 @@ export type ToggleGroupClasses = Pick<
 
 export interface ToggleGroupProps<T> extends Omit<FieldProps<T>, "classes"> {
 	classes?: ToggleGroupClasses;
+	/** Presentation: separate outline toggles, or one bordered control with secondary selected segments. */
+	variant?: "default" | "segmented";
 }
