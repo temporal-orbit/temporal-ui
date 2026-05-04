@@ -45,7 +45,8 @@
 
 	[data-scope="toggle-group"][data-part="root"][data-variant="segmented"]
 		[data-scope="toggle-group"][data-part="item"] {
-		@apply rounded-sm border-0 shadow-none hover:bg-muted/60 hover:text-muted-foreground;
+		/* Shorter than default `h-9` so root `p-0.5` keeps total height aligned with default toggle group */
+		@apply h-8 min-w-8 rounded-sm border-0 shadow-none hover:bg-muted/60 hover:text-muted-foreground;
 	}
 
 	[data-scope="toggle-group"][data-part="root"][data-variant="segmented"]
