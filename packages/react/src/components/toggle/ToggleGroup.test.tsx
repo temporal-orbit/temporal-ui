@@ -71,4 +71,22 @@ describe("ToggleGroup", () => {
 		expect(screen.getByRole("radio", { name: "B" })).toHaveAttribute("aria-invalid", "true");
 		expect(screen.getByRole("radio", { name: "I" })).toHaveAttribute("aria-invalid", "true");
 	});
+
+	it("sets data-variant on root (default)", () => {
+		render(
+			<ToggleGroup testId="tg">
+				<ToggleGroupItem value="bold">B</ToggleGroupItem>
+			</ToggleGroup>,
+		);
+		expect(screen.getByTestId("tg--root")).toHaveAttribute("data-variant", "default");
+	});
+
+	it("sets data-variant on root (segmented)", () => {
+		render(
+			<ToggleGroup testId="tg" variant="segmented">
+				<ToggleGroupItem value="bold">B</ToggleGroupItem>
+			</ToggleGroup>,
+		);
+		expect(screen.getByTestId("tg--root")).toHaveAttribute("data-variant", "segmented");
+	});
 });
