@@ -27,6 +27,11 @@
 
 			&[data-variant="segmented"] {
 				@apply gap-0.5 rounded-md border border-input bg-background p-0.5 shadow-xs;
+
+				/* Match default row height (36px): border + padding are inside `h-9` via border-box */
+				&:not([data-orientation="vertical"]) {
+					@apply h-9 items-stretch;
+				}
 			}
 		}
 
@@ -45,8 +50,12 @@
 
 	[data-scope="toggle-group"][data-part="root"][data-variant="segmented"]
 		[data-scope="toggle-group"][data-part="item"] {
-		/* Shorter than default `h-9` so root `p-0.5` keeps total height aligned with default toggle group */
-		@apply h-8 min-w-8 rounded-sm border-0 shadow-none hover:bg-muted/60 hover:text-muted-foreground;
+		@apply rounded-sm border-0 shadow-none hover:bg-muted/60 hover:text-muted-foreground;
+	}
+
+	[data-scope="toggle-group"][data-part="root"][data-variant="segmented"]:not([data-orientation="vertical"])
+		[data-scope="toggle-group"][data-part="item"] {
+		@apply h-auto min-h-0 min-w-8;
 	}
 
 	[data-scope="toggle-group"][data-part="root"][data-variant="segmented"]
