@@ -1,6 +1,6 @@
 // noinspection JSUnusedGlobalSymbols
 
-import { AlignCenterIcon, AlignLeftIcon, AlignRightIcon, BoldIcon, ItalicIcon, UnderlineIcon } from "lucide-solid";
+import { BoldIcon, ItalicIcon, TextAlignCenter, TextAlignEnd, TextAlignStart, UnderlineIcon } from "lucide-solid";
 import type { Meta, StoryObj } from "storybook-solidjs-vite";
 import { fn } from "storybook/test";
 import { ToggleGroup, ToggleGroupItem, type ToggleGroupProps } from "./ToggleGroup";
@@ -43,6 +43,16 @@ export const Default: Story = {
 			<ToggleGroupItem value="underline">
 				<UnderlineIcon size={16} />
 			</ToggleGroupItem>
+		</ToggleGroup>
+	),
+};
+
+export const TextualButtons: Story = {
+	render: (args: ToggleGroupProps) => (
+		<ToggleGroup {...args}>
+			<ToggleGroupItem value="bold">Bold</ToggleGroupItem>
+			<ToggleGroupItem value="italic">Italic</ToggleGroupItem>
+			<ToggleGroupItem value="underline">Underline</ToggleGroupItem>
 		</ToggleGroup>
 	),
 };
@@ -115,13 +125,13 @@ export const Vertical: Story = {
 	render: (args: ToggleGroupProps) => (
 		<ToggleGroup {...args} orientation="vertical">
 			<ToggleGroupItem value="left">
-				<AlignLeftIcon size={16} />
+				<TextAlignStart size={16} />
 			</ToggleGroupItem>
 			<ToggleGroupItem value="center">
-				<AlignCenterIcon size={16} />
+				<TextAlignCenter size={16} />
 			</ToggleGroupItem>
 			<ToggleGroupItem value="right">
-				<AlignRightIcon size={16} />
+				<TextAlignEnd size={16} />
 			</ToggleGroupItem>
 		</ToggleGroup>
 	),
@@ -131,13 +141,13 @@ export const SingleSelection: Story = {
 	render: (args: ToggleGroupProps) => (
 		<ToggleGroup {...args} defaultValue={["left"]}>
 			<ToggleGroupItem value="left">
-				<AlignLeftIcon size={16} />
+				<TextAlignStart size={16} />
 			</ToggleGroupItem>
 			<ToggleGroupItem value="center">
-				<AlignCenterIcon size={16} />
+				<TextAlignCenter size={16} />
 			</ToggleGroupItem>
 			<ToggleGroupItem value="right">
-				<AlignRightIcon size={16} />
+				<TextAlignEnd size={16} />
 			</ToggleGroupItem>
 		</ToggleGroup>
 	),
@@ -179,13 +189,13 @@ export const WithFieldError: Story = {
 	render: (args: ToggleGroupProps) => (
 		<ToggleGroup {...args} label="Alignment" hint="Pick a horizontal alignment." error="Select an option.">
 			<ToggleGroupItem value="left">
-				<AlignLeftIcon size={16} />
+				<TextAlignStart size={16} />
 			</ToggleGroupItem>
 			<ToggleGroupItem value="center">
-				<AlignCenterIcon size={16} />
+				<TextAlignCenter size={16} />
 			</ToggleGroupItem>
 			<ToggleGroupItem value="right">
-				<AlignRightIcon size={16} />
+				<TextAlignEnd size={16} />
 			</ToggleGroupItem>
 		</ToggleGroup>
 	),
@@ -211,17 +221,19 @@ export const VariantDefault: Story = {
 export const VariantSegmented: Story = {
 	args: { variant: "segmented" },
 	render: (args: ToggleGroupProps) => (
-		<ToggleGroup {...args} defaultValue={["bold"]}>
-			<ToggleGroupItem value="bold">
-				<BoldIcon size={16} />
-			</ToggleGroupItem>
-			<ToggleGroupItem value="italic">
-				<ItalicIcon size={16} />
-			</ToggleGroupItem>
-			<ToggleGroupItem value="underline">
-				<UnderlineIcon size={16} />
-			</ToggleGroupItem>
-		</ToggleGroup>
+		<div class="w-fit">
+			<ToggleGroup {...args} defaultValue={["bold"]}>
+				<ToggleGroupItem value="bold">
+					<BoldIcon size={16} />
+				</ToggleGroupItem>
+				<ToggleGroupItem value="italic">
+					<ItalicIcon size={16} />
+				</ToggleGroupItem>
+				<ToggleGroupItem value="underline">
+					<UnderlineIcon size={16} />
+				</ToggleGroupItem>
+			</ToggleGroup>
+		</div>
 	),
 };
 
@@ -230,13 +242,13 @@ export const VariantSegmentedVertical: Story = {
 	render: (args: ToggleGroupProps) => (
 		<ToggleGroup {...args} defaultValue={["left"]}>
 			<ToggleGroupItem value="left">
-				<AlignLeftIcon size={16} />
+				<TextAlignStart size={16} />
 			</ToggleGroupItem>
 			<ToggleGroupItem value="center">
-				<AlignCenterIcon size={16} />
+				<TextAlignCenter size={16} />
 			</ToggleGroupItem>
 			<ToggleGroupItem value="right">
-				<AlignRightIcon size={16} />
+				<TextAlignEnd size={16} />
 			</ToggleGroupItem>
 		</ToggleGroup>
 	),

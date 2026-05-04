@@ -1,10 +1,7 @@
 @layer components {
 	[data-scope="toggle"] {
 		&[data-part="root"] {
-			@apply inline-flex items-center justify-center rounded-md text-sm font-medium transition-all;
-			@apply size-9 bg-transparent hover:bg-muted hover:text-muted-foreground;
-			@apply border border-input shadow-xs;
-			@apply focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] outline-none;
+			@apply inline-flex items-center justify-center rounded-md text-sm font-medium transition-all bg-transparent hover:bg-muted hover:text-muted-foreground border border-input shadow-xs focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] outline-none;
 
 			&[data-state="on"] {
 				@apply bg-accent text-accent-foreground;
@@ -29,15 +26,12 @@
 			}
 
 			&[data-variant="segmented"] {
-				@apply gap-0 rounded-md border border-input bg-background p-0.5 shadow-xs;
+				@apply gap-0.5 rounded-md border border-input bg-background p-0.5 shadow-xs;
 			}
 		}
 
 		&[data-part="item"] {
-			@apply inline-flex items-center justify-center rounded-md text-sm font-medium transition-all;
-			@apply size-9 bg-transparent hover:bg-muted hover:text-muted-foreground;
-			@apply border border-input shadow-xs;
-			@apply focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] outline-none;
+			@apply inline-flex shrink-0 items-center justify-center gap-1.5 rounded-md text-sm font-medium transition-all h-9 min-w-9 px-2.5 bg-transparent hover:bg-muted hover:text-muted-foreground border border-input shadow-xs focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] outline-none;
 
 			&[data-state="on"] {
 				@apply bg-accent text-accent-foreground;
@@ -51,13 +45,7 @@
 
 	[data-scope="toggle-group"][data-part="root"][data-variant="segmented"]
 		[data-scope="toggle-group"][data-part="item"] {
-		@apply rounded-sm border-0 shadow-none;
-		@apply hover:bg-muted/60 hover:text-muted-foreground;
-	}
-
-	[data-scope="toggle-group"][data-part="root"][data-variant="segmented"]
-		[data-scope="toggle-group"][data-part="item"]:not(:last-child) {
-		@apply border-r border-input;
+		@apply rounded-sm border-0 shadow-none hover:bg-muted/60 hover:text-muted-foreground;
 	}
 
 	[data-scope="toggle-group"][data-part="root"][data-variant="segmented"]
@@ -68,10 +56,5 @@
 	[data-scope="toggle-group"][data-part="root"][data-variant="segmented"]
 		[data-scope="toggle-group"][data-part="item"][data-disabled] {
 		@apply pointer-events-none opacity-50;
-	}
-
-	[data-scope="toggle-group"][data-part="root"][data-variant="segmented"][data-orientation="vertical"]
-		[data-scope="toggle-group"][data-part="item"]:not(:last-child) {
-		@apply border-r-0 border-b border-input;
 	}
 }
