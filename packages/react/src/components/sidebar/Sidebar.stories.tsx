@@ -77,3 +77,22 @@ export const Default: Story = {
 		</Box>
 	),
 };
+
+export const Inset: Story = {
+	args: {
+		side: "left",
+		variant: "inset",
+		collapsible: "icon",
+	},
+	render: (args) => (
+		<Box className="">
+			<SidebarProvider className="">
+				<AppSidebar {...args} />
+				<SidebarInset>
+					<SidebarTrigger />
+					{args.children}
+				</SidebarInset>
+			</SidebarProvider>
+		</Box>
+	),
+};

@@ -17,7 +17,10 @@
 
 			&[data-variant="floating"],
 			&[data-variant="inset"] {
-				@apply group-data-[collapsible=icon]:w-[calc(var(--sidebar-width-icon)+(--spacing(4))+2px)];
+				/* avoid @apply w-[calc(...)] here: the bundler can drop `+` and break `calc()` */
+				.group[data-collapsible="icon"] & {
+					width: calc(var(--sidebar-width-icon) + var(--spacing) * 4 + 2px);
+				}
 			}
 
 			&[data-variant="sidebar"] {
@@ -38,7 +41,11 @@
 
 			&[data-variant="floating"],
 			&[data-variant="inset"] {
-				@apply p-2 group-data-[collapsible=icon]:w-[calc(var(--sidebar-width-icon)+(--spacing(4))+2px)];
+				@apply p-2;
+
+				.group[data-collapsible="icon"] & {
+					width: calc(var(--sidebar-width-icon) + var(--spacing) * 4 + 2px);
+				}
 			}
 
 			&[data-variant="sidebar"] {
