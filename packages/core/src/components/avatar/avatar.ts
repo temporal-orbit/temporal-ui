@@ -5,6 +5,8 @@ import type { AvatarColorProp } from "../../utils/avatar-variant";
 
 export type { AvatarColorProp } from "../../utils/avatar-variant";
 
+export type AvatarColorVariant = AvatarColorProp;
+
 export interface AvatarProps extends BaseComponent<never> {
 	/** The size of the avatar */
 	size?: "sm" | "md" | "lg";
