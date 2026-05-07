@@ -35,6 +35,56 @@
 	--color-sidebar-border: var(--sidebar-border);
 	--color-sidebar-ring: var(--sidebar-ring);
 
+	/* Avatar fallback accents — bg/fg pairs target WCAG AA ≥ 4.5:1 (Tailwind default palette) */
+	--avatar-color-red-bg-light: var(--color-red-200);
+	--avatar-color-red-fg-light: var(--color-red-950);
+	--avatar-color-red-bg-dark: var(--color-red-950);
+	--avatar-color-red-fg-dark: var(--color-red-50);
+	--avatar-color-orange-bg-light: var(--color-orange-200);
+	--avatar-color-orange-fg-light: var(--color-orange-950);
+	--avatar-color-orange-bg-dark: var(--color-orange-950);
+	--avatar-color-orange-fg-dark: var(--color-orange-50);
+	--avatar-color-amber-bg-light: var(--color-amber-200);
+	--avatar-color-amber-fg-light: var(--color-amber-950);
+	--avatar-color-amber-bg-dark: var(--color-amber-950);
+	--avatar-color-amber-fg-dark: var(--color-amber-50);
+	--avatar-color-yellow-bg-light: var(--color-yellow-300);
+	--avatar-color-yellow-fg-light: var(--color-yellow-950);
+	--avatar-color-yellow-bg-dark: var(--color-yellow-950);
+	--avatar-color-yellow-fg-dark: var(--color-yellow-50);
+	--avatar-color-lime-bg-light: var(--color-lime-200);
+	--avatar-color-lime-fg-light: var(--color-lime-950);
+	--avatar-color-lime-bg-dark: var(--color-lime-950);
+	--avatar-color-lime-fg-dark: var(--color-lime-50);
+	--avatar-color-green-bg-light: var(--color-green-200);
+	--avatar-color-green-fg-light: var(--color-green-950);
+	--avatar-color-green-bg-dark: var(--color-green-950);
+	--avatar-color-green-fg-dark: var(--color-green-50);
+	--avatar-color-teal-bg-light: var(--color-teal-200);
+	--avatar-color-teal-fg-light: var(--color-teal-950);
+	--avatar-color-teal-bg-dark: var(--color-teal-950);
+	--avatar-color-teal-fg-dark: var(--color-teal-50);
+	--avatar-color-cyan-bg-light: var(--color-cyan-200);
+	--avatar-color-cyan-fg-light: var(--color-cyan-950);
+	--avatar-color-cyan-bg-dark: var(--color-cyan-950);
+	--avatar-color-cyan-fg-dark: var(--color-cyan-50);
+	--avatar-color-blue-bg-light: var(--color-blue-200);
+	--avatar-color-blue-fg-light: var(--color-blue-950);
+	--avatar-color-blue-bg-dark: var(--color-blue-950);
+	--avatar-color-blue-fg-dark: var(--color-blue-50);
+	--avatar-color-violet-bg-light: var(--color-violet-200);
+	--avatar-color-violet-fg-light: var(--color-violet-950);
+	--avatar-color-violet-bg-dark: var(--color-violet-950);
+	--avatar-color-violet-fg-dark: var(--color-violet-50);
+	--avatar-color-purple-bg-light: var(--color-purple-200);
+	--avatar-color-purple-fg-light: var(--color-purple-950);
+	--avatar-color-purple-bg-dark: var(--color-purple-950);
+	--avatar-color-purple-fg-dark: var(--color-purple-50);
+	--avatar-color-pink-bg-light: var(--color-pink-200);
+	--avatar-color-pink-fg-light: var(--color-pink-950);
+	--avatar-color-pink-bg-dark: var(--color-pink-950);
+	--avatar-color-pink-fg-dark: var(--color-pink-50);
+
 	--animate-fade-in: fadeIn 0.15s ease-in-out;
 	@keyframes fadeIn {
 		0% {

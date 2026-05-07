@@ -2,8 +2,23 @@
 	.avatar,
 	.avatar-sm,
 	.avatar-lg {
-		@apply size-8 shrink-0 object-cover rounded-full border-1 bg-muted flex items-center justify-center text-primary overflow-hidden;
+		@apply relative box-border size-8 shrink-0 overflow-hidden rounded-full border-1 bg-transparent;
 	}
+
+	.avatar [data-part="image"],
+	.avatar-sm [data-part="image"],
+	.avatar-lg [data-part="image"] {
+		@apply absolute inset-0 size-full object-cover;
+	}
+
+	.avatar [data-part="fallback"],
+	.avatar-sm [data-part="fallback"],
+	.avatar-lg [data-part="fallback"] {
+		@apply absolute inset-0 flex size-full items-center justify-center font-medium;
+		background-color: var(--avatar-bg, var(--color-muted));
+		color: var(--avatar-fg, var(--color-primary));
+	}
+
 	/* Lucide (and similar) icons default to a fixed 24px; scale nested svg with avatar size */
 	.avatar {
 		@apply [&_svg]:size-5 [&_svg]:shrink-0;
@@ -13,5 +28,107 @@
 	}
 	.avatar-lg {
 		@apply size-10 text-lg [&_svg]:size-6 [&_svg]:shrink-0;
+	}
+
+	/*
+	 * Palette tokens live on the root so consumers can override per variant; only the fallback
+	 * consumes `--avatar-bg` / `--avatar-fg` (see selectors above).
+	 */
+	.avatar[data-color="red"] {
+		--avatar-bg: var(--avatar-color-red-bg-light);
+		--avatar-fg: var(--avatar-color-red-fg-light);
+	}
+	.avatar[data-color="orange"] {
+		--avatar-bg: var(--avatar-color-orange-bg-light);
+		--avatar-fg: var(--avatar-color-orange-fg-light);
+	}
+	.avatar[data-color="amber"] {
+		--avatar-bg: var(--avatar-color-amber-bg-light);
+		--avatar-fg: var(--avatar-color-amber-fg-light);
+	}
+	.avatar[data-color="yellow"] {
+		--avatar-bg: var(--avatar-color-yellow-bg-light);
+		--avatar-fg: var(--avatar-color-yellow-fg-light);
+	}
+	.avatar[data-color="lime"] {
+		--avatar-bg: var(--avatar-color-lime-bg-light);
+		--avatar-fg: var(--avatar-color-lime-fg-light);
+	}
+	.avatar[data-color="green"] {
+		--avatar-bg: var(--avatar-color-green-bg-light);
+		--avatar-fg: var(--avatar-color-green-fg-light);
+	}
+	.avatar[data-color="teal"] {
+		--avatar-bg: var(--avatar-color-teal-bg-light);
+		--avatar-fg: var(--avatar-color-teal-fg-light);
+	}
+	.avatar[data-color="cyan"] {
+		--avatar-bg: var(--avatar-color-cyan-bg-light);
+		--avatar-fg: var(--avatar-color-cyan-fg-light);
+	}
+	.avatar[data-color="blue"] {
+		--avatar-bg: var(--avatar-color-blue-bg-light);
+		--avatar-fg: var(--avatar-color-blue-fg-light);
+	}
+	.avatar[data-color="violet"] {
+		--avatar-bg: var(--avatar-color-violet-bg-light);
+		--avatar-fg: var(--avatar-color-violet-fg-light);
+	}
+	.avatar[data-color="purple"] {
+		--avatar-bg: var(--avatar-color-purple-bg-light);
+		--avatar-fg: var(--avatar-color-purple-fg-light);
+	}
+	.avatar[data-color="pink"] {
+		--avatar-bg: var(--avatar-color-pink-bg-light);
+		--avatar-fg: var(--avatar-color-pink-fg-light);
+	}
+
+	.dark .avatar[data-color="red"] {
+		--avatar-bg: var(--avatar-color-red-bg-dark);
+		--avatar-fg: var(--avatar-color-red-fg-dark);
+	}
+	.dark .avatar[data-color="orange"] {
+		--avatar-bg: var(--avatar-color-orange-bg-dark);
+		--avatar-fg: var(--avatar-color-orange-fg-dark);
+	}
+	.dark .avatar[data-color="amber"] {
+		--avatar-bg: var(--avatar-color-amber-bg-dark);
+		--avatar-fg: var(--avatar-color-amber-fg-dark);
+	}
+	.dark .avatar[data-color="yellow"] {
+		--avatar-bg: var(--avatar-color-yellow-bg-dark);
+		--avatar-fg: var(--avatar-color-yellow-fg-dark);
+	}
+	.dark .avatar[data-color="lime"] {
+		--avatar-bg: var(--avatar-color-lime-bg-dark);
+		--avatar-fg: var(--avatar-color-lime-fg-dark);
+	}
+	.dark .avatar[data-color="green"] {
+		--avatar-bg: var(--avatar-color-green-bg-dark);
+		--avatar-fg: var(--avatar-color-green-fg-dark);
+	}
+	.dark .avatar[data-color="teal"] {
+		--avatar-bg: var(--avatar-color-teal-bg-dark);
+		--avatar-fg: var(--avatar-color-teal-fg-dark);
+	}
+	.dark .avatar[data-color="cyan"] {
+		--avatar-bg: var(--avatar-color-cyan-bg-dark);
+		--avatar-fg: var(--avatar-color-cyan-fg-dark);
+	}
+	.dark .avatar[data-color="blue"] {
+		--avatar-bg: var(--avatar-color-blue-bg-dark);
+		--avatar-fg: var(--avatar-color-blue-fg-dark);
+	}
+	.dark .avatar[data-color="violet"] {
+		--avatar-bg: var(--avatar-color-violet-bg-dark);
+		--avatar-fg: var(--avatar-color-violet-fg-dark);
+	}
+	.dark .avatar[data-color="purple"] {
+		--avatar-bg: var(--avatar-color-purple-bg-dark);
+		--avatar-fg: var(--avatar-color-purple-fg-dark);
+	}
+	.dark .avatar[data-color="pink"] {
+		--avatar-bg: var(--avatar-color-pink-bg-dark);
+		--avatar-fg: var(--avatar-color-pink-fg-dark);
 	}
 }
