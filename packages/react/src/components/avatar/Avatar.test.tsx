@@ -1,9 +1,22 @@
+import { AVATAR_COLOR_VARIANTS } from "@temporal-ui/core/avatar";
 import { render, screen, waitFor } from "@testing-library/react";
 import { describe, expect, it } from "vitest";
-import { AVATAR_COLOR_VARIANTS } from "@temporal-ui/core/utils/avatar-variant";
 import { Avatar } from "./Avatar";
 
 describe("Avatar", () => {
+	it("sets Ark data-scope and data-part on root and data-size from size prop", () => {
+		render(<Avatar name="A" size="sm" testId="av" />);
+		const root = screen.getByTestId("av");
+		expect(root).toHaveAttribute("data-scope", "avatar");
+		expect(root).toHaveAttribute("data-part", "root");
+		expect(root).toHaveAttribute("data-size", "sm");
+	});
+
+	it("defaults data-size to md", () => {
+		render(<Avatar name="B" testId="av" />);
+		expect(screen.getByTestId("av")).toHaveAttribute("data-size", "md");
+	});
+
 	it.each(AVATAR_COLOR_VARIANTS)("sets data-color=%s on root for explicit color", (variant) => {
 		render(<Avatar name="Test" color={variant} testId="av" />);
 		expect(screen.getByTestId("av")).toHaveAttribute("data-color", variant);
