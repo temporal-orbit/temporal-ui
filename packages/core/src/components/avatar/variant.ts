@@ -40,7 +40,7 @@ export type AvatarResolvedDataColor = AvatarNamedColorVariant | "none";
  * - `color === 'auto'` (default) → hash from trimmed `name`, or `'none'` if no usable name
  */
 export function resolveAvatarDataColor(
-	name: string | undefined,
+	name: string | undefined | null,
 	color: AvatarColorProp | undefined,
 ): AvatarResolvedDataColor {
 	const mode = color ?? "auto";

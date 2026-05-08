@@ -1,7 +1,7 @@
 // noinspection JSUnusedGlobalSymbols
 
 import type { Meta, StoryObj } from "@storybook/react-vite";
-import { AVATAR_COLOR_VARIANTS, getAvatarVariant } from "@temporal-ui/core/utils/avatar-variant";
+import { AVATAR_COLOR_VARIANTS, getAvatarVariant } from "@temporal-ui/core/avatar";
 import { Stack } from "../stack";
 import { Avatar } from "./Avatar";
 
@@ -102,27 +102,28 @@ export const FallbackIconScalingBySizeProp: Story = {
 	),
 };
 
-/** Same scaling when sizing via Tailwind + `avatar-*` classes (no `size` prop). */
+/** Fallback icon scales with the `size` prop; optional Tailwind adjusts shape (e.g. `rounded-full`). */
 export const FallbackIconScalingByClass: Story = {
 	render: () => (
 		<Stack gap={6}>
 			<p className="text-sm text-muted-foreground">
-				<code className="text-foreground">avatar-sm</code> / <code className="text-foreground">avatar</code> /{" "}
-				<code className="text-foreground">avatar-lg</code> with matching <code className="text-foreground">size-*</code>{" "}
-				classes.
+				Use <code className="text-foreground">size=&quot;sm&quot;</code>,{" "}
+				<code className="text-foreground">size=&quot;md&quot;</code> (default), or{" "}
+				<code className="text-foreground">size=&quot;lg&quot;</code> — optional classes such as{" "}
+				<code className="text-foreground">rounded-full</code> layer on top.
 			</p>
 			<Stack row gap={6} align="flex-end">
 				<Stack gap={2} align="center">
-					<Avatar className="avatar-sm size-6 rounded-full" testId="avatar-fallback-class-sm" />
-					<span className="text-xs text-muted-foreground">avatar-sm + size-6</span>
+					<Avatar size="sm" className="rounded-full" testId="avatar-fallback-class-sm" />
+					<span className="text-xs text-muted-foreground">size=&quot;sm&quot;</span>
 				</Stack>
 				<Stack gap={2} align="center">
-					<Avatar className="size-8 rounded-full" testId="avatar-fallback-class-md" />
-					<span className="text-xs text-muted-foreground">size-8</span>
+					<Avatar className="rounded-full" testId="avatar-fallback-class-md" />
+					<span className="text-xs text-muted-foreground">size=&quot;md&quot; (default)</span>
 				</Stack>
 				<Stack gap={2} align="center">
-					<Avatar className="avatar-lg size-10 rounded-full" testId="avatar-fallback-class-lg" />
-					<span className="text-xs text-muted-foreground">avatar-lg + size-10</span>
+					<Avatar size="lg" className="rounded-full" testId="avatar-fallback-class-lg" />
+					<span className="text-xs text-muted-foreground">size=&quot;lg&quot;</span>
 				</Stack>
 			</Stack>
 		</Stack>

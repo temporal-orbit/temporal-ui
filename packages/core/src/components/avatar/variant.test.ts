@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { AVATAR_COLOR_VARIANTS, getAvatarVariant, resolveAvatarDataColor } from "./index";
+import { AVATAR_COLOR_VARIANTS, getAvatarVariant, resolveAvatarDataColor } from "./variant";
 
 describe("getAvatarVariant", () => {
 	it("is pure and deterministic for the same input", () => {

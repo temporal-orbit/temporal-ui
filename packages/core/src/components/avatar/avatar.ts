@@ -1,9 +1,9 @@
 // noinspection JSUnusedGlobalSymbols
 
 import type { BaseComponent } from "../base";
-import type { AvatarColorProp } from "../../utils/avatar-variant";
+import type { AvatarColorProp } from "./variant";
 
-export type { AvatarColorProp } from "../../utils/avatar-variant";
+export type { AvatarColorProp } from "./variant";
 
 export type AvatarColorVariant = AvatarColorProp;
 
@@ -15,7 +15,7 @@ export interface AvatarProps extends BaseComponent<never> {
 	 * a stable accent palette is chosen from this string; whitespace-only or missing values use
 	 * the neutral fallback (`data-color="none"`).
 	 */
-	name?: string;
+	name?: string | null;
 	/** The URL of the avatar */
 	src?: string;
 	/**
