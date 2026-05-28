@@ -2,36 +2,36 @@
 
 :root {
 	--radius: 0.625rem;
-	--background: oklch(1 0 0);
+	--background: oklch(0.975 0 0); /* ↓ off-white: canvas recedes so cards can float above it */
 	--foreground: oklch(0.145 0 0);
-	--card: oklch(1 0 0);
+	--card: oklch(1 0 0); /* pure white: elevated above the background */
 	--card-foreground: oklch(0.145 0 0);
-	--popover: oklch(1 0 0);
+	--popover: oklch(1 0 0); /* same as card — popovers float at card level */
 	--popover-foreground: oklch(0.145 0 0);
 	--primary: oklch(0.205 0 0);
 	--primary-foreground: oklch(0.985 0 0);
-	--secondary: oklch(0.97 0 0);
+	--secondary: oklch(0.96 0 0); /* ↓ subtle fills on canvas (chips, tags, etc.) */
 	--secondary-foreground: oklch(0.205 0 0);
-	--muted: oklch(0.97 0 0);
+	--muted: oklch(0.96 0 0); /* ↓ matches secondary */
 	--muted-foreground: oklch(0.556 0 0);
-	--accent: oklch(0.97 0 0);
+	--accent: oklch(0.945 0 0); /* ↓ hover states — a visible step below muted */
 	--accent-foreground: oklch(0.205 0 0);
 	--destructive: oklch(0.577 0.245 27.325);
-	--border: oklch(0.922 0 0);
-	--input: oklch(0.922 0 0);
+	--border: oklch(0.908 0 0); /* ↓ slightly darker to maintain contrast against off-white bg */
+	--input: oklch(0.908 0 0); /* ↓ same reasoning */
 	--ring: oklch(0.708 0 0);
 	--chart-1: oklch(0.646 0.222 41.116);
 	--chart-2: oklch(0.6 0.118 184.704);
 	--chart-3: oklch(0.398 0.07 227.392);
 	--chart-4: oklch(0.828 0.189 84.429);
 	--chart-5: oklch(0.769 0.188 70.08);
-	--sidebar: oklch(0.985 0 0);
+	--sidebar: oklch(0.955 0 0); /* ↓ noticeably off-white: sidebar recedes behind canvas */
 	--sidebar-foreground: oklch(0.145 0 0);
 	--sidebar-primary: oklch(0.205 0 0);
 	--sidebar-primary-foreground: oklch(0.985 0 0);
-	--sidebar-accent: oklch(0.97 0 0);
+	--sidebar-accent: oklch(0.935 0 0); /* ↓ hover in sidebar — darkens, does not lift to canvas */
 	--sidebar-accent-foreground: oklch(0.205 0 0);
-	--sidebar-border: oklch(0.922 0 0);
+	--sidebar-border: oklch(0.908 0 0); /* matches --border */
 	--sidebar-ring: oklch(0.708 0 0);
 	--sidebar-width: 16rem;
 	--sidebar-width-icon: 3rem;
@@ -46,9 +46,9 @@
 }
 
 .dark {
-	--background: oklch(0.145 0 0);
+	--background: oklch(0.185 0 0); /* ↑ lifted: main canvas sits above sidebar */
 	--foreground: oklch(0.985 0 0);
-	--card: oklch(0.205 0 0);
+	--card: oklch(0.225 0 0); /* ↑ lifted: cards elevated above canvas */
 	--card-foreground: oklch(0.985 0 0);
 	--popover: oklch(0.269 0 0);
 	--popover-foreground: oklch(0.985 0 0);
@@ -69,13 +69,13 @@
 	--chart-3: oklch(0.769 0.188 70.08);
 	--chart-4: oklch(0.627 0.265 303.9);
 	--chart-5: oklch(0.645 0.246 16.439);
-	--sidebar: oklch(0.205 0 0);
+	--sidebar: oklch(0.13 0 0); /* ↓ darkest surface: sidebar recedes */
 	--sidebar-foreground: oklch(0.985 0 0);
 	--sidebar-primary: oklch(0.488 0.243 264.376);
 	--sidebar-primary-foreground: oklch(0.985 0 0);
-	--sidebar-accent: oklch(0.269 0 0);
+	--sidebar-accent: oklch(0.19 0 0); /* hover/active in sidebar: lifts to canvas level */
 	--sidebar-accent-foreground: oklch(0.985 0 0);
-	--sidebar-border: oklch(1 0 0 / 10%);
+	--sidebar-border: oklch(1 0 0 / 8%); /* slightly softer: dark sidebar needs less border contrast */
 	--sidebar-ring: oklch(0.439 0 0);
 	--scrollbar-thumb: rgba(255, 255, 255, 0.3);
 	--chevron-down-icon: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="oklch(0.708 0 0)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-chevron-down-icon lucide-chevron-down"><path d="m6 9 6 6 6-6"/></svg>'); /* --muted-foreground */

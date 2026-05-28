@@ -1,7 +1,7 @@
 @layer components {
 	/* Root shell (size comes from data-size below) */
 	[data-scope="avatar"][data-part="root"] {
-		@apply relative box-border shrink-0 overflow-hidden rounded-full border-1 bg-transparent;
+		@apply relative box-border shrink-0 overflow-hidden rounded-full border bg-transparent;
 	}
 
 	[data-scope="avatar"][data-part="image"] {
