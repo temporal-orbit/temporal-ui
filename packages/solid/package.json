@@ -61,30 +61,30 @@
 		"postpublish": "node ../../scripts/restore-protocols.mjs"
 	},
 	"dependencies": {
-		"@ark-ui/solid": "5.36.2",
+		"@ark-ui/solid": "5.37.0",
 		"@tanstack/solid-table": "8.21.3",
 		"@temporal-ui/core": "workspace:*"
 	},
 	"devDependencies": {
-		"@chromatic-com/storybook": "5.1.2",
+		"@chromatic-com/storybook": "5.2.1",
 		"@solidjs/testing-library": "0.8.10",
-		"@storybook/addon-a11y": "10.3.6",
-		"@storybook/addon-docs": "10.3.6",
-		"@storybook/addon-links": "10.3.6",
-		"@storybook/addon-themes": "10.3.6",
-		"@storybook/addon-vitest": "10.3.6",
-		"@tailwindcss/vite": "4.2.4",
+		"@storybook/addon-a11y": "10.4.2",
+		"@storybook/addon-docs": "10.4.2",
+		"@storybook/addon-links": "10.4.2",
+		"@storybook/addon-themes": "10.4.2",
+		"@storybook/addon-vitest": "10.4.2",
+		"@tailwindcss/vite": "4.3.0",
 		"@testing-library/jest-dom": "6.9.1",
 		"@testing-library/user-event": "14.6.1",
 		"happy-dom": "20.9.0",
-		"lucide-solid": "1.14.0",
-		"storybook": "10.3.6",
-		"storybook-solidjs-vite": "10.0.12",
-		"tailwindcss": "4.2.4",
-		"tsdown": "0.21.10",
-		"vite": "8.0.10",
+		"lucide-solid": "1.17.0",
+		"storybook": "10.4.2",
+		"storybook-solidjs-vite": "10.1.1",
+		"tailwindcss": "4.3.0",
+		"tsdown": "0.22.1",
+		"vite": "8.0.16",
 		"vite-plugin-solid": "2.11.12",
-		"vitest": "4.1.5"
+		"vitest": "4.1.8"
 	},
 	"peerDependencies": {
 		"solid-js": ">=1.0.0"
