@@ -51,7 +51,12 @@ export const Checkbox = forwardRef<HTMLInputElement, CheckboxProps>((props, ref)
 				<ArkCheckbox.Label data-testid={tid("--label")} className={classes?.label}>
 					{label}
 				</ArkCheckbox.Label>
-				<ArkCheckbox.HiddenInput ref={ref} data-testid={tid("--input")} className={classes?.input} {...rest} />
+				<ArkCheckbox.HiddenInput
+					ref={ref}
+					data-testid={tid("--input")}
+					className={classes?.input}
+					{...rest}
+				/>
 			</ArkCheckbox.Root>
 		</Field>
 	);

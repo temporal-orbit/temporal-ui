@@ -45,4 +45,12 @@ export const fieldAttributes = [
 	"classes",
 	"testId",
 ] as const;
-export const fieldsetAttributes = ["legend", "variant", "hint", "error", "disabled", "classes", "testId"] as const;
+export const fieldsetAttributes = [
+	"legend",
+	"variant",
+	"hint",
+	"error",
+	"disabled",
+	"classes",
+	"testId",
+] as const;

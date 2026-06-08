@@ -41,7 +41,10 @@ export function Checkbox(_props: CheckboxProps) {
 				data-testid={tid("--root")}
 			>
 				<ArkCheckbox.Control data-testid={tid("--control")} class={fieldProps.classes?.control}>
-					<ArkCheckbox.Indicator data-testid={tid("--indicator")} class={fieldProps.classes?.indicator}>
+					<ArkCheckbox.Indicator
+						data-testid={tid("--indicator")}
+						class={fieldProps.classes?.indicator}
+					>
 						<CheckIcon />
 					</ArkCheckbox.Indicator>
 				</ArkCheckbox.Control>

@@ -20,10 +20,16 @@ describe("Button Component", () => {
 
 	it("applies variant attributes correctly", () => {
 		const { rerender } = render(<Button {...defaultProps} variant="secondary" />);
-		expect(screen.getByRole("button", { name: "Test Button" })).toHaveAttribute("data-variant", "secondary");
+		expect(screen.getByRole("button", { name: "Test Button" })).toHaveAttribute(
+			"data-variant",
+			"secondary",
+		);
 
 		rerender(<Button {...defaultProps} variant="destructive" />);
-		expect(screen.getByRole("button", { name: "Test Button" })).toHaveAttribute("data-variant", "destructive");
+		expect(screen.getByRole("button", { name: "Test Button" })).toHaveAttribute(
+			"data-variant",
+			"destructive",
+		);
 	});
 
 	it("applies size attributes correctly", () => {

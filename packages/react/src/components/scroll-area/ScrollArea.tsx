@@ -1,7 +1,8 @@
 import type { ScrollAreaProps as CoreScrollAreaProps } from "@temporal-ui/core/scroll-area";
 import { ScrollArea as ArkScrollArea } from "@ark-ui/react/scroll-area";
 
-export interface ScrollAreaProps extends CoreScrollAreaProps<React.ReactNode>, React.HTMLAttributes<HTMLDivElement> {}
+export interface ScrollAreaProps
+	extends CoreScrollAreaProps<React.ReactNode>, React.HTMLAttributes<HTMLDivElement> {}
 
 export function ScrollArea(props: ScrollAreaProps) {
 	const { orientation = "vertical", classes, children, ...boxProps } = props;

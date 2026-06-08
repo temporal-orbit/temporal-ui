@@ -4,7 +4,8 @@ import { testId } from "@temporal-ui/core/utils/string";
 import { splitProps } from "solid-js";
 import type { ComponentProps } from "solid-js";
 
-export interface MenuRadioItemProps extends CoreMenuRadioItemProps, ComponentProps<typeof ArkMenu.RadioItem> {}
+export interface MenuRadioItemProps
+	extends CoreMenuRadioItemProps, ComponentProps<typeof ArkMenu.RadioItem> {}
 
 export function MenuRadioItem(props: MenuRadioItemProps) {
 	const [localProps, radioItemProps] = splitProps(props, ["className", "testId"]);
@@ -12,7 +13,11 @@ export function MenuRadioItem(props: MenuRadioItemProps) {
 	const tid = testId(localProps.testId);
 
 	return (
-		<ArkMenu.RadioItem {...radioItemProps} class={localProps.className} data-testid={tid("--radio-item")}>
+		<ArkMenu.RadioItem
+			{...radioItemProps}
+			class={localProps.className}
+			data-testid={tid("--radio-item")}
+		>
 			<ArkMenu.ItemIndicator data-testid={tid("--indicator")}>
 				<div data-part="item-radio-indicator" />
 			</ArkMenu.ItemIndicator>

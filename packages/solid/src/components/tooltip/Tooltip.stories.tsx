@@ -5,6 +5,7 @@ import { fn } from "storybook/test";
 import { Button } from "../button";
 import { Stack } from "../stack";
 import { Tooltip, type TooltipProps } from "./Tooltip";
+import { TooltipProvider } from "./TooltipProvider";
 
 const meta = {
 	title: "Solid/Tooltip",
@@ -12,7 +13,7 @@ const meta = {
 	tags: ["autodocs"],
 	args: { onOpenChange: fn() },
 	argTypes: {
-		position: {
+		positioning: {
 			control: "object",
 		},
 		openDelay: {
@@ -25,9 +26,6 @@ const meta = {
 			control: "boolean",
 		},
 		interactive: {
-			control: "boolean",
-		},
-		showArrow: {
 			control: "boolean",
 		},
 		defaultOpen: {
@@ -51,20 +49,11 @@ export const Default: Story = {
 	render: (props: TooltipProps) => <Tooltip {...props} />,
 };
 
-export const WithArrow: Story = {
-	args: {
-		...Default.args,
-		showArrow: true,
-		children: "Tooltip with arrow",
-	},
-	render: (props: TooltipProps) => <Tooltip {...props} />,
-};
-
 export const PositionTop: Story = {
 	args: {
 		...Default.args,
 		children: "Top positioned tooltip",
-		position: { placement: "top" },
+		positioning: { placement: "top" },
 	},
 	render: (props: TooltipProps) => (
 		<div class="p-48 flex items-center justify-center">
@@ -77,7 +66,7 @@ export const PositionRight: Story = {
 	args: {
 		...Default.args,
 		children: "Right positioned tooltip",
-		position: { placement: "right" },
+		positioning: { placement: "right" },
 	},
 	render: (props: TooltipProps) => (
 		<div class="p-32 flex items-center justify-center">
@@ -90,7 +79,7 @@ export const PositionLeft: Story = {
 	args: {
 		...Default.args,
 		children: "Left positioned tooltip",
-		position: { placement: "left" },
+		positioning: { placement: "left" },
 	},
 	render: (props: TooltipProps) => (
 		<div class="p-32 flex items-center justify-center">
@@ -103,7 +92,7 @@ export const PositionBottom: Story = {
 	args: {
 		...Default.args,
 		children: "Bottom positioned tooltip",
-		position: { placement: "bottom" },
+		positioning: { placement: "bottom" },
 	},
 	render: (props: TooltipProps) => <Tooltip {...props} />,
 };
@@ -145,7 +134,7 @@ export const WithOffset: Story = {
 	args: {
 		...Default.args,
 		children: "Tooltip with offset",
-		position: {
+		positioning: {
 			placement: "bottom",
 			offset: { mainAxis: 12, crossAxis: 8 },
 		},
@@ -160,5 +149,19 @@ export const MultipleTooltips: Story = {
 			<Tooltip trigger={(p) => <Button {...p}>Second</Button>}>Second tooltip</Tooltip>
 			<Tooltip trigger={(p) => <Button {...p}>Third</Button>}>Third tooltip</Tooltip>
 		</Stack>
+	),
+};
+
+export const WithProvider: Story = {
+	render: () => (
+		<TooltipProvider openDelay={200} closeDelay={100} interactive>
+			<Stack gap={4} row>
+				<Tooltip trigger={(p) => <Button {...p}>First</Button>}>Shared provider defaults</Tooltip>
+				<Tooltip trigger={(p) => <Button {...p}>Second</Button>}>Also uses provider config</Tooltip>
+				<Tooltip trigger={(p) => <Button {...p}>Instant</Button>} openDelay={0}>
+					Instance override
+				</Tooltip>
+			</Stack>
+		</TooltipProvider>
 	),
 };

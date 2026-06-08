@@ -5,7 +5,9 @@ import { Portal } from "@ark-ui/react/portal";
 import { testId as testIdFn } from "@temporal-ui/core/utils/string";
 
 export interface MenuProps
-	extends CoreMenuProps<React.ReactNode>, Omit<React.ComponentProps<typeof ArkMenu.Root>, "onSelect"> {
+	extends
+		CoreMenuProps<React.ReactNode>,
+		Omit<React.ComponentProps<typeof ArkMenu.Root>, "onSelect"> {
 	trigger: React.ReactNode;
 }
 

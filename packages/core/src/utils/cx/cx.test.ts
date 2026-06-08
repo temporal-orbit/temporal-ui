@@ -50,7 +50,14 @@ describe("cx utility", () => {
 			undefined,
 		);
 		// Order can vary due to Set, so we check for inclusion and length
-		const expectedClasses = ["button", "button-dark", "p-4", "m-2", "button-error", "another-class"];
+		const expectedClasses = [
+			"button",
+			"button-dark",
+			"p-4",
+			"m-2",
+			"button-error",
+			"another-class",
+		];
 		const resultArray = result.split(" ");
 		expect(resultArray.length).toBe(expectedClasses.length);
 		expectedClasses.forEach((cls) => {

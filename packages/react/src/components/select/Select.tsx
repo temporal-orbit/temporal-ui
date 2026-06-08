@@ -50,7 +50,11 @@ export function Select<D extends CollectionItem>(props: SelectProps<D>) {
 			disabled={disabled}
 			testId={tid("-field")}
 		>
-			<ArkSelect.RootProvider value={select} className={classes?.selectRoot} data-testid={tid("--root")}>
+			<ArkSelect.RootProvider
+				value={select}
+				className={classes?.selectRoot}
+				data-testid={tid("--root")}
+			>
 				<ArkSelect.Control
 					aria-invalid={!!error}
 					className={cx(classes?.control, className)}

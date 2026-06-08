@@ -5,6 +5,7 @@ import { fn } from "storybook/test";
 import { Button } from "../button";
 import { Stack } from "../stack";
 import { Tooltip } from "./Tooltip";
+import { TooltipProvider } from "./TooltipProvider";
 
 const meta = {
 	title: "React/Tooltip",
@@ -12,7 +13,7 @@ const meta = {
 	tags: ["autodocs"],
 	args: { onOpenChange: fn() },
 	argTypes: {
-		position: {
+		positioning: {
 			control: "object",
 		},
 		openDelay: {
@@ -25,9 +26,6 @@ const meta = {
 			control: "boolean",
 		},
 		interactive: {
-			control: "boolean",
-		},
-		showArrow: {
 			control: "boolean",
 		},
 		defaultOpen: {
@@ -50,19 +48,11 @@ export const Default: Story = {
 	},
 };
 
-export const WithArrow: Story = {
-	args: {
-		...Default.args,
-		showArrow: true,
-		children: "Tooltip with arrow",
-	},
-};
-
 export const PositionTop: Story = {
 	args: {
 		...Default.args,
 		children: "Top positioned tooltip",
-		position: {
+		positioning: {
 			placement: "top",
 		},
 	},
@@ -72,7 +62,7 @@ export const PositionRight: Story = {
 	args: {
 		...Default.args,
 		children: "Right positioned tooltip",
-		position: {
+		positioning: {
 			placement: "right",
 		},
 	},
@@ -82,7 +72,7 @@ export const PositionLeft: Story = {
 	args: {
 		...Default.args,
 		children: "Left positioned tooltip",
-		position: {
+		positioning: {
 			placement: "left",
 		},
 	},
@@ -92,7 +82,7 @@ export const PositionBottom: Story = {
 	args: {
 		...Default.args,
 		children: "Bottom positioned tooltip",
-		position: {
+		positioning: {
 			placement: "bottom",
 		},
 	},
@@ -132,7 +122,7 @@ export const WithOffset: Story = {
 	args: {
 		...Default.args,
 		children: "Tooltip with offset",
-		position: {
+		positioning: {
 			placement: "bottom",
 			offset: {
 				mainAxis: 12,
@@ -149,5 +139,19 @@ export const MultipleTooltips: Story = {
 			<Tooltip trigger={<Button>Second</Button>}>Second tooltip</Tooltip>
 			<Tooltip trigger={<Button>Third</Button>}>Third tooltip</Tooltip>
 		</Stack>
+	),
+};
+
+export const WithProvider: Story = {
+	render: () => (
+		<TooltipProvider openDelay={200} closeDelay={100} interactive>
+			<Stack gap={4} row>
+				<Tooltip trigger={<Button>First</Button>}>Shared provider defaults</Tooltip>
+				<Tooltip trigger={<Button>Second</Button>}>Also uses provider config</Tooltip>
+				<Tooltip trigger={<Button>Instant</Button>} openDelay={0}>
+					Instance override
+				</Tooltip>
+			</Stack>
+		</TooltipProvider>
 	),
 };

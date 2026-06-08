@@ -14,7 +14,9 @@ export function ScrollArea(props: ScrollAreaProps) {
 	return (
 		<ArkScrollArea.Root {...boxProps}>
 			<ArkScrollArea.Viewport class={controlProps.classes?.viewport} style={{ height: "100%" }}>
-				<ArkScrollArea.Content class={controlProps.classes?.content}>{controlProps.children}</ArkScrollArea.Content>
+				<ArkScrollArea.Content class={controlProps.classes?.content}>
+					{controlProps.children}
+				</ArkScrollArea.Content>
 			</ArkScrollArea.Viewport>
 			<Show when={["vertical", "both"].includes(controlProps.orientation)}>
 				<ArkScrollArea.Scrollbar orientation="vertical" class={controlProps.classes?.scrollbar}>

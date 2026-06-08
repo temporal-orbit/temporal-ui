@@ -106,7 +106,9 @@ describe("Dialog Component", () => {
 	});
 
 	it("applies root className to content", () => {
-		render(() => <Dialog {...defaultProps} defaultOpen className="root-class" testId="test-dialog" />);
+		render(() => (
+			<Dialog {...defaultProps} defaultOpen className="root-class" testId="test-dialog" />
+		));
 		expect(screen.getByTestId("test-dialog--content")).toHaveClass("root-class");
 	});
 
@@ -148,7 +150,9 @@ describe("Dialog Component", () => {
 	it("renders description only when provided", () => {
 		const { description: _description, ...propsWithoutDesc } = defaultProps;
 
-		render(() => <Dialog {...propsWithoutDesc} description={undefined} defaultOpen testId="no-desc" />);
+		render(() => (
+			<Dialog {...propsWithoutDesc} description={undefined} defaultOpen testId="no-desc" />
+		));
 		expect(screen.queryByTestId("no-desc--description")).not.toBeInTheDocument();
 	});
 });

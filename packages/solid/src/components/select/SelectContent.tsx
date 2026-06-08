@@ -35,7 +35,10 @@ export function SelectContent(_props: SelectContentProps) {
 				<div data-component="select" data-slot="list" data-testid={props.tid("--content-list")}>
 					<For each={context().collection.group()}>
 						{([type, group]) => (
-							<ArkSelect.ItemGroup class={props.classes?.itemGroup} data-testid={props.tid("--item-group")}>
+							<ArkSelect.ItemGroup
+								class={props.classes?.itemGroup}
+								data-testid={props.tid("--item-group")}
+							>
 								<Show when={type}>
 									<ArkSelect.ItemGroupLabel
 										class={props.classes?.itemGroupLabel}
@@ -46,9 +49,16 @@ export function SelectContent(_props: SelectContentProps) {
 								</Show>
 								<For each={group}>
 									{(item) => (
-										<ArkSelect.Item class={props.classes?.item} data-testid={props.tid("--item")} item={item}>
+										<ArkSelect.Item
+											class={props.classes?.item}
+											data-testid={props.tid("--item")}
+											item={item}
+										>
 											<Show when={item.icon}>{item.icon}</Show>
-											<ArkSelect.ItemText class={props.classes?.itemText} data-testid={props.tid("--item-text")}>
+											<ArkSelect.ItemText
+												class={props.classes?.itemText}
+												data-testid={props.tid("--item-text")}
+											>
 												{item.label}
 											</ArkSelect.ItemText>
 											<ArkSelect.ItemIndicator

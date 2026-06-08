@@ -1,6 +1,14 @@
 // noinspection JSUnusedGlobalSymbols
 
-import { ChevronRight, CreditCard, LogOut, Settings, UserIcon, UserPlus, UsersIcon } from "lucide-solid";
+import {
+	ChevronRight,
+	CreditCard,
+	LogOut,
+	Settings,
+	UserIcon,
+	UserPlus,
+	UsersIcon,
+} from "lucide-solid";
 import type { Meta, StoryObj } from "storybook-solidjs-vite";
 import { fn } from "storybook/test";
 import { Button } from "../button";

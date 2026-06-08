@@ -3,7 +3,8 @@ import type { MenuRadioItemProps as CoreMenuRadioItemProps } from "@temporal-ui/
 import type React from "react";
 import { testId as testIdFn } from "@temporal-ui/core/utils/string";
 
-export interface MenuRadioItemProps extends CoreMenuRadioItemProps, React.ComponentProps<typeof ArkMenu.RadioItem> {}
+export interface MenuRadioItemProps
+	extends CoreMenuRadioItemProps, React.ComponentProps<typeof ArkMenu.RadioItem> {}
 
 export function MenuRadioItem(props: MenuRadioItemProps) {
 	const { testId, children, ...rest } = props;

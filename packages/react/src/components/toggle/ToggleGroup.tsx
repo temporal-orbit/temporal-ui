@@ -10,7 +10,10 @@ const ToggleGroupInvalidContext = createContext(false);
 export interface ToggleGroupProps
 	extends
 		CoreToggleGroupProps<React.ReactNode>,
-		Omit<React.ComponentProps<typeof ArkToggleGroup.Root>, keyof CoreToggleGroupProps<React.ReactNode>> {}
+		Omit<
+			React.ComponentProps<typeof ArkToggleGroup.Root>,
+			keyof CoreToggleGroupProps<React.ReactNode>
+		> {}
 
 export interface ToggleGroupItemProps extends React.ComponentProps<typeof ArkToggleGroup.Item> {}
 

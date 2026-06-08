@@ -4,7 +4,7 @@
 	}
 
 	[data-scope="accordion"][data-part="item"] {
-		@apply border-b;
+		@apply not-last:border-b;
 	}
 
 	[data-scope="accordion"][data-part="item-trigger"] {

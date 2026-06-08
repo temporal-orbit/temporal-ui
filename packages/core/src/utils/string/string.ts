@@ -23,4 +23,5 @@ export const getInitials = (name = "") =>
 		.join("")
 		.toUpperCase();
 
-export const testId = (testId?: string) => (str: string) => (testId ? `${testId}${str}` : undefined);
+export const testId = (testId?: string) => (str: string) =>
+	testId ? `${testId}${str}` : undefined;

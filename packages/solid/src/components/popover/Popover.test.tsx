@@ -116,7 +116,9 @@ describe("Popover Component", () => {
 	});
 
 	it("applies custom classes to content", () => {
-		render(() => <Popover {...defaultProps} classes={{ content: "custom-content-class" }} defaultOpen />);
+		render(() => (
+			<Popover {...defaultProps} classes={{ content: "custom-content-class" }} defaultOpen />
+		));
 		// The content class is applied to the Ark UI Popover.Content element
 		// We can test this by checking if the popover content exists and is visible
 		expect(screen.getByText("Popover content")).toBeVisible();

@@ -8,7 +8,10 @@ export interface ButtonProps extends CoreButtonProps<JSX.Element>, HTMLProps<"bu
 
 export function Button(_props: ButtonProps) {
 	const [props, elementProps] = splitProps(
-		mergeProps<ButtonProps[]>({ size: "md", variant: "primary", icon: false, type: "button" }, _props),
+		mergeProps<ButtonProps[]>(
+			{ size: "md", variant: "primary", icon: false, type: "button" },
+			_props,
+		),
 		["size", "variant", "icon", "loading", "disabled", "children", "className", "class", "testId"],
 	);
 

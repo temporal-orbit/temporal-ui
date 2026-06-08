@@ -3,7 +3,13 @@ import type { Component } from "solid-js";
 import { For } from "solid-js";
 import { Menu, MenuItem, MenuItemSeparator } from "../../menu";
 import { SidebarGroup, SidebarGroupLabel } from "../SidebarComponent";
-import { SidebarMenu, SidebarMenuAction, SidebarMenuButton, SidebarMenuLink, SidebarMenuItem } from "../SidebarMenu";
+import {
+	SidebarMenu,
+	SidebarMenuAction,
+	SidebarMenuButton,
+	SidebarMenuLink,
+	SidebarMenuItem,
+} from "../SidebarMenu";
 
 export function NavProjects(props: {
 	projects: {

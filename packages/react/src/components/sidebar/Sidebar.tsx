@@ -2,11 +2,18 @@ import type { SidebarProps as CoreSidebarProps } from "@temporal-ui/core/sidebar
 import { Box } from "../box";
 import { useSidebar } from "./SidebarProvider";
 
-export interface SidebarProps extends CoreSidebarProps<React.ReactNode>, React.ComponentProps<"div"> {}
+export interface SidebarProps
+	extends CoreSidebarProps<React.ReactNode>, React.ComponentProps<"div"> {}
 
 export function Sidebar(props: SidebarProps) {
 	const { state } = useSidebar();
-	const { side = "left", collapsible = "offcanvas", variant = "sidebar", children, ...boxProps } = props;
+	const {
+		side = "left",
+		collapsible = "offcanvas",
+		variant = "sidebar",
+		children,
+		...boxProps
+	} = props;
 
 	if (collapsible === "none") {
 		return (
@@ -28,7 +35,13 @@ export function Sidebar(props: SidebarProps) {
 		>
 			{/* This is what handles the sidebar gap on desktop */}
 			<div data-component="sidebar" data-slot="gap" data-variant={variant} data-side={side} />
-			<Box data-component="sidebar" data-slot="container" data-variant={variant} data-side={side} {...boxProps}>
+			<Box
+				data-component="sidebar"
+				data-slot="container"
+				data-variant={variant}
+				data-side={side}
+				{...boxProps}
+			>
 				<div data-component="sidebar" data-slot="inner">
 					{children}
 				</div>

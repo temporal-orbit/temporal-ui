@@ -1,5 +1,8 @@
 import { Avatar as ArkAvatar } from "@ark-ui/solid/avatar";
-import { resolveAvatarDataColor, type AvatarProps as CoreAvatarProps } from "@temporal-ui/core/avatar";
+import {
+	resolveAvatarDataColor,
+	type AvatarProps as CoreAvatarProps,
+} from "@temporal-ui/core/avatar";
 import { cx } from "@temporal-ui/core/utils/cx";
 import { getInitials } from "@temporal-ui/core/utils/string";
 import { UserIcon } from "lucide-solid";
@@ -8,7 +11,15 @@ import { splitProps } from "solid-js";
 export interface AvatarProps extends CoreAvatarProps {}
 
 export const Avatar = (_props: AvatarProps & ArkAvatar.RootProps) => {
-	const [props, rootProps] = splitProps(_props, ["name", "src", "size", "color", "className", "class", "testId"]);
+	const [props, rootProps] = splitProps(_props, [
+		"name",
+		"src",
+		"size",
+		"color",
+		"className",
+		"class",
+		"testId",
+	]);
 	return (
 		<ArkAvatar.Root
 			class={cx(props.className, props.class)}

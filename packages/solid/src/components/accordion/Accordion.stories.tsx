@@ -83,7 +83,9 @@ export const DefaultOpen: Story = {
 };
 
 export const Multiple: Story = {
-	render: (props: AccordionProps) => <AccordionDemo {...props} multiple defaultValue={["item-1", "item-2"]} />,
+	render: (props: AccordionProps) => (
+		<AccordionDemo {...props} multiple defaultValue={["item-1", "item-2"]} />
+	),
 };
 
 export const Disabled: Story = {
@@ -91,7 +93,9 @@ export const Disabled: Story = {
 };
 
 export const Boxed: Story = {
-	render: (props: AccordionProps) => <AccordionDemo {...props} variant="boxed" defaultValue={["item-1"]} />,
+	render: (props: AccordionProps) => (
+		<AccordionDemo {...props} variant="boxed" defaultValue={["item-1"]} />
+	),
 };
 
 export const Controlled: Story = {

@@ -30,7 +30,10 @@ export function DataTable<TData>(props: DataTableProps<TData>) {
 
 	return (
 		<div data-component="data-table" data-slot="container" data-testid={tid("--container")}>
-			<Table testId={tid("--table")} data-rows={controlProps.loading ? undefined : table.getRowModel().rows?.length}>
+			<Table
+				testId={tid("--table")}
+				data-rows={controlProps.loading ? undefined : table.getRowModel().rows?.length}
+			>
 				<thead data-testid={tid("--head")}>
 					<For each={table.getHeaderGroups()}>
 						{(headerGroup, index) => (
@@ -64,7 +67,11 @@ export function DataTable<TData>(props: DataTableProps<TData>) {
 								>
 									<For each={row.getVisibleCells()}>
 										{(cell, cellIndex) => (
-											<td data-testid={tid(`--cell-${cell.id}`)} data-cell-id={cell.id} data-cell-index={cellIndex()}>
+											<td
+												data-testid={tid(`--cell-${cell.id}`)}
+												data-cell-id={cell.id}
+												data-cell-index={cellIndex()}
+											>
 												{flexRender(cell.column.columnDef.cell, cell.getContext())}
 											</td>
 										)}

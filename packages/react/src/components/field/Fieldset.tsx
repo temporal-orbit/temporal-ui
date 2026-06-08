@@ -16,7 +16,10 @@ export function Fieldset(props: FieldsetProps) {
 			disabled={disabled}
 		>
 			{legend && (
-				<ArkFieldset.Legend className={classes?.label} data-testid={testId ? `${testId}--label` : undefined}>
+				<ArkFieldset.Legend
+					className={classes?.label}
+					data-testid={testId ? `${testId}--label` : undefined}
+				>
 					{legend}
 				</ArkFieldset.Legend>
 			)}
@@ -30,7 +33,10 @@ export function Fieldset(props: FieldsetProps) {
 				</ArkFieldset.HelperText>
 			)}
 			{error && (
-				<ArkFieldset.ErrorText className={classes?.error} data-testid={testId ? `${testId}--error` : undefined}>
+				<ArkFieldset.ErrorText
+					className={classes?.error}
+					data-testid={testId ? `${testId}--error` : undefined}
+				>
 					{error}
 				</ArkFieldset.ErrorText>
 			)}

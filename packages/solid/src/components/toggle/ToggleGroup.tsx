@@ -52,7 +52,8 @@ export function ToggleGroup(_props: ToggleGroupProps) {
 export function ToggleGroupItem(props: ToggleGroupItemProps) {
 	const invalid = useContext(ToggleGroupInvalidContext);
 	const [local, rest] = splitProps(props, ["aria-invalid"]);
-	const mergedInvalid = () => !!invalid?.() || local["aria-invalid"] === true || local["aria-invalid"] === "true";
+	const mergedInvalid = () =>
+		!!invalid?.() || local["aria-invalid"] === true || local["aria-invalid"] === "true";
 
 	return <ArkToggleGroup.Item {...rest} aria-invalid={mergedInvalid() ? true : undefined} />;
 }

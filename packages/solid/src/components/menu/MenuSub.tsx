@@ -16,7 +16,13 @@ export interface MenuSubProps
 		ParentProps {}
 
 export function MenuSub(_props: MenuSubProps) {
-	const [localProps, rootProps] = splitProps(_props, ["className", "testId", "position", "children", "onSelect"]);
+	const [localProps, rootProps] = splitProps(_props, [
+		"className",
+		"testId",
+		"position",
+		"children",
+		"onSelect",
+	]);
 
 	const tid = testId(localProps.testId);
 

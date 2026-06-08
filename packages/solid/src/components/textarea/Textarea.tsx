@@ -4,8 +4,11 @@ import type { TextareaProps as CoreTextareaProps } from "@temporal-ui/core/texta
 import { splitProps, type JSX } from "solid-js";
 import { Field } from "../field";
 
-export interface TextareaProps extends CoreTextareaProps<JSX.Element>, Omit<FieldTextareaProps, "value"> {
-	onInput?: (e: InputEvent & { currentTarget: HTMLTextAreaElement; target: HTMLTextAreaElement }) => void;
+export interface TextareaProps
+	extends CoreTextareaProps<JSX.Element>, Omit<FieldTextareaProps, "value"> {
+	onInput?: (
+		e: InputEvent & { currentTarget: HTMLTextAreaElement; target: HTMLTextAreaElement },
+	) => void;
 }
 
 export function Textarea(_props: TextareaProps) {

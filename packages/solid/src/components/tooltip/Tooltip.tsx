@@ -1,57 +1,46 @@
 import { Tooltip as ArkTooltip } from "@ark-ui/solid/tooltip";
-import type { TooltipProps as CoreTooltipProps } from "@temporal-ui/core/tooltip";
+import type { BaseComponent } from "@temporal-ui/core/base";
 import { testId } from "@temporal-ui/core/utils/string";
 import { mergeProps, Show, splitProps, type ComponentProps, type JSX } from "solid-js";
-import { Portal } from "solid-js/web";
 import { TooltipContent as TemporalTooltipContent } from "./TooltipContent";
+import { useTooltipConfig } from "./TooltipProvider";
 
 export interface TooltipProps
-	extends CoreTooltipProps<JSX.Element>, Omit<ComponentProps<typeof ArkTooltip.Root>, "onOpenChange"> {
+	extends
+		Omit<ComponentProps<typeof ArkTooltip.Root>, "onOpenChange">,
+		Pick<BaseComponent<JSX.Element>, "testId" | "className" | "children"> {
 	trigger?: (props: Record<string, unknown>) => JSX.Element;
+	onOpenChange?: (open: boolean) => void;
 }
 
 export function Tooltip(props: TooltipProps) {
-	const [localProps, rootProps] = splitProps(
-		mergeProps({ portal: true, lazyMount: true, unmountOnExit: true }, props),
-		["trigger", "portal", "testId", "position", "onOpenChange", "classes", "className", "children", "showArrow"],
-	);
-
-	const tid = testId(localProps.testId);
+	const [local, rest] = splitProps(props, [
+		"trigger",
+		"testId",
+		"className",
+		"children",
+		"onOpenChange",
+	]);
+	const arkRoot = mergeProps(useTooltipConfig(), rest);
+	const tid = testId(local.testId);
 
 	return (
 		<ArkTooltip.Root
-			{...rootProps}
-			onOpenChange={(details) => localProps.onOpenChange?.(details.open)}
-			positioning={localProps.position}
+			{...arkRoot}
+			onOpenChange={(details) => local.onOpenChange?.(details.open)}
 			data-testid={tid("--root")}
 		>
-			<Show when={localProps.trigger}>
+			<Show when={local.trigger}>
 				<ArkTooltip.Trigger
-					asChild={(triggerProps) => localProps.trigger?.({ ...triggerProps() })}
-					class={localProps.classes?.trigger}
+					asChild={(triggerProps) => local.trigger?.({ ...triggerProps() })}
 					data-testid={tid("--trigger")}
 				/>
 			</Show>
-			<Show when={localProps.portal}>
-				<Portal>
-					<TemporalTooltipContent
-						testId={localProps.testId}
-						className={localProps.className}
-						classes={localProps.classes}
-						showArrow={localProps.showArrow}
-						children={localProps.children}
-					/>
-				</Portal>
-			</Show>
-			<Show when={!localProps.portal}>
-				<TemporalTooltipContent
-					testId={localProps.testId}
-					className={localProps.className}
-					classes={localProps.classes}
-					showArrow={localProps.showArrow}
-					children={localProps.children}
-				/>
-			</Show>
+			<TemporalTooltipContent
+				testId={local.testId}
+				className={local.className}
+				children={local.children}
+			/>
 		</ArkTooltip.Root>
 	);
 }

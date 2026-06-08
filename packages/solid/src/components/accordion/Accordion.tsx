@@ -15,7 +15,12 @@ export function Accordion(props: AccordionProps) {
 		},
 		props,
 	);
-	const [controlProps, rootProps] = splitProps(merged, ["variant", "className", "testId", "onValueChange"]);
+	const [controlProps, rootProps] = splitProps(merged, [
+		"variant",
+		"className",
+		"testId",
+		"onValueChange",
+	]);
 
 	return (
 		<ArkAccordion.Root

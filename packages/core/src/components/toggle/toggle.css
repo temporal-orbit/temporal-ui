@@ -53,7 +53,9 @@
 		@apply rounded-sm border-0 shadow-none hover:bg-muted/60 hover:text-muted-foreground;
 	}
 
-	[data-scope="toggle-group"][data-part="root"][data-variant="segmented"]:not([data-orientation="vertical"])
+	[data-scope="toggle-group"][data-part="root"][data-variant="segmented"]:not(
+			[data-orientation="vertical"]
+		)
 		[data-scope="toggle-group"][data-part="item"] {
 		@apply h-auto min-h-0 min-w-8;
 	}

@@ -1,4 +1,9 @@
-import { flexRender, getCoreRowModel, useReactTable, type TableOptions } from "@tanstack/react-table";
+import {
+	flexRender,
+	getCoreRowModel,
+	useReactTable,
+	type TableOptions,
+} from "@tanstack/react-table";
 import type { DataTableProps as CoreDataTableProps } from "@temporal-ui/core/data-table";
 import { testId as createTestId } from "@temporal-ui/core/utils/string";
 import { Loader } from "../loader";
@@ -20,7 +25,10 @@ export function DataTable<TData>(props: DataTableProps<TData>) {
 
 	return (
 		<div data-component="data-table" data-slot="container" data-testid={tid("--container")}>
-			<Table testId={tid("--table")} data-rows={loading ? undefined : table.getRowModel().rows?.length}>
+			<Table
+				testId={tid("--table")}
+				data-rows={loading ? undefined : table.getRowModel().rows?.length}
+			>
 				<thead data-testid={tid("--head")}>
 					{table.getHeaderGroups().map((headerGroup, index) => (
 						<tr
@@ -32,7 +40,9 @@ export function DataTable<TData>(props: DataTableProps<TData>) {
 							{headerGroup.headers.map((header) => {
 								return (
 									<th key={header.id} data-testid={tid(`--header-cell-${header.id}`)}>
-										{header.isPlaceholder ? null : flexRender(header.column.columnDef.header, header.getContext())}
+										{header.isPlaceholder
+											? null
+											: flexRender(header.column.columnDef.header, header.getContext())}
 									</th>
 								);
 							})}

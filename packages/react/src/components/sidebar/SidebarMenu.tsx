@@ -15,7 +15,12 @@ export interface SidebarMenuItemProps extends React.ComponentProps<"li"> {}
 
 export function SidebarMenuItem(props: SidebarMenuItemProps) {
 	return (
-		<li {...props} data-component="sidebar" data-slot="menu-item" className={cx("group/menu-item", props.className)} />
+		<li
+			{...props}
+			data-component="sidebar"
+			data-slot="menu-item"
+			className={cx("group/menu-item", props.className)}
+		/>
 	);
 }
 
@@ -47,7 +52,14 @@ export function SidebarMenuLink(props: SidebarMenuLinkProps) {
 export type SidebarMenuActionProps = React.ComponentProps<"button">;
 
 export function SidebarMenuAction(props: SidebarMenuActionProps & { showOnHover?: boolean }) {
-	return <button {...props} data-component="sidebar" data-slot="menu-action" data-show-on-hover={props.showOnHover} />;
+	return (
+		<button
+			{...props}
+			data-component="sidebar"
+			data-slot="menu-action"
+			data-show-on-hover={props.showOnHover}
+		/>
+	);
 }
 
 export interface SidebarMenuBadgeProps extends React.ComponentProps<"div"> {}
@@ -80,5 +92,13 @@ export type SidebarMenuSubButtonProps = React.ComponentProps<"a"> & CoreSidebarM
 export function SidebarMenuSubButton(props: SidebarMenuSubButtonProps) {
 	const { size = "md", isActive, ...rest } = props;
 
-	return <a {...rest} data-component="sidebar" data-slot="menu-sub-button" data-size={size} data-active={isActive} />;
+	return (
+		<a
+			{...rest}
+			data-component="sidebar"
+			data-slot="menu-sub-button"
+			data-size={size}
+			data-active={isActive}
+		/>
+	);
 }

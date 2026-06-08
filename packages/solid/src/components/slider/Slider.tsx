@@ -23,7 +23,9 @@ export function Slider(props: SliderProps & ArkSlider.RootProps) {
 						<ArkSlider.Range />
 					</ArkSlider.Track>
 					<ArkSlider.Thumb index={0}>
-						<ArkSlider.HiddenInput data-testid={fieldProps.testId ? `${fieldProps.testId}--input` : undefined} />
+						<ArkSlider.HiddenInput
+							data-testid={fieldProps.testId ? `${fieldProps.testId}--input` : undefined}
+						/>
 						<Show when={controlProps.showValue}>
 							<ArkSlider.ValueText />
 						</Show>
@@ -32,7 +34,9 @@ export function Slider(props: SliderProps & ArkSlider.RootProps) {
 				<Show when={controlProps.marks}>
 					<ArkSlider.MarkerGroup data-with-dashes={controlProps.showMarkDashes ? true : undefined}>
 						<For each={Object.entries(controlProps.marks || {})}>
-							{([value, label]) => <ArkSlider.Marker value={Number(value)}>{label}</ArkSlider.Marker>}
+							{([value, label]) => (
+								<ArkSlider.Marker value={Number(value)}>{label}</ArkSlider.Marker>
+							)}
 						</For>
 					</ArkSlider.MarkerGroup>
 				</Show>

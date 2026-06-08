@@ -5,5 +5,12 @@ import type { JSX } from "solid-js";
 export interface SeparatorProps extends CoreSeparatorProps<JSX.Element>, HTMLProps<"hr"> {}
 
 export function Separator(props: SeparatorProps) {
-	return <hr {...props} data-component="separator" data-orientation={props.orientation} data-testid={props.testId} />;
+	return (
+		<hr
+			{...props}
+			data-component="separator"
+			data-orientation={props.orientation}
+			data-testid={props.testId}
+		/>
+	);
 }

@@ -6,11 +6,19 @@ import {
 } from "@temporal-ui/core/sidebar";
 import { cx } from "@temporal-ui/core/utils/cx";
 import type { JSX } from "solid-js";
-import { createContext, createEffect, createMemo, createSignal, splitProps, useContext } from "solid-js";
+import {
+	createContext,
+	createEffect,
+	createMemo,
+	createSignal,
+	splitProps,
+	useContext,
+} from "solid-js";
 import { useIsMobile } from "../../hooks/is-mobile";
 import { Box } from "../box";
 
-export interface SidebarProviderProps extends CoreSidebarProviderProps<JSX.Element>, HTMLProps<"div"> {}
+export interface SidebarProviderProps
+	extends CoreSidebarProviderProps<JSX.Element>, HTMLProps<"div"> {}
 
 interface SolidSidebarContextProps {
 	state: () => "expanded" | "collapsed";

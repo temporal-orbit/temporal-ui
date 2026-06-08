@@ -20,18 +20,22 @@ export function SidebarMenuItem(_props: SidebarMenuItemProps) {
 	const [props, elementProps] = splitProps(_props, ["class"]);
 
 	return (
-		<li {...elementProps} data-component="sidebar" data-slot="menu-item" class={cx("group/menu-item", props.class)} />
+		<li
+			{...elementProps}
+			data-component="sidebar"
+			data-slot="menu-item"
+			class={cx("group/menu-item", props.class)}
+		/>
 	);
 }
 
 export interface SidebarMenuButtonProps extends HTMLProps<"button">, CoreSidebarMenuButtonProps {}
 
 export function SidebarMenuButton(_props: SidebarMenuButtonProps) {
-	const [props, elementProps] = splitProps(mergeProps({ variant: "default", size: "default" }, _props), [
-		"variant",
-		"size",
-		"isActive",
-	]);
+	const [props, elementProps] = splitProps(
+		mergeProps({ variant: "default", size: "default" }, _props),
+		["variant", "size", "isActive"],
+	);
 
 	return (
 		<button
@@ -72,7 +76,12 @@ export function SidebarMenuAction(_props: SidebarMenuActionProps) {
 	const [props, elementProps] = splitProps(_props, ["showOnHover"]);
 
 	return (
-		<button {...elementProps} data-component="sidebar" data-slot="menu-action" data-show-on-hover={props.showOnHover} />
+		<button
+			{...elementProps}
+			data-component="sidebar"
+			data-slot="menu-action"
+			data-show-on-hover={props.showOnHover}
+		/>
 	);
 }
 
@@ -106,7 +115,10 @@ export function SidebarMenuSubItem(_props: SidebarMenuSubItemProps) {
 export interface SidebarMenuSubButtonProps extends HTMLProps<"a">, CoreSidebarMenuSubButtonProps {}
 
 export function SidebarMenuSubButton(_props: SidebarMenuSubButtonProps) {
-	const [props, elementProps] = splitProps(mergeProps({ size: "md" }, _props), ["size", "isActive"]);
+	const [props, elementProps] = splitProps(mergeProps({ size: "md" }, _props), [
+		"size",
+		"isActive",
+	]);
 
 	return (
 		<a

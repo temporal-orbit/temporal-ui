@@ -31,7 +31,14 @@ describe("CheckboxGroup", () => {
 	});
 
 	it("should check items when checked prop is true", () => {
-		render(<CheckboxGroup label="Select options" items={items} name="options" values={["option1", "option3"]} />);
+		render(
+			<CheckboxGroup
+				label="Select options"
+				items={items}
+				name="options"
+				values={["option1", "option3"]}
+			/>,
+		);
 		expect(screen.getByLabelText("Option 1")).toBeChecked();
 		expect(screen.getByLabelText("Option 3")).toBeChecked();
 		expect(screen.getByLabelText("Option 2")).not.toBeChecked();

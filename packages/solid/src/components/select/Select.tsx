@@ -8,7 +8,8 @@ import { Portal } from "solid-js/web";
 import { Field, fieldAttributes } from "../field";
 import { SelectContent, type SelectItem } from "./SelectContent";
 
-export interface SelectProps<D = unknown> extends CoreSelectProps<JSX.Element>, ArkSelect.RootProps<SelectItem<D>> {}
+export interface SelectProps<D = unknown>
+	extends CoreSelectProps<JSX.Element>, ArkSelect.RootProps<SelectItem<D>> {}
 
 export function Select<D = unknown>(_props: SelectProps<D>) {
 	const [fieldProps, controlProps, rootProps] = splitProps(_props, fieldAttributes, [
@@ -34,7 +35,11 @@ export function Select<D = unknown>(_props: SelectProps<D>) {
 
 	return (
 		<Field {...fieldProps} testId={tid("-field")}>
-			<ArkSelect.RootProvider value={select} class={fieldProps.classes?.selectRoot} data-testid={tid("--root")}>
+			<ArkSelect.RootProvider
+				value={select}
+				class={fieldProps.classes?.selectRoot}
+				data-testid={tid("--root")}
+			>
 				<ArkSelect.Control
 					aria-invalid={!!fieldProps.error}
 					class={cx(fieldProps.classes?.control, controlProps.class)}
@@ -59,11 +64,19 @@ export function Select<D = unknown>(_props: SelectProps<D>) {
 				</ArkSelect.Control>
 				<Show when={controlProps.portal}>
 					<Portal>
-						<SelectContent tid={tid} maxHeight={controlProps.maxDropdownHeight} classes={fieldProps.classes} />
+						<SelectContent
+							tid={tid}
+							maxHeight={controlProps.maxDropdownHeight}
+							classes={fieldProps.classes}
+						/>
 					</Portal>
 				</Show>
 				<Show when={!controlProps.portal}>
-					<SelectContent tid={tid} maxHeight={controlProps.maxDropdownHeight} classes={fieldProps.classes} />
+					<SelectContent
+						tid={tid}
+						maxHeight={controlProps.maxDropdownHeight}
+						classes={fieldProps.classes}
+					/>
 				</Show>
 				<ArkSelect.HiddenSelect data-testid={tid("--input")} />
 			</ArkSelect.RootProvider>

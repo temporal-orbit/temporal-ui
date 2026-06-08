@@ -56,18 +56,28 @@ export function DateInput(props: DateInputProps) {
 				{...rootProps}
 				value={controlProps.value?.map((date) => parseDate(date))}
 				defaultValue={controlProps.defaultValue?.map((date) => parseDate(date))}
-				onValueChange={(details) => controlProps.onValueChange?.(details.value.map((date) => date.toString()))}
+				onValueChange={(details) =>
+					controlProps.onValueChange?.(details.value.map((date) => date.toString()))
+				}
 				positioning={{ placement: "bottom-start", ...controlProps.position }}
 				data-testid={tid("--root")}
 			>
 				<DateInputControl data-testid={tid("--control")}>
 					<Show when={controlProps.startSection || controlProps.endSection}>
-						<div data-component={"date-input"} data-slot={"start-section"} data-testid={tid("--start-section")}>
+						<div
+							data-component={"date-input"}
+							data-slot={"start-section"}
+							data-testid={tid("--start-section")}
+						>
 							{controlProps.startSection}
 						</div>
 					</Show>
 					<Show when={controlProps.endSection}>
-						<div data-component={"date-input"} data-slot={"end-section"} data-testid={tid("--end-section")}>
+						<div
+							data-component={"date-input"}
+							data-slot={"end-section"}
+							data-testid={tid("--end-section")}
+						>
 							{controlProps.endSection}
 						</div>
 					</Show>
@@ -87,7 +97,8 @@ export function DateInput(props: DateInputProps) {
 											`Select a date${rootProps.selectionMode === "range" ? " range" : ""}...`
 										}
 									>
-										{controlProps.rangeFormat?.(datePicker().valueAsDate) ?? datePicker().valueAsString.join(" - ")}
+										{controlProps.rangeFormat?.(datePicker().valueAsDate) ??
+											datePicker().valueAsString.join(" - ")}
 									</Show>
 								</DateInputTrigger>
 							);
@@ -100,11 +111,17 @@ export function DateInput(props: DateInputProps) {
 						<DateInputContent data-testid={tid("--content")}>
 							<Show
 								when={
-									controlProps.presets && Object.keys(controlProps.presets).length > 0 ? controlProps.presets : false
+									controlProps.presets && Object.keys(controlProps.presets).length > 0
+										? controlProps.presets
+										: false
 								}
 							>
 								{(presets) => (
-									<PresetsToolbar presets={presets()} presetButtonProps={controlProps.presetButtonProps} tid={tid} />
+									<PresetsToolbar
+										presets={presets()}
+										presetButtonProps={controlProps.presetButtonProps}
+										tid={tid}
+									/>
 								)}
 							</Show>
 							<DateInputViewControl data-testid={tid("--view-control")}>

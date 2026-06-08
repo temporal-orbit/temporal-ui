@@ -14,15 +14,24 @@ import {
 import { splitProps, type ComponentProps, type JSX } from "solid-js";
 import { testId } from "@temporal-ui/core/utils/string";
 
-export function Calendar(props: DateInputProps<JSX.Element> & ComponentProps<typeof DatePicker.Root>) {
-	const [controlProps, rootProps] = splitProps(props, ["testId", "value", "defaultValue", "onValueChange"]);
+export function Calendar(
+	props: DateInputProps<JSX.Element> & ComponentProps<typeof DatePicker.Root>,
+) {
+	const [controlProps, rootProps] = splitProps(props, [
+		"testId",
+		"value",
+		"defaultValue",
+		"onValueChange",
+	]);
 	const tid = testId(controlProps.testId);
 	return (
 		<DateInputRoot
 			{...rootProps}
 			value={controlProps.value?.map((date) => parseDate(date))}
 			defaultValue={controlProps.defaultValue?.map((date) => parseDate(date))}
-			onValueChange={(details) => controlProps.onValueChange?.(details.value.map((date) => date.toString()))}
+			onValueChange={(details) =>
+				controlProps.onValueChange?.(details.value.map((date) => date.toString()))
+			}
 			inline
 			data-testid={tid("--root")}
 		>

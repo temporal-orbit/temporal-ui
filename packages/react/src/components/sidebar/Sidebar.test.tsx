@@ -65,7 +65,9 @@ describe("Sidebar", () => {
 			</SidebarProvider>,
 		);
 
-		const sidebar = screen.getByTestId("sidebar-content").closest('[data-component="sidebar"][data-slot="root"]');
+		const sidebar = screen
+			.getByTestId("sidebar-content")
+			.closest('[data-component="sidebar"][data-slot="root"]');
 		expect(sidebar).toHaveAttribute("data-variant", "sidebar");
 		expect(sidebar).toHaveAttribute("data-side", "left");
 		expect(sidebar).toHaveAttribute("data-state");
@@ -109,7 +111,9 @@ describe("SidebarProvider", () => {
 			return <div>{sidebar.state}</div>;
 		};
 
-		expect(() => render(<TestComponent />)).toThrow("useSidebar must be used within a SidebarProvider.");
+		expect(() => render(<TestComponent />)).toThrow(
+			"useSidebar must be used within a SidebarProvider.",
+		);
 	});
 
 	it("persists sidebar state to localStorage", () => {

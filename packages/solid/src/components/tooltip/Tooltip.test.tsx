@@ -1,7 +1,8 @@
 import { cleanup, render, screen, waitFor } from "@solidjs/testing-library";
 import userEvent from "@testing-library/user-event";
-import { vi } from "vitest";
+import { beforeEach, describe, expect, it, vi } from "vitest";
 import { Tooltip, type TooltipProps } from "./Tooltip";
+import { TooltipProvider } from "./TooltipProvider";
 
 describe("Tooltip Component", () => {
 	const defaultProps: TooltipProps = {
@@ -37,36 +38,6 @@ describe("Tooltip Component", () => {
 		);
 	});
 
-	it("renders with portal by default", async () => {
-		const user = userEvent.setup();
-		render(() => <Tooltip {...defaultProps} />);
-
-		const trigger = screen.getByRole("button", { name: "Hover me" });
-		await user.hover(trigger);
-
-		await waitFor(
-			() => {
-				expect(screen.getByText("Tooltip content")).toBeVisible();
-			},
-			{ timeout: 1000 },
-		);
-	});
-
-	it("renders without portal when portal=false", async () => {
-		const user = userEvent.setup();
-		render(() => <Tooltip {...defaultProps} portal={false} />);
-
-		const trigger = screen.getByRole("button", { name: "Hover me" });
-		await user.hover(trigger);
-
-		await waitFor(
-			() => {
-				expect(screen.getByText("Tooltip content")).toBeVisible();
-			},
-			{ timeout: 1000 },
-		);
-	});
-
 	it("respects defaultOpen prop", () => {
 		render(() => <Tooltip {...defaultProps} defaultOpen />);
 		expect(screen.getByText("Tooltip content")).toBeVisible();
@@ -74,9 +45,8 @@ describe("Tooltip Component", () => {
 
 	it("respects controlled open=false prop", async () => {
 		render(() => <Tooltip {...defaultProps} open={false} />);
-		// When controlled with open={false}, content should not be visible
 		await waitFor(() => {
-			expect(screen.queryByText("Tooltip content")).not.toBeInTheDocument();
+			expect(screen.getByText("Tooltip content")).not.toBeVisible();
 		});
 	});
 
@@ -101,12 +71,6 @@ describe("Tooltip Component", () => {
 		);
 	});
 
-	it("applies custom classes to trigger", () => {
-		render(() => <Tooltip {...defaultProps} classes={{ trigger: "custom-trigger-class" }} />);
-		const trigger = screen.getByRole("button", { name: "Hover me" });
-		expect(trigger).toHaveClass("custom-trigger-class");
-	});
-
 	it("renders with testId for selectors", () => {
 		render(() => <Tooltip {...defaultProps} testId="tooltip-test" defaultOpen />);
 		expect(screen.getByTestId("tooltip-test--trigger")).toBeInTheDocument();
@@ -115,8 +79,9 @@ describe("Tooltip Component", () => {
 	});
 
 	it("handles positioning prop", () => {
-		const position = { placement: "bottom-start" as const };
-		render(() => <Tooltip {...defaultProps} position={position} defaultOpen />);
+		render(() => (
+			<Tooltip {...defaultProps} positioning={{ placement: "bottom-start" }} defaultOpen />
+		));
 		expect(screen.getByText("Tooltip content")).toBeVisible();
 	});
 
@@ -137,9 +102,73 @@ describe("Tooltip Component", () => {
 		expect(screen.getByText("Header")).toBeInTheDocument();
 		expect(screen.getByText("Paragraph content")).toBeInTheDocument();
 	});
+});
 
-	it("renders arrow when showArrow is true", () => {
-		render(() => <Tooltip {...defaultProps} showArrow testId="tooltip-arrow" defaultOpen />);
-		expect(screen.getByTestId("tooltip-arrow--arrow")).toBeInTheDocument();
+describe("TooltipProvider", () => {
+	const defaultProps: TooltipProps = {
+		trigger: (props) => (
+			<button type="button" {...props}>
+				Hover me
+			</button>
+		),
+		children: "Tooltip content",
+	};
+
+	beforeEach(() => {
+		cleanup();
+	});
+
+	it("applies openDelay from provider", async () => {
+		const onOpenChange = vi.fn();
+		const user = userEvent.setup();
+		render(() => (
+			<TooltipProvider openDelay={500}>
+				<Tooltip {...defaultProps} onOpenChange={onOpenChange} />
+			</TooltipProvider>
+		));
+
+		await user.hover(screen.getByRole("button", { name: "Hover me" }));
+
+		await waitFor(() => expect(onOpenChange).toHaveBeenCalledWith(true), { timeout: 1000 });
+	});
+
+	it("lets instance props override provider config", async () => {
+		const onOpenChange = vi.fn();
+		const user = userEvent.setup();
+		render(() => (
+			<TooltipProvider openDelay={500}>
+				<Tooltip {...defaultProps} openDelay={0} onOpenChange={onOpenChange} />
+			</TooltipProvider>
+		));
+
+		await user.hover(screen.getByRole("button", { name: "Hover me" }));
+
+		await waitFor(() => expect(onOpenChange).toHaveBeenCalledWith(true), { timeout: 200 });
+	});
+
+	it("uses the innermost nested provider config", async () => {
+		const onOpenChange = vi.fn();
+		const user = userEvent.setup();
+		render(() => (
+			<TooltipProvider openDelay={500}>
+				<TooltipProvider openDelay={100}>
+					<Tooltip {...defaultProps} onOpenChange={onOpenChange} />
+				</TooltipProvider>
+			</TooltipProvider>
+		));
+
+		await user.hover(screen.getByRole("button", { name: "Hover me" }));
+
+		await waitFor(() => expect(onOpenChange).toHaveBeenCalledWith(true), { timeout: 500 });
+	});
+
+	it("applies interactive from provider", () => {
+		render(() => (
+			<TooltipProvider interactive>
+				<Tooltip {...defaultProps} defaultOpen testId="provider-interactive" />
+			</TooltipProvider>
+		));
+
+		expect(screen.getByTestId("provider-interactive--content")).toBeInTheDocument();
 	});
 });

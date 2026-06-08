@@ -40,8 +40,14 @@ describe("Avatar", () => {
 
 	it("hides fallback when image is already decoded", async () => {
 		const completeDesc = Object.getOwnPropertyDescriptor(HTMLImageElement.prototype, "complete");
-		const naturalWidthDesc = Object.getOwnPropertyDescriptor(HTMLImageElement.prototype, "naturalWidth");
-		const naturalHeightDesc = Object.getOwnPropertyDescriptor(HTMLImageElement.prototype, "naturalHeight");
+		const naturalWidthDesc = Object.getOwnPropertyDescriptor(
+			HTMLImageElement.prototype,
+			"naturalWidth",
+		);
+		const naturalHeightDesc = Object.getOwnPropertyDescriptor(
+			HTMLImageElement.prototype,
+			"naturalHeight",
+		);
 
 		Object.defineProperty(HTMLImageElement.prototype, "complete", {
 			configurable: true,
@@ -69,8 +75,10 @@ describe("Avatar", () => {
 			});
 		} finally {
 			if (completeDesc) Object.defineProperty(HTMLImageElement.prototype, "complete", completeDesc);
-			if (naturalWidthDesc) Object.defineProperty(HTMLImageElement.prototype, "naturalWidth", naturalWidthDesc);
-			if (naturalHeightDesc) Object.defineProperty(HTMLImageElement.prototype, "naturalHeight", naturalHeightDesc);
+			if (naturalWidthDesc)
+				Object.defineProperty(HTMLImageElement.prototype, "naturalWidth", naturalWidthDesc);
+			if (naturalHeightDesc)
+				Object.defineProperty(HTMLImageElement.prototype, "naturalHeight", naturalHeightDesc);
 		}
 	});
 
@@ -82,7 +90,9 @@ describe("Avatar", () => {
 				</For>
 			</div>
 		));
-		const attrs = [...AVATAR_COLOR_VARIANTS].map((v) => screen.getByTestId(`root-${v}`).getAttribute("data-color"));
+		const attrs = [...AVATAR_COLOR_VARIANTS].map((v) =>
+			screen.getByTestId(`root-${v}`).getAttribute("data-color"),
+		);
 		expect(attrs).toMatchInlineSnapshot(`
 			[
 			  "red",

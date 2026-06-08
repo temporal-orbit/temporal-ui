@@ -2,7 +2,9 @@ import path from "node:path";
 import { defineMain } from "storybook-solidjs-vite";
 
 const getAbsolutePath = (packageName: string): string =>
-	path.dirname(import.meta.resolve(path.join(packageName, "package.json"))).replace(/^file:\/\//, "");
+	path
+		.dirname(import.meta.resolve(path.join(packageName, "package.json")))
+		.replace(/^file:\/\//, "");
 
 export default defineMain({
 	framework: {
@@ -19,6 +21,7 @@ export default defineMain({
 		getAbsolutePath("@storybook/addon-docs"),
 		getAbsolutePath("@storybook/addon-a11y"),
 		getAbsolutePath("@storybook/addon-links"),
+		getAbsolutePath("@storybook/addon-themes"),
 	],
 	stories: ["../src/**/*.stories.@(js|jsx|mjs|ts|tsx)", "../src/**/*.mdx"],
 });

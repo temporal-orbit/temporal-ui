@@ -17,7 +17,10 @@ export function Field(props: FieldProps) {
 			required={required}
 		>
 			{label && (
-				<ArkField.Label className={classes?.label} data-testid={testId ? `${testId}--label` : undefined}>
+				<ArkField.Label
+					className={classes?.label}
+					data-testid={testId ? `${testId}--label` : undefined}
+				>
 					{label}
 				</ArkField.Label>
 			)}
@@ -32,7 +35,10 @@ export function Field(props: FieldProps) {
 			)}
 			{children}
 			{error && (
-				<ArkField.ErrorText className={classes?.error} data-testid={testId ? `${testId}--error` : undefined}>
+				<ArkField.ErrorText
+					className={classes?.error}
+					data-testid={testId ? `${testId}--error` : undefined}
+				>
 					{error}
 				</ArkField.ErrorText>
 			)}

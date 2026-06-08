@@ -153,7 +153,11 @@ export const ColorVariants: Story = {
 					<Index each={AVATAR_COLOR_VARIANTS}>
 						{(c, i) => (
 							<Stack gap={1} align="center">
-								<Avatar name={AUTO_COLOR_SAMPLE_NAMES[i]} color="auto" testId={`avatar-auto-${c()}`} />
+								<Avatar
+									name={AUTO_COLOR_SAMPLE_NAMES[i]}
+									color="auto"
+									testId={`avatar-auto-${c()}`}
+								/>
 								<span class="max-w-20 text-center text-xs text-muted-foreground">{c()}</span>
 							</Stack>
 						)}
