@@ -3,11 +3,11 @@
 		@apply relative w-fit;
 
 		[data-part="control"] {
-			@apply grid grid-cols-[1fr_32px] grid-rows-[1fr_1fr] border border-input rounded-md h-9 focus-within:border-ring focus-within:ring-ring/50 focus-within:ring-[3px] aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive;
+			@apply grid grid-cols-[1fr_32px] grid-rows-[1fr_1fr] border border-input rounded-md h-9 focus-within:border-ring focus-within:ring-ring/50 focus-within:ring-[3px] aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive overflow-hidden;
 		}
 
 		[data-part="input"] {
-			@apply appearance-none placeholder:text-muted-foreground bg-transparent dark:bg-input/30 flex w-16 data-with-start-section:w-24 data-with-start-section:ps-9 min-w-0 px-3 py-1 text-base shadow-xs transition selection:bg-primary selection:text-primary-foreground outline-none md:text-sm disabled:opacity-50 row-span-2 border-r;
+			@apply appearance-none placeholder:text-muted-foreground bg-card dark:bg-input/30 flex w-16 data-with-start-section:w-24 data-with-start-section:ps-9 min-w-0 px-3 py-1 text-base shadow-xs transition selection:bg-primary selection:text-primary-foreground outline-none md:text-sm disabled:opacity-50 row-span-2 border-r;
 		}
 
 		[data-part="increment-trigger"] {
@@ -16,7 +16,7 @@
 
 		[data-part="increment-trigger"],
 		[data-part="decrement-trigger"] {
-			@apply bg-transparent dark:bg-input/30 text-muted-foreground flex justify-center items-center [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4 hover:text-primary transition-colors cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed;
+			@apply bg-card dark:bg-input/30 text-muted-foreground flex justify-center items-center [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4 hover:text-primary transition-colors cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed;
 		}
 
 		[data-slot="start-section"] {

@@ -3,7 +3,7 @@
 import { BoldIcon } from "lucide-solid";
 import type { Meta, StoryObj } from "storybook-solidjs-vite";
 import { fn } from "storybook/test";
-import { Toggle, ToggleIndicator } from "./Toggle";
+import { Toggle, ToggleIndicator, type ToggleProps } from "./Toggle";
 
 const meta = {
 	title: "Solid/Toggle",
@@ -23,53 +23,69 @@ const meta = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
+const iconToggle = (args: ToggleProps) => (
+	<div class="w-fit">
+		<Toggle {...args}>
+			<BoldIcon size={16} />
+		</Toggle>
+	</div>
+);
+
 export const Default: Story = {
-	args: {
-		children: <BoldIcon size={16} />,
-	},
+	render: iconToggle,
 };
 
 export const Pressed: Story = {
-	args: {
-		...Default.args,
-		pressed: true,
-	},
+	args: { pressed: true },
+	render: iconToggle,
 };
 
 export const Disabled: Story = {
-	args: {
-		...Default.args,
-		disabled: true,
-	},
+	args: { disabled: true },
+	render: iconToggle,
 };
 
 export const WithText: Story = {
-	args: {
-		children: "Bold",
-	},
+	render: (args: ToggleProps) => (
+		<div class="w-fit">
+			<Toggle {...args}>Bold</Toggle>
+		</div>
+	),
 };
 
 export const WithIndicator: Story = {
 	render: () => (
-		<Toggle>
-			<ToggleIndicator fallback={<BoldIcon size={16} />}>
-				<BoldIcon size={16} stroke-width={3} />
-			</ToggleIndicator>
-		</Toggle>
+		<div class="w-fit">
+			<Toggle>
+				<ToggleIndicator fallback={<BoldIcon size={16} />}>
+					<BoldIcon size={16} stroke-width={3} />
+				</ToggleIndicator>
+			</Toggle>
+		</div>
 	),
 };
 
 export const WithField: Story = {
-	args: {
-		...Default.args,
-		label: "Bold",
-		hint: "Toggles bold formatting for the selection.",
-	},
+	render: (args: ToggleProps) => (
+		<div class="w-fit">
+			<Toggle {...args} label="Bold" hint="Toggles bold formatting for the selection.">
+				<BoldIcon size={16} />
+			</Toggle>
+		</div>
+	),
 };
 
 export const WithFieldError: Story = {
-	args: {
-		...WithField.args,
-		error: "Bold formatting is not available in this context.",
-	},
+	render: (args: ToggleProps) => (
+		<div class="w-fit">
+			<Toggle
+				{...args}
+				label="Bold"
+				hint="Toggles bold formatting for the selection."
+				error="Bold formatting is not available in this context."
+			>
+				<BoldIcon size={16} />
+			</Toggle>
+		</div>
+	),
 };
