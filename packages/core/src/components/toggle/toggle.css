@@ -4,7 +4,7 @@
 			@apply inline-flex items-center justify-center rounded-md text-sm font-medium transition-all bg-transparent hover:bg-muted hover:text-muted-foreground border border-input shadow-xs focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] outline-none;
 
 			&[data-state="on"] {
-				@apply bg-accent text-accent-foreground;
+				@apply bg-muted-foreground/30 text-accent-foreground;
 			}
 
 			&[data-disabled] {
@@ -26,7 +26,7 @@
 			}
 
 			&[data-variant="segmented"] {
-				@apply gap-0.5 rounded-md border border-input bg-background p-0.5 shadow-xs;
+				@apply gap-0.5 rounded-md border border-input p-0.5 shadow-xs;
 
 				/* Match default row height (36px): border + padding are inside `h-9` via border-box */
 				&:not([data-orientation="vertical"]) {
@@ -39,7 +39,7 @@
 			@apply inline-flex shrink-0 items-center justify-center gap-1.5 rounded-md text-sm font-medium transition-all h-9 min-w-9 px-2.5 bg-transparent hover:bg-muted hover:text-muted-foreground border border-input shadow-xs focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] outline-none;
 
 			&[data-state="on"] {
-				@apply bg-accent text-accent-foreground;
+				@apply bg-muted-foreground/20 text-accent-foreground;
 			}
 
 			&[data-disabled] {
@@ -62,7 +62,7 @@
 
 	[data-scope="toggle-group"][data-part="root"][data-variant="segmented"]
 		[data-scope="toggle-group"][data-part="item"][data-state="on"] {
-		@apply bg-secondary text-secondary-foreground shadow-xs hover:bg-secondary/80;
+		@apply bg-muted-foreground/20 text-secondary-foreground shadow-xs hover:bg-secondary/80;
 	}
 
 	[data-scope="toggle-group"][data-part="root"][data-variant="segmented"]
