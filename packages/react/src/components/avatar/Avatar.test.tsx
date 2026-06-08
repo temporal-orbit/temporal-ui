@@ -39,8 +39,14 @@ describe("Avatar", () => {
 
 	it("hides fallback when image is already decoded (no colored fallback visible)", async () => {
 		const completeDesc = Object.getOwnPropertyDescriptor(HTMLImageElement.prototype, "complete");
-		const naturalWidthDesc = Object.getOwnPropertyDescriptor(HTMLImageElement.prototype, "naturalWidth");
-		const naturalHeightDesc = Object.getOwnPropertyDescriptor(HTMLImageElement.prototype, "naturalHeight");
+		const naturalWidthDesc = Object.getOwnPropertyDescriptor(
+			HTMLImageElement.prototype,
+			"naturalWidth",
+		);
+		const naturalHeightDesc = Object.getOwnPropertyDescriptor(
+			HTMLImageElement.prototype,
+			"naturalHeight",
+		);
 
 		Object.defineProperty(HTMLImageElement.prototype, "complete", {
 			configurable: true,
@@ -68,8 +74,10 @@ describe("Avatar", () => {
 			});
 		} finally {
 			if (completeDesc) Object.defineProperty(HTMLImageElement.prototype, "complete", completeDesc);
-			if (naturalWidthDesc) Object.defineProperty(HTMLImageElement.prototype, "naturalWidth", naturalWidthDesc);
-			if (naturalHeightDesc) Object.defineProperty(HTMLImageElement.prototype, "naturalHeight", naturalHeightDesc);
+			if (naturalWidthDesc)
+				Object.defineProperty(HTMLImageElement.prototype, "naturalWidth", naturalWidthDesc);
+			if (naturalHeightDesc)
+				Object.defineProperty(HTMLImageElement.prototype, "naturalHeight", naturalHeightDesc);
 		}
 	});
 });

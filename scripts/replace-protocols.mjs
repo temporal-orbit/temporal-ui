@@ -94,7 +94,9 @@ if (!packagePath) {
 		console.error(error);
 		console.error("Usage: node replace-protocols.mjs [path-to-package.json]");
 		console.error("Example: node replace-protocols.mjs packages/react/package.json");
-		console.error("Or run from within a package directory: node ../../scripts/replace-protocols.mjs");
+		console.error(
+			"Or run from within a package directory: node ../../scripts/replace-protocols.mjs",
+		);
 		process.exit(1);
 	}
 }

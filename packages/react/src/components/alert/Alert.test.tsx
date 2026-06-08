@@ -66,7 +66,9 @@ describe("Alert Component", () => {
 	});
 
 	it("renders without title when title is not set", () => {
-		render(<Alert description="This alert has no title but has a description." title={undefined} />);
+		render(
+			<Alert description="This alert has no title but has a description." title={undefined} />,
+		);
 
 		expect(screen.queryByRole("heading")).not.toBeInTheDocument();
 		expect(screen.getByText("This alert has no title but has a description.")).toBeInTheDocument();
@@ -75,13 +77,21 @@ describe("Alert Component", () => {
 	it("renders without description when description is not set", () => {
 		render(<Alert title="Alert without description" description={undefined} />);
 
-		expect(screen.getByRole("heading", { level: 2 })).toHaveTextContent("Alert without description");
-		expect(screen.queryByText("This is an alert with title and description.")).not.toBeInTheDocument();
+		expect(screen.getByRole("heading", { level: 2 })).toHaveTextContent(
+			"Alert without description",
+		);
+		expect(
+			screen.queryByText("This is an alert with title and description."),
+		).not.toBeInTheDocument();
 	});
 
 	it("renders custom icon when provided", () => {
 		render(
-			<Alert {...defaultProps} title="Alert with custom icon" icon={<AlarmClockCheck data-testid="custom-icon" />} />,
+			<Alert
+				{...defaultProps}
+				title="Alert with custom icon"
+				icon={<AlarmClockCheck data-testid="custom-icon" />}
+			/>,
 		);
 
 		expect(screen.getByTestId("custom-icon")).toBeInTheDocument();

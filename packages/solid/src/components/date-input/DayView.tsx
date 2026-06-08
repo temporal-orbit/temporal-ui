@@ -22,7 +22,9 @@ export function DayView(props: DayViewProps) {
 											<DatePicker.TableRow data-scope={"date-input"}>
 												<Index each={datePicker().weekDays}>
 													{(weekDay) => (
-														<DatePicker.TableHeader data-scope={"date-input"}>{weekDay().short}</DatePicker.TableHeader>
+														<DatePicker.TableHeader data-scope={"date-input"}>
+															{weekDay().short}
+														</DatePicker.TableHeader>
 													)}
 												</Index>
 											</DatePicker.TableRow>

@@ -1,6 +1,6 @@
 @layer components {
 	[data-scope="tooltip"][data-part="content"] {
-		@apply relative flex flex-col gap-1 bg-popover text-popover-foreground overflow-x-hidden overflow-y-auto rounded-md shadow-md border z-50 min-w-max max-w-[calc(var(--available-width)-16px)] px-3 py-2 text-sm;
+		@apply relative flex flex-col gap-1 bg-primary text-popover overflow-x-hidden overflow-y-auto rounded-sm shadow-md border z-50 min-w-max max-w-[calc(var(--available-width)-16px)] px-2 py-1 text-xs;
 	}
 
 	[data-scope="tooltip"][data-part="content"][data-state="open"] {

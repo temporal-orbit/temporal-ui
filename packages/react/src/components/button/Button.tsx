@@ -2,7 +2,8 @@ import type { ButtonProps as CoreButtonProps } from "@temporal-ui/core/button";
 import type React from "react";
 import { Loader } from "../loader";
 
-export interface ButtonProps extends CoreButtonProps<React.ReactNode>, React.ButtonHTMLAttributes<HTMLButtonElement> {}
+export interface ButtonProps
+	extends CoreButtonProps<React.ReactNode>, React.ButtonHTMLAttributes<HTMLButtonElement> {}
 
 export function Button(props: ButtonProps) {
 	const {
@@ -31,7 +32,13 @@ export function Button(props: ButtonProps) {
 			data-loading={loading || undefined}
 			data-testid={testId}
 		>
-			{loading && <Loader size={size} className={"loading"} data-testid={testId ? `${testId}--loader` : undefined} />}
+			{loading && (
+				<Loader
+					size={size}
+					className={"loading"}
+					data-testid={testId ? `${testId}--loader` : undefined}
+				/>
+			)}
 			<span className={"inner"}>{children}</span>
 		</button>
 	);

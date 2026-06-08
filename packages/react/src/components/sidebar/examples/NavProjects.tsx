@@ -1,7 +1,13 @@
 import { Folder, Forward, MoreHorizontal, Trash2, type LucideIcon } from "lucide-react";
 import { Menu, MenuItem, MenuItemSeparator } from "../../menu";
 import { SidebarGroup, SidebarGroupLabel } from "../SidebarComponent";
-import { SidebarMenu, SidebarMenuAction, SidebarMenuButton, SidebarMenuLink, SidebarMenuItem } from "../SidebarMenu";
+import {
+	SidebarMenu,
+	SidebarMenuAction,
+	SidebarMenuButton,
+	SidebarMenuLink,
+	SidebarMenuItem,
+} from "../SidebarMenu";
 
 export function NavProjects({
 	projects,

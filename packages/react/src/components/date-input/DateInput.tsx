@@ -75,12 +75,20 @@ export function DateInput(props: DateInputProps) {
 			>
 				<DateInputControl data-testid={tid("--control")}>
 					{startSection && (
-						<div data-component={"date-input"} data-slot={"start-section"} data-testid={tid("--start-section")}>
+						<div
+							data-component={"date-input"}
+							data-slot={"start-section"}
+							data-testid={tid("--start-section")}
+						>
 							{startSection}
 						</div>
 					)}
 					{endSection && (
-						<div data-component={"date-input"} data-slot={"end-section"} data-testid={tid("--end-section")}>
+						<div
+							data-component={"date-input"}
+							data-slot={"end-section"}
+							data-testid={tid("--end-section")}
+						>
 							{endSection}
 						</div>
 					)}
@@ -94,8 +102,10 @@ export function DateInput(props: DateInputProps) {
 									data-with-end-section={endSection ? true : undefined}
 								>
 									{datePicker.valueAsString.length
-										? (rangeFormat?.(datePicker.valueAsDate) ?? datePicker.valueAsString.join(" - "))
-										: (placeholder ?? `Select a date${rootProps.selectionMode === "range" ? " range" : ""}...`)}
+										? (rangeFormat?.(datePicker.valueAsDate) ??
+											datePicker.valueAsString.join(" - "))
+										: (placeholder ??
+											`Select a date${rootProps.selectionMode === "range" ? " range" : ""}...`)}
 								</DateInputTrigger>
 							);
 						}}

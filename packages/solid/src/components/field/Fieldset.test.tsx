@@ -5,7 +5,12 @@ import { Fieldset } from "./Fieldset";
 describe("Fieldset", () => {
 	it("renders root, legend, hint, error and children", () => {
 		render(() => (
-			<Fieldset legend="Group Legend" hint="Helpful hint" error="Something went wrong" testId="fieldset">
+			<Fieldset
+				legend="Group Legend"
+				hint="Helpful hint"
+				error="Something went wrong"
+				testId="fieldset"
+			>
 				<div data-testid="child">child</div>
 			</Fieldset>
 		));

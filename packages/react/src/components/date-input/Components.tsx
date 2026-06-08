@@ -6,8 +6,13 @@ export const DateInputRoot = (props: React.ComponentProps<typeof DatePicker.Root
 	return <DatePicker.Root {...props} data-scope={"date-input"} />;
 };
 
-export const DateInputControl = ({ className, ...props }: React.ComponentProps<typeof DatePicker.Control>) => {
-	return <DatePicker.Control {...props} data-scope={"date-input"} className={cx("group", className)} />;
+export const DateInputControl = ({
+	className,
+	...props
+}: React.ComponentProps<typeof DatePicker.Control>) => {
+	return (
+		<DatePicker.Control {...props} data-scope={"date-input"} className={cx("group", className)} />
+	);
 };
 
 export const DateInputTrigger = (props: React.ComponentProps<typeof DatePicker.Trigger>) => {
@@ -18,19 +23,27 @@ export const DateInputInput = (props: React.ComponentProps<typeof DatePicker.Inp
 	return <DatePicker.Input {...props} data-scope={"date-input"} />;
 };
 
-export const DateInputPrevTrigger = (props: React.ComponentProps<typeof DatePicker.PrevTrigger>) => {
+export const DateInputPrevTrigger = (
+	props: React.ComponentProps<typeof DatePicker.PrevTrigger>,
+) => {
 	return <DatePicker.PrevTrigger {...props} data-scope={"date-input"} />;
 };
 
-export const DateInputNextTrigger = (props: React.ComponentProps<typeof DatePicker.NextTrigger>) => {
+export const DateInputNextTrigger = (
+	props: React.ComponentProps<typeof DatePicker.NextTrigger>,
+) => {
 	return <DatePicker.NextTrigger {...props} data-scope={"date-input"} />;
 };
 
-export const DateInputViewTrigger = (props: React.ComponentProps<typeof DatePicker.ViewTrigger>) => {
+export const DateInputViewTrigger = (
+	props: React.ComponentProps<typeof DatePicker.ViewTrigger>,
+) => {
 	return <DatePicker.ViewTrigger {...props} data-scope={"date-input"} />;
 };
 
-export const DateInputViewControl = (props: React.ComponentProps<typeof DatePicker.ViewControl>) => {
+export const DateInputViewControl = (
+	props: React.ComponentProps<typeof DatePicker.ViewControl>,
+) => {
 	return <DatePicker.ViewControl {...props} data-scope={"date-input"} />;
 };
 

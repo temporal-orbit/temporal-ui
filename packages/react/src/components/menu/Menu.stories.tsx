@@ -11,7 +11,15 @@ import { MenuItemGroup } from "./MenuItemGroup";
 import { MenuItemSeparator } from "./MenuItemSeparator";
 import { MenuRadioItem } from "./MenuRadioItem";
 import { MenuRadioItemGroup } from "./MenuRadioItemGroup";
-import { CreditCard, LogOut, Settings, UserIcon, UserPlus, UsersIcon, ChevronRight } from "lucide-react";
+import {
+	CreditCard,
+	LogOut,
+	Settings,
+	UserIcon,
+	UserPlus,
+	UsersIcon,
+	ChevronRight,
+} from "lucide-react";
 import { MenuSub } from "./MenuSub";
 import { MenuSubContent } from "./MenuSubContent";
 import { MenuSubTrigger } from "./MenuSubTrigger";

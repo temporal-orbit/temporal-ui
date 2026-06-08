@@ -4,7 +4,9 @@ import type React from "react";
 import { testId as testIdFn } from "@temporal-ui/core/utils/string";
 
 export interface MenuRadioItemGroupProps
-	extends CoreMenuRadioItemGroupProps, Omit<React.ComponentProps<typeof ArkMenu.RadioItemGroup>, "onValueChange"> {}
+	extends
+		CoreMenuRadioItemGroupProps,
+		Omit<React.ComponentProps<typeof ArkMenu.RadioItemGroup>, "onValueChange"> {}
 
 export function MenuRadioItemGroup(props: MenuRadioItemGroupProps) {
 	const { label, onValueChange, testId, children, ...restProps } = props;
@@ -16,7 +18,9 @@ export function MenuRadioItemGroup(props: MenuRadioItemGroupProps) {
 			onValueChange={(details) => onValueChange?.(details.value)}
 			data-testid={tid("--group")}
 		>
-			{label && <ArkMenu.ItemGroupLabel data-testid={tid("--label")}>{label}</ArkMenu.ItemGroupLabel>}
+			{label && (
+				<ArkMenu.ItemGroupLabel data-testid={tid("--label")}>{label}</ArkMenu.ItemGroupLabel>
+			)}
 			{children}
 		</ArkMenu.RadioItemGroup>
 	);

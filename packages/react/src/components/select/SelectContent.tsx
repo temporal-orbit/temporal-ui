@@ -32,19 +32,37 @@ export function SelectContent(props: SelectContentProps) {
 			>
 				<div data-component="select" data-slot="list" data-testid={tid("--content-list")}>
 					{context.collection.group().map(([type, group]) => (
-						<ArkSelect.ItemGroup key={type} className={classes?.itemGroup} data-testid={tid("--item-group")}>
+						<ArkSelect.ItemGroup
+							key={type}
+							className={classes?.itemGroup}
+							data-testid={tid("--item-group")}
+						>
 							{type && (
-								<ArkSelect.ItemGroupLabel className={classes?.itemGroupLabel} data-testid={tid("--item-group-label")}>
+								<ArkSelect.ItemGroupLabel
+									className={classes?.itemGroupLabel}
+									data-testid={tid("--item-group-label")}
+								>
 									{type}
 								</ArkSelect.ItemGroupLabel>
 							)}
 							{group.map((item) => (
-								<ArkSelect.Item key={item.value} className={classes?.item} data-testid={tid("--item")} item={item}>
+								<ArkSelect.Item
+									key={item.value}
+									className={classes?.item}
+									data-testid={tid("--item")}
+									item={item}
+								>
 									{item.icon}
-									<ArkSelect.ItemText className={classes?.itemText} data-testid={tid("--item-text")}>
+									<ArkSelect.ItemText
+										className={classes?.itemText}
+										data-testid={tid("--item-text")}
+									>
 										{item.label}
 									</ArkSelect.ItemText>
-									<ArkSelect.ItemIndicator className={classes?.itemIndicator} data-testid={tid("--item-indicator")}>
+									<ArkSelect.ItemIndicator
+										className={classes?.itemIndicator}
+										data-testid={tid("--item-indicator")}
+									>
 										<CheckIcon />
 									</ArkSelect.ItemIndicator>
 								</ArkSelect.Item>

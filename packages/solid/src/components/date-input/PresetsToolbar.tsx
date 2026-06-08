@@ -10,7 +10,11 @@ export interface PresetsToolbarProps {
 
 export function PresetsToolbar(props: PresetsToolbarProps) {
 	return (
-		<div data-component={"date-input"} data-slot={"presets-toolbar"} data-testid={props.tid("--presets-toolbar")}>
+		<div
+			data-component={"date-input"}
+			data-slot={"presets-toolbar"}
+			data-testid={props.tid("--presets-toolbar")}
+		>
 			<For each={Object.entries(props.presets) as [DatePickerDateRangePreset, string][]}>
 				{([preset, label]) => (
 					<DatePicker.PresetTrigger

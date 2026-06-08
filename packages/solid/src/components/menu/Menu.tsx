@@ -5,7 +5,9 @@ import { splitProps, type ComponentProps, type JSX, type ParentProps } from "sol
 import { Portal } from "solid-js/web";
 
 export interface MenuProps
-	extends CoreMenuProps<JSX.Element>, Omit<ComponentProps<typeof ArkMenu.Root>, "onSelect" | "positioning"> {
+	extends
+		CoreMenuProps<JSX.Element>,
+		Omit<ComponentProps<typeof ArkMenu.Root>, "onSelect" | "positioning"> {
 	trigger: (props: ParentProps) => JSX.Element;
 }
 
@@ -28,7 +30,10 @@ export function Menu(_props: MenuProps) {
 			positioning={localProps.position}
 			data-testid={tid("--root")}
 		>
-			<ArkMenu.Trigger asChild={(props) => localProps.trigger(props())} data-testid={tid("--trigger")} />
+			<ArkMenu.Trigger
+				asChild={(props) => localProps.trigger(props())}
+				data-testid={tid("--trigger")}
+			/>
 			<Portal>
 				<ArkMenu.Positioner data-testid={tid("--positioner")}>
 					<ArkMenu.Content class={localProps.className} data-testid={localProps.testId}>

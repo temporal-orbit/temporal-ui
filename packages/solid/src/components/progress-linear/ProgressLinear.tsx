@@ -53,7 +53,9 @@ export function ProgressLinear(props: ProgressLinearProps & ProgressRootProps) {
 							<ProgressRange />
 						</ProgressTrack>
 						<Show when={fieldProps.showValueText}>
-							<ProgressValueText data-testid={fieldProps.testId ? `${fieldProps.testId}--value-text` : undefined} />
+							<ProgressValueText
+								data-testid={fieldProps.testId ? `${fieldProps.testId}--value-text` : undefined}
+							/>
 						</Show>
 					</>
 				)}

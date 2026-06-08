@@ -8,7 +8,10 @@ import { forwardRef } from "react";
 export interface NumberInputProps
 	extends
 		CoreNumberInputProps<React.ReactNode>,
-		Omit<React.InputHTMLAttributes<HTMLInputElement>, "max" | "min" | "step" | "defaultValue" | "value"> {}
+		Omit<
+			React.InputHTMLAttributes<HTMLInputElement>,
+			"max" | "min" | "step" | "defaultValue" | "value"
+		> {}
 
 export const NumberInput = forwardRef<HTMLInputElement, NumberInputProps>((props, ref) => {
 	const {
@@ -46,7 +49,9 @@ export const NumberInput = forwardRef<HTMLInputElement, NumberInputProps>((props
 				step={step}
 				value={value !== undefined ? String(value != null ? value : "") : undefined}
 				defaultValue={defaultValue !== undefined ? String(defaultValue) : undefined}
-				onValueChange={(details) => onValueChange?.(details.value !== "" ? details.valueAsNumber : null)}
+				onValueChange={(details) =>
+					onValueChange?.(details.value !== "" ? details.valueAsNumber : null)
+				}
 				data-with-start-section={startSection ? true : undefined}
 				data-testid={testId ? `${testId}--root` : undefined}
 			>

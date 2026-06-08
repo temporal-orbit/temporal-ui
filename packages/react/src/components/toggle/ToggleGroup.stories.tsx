@@ -1,7 +1,14 @@
 // noinspection JSUnusedGlobalSymbols
 
 import type { Meta, StoryObj } from "@storybook/react-vite";
-import { BoldIcon, ItalicIcon, TextAlignCenter, TextAlignEnd, TextAlignStart, UnderlineIcon } from "lucide-react";
+import {
+	BoldIcon,
+	ItalicIcon,
+	TextAlignCenter,
+	TextAlignEnd,
+	TextAlignStart,
+	UnderlineIcon,
+} from "lucide-react";
 import { fn } from "storybook/test";
 import { ToggleGroup, ToggleGroupItem, type ToggleGroupProps } from "./ToggleGroup";
 
@@ -187,7 +194,12 @@ export const WithField: Story = {
 
 export const WithFieldError: Story = {
 	render: (args) => (
-		<ToggleGroup {...args} label="Alignment" hint="Pick a horizontal alignment." error="Select an option.">
+		<ToggleGroup
+			{...args}
+			label="Alignment"
+			hint="Pick a horizontal alignment."
+			error="Select an option."
+		>
 			<ToggleGroupItem value="left">
 				<TextAlignStart size={16} />
 			</ToggleGroupItem>

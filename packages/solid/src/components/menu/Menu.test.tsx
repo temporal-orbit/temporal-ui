@@ -12,7 +12,12 @@ describe("Menu Component", () => {
 		closeOnSelect?: boolean;
 		className?: string;
 	}) => (
-		<Menu trigger={(triggerProps: Record<string, unknown>) => <Button {...triggerProps}>Open Menu</Button>} {...props}>
+		<Menu
+			trigger={(triggerProps: Record<string, unknown>) => (
+				<Button {...triggerProps}>Open Menu</Button>
+			)}
+			{...props}
+		>
 			{props.children || (
 				<>
 					<MenuItem value="item1">Item 1</MenuItem>

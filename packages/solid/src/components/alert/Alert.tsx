@@ -38,7 +38,11 @@ export function Alert(_props: AlertProps) {
 		>
 			{props.icon !== undefined ? props.icon() : icons[props.variant]?.()}
 			{props.title && (
-				<h2 data-component="alert" data-slot="title" data-testid={props.testId ? `${props.testId}--title` : undefined}>
+				<h2
+					data-component="alert"
+					data-slot="title"
+					data-testid={props.testId ? `${props.testId}--title` : undefined}
+				>
 					{props.title}
 				</h2>
 			)}

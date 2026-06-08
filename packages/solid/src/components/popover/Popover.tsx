@@ -6,7 +6,9 @@ import { Portal } from "solid-js/web";
 import { PopoverContent } from "./PopoverContent";
 
 export interface PopoverProps
-	extends CorePopoverProps<JSX.Element>, Omit<ComponentProps<typeof ArkPopover.Root>, "onOpenChange"> {
+	extends
+		CorePopoverProps<JSX.Element>,
+		Omit<ComponentProps<typeof ArkPopover.Root>, "onOpenChange"> {
 	trigger?: (props: Record<string, unknown>) => JSX.Element;
 }
 

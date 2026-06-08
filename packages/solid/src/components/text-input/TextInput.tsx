@@ -4,7 +4,8 @@ import type { HTMLProps } from "@ark-ui/solid";
 import { Field as ArkField } from "@ark-ui/solid/field";
 import { Field } from "../field";
 
-export interface TextInputProps extends CoreTextInputProps<JSX.Element>, Omit<HTMLProps<"input">, "value"> {
+export interface TextInputProps
+	extends CoreTextInputProps<JSX.Element>, Omit<HTMLProps<"input">, "value"> {
 	onInput?: (
 		e: InputEvent & {
 			currentTarget: HTMLInputElement;

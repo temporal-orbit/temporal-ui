@@ -6,5 +6,7 @@ export interface MenuItemProps extends CoreMenuItemProps, ComponentProps<typeof 
 
 export function MenuItem(props: MenuItemProps) {
 	const [localProps, itemProps] = splitProps(props, ["className", "testId"]);
-	return <ArkMenu.Item {...itemProps} class={localProps.className} data-testid={localProps.testId} />;
+	return (
+		<ArkMenu.Item {...itemProps} class={localProps.className} data-testid={localProps.testId} />
+	);
 }

@@ -16,7 +16,12 @@ export function Sidebar(_props: SidebarProps) {
 
 	if (props.collapsible === "none") {
 		return (
-			<Box data-component="sidebar" data-slot="root" data-collapsible={props.collapsible} {...boxProps}>
+			<Box
+				data-component="sidebar"
+				data-slot="root"
+				data-collapsible={props.collapsible}
+				{...boxProps}
+			>
 				{props.children}
 			</Box>
 		);
@@ -32,7 +37,12 @@ export function Sidebar(_props: SidebarProps) {
 			data-side={props.side}
 			class="group peer"
 		>
-			<div data-component="sidebar" data-slot="gap" data-variant={props.variant} data-side={props.side} />
+			<div
+				data-component="sidebar"
+				data-slot="gap"
+				data-variant={props.variant}
+				data-side={props.side}
+			/>
 			<Box
 				data-component="sidebar"
 				data-slot="container"

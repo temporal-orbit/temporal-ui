@@ -20,7 +20,11 @@ function AccordionDemo(props: AccordionProps) {
 	return (
 		<Accordion {...props}>
 			{items.map((item) => (
-				<AccordionItem key={item.value} value={item.value} data-testid={`accordion-item-${item.value}`}>
+				<AccordionItem
+					key={item.value}
+					value={item.value}
+					data-testid={`accordion-item-${item.value}`}
+				>
 					<AccordionItemTrigger data-testid={`accordion-trigger-${item.value}`}>
 						{item.title}
 						<AccordionItemIndicator>

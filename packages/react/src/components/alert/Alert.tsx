@@ -2,7 +2,8 @@ import type { AlertProps as CoreAlertProps } from "@temporal-ui/core/alert";
 import { cx } from "@temporal-ui/core/utils/cx";
 import { CircleCheck, CircleX, Info, TriangleAlert } from "lucide-react";
 
-export interface AlertProps extends CoreAlertProps<React.ReactNode>, React.HTMLAttributes<HTMLDivElement> {
+export interface AlertProps
+	extends CoreAlertProps<React.ReactNode>, React.HTMLAttributes<HTMLDivElement> {
 	icon?: React.ReactNode;
 }
 

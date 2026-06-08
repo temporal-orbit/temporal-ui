@@ -41,21 +41,31 @@ export function RadioGroup(_props: RadioGroupProps) {
 							value={item().value}
 							disabled={item().disabled}
 							invalid={!!fieldProps.error}
-							data-testid={fieldProps.testId ? `${fieldProps.testId}--item-${item().value}` : undefined}
+							data-testid={
+								fieldProps.testId ? `${fieldProps.testId}--item-${item().value}` : undefined
+							}
 						>
 							<ArkRadioGroup.ItemControl
 								class={c?.itemControl}
-								data-testid={fieldProps.testId ? `${fieldProps.testId}--item-control-${item().value}` : undefined}
+								data-testid={
+									fieldProps.testId
+										? `${fieldProps.testId}--item-control-${item().value}`
+										: undefined
+								}
 							/>
 							<ArkRadioGroup.ItemText
 								class={c?.itemText}
-								data-testid={fieldProps.testId ? `${fieldProps.testId}--item-text-${item().value}` : undefined}
+								data-testid={
+									fieldProps.testId ? `${fieldProps.testId}--item-text-${item().value}` : undefined
+								}
 							>
 								{item().label}
 							</ArkRadioGroup.ItemText>
 							<ArkRadioGroup.ItemHiddenInput
 								class={c?.itemInput}
-								data-testid={fieldProps.testId ? `${fieldProps.testId}--item-input-${item().value}` : undefined}
+								data-testid={
+									fieldProps.testId ? `${fieldProps.testId}--item-input-${item().value}` : undefined
+								}
 							/>
 						</ArkRadioGroup.Item>
 					)}

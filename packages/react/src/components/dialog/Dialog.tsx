@@ -7,7 +7,9 @@ import { X } from "lucide-react";
 import type React from "react";
 
 export interface DialogProps
-	extends CoreDialogProps<React.ReactNode>, Omit<React.ComponentProps<typeof ArkDialog.Root>, "onOpenChange"> {
+	extends
+		CoreDialogProps<React.ReactNode>,
+		Omit<React.ComponentProps<typeof ArkDialog.Root>, "onOpenChange"> {
 	trigger?: React.ReactNode;
 }
 
@@ -46,7 +48,10 @@ export function Dialog(props: DialogProps) {
 			<Portal>
 				<ArkDialog.Backdrop className={classes?.backdrop} data-testid={tid("--backdrop")} />
 				<ArkDialog.Positioner>
-					<ArkDialog.Content className={cx(classes?.content, className)} data-testid={tid("--content")}>
+					<ArkDialog.Content
+						className={cx(classes?.content, className)}
+						data-testid={tid("--content")}
+					>
 						<div data-component="dialog" data-slot="header">
 							{rootProps.title && (
 								<ArkDialog.Title className={classes?.title} data-testid={tid("--title")}>
@@ -54,11 +59,17 @@ export function Dialog(props: DialogProps) {
 								</ArkDialog.Title>
 							)}
 							{rootProps.description && (
-								<ArkDialog.Description className={classes?.description} data-testid={tid("--description")}>
+								<ArkDialog.Description
+									className={classes?.description}
+									data-testid={tid("--description")}
+								>
 									{rootProps.description}
 								</ArkDialog.Description>
 							)}
-							<ArkDialog.CloseTrigger className={classes?.closeTrigger} data-testid={tid("--close-trigger")}>
+							<ArkDialog.CloseTrigger
+								className={classes?.closeTrigger}
+								data-testid={tid("--close-trigger")}
+							>
 								<X />
 							</ArkDialog.CloseTrigger>
 						</div>

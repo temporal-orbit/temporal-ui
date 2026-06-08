@@ -25,7 +25,12 @@ describe("Toggle", () => {
 
 	it("wraps in Field and shows label, hint, and error", () => {
 		render(() => (
-			<Toggle testId="my-toggle" label="Bold" hint="Applies bold formatting" error="Something went wrong">
+			<Toggle
+				testId="my-toggle"
+				label="Bold"
+				hint="Applies bold formatting"
+				error="Something went wrong"
+			>
 				B
 			</Toggle>
 		));

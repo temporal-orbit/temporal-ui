@@ -5,7 +5,9 @@ import type { ComponentProps } from "solid-js";
 import { testId } from "@temporal-ui/core/utils/string";
 
 export interface MenuRadioItemGroupProps
-	extends CoreMenuRadioItemGroupProps, Omit<ComponentProps<typeof ArkMenu.RadioItemGroup>, "onValueChange"> {}
+	extends
+		CoreMenuRadioItemGroupProps,
+		Omit<ComponentProps<typeof ArkMenu.RadioItemGroup>, "onValueChange"> {}
 
 export function MenuRadioItemGroup(props: MenuRadioItemGroupProps) {
 	const [localProps, radioItemGroupProps] = splitProps(props, [
@@ -24,7 +26,9 @@ export function MenuRadioItemGroup(props: MenuRadioItemGroupProps) {
 			data-testid={tid("--group")}
 		>
 			<Show when={localProps.label}>
-				<ArkMenu.ItemGroupLabel data-testid={tid("--label")}>{localProps.label}</ArkMenu.ItemGroupLabel>
+				<ArkMenu.ItemGroupLabel data-testid={tid("--label")}>
+					{localProps.label}
+				</ArkMenu.ItemGroupLabel>
 			</Show>
 			{localProps.children}
 		</ArkMenu.RadioItemGroup>

@@ -33,7 +33,9 @@ function restoreWorkspaceDependency(packagePath, dependencyName = "@temporal-ui/
 			const currentVersion = packageJson.devDependencies[dependencyName];
 			packageJson.devDependencies[dependencyName] = "workspace:*";
 			hasChanges = true;
-			console.log(`Restored ${dependencyName}: ${currentVersion} -> workspace:* in devDependencies`);
+			console.log(
+				`Restored ${dependencyName}: ${currentVersion} -> workspace:* in devDependencies`,
+			);
 		}
 
 		// Process peerDependencies
@@ -41,7 +43,9 @@ function restoreWorkspaceDependency(packagePath, dependencyName = "@temporal-ui/
 			const currentVersion = packageJson.peerDependencies[dependencyName];
 			packageJson.peerDependencies[dependencyName] = "workspace:*";
 			hasChanges = true;
-			console.log(`Restored ${dependencyName}: ${currentVersion} -> workspace:* in peerDependencies`);
+			console.log(
+				`Restored ${dependencyName}: ${currentVersion} -> workspace:* in peerDependencies`,
+			);
 		}
 
 		if (hasChanges) {
@@ -73,8 +77,12 @@ if (!packagePath) {
 	} catch (error) {
 		console.error(error);
 		console.error("Usage: node restore-protocols.mjs [path-to-package.json] [dependency-name]");
-		console.error("Example: node restore-protocols.mjs packages/react/package.json @temporal-ui/core");
-		console.error("Or run from within a package directory: node ../../scripts/restore-protocols.mjs");
+		console.error(
+			"Example: node restore-protocols.mjs packages/react/package.json @temporal-ui/core",
+		);
+		console.error(
+			"Or run from within a package directory: node ../../scripts/restore-protocols.mjs",
+		);
 		process.exit(1);
 	}
 }

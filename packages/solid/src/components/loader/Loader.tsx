@@ -16,6 +16,10 @@ export function Loader(_props: LoaderProps) {
 	const baseClass = ["loader", size].filter(Boolean).join("-");
 
 	return (
-		<div {...elementProps} class={cx("loader", baseClass, props.className, props.class)} data-testid={props.testId} />
+		<div
+			{...elementProps}
+			class={cx("loader", baseClass, props.className, props.class)}
+			data-testid={props.testId}
+		/>
 	);
 }

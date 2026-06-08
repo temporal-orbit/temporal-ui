@@ -20,14 +20,20 @@ export function PopoverContent(props: PopoverContentProps) {
 	const tid = testId(props.testId);
 	return (
 		<ArkPopover.Positioner data-testid={tid("--positioner")}>
-			<ArkPopover.Content data-testid={tid("--content")} class={cx(props.classes?.content, props.className)}>
+			<ArkPopover.Content
+				data-testid={tid("--content")}
+				class={cx(props.classes?.content, props.className)}
+			>
 				<Show when={props.title}>
 					<ArkPopover.Title class={props.classes?.title} data-testid={tid("--title")}>
 						{props.title}
 					</ArkPopover.Title>
 				</Show>
 				<Show when={props.description}>
-					<ArkPopover.Description class={props.classes?.description} data-testid={tid("--description")}>
+					<ArkPopover.Description
+						class={props.classes?.description}
+						data-testid={tid("--description")}
+					>
 						{props.description}
 					</ArkPopover.Description>
 				</Show>

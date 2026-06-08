@@ -9,7 +9,8 @@ import React from "react";
 import { useIsMobile } from "../../hooks/is-mobile";
 import { Box } from "../box";
 
-export interface SidebarProviderProps extends CoreSidebarProviderProps<React.ReactNode>, React.ComponentProps<"div"> {}
+export interface SidebarProviderProps
+	extends CoreSidebarProviderProps<React.ReactNode>, React.ComponentProps<"div"> {}
 
 const SidebarContext = React.createContext<SidebarContextProps | null>(null);
 

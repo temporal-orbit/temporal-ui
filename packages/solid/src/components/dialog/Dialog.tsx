@@ -7,14 +7,26 @@ import { testId } from "@temporal-ui/core/utils/string";
 import { cx } from "@temporal-ui/core/utils/cx";
 
 export interface DialogProps
-	extends CoreDialogProps<JSX.Element>, Omit<ComponentProps<typeof ArkDialog.Root>, "onOpenChange"> {
+	extends
+		CoreDialogProps<JSX.Element>,
+		Omit<ComponentProps<typeof ArkDialog.Root>, "onOpenChange"> {
 	trigger?: (props: Record<string, unknown>) => JSX.Element;
 }
 
 export function Dialog(props: DialogProps) {
 	const [localProps, rootProps] = splitProps(
 		mergeProps({ lazyMount: true, unmountOnExit: true } as DialogProps, props),
-		["testId", "onOpenChange", "className", "classes", "trigger", "children", "trigger", "title", "description"],
+		[
+			"testId",
+			"onOpenChange",
+			"className",
+			"classes",
+			"trigger",
+			"children",
+			"trigger",
+			"title",
+			"description",
+		],
 	);
 
 	const tid = testId(localProps.testId);
@@ -46,11 +58,17 @@ export function Dialog(props: DialogProps) {
 								</ArkDialog.Title>
 							</Show>
 							<Show when={localProps.description}>
-								<ArkDialog.Description class={localProps.classes?.description} data-testid={tid("--description")}>
+								<ArkDialog.Description
+									class={localProps.classes?.description}
+									data-testid={tid("--description")}
+								>
 									{localProps.description}
 								</ArkDialog.Description>
 							</Show>
-							<ArkDialog.CloseTrigger class={localProps.classes?.closeTrigger} data-testid={tid("--close-trigger")}>
+							<ArkDialog.CloseTrigger
+								class={localProps.classes?.closeTrigger}
+								data-testid={tid("--close-trigger")}
+							>
 								<X />
 							</ArkDialog.CloseTrigger>
 						</div>

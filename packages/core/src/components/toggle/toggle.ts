@@ -1,7 +1,10 @@
 import type { FieldProps } from "../field";
 
 /** Class slots for Field layout plus optional control styling on `Toggle.Root`. */
-export type ToggleClasses = Pick<NonNullable<FieldProps<unknown>["classes"]>, "root" | "label" | "hint" | "error"> & {
+export type ToggleClasses = Pick<
+	NonNullable<FieldProps<unknown>["classes"]>,
+	"root" | "label" | "hint" | "error"
+> & {
 	/** Applied to `Toggle.Root` (the button). */
 	control?: string;
 };
