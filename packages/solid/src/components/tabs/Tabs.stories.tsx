@@ -26,7 +26,6 @@ const Basic = (props: TabsProps) => (
 			<TabsTrigger value="react">React</TabsTrigger>
 			<TabsTrigger value="vue">Vue</TabsTrigger>
 			<TabsTrigger value="solid">Solid</TabsTrigger>
-			<TabsIndicator />
 		</TabsList>
 		<TabsContent value="react">React Content</TabsContent>
 		<TabsContent value="vue">Vue Content</TabsContent>
@@ -51,7 +50,6 @@ export const Controlled: Story = {
 					<TabsTrigger value="react">React</TabsTrigger>
 					<TabsTrigger value="vue">Vue</TabsTrigger>
 					<TabsTrigger value="solid">Solid</TabsTrigger>
-					<TabsIndicator />
 				</TabsList>
 			</Tabs>
 		);

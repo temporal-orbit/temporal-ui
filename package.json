@@ -1,6 +1,6 @@
 {
 	"name": "temporal-ui",
-	"version": "0.9.2",
+	"version": "0.9.3",
 	"private": true,
 	"description": "Monorepo for Temporal UI Design System (React, Solid bindings)",
 	"license": "MIT",
