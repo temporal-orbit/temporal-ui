@@ -27,7 +27,7 @@ export function SidebarMenuItem(props: SidebarMenuItemProps) {
 export type SidebarMenuButtonProps = React.ComponentProps<"button"> & CoreSidebarMenuButtonProps;
 
 export function SidebarMenuButton(props: SidebarMenuButtonProps) {
-	const { variant = "default", size = "default", isActive, ...rest } = props;
+	const { variant = "default", size = "default", isActive, flush, ...rest } = props;
 
 	return (
 		<button
@@ -37,6 +37,7 @@ export function SidebarMenuButton(props: SidebarMenuButtonProps) {
 			data-variant={variant}
 			data-size={size}
 			data-active={isActive}
+			data-flush={flush || undefined}
 		/>
 	);
 }
@@ -44,9 +45,17 @@ export function SidebarMenuButton(props: SidebarMenuButtonProps) {
 export type SidebarMenuLinkProps = React.ComponentProps<"a"> & CoreSidebarMenuLinkProps;
 
 export function SidebarMenuLink(props: SidebarMenuLinkProps) {
-	const { isActive, ...rest } = props;
+	const { isActive, flush, ...rest } = props;
 
-	return <a {...rest} data-component="sidebar" data-slot="menu-link" data-active={isActive} />;
+	return (
+		<a
+			{...rest}
+			data-component="sidebar"
+			data-slot="menu-link"
+			data-active={isActive}
+			data-flush={flush || undefined}
+		/>
+	);
 }
 
 export type SidebarMenuActionProps = React.ComponentProps<"button">;

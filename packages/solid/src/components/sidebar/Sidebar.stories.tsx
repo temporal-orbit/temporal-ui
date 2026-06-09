@@ -1,6 +1,8 @@
 // noinspection JSUnusedGlobalSymbols
 
 import type { Meta, StoryObj } from "storybook-solidjs-vite";
+import { Home } from "lucide-solid";
+import { Avatar } from "../avatar";
 import { Box } from "../box";
 import { data } from "./examples/data";
 import { NavMain } from "./examples/NavMain";
@@ -8,7 +10,15 @@ import { NavProjects } from "./examples/NavProjects";
 import { NavUser } from "./examples/NavUser";
 import { TeamSwitcher } from "./examples/TeamSwitcher";
 import { Sidebar, type SidebarProps } from "./Sidebar";
-import { SidebarContent, SidebarFooter, SidebarHeader, SidebarInset } from "./SidebarComponent";
+import {
+	SidebarContent,
+	SidebarFooter,
+	SidebarGroup,
+	SidebarGroupLabel,
+	SidebarHeader,
+	SidebarInset,
+} from "./SidebarComponent";
+import { SidebarMenu, SidebarMenuItem, SidebarMenuLink } from "./SidebarMenu";
 import { SidebarProvider } from "./SidebarProvider";
 import { SidebarRail } from "./SidebarRail";
 import { SidebarTrigger } from "./SidebarTrigger";
@@ -91,6 +101,60 @@ export const Inset: Story = {
 				<SidebarInset>
 					<SidebarTrigger />
 					{args.children}
+				</SidebarInset>
+			</SidebarProvider>
+		</Box>
+	),
+};
+
+/**
+ * Collapsed icon mode comparison for menu links.
+ *
+ * - Default rows keep `p-2` padding for small lucide icons.
+ * - Use `flush` when the collapsed representation should fill the 32×32 slot (avatars, large icons).
+ * - Do not use `size="lg"` just for collapsed padding — use `flush` instead.
+ */
+export const FlushCollapsed: Story = {
+	args: {
+		side: "left",
+		variant: "sidebar",
+		collapsible: "icon",
+	},
+	render: (args: SidebarProps) => (
+		<Box class="">
+			<SidebarProvider class="" defaultOpen={false}>
+				<Sidebar {...args}>
+					<SidebarContent>
+						<SidebarGroup>
+							<SidebarGroupLabel>Collapsed icon mode</SidebarGroupLabel>
+							<SidebarMenu>
+								<SidebarMenuItem>
+									<SidebarMenuLink href="#default">
+										<Home />
+										<span>Default icon link</span>
+									</SidebarMenuLink>
+								</SidebarMenuItem>
+								<SidebarMenuItem>
+									<SidebarMenuLink href="#avatar" flush>
+										<Avatar name="Jane Doe" size="md" />
+										<span>Flush avatar link</span>
+									</SidebarMenuLink>
+								</SidebarMenuItem>
+								<SidebarMenuItem>
+									<SidebarMenuLink href="#emoji" flush>
+										<span aria-hidden="true" class="text-lg leading-none">
+											🚀
+										</span>
+										<span>Flush emoji link</span>
+									</SidebarMenuLink>
+								</SidebarMenuItem>
+							</SidebarMenu>
+						</SidebarGroup>
+					</SidebarContent>
+					<SidebarRail />
+				</Sidebar>
+				<SidebarInset>
+					<SidebarTrigger />
 				</SidebarInset>
 			</SidebarProvider>
 		</Box>

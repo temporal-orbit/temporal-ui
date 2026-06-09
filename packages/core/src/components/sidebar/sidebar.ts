@@ -29,10 +29,14 @@ export interface SidebarMenuButtonProps {
 	isActive?: boolean;
 	variant?: "default" | "outline";
 	size?: "default" | "sm" | "lg";
+	/** When true, collapsed icon mode removes padding so slot content (e.g. avatars) can fill the 32×32 area. */
+	flush?: boolean;
 }
 
 export interface SidebarMenuLinkProps {
 	isActive?: boolean;
+	/** When true, collapsed icon mode removes padding so slot content (e.g. avatars) can fill the 32×32 area. */
+	flush?: boolean;
 }
 
 export interface SidebarMenuSubButtonProps {
