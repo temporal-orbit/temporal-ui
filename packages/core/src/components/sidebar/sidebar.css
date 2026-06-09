@@ -131,6 +131,19 @@
 			&[data-size="lg"] {
 				@apply h-12 text-sm group-data-[collapsible=icon]:p-0!;
 			}
+
+			&[data-flush] {
+				@apply h-auto min-h-8;
+				@apply group-data-[collapsible=icon]:p-0! group-data-[collapsible=icon]:gap-0! group-data-[collapsible=icon]:justify-center;
+			}
+
+			&[data-flush] [data-scope="avatar"][data-part="root"] {
+				@apply group-data-[collapsible=icon]:size-full!;
+			}
+
+			&[data-flush] > :first-child {
+				@apply group-data-[collapsible=icon]:size-full group-data-[collapsible=icon]:shrink-0;
+			}
 		}
 
 		&[data-slot="menu-action"] {

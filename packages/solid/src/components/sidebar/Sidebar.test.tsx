@@ -300,6 +300,54 @@ describe("SidebarMenu Components", () => {
 		expect(link).toHaveAttribute("href", "/test");
 	});
 
+	it("renders data-flush on menu button and link when flush is true", () => {
+		render(() => (
+			<SidebarProvider>
+				<Sidebar side="left">
+					<SidebarMenu>
+						<SidebarMenuItem>
+							<SidebarMenuButton flush>Flush Button</SidebarMenuButton>
+						</SidebarMenuItem>
+						<SidebarMenuItem>
+							<SidebarMenuLink href="/flush" flush>
+								Flush Link
+							</SidebarMenuLink>
+						</SidebarMenuItem>
+					</SidebarMenu>
+				</Sidebar>
+			</SidebarProvider>
+		));
+
+		const button = screen.getByRole("button", { name: "Flush Button" });
+		const link = screen.getByRole("link", { name: "Flush Link" });
+
+		expect(button).toHaveAttribute("data-flush");
+		expect(link).toHaveAttribute("data-flush");
+	});
+
+	it("omits data-flush when flush is false or unset", () => {
+		render(() => (
+			<SidebarProvider>
+				<Sidebar side="left">
+					<SidebarMenu>
+						<SidebarMenuItem>
+							<SidebarMenuButton>Default Button</SidebarMenuButton>
+						</SidebarMenuItem>
+						<SidebarMenuItem>
+							<SidebarMenuLink href="/default">Default Link</SidebarMenuLink>
+						</SidebarMenuItem>
+					</SidebarMenu>
+				</Sidebar>
+			</SidebarProvider>
+		));
+
+		const button = screen.getByRole("button", { name: "Default Button" });
+		const link = screen.getByRole("link", { name: "Default Link" });
+
+		expect(button).not.toHaveAttribute("data-flush");
+		expect(link).not.toHaveAttribute("data-flush");
+	});
+
 	it("renders sub-menu components correctly", () => {
 		render(() => (
 			<SidebarProvider>

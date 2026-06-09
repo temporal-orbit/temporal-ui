@@ -34,7 +34,7 @@ export interface SidebarMenuButtonProps extends HTMLProps<"button">, CoreSidebar
 export function SidebarMenuButton(_props: SidebarMenuButtonProps) {
 	const [props, elementProps] = splitProps(
 		mergeProps({ variant: "default", size: "default" }, _props),
-		["variant", "size", "isActive"],
+		["variant", "size", "isActive", "flush"],
 	);
 
 	return (
@@ -45,6 +45,7 @@ export function SidebarMenuButton(_props: SidebarMenuButtonProps) {
 			data-variant={props.variant}
 			data-size={props.size}
 			data-active={props.isActive}
+			data-flush={props.flush || undefined}
 		/>
 	);
 }
@@ -55,7 +56,7 @@ export interface SidebarMenuLinkProps extends HTMLProps<"a">, CoreSidebarMenuLin
 }
 
 export function SidebarMenuLink(_props: SidebarMenuLinkProps) {
-	const [props, elementProps] = splitProps(_props, ["isActive", "component"]);
+	const [props, elementProps] = splitProps(_props, ["isActive", "component", "flush"]);
 
 	return (
 		<ark.a
@@ -63,6 +64,7 @@ export function SidebarMenuLink(_props: SidebarMenuLinkProps) {
 			data-component="sidebar"
 			data-slot="menu-link"
 			data-active={props.isActive}
+			data-flush={props.flush || undefined}
 			asChild={props.component}
 		/>
 	);
