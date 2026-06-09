@@ -18,9 +18,11 @@ export function MenuRadioItem(props: MenuRadioItemProps) {
 			class={localProps.className}
 			data-testid={tid("--radio-item")}
 		>
-			<ArkMenu.ItemIndicator data-testid={tid("--indicator")}>
-				<div data-part="item-radio-indicator" />
-			</ArkMenu.ItemIndicator>
+			<div data-part="item-indicator-container">
+				<ArkMenu.ItemIndicator data-testid={tid("--indicator")}>
+					<div data-part="item-radio-indicator" />
+				</ArkMenu.ItemIndicator>
+			</div>
 			<ArkMenu.ItemText data-testid={tid("--text")}>{props.children}</ArkMenu.ItemText>
 		</ArkMenu.RadioItem>
 	);

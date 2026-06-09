@@ -1,6 +1,6 @@
-import type { Meta, StoryObj } from "storybook-solidjs-vite";
-import { Tabs, TabsContent, TabsIndicator, TabsList, TabsTrigger, type TabsProps } from ".";
 import { createSignal } from "solid-js";
+import type { Meta, StoryObj } from "storybook-solidjs-vite";
+import { Tabs, TabsContent, TabsList, TabsTrigger, type TabsProps } from ".";
 
 const meta = {
 	title: "Solid/Tabs",
