@@ -1,0 +1,92 @@
+@layer components {
+	[data-scope="switch"][data-part="root"] {
+		@apply flex flex-row items-center cursor-pointer data-disabled:cursor-default data-readonly:cursor-default;
+	}
+
+	[data-scope="switch"][data-part="label"] {
+		@apply transition-all data-disabled:text-muted-foreground;
+	}
+
+	[data-scope="switch"][data-part="control"] {
+		@apply inline-flex shrink-0 items-center rounded-full p-0.5 bg-input dark:bg-input/30 outline-none transition-all;
+		&[data-disabled] {
+			@apply cursor-not-allowed opacity-50;
+		}
+		&[data-invalid] {
+			@apply ring-destructive/20 dark:ring-destructive/40 ring-[3px];
+		}
+		&[data-focus-visible] {
+			@apply ring-ring/50 ring-[3px];
+		}
+		&[data-state="checked"] {
+			@apply bg-primary dark:bg-primary;
+		}
+		&[data-hover]:not([data-readonly]) {
+			&:not([data-state="checked"]) {
+				@apply bg-primary/20 dark:bg-primary/20;
+			}
+			&[data-state="checked"] {
+				@apply bg-primary/80 dark:bg-primary/80;
+			}
+		}
+	}
+
+	[data-scope="switch"][data-part="thumb"] {
+		@apply block rounded-full bg-background shadow-xs transition-transform;
+	}
+
+	/* Small */
+	[data-scope="switch"][data-part="root"][data-size="sm"] {
+		@apply gap-1.5;
+	}
+	[data-scope="switch"][data-part="root"][data-size="sm"] [data-part="label"] {
+		@apply text-xs;
+	}
+	[data-scope="switch"][data-part="root"][data-size="sm"] [data-part="control"] {
+		@apply h-5 w-8;
+	}
+	[data-scope="switch"][data-part="root"][data-size="sm"] [data-part="thumb"] {
+		@apply size-4;
+		&[data-state="checked"] {
+			@apply translate-x-3;
+		}
+	}
+
+	/* Medium (default) */
+	[data-scope="switch"][data-part="root"]:not([data-size]),
+	[data-scope="switch"][data-part="root"][data-size="md"] {
+		@apply gap-2;
+	}
+	[data-scope="switch"][data-part="root"]:not([data-size]) [data-part="label"],
+	[data-scope="switch"][data-part="root"][data-size="md"] [data-part="label"] {
+		@apply text-sm;
+	}
+	[data-scope="switch"][data-part="root"]:not([data-size]) [data-part="control"],
+	[data-scope="switch"][data-part="root"][data-size="md"] [data-part="control"] {
+		@apply h-6 w-10;
+	}
+	[data-scope="switch"][data-part="root"]:not([data-size]) [data-part="thumb"],
+	[data-scope="switch"][data-part="root"][data-size="md"] [data-part="thumb"] {
+		@apply size-5;
+		&[data-state="checked"] {
+			@apply translate-x-4;
+		}
+	}
+
+	/* Large */
+	[data-scope="switch"][data-part="root"][data-size="lg"] {
+		@apply gap-2.5;
+	}
+	[data-scope="switch"][data-part="root"][data-size="lg"] [data-part="label"] {
+		@apply text-base;
+	}
+	[data-scope="switch"][data-part="root"][data-size="lg"] [data-part="control"] {
+		@apply h-7 w-12;
+	}
+	[data-scope="switch"][data-part="root"][data-size="lg"] [data-part="thumb"] {
+		@apply size-6;
+		&[data-state="checked"] {
+			@apply translate-x-5;
+		}
+	}
+}
