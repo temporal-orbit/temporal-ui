@@ -1,0 +1,77 @@
+// noinspection JSUnusedGlobalSymbols
+
+import type { Meta, StoryObj } from "@storybook/react-vite";
+import { fn } from "storybook/test";
+import { Switch } from "./Switch";
+
+const meta = {
+	title: "React/Switch",
+	component: Switch,
+	tags: ["autodocs"],
+	args: { onCheckedChange: fn() },
+	argTypes: {
+		disabled: {
+			type: "boolean",
+			control: "boolean",
+		},
+		checked: {
+			type: "boolean",
+			control: "boolean",
+		},
+		size: {
+			control: "select",
+			options: ["sm", "md", "lg"],
+		},
+	},
+} satisfies Meta<typeof Switch>;
+
+export default meta;
+type Story = StoryObj<typeof meta>;
+
+export const Default: Story = {
+	args: {
+		label: "Enable notifications",
+	},
+};
+
+export const Disabled: Story = {
+	args: {
+		...Default.args,
+		disabled: true,
+	},
+};
+
+export const WithHint: Story = {
+	args: {
+		...Default.args,
+		hint: "Receive email updates about your account activity.",
+	},
+};
+
+export const WithError: Story = {
+	args: {
+		...Default.args,
+		error: "This field is required.",
+	},
+};
+
+export const Checked: Story = {
+	args: {
+		...Default.args,
+		checked: true,
+	},
+};
+
+export const Small: Story = {
+	args: {
+		...Default.args,
+		size: "sm",
+	},
+};
+
+export const Large: Story = {
+	args: {
+		...Default.args,
+		size: "lg",
+	},
+};
