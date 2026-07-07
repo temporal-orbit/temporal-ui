@@ -25,6 +25,9 @@ const meta = {
 		disabled: {
 			control: "boolean",
 		},
+		disabledTrigger: {
+			control: "boolean",
+		},
 		interactive: {
 			control: "boolean",
 		},
@@ -154,4 +157,37 @@ export const WithProvider: Story = {
 			</Stack>
 		</TooltipProvider>
 	),
+};
+
+export const DisabledTrigger: Story = {
+	args: {
+		trigger: <Button disabled>Deactivate</Button>,
+		disabledTrigger: true,
+		children: "You cannot deactivate your own account",
+		openDelay: 0,
+	},
+	parameters: {
+		docs: {
+			description: {
+				story:
+					"Use `disabledTrigger` when the tooltip trigger is a disabled control. The tooltip wraps the trigger in a focusable element so hover and keyboard focus still open the tooltip.",
+			},
+		},
+	},
+};
+
+export const DisabledButtonTooltip: Story = {
+	render: () => (
+		<Button disabled disabledTooltip="You cannot deactivate your own account">
+			Deactivate
+		</Button>
+	),
+	parameters: {
+		docs: {
+			description: {
+				story:
+					"Use `disabledTooltip` on `Button` for the common case of explaining why a disabled action is unavailable.",
+			},
+		},
+	},
 };

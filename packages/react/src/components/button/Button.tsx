@@ -1,6 +1,7 @@
 import type { ButtonProps as CoreButtonProps } from "@temporal-ui/core/button";
 import type React from "react";
 import { Loader } from "../loader";
+import { Tooltip } from "../tooltip";
 
 export interface ButtonProps
 	extends CoreButtonProps<React.ReactNode>, React.ButtonHTMLAttributes<HTMLButtonElement> {}
@@ -16,15 +17,18 @@ export function Button(props: ButtonProps) {
 		disabled,
 		loading,
 		testId,
+		disabledTooltip,
 		...rest
 	} = props;
 
-	return (
+	const isDisabled = disabled || loading;
+
+	const button = (
 		<button
 			{...rest}
 			type={type}
 			className={className}
-			disabled={disabled || loading}
+			disabled={isDisabled}
 			data-component="button"
 			data-size={size}
 			data-variant={variant}
@@ -42,4 +46,14 @@ export function Button(props: ButtonProps) {
 			<span className={"inner"}>{children}</span>
 		</button>
 	);
+
+	if (disabledTooltip && isDisabled) {
+		return (
+			<Tooltip trigger={button} disabledTrigger>
+				{disabledTooltip}
+			</Tooltip>
+		);
+	}
+
+	return button;
 }

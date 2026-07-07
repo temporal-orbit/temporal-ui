@@ -97,6 +97,86 @@ describe("Tooltip Component", () => {
 		expect(screen.getByText("Header")).toBeInTheDocument();
 		expect(screen.getByText("Paragraph content")).toBeInTheDocument();
 	});
+
+	it("wraps disabled triggers so tooltip can open on hover", async () => {
+		const user = userEvent.setup();
+		render(
+			<Tooltip
+				trigger={
+					<button type="button" disabled>
+						Deactivate
+					</button>
+				}
+				disabledTrigger
+				openDelay={0}
+			>
+				Cannot deactivate
+			</Tooltip>,
+		);
+
+		const button = screen.getByRole("button", { name: "Deactivate" });
+		const wrapper = button.parentElement;
+
+		expect(wrapper).toHaveAttribute("data-part", "trigger-wrapper");
+		expect(wrapper).toHaveAttribute("tabindex", "0");
+
+		await user.hover(wrapper!);
+
+		await waitFor(
+			() => {
+				expect(screen.getByText("Cannot deactivate")).toBeVisible();
+			},
+			{ timeout: 1000 },
+		);
+	});
+
+	it("auto-wraps disabled triggers when disabledTrigger is omitted", () => {
+		render(
+			<Tooltip
+				trigger={
+					<button type="button" disabled>
+						Deactivate
+					</button>
+				}
+			>
+				Cannot deactivate
+			</Tooltip>,
+		);
+
+		const button = screen.getByRole("button", { name: "Deactivate" });
+		expect(button.parentElement).toHaveAttribute("data-part", "trigger-wrapper");
+	});
+
+	it("does not wrap enabled triggers", () => {
+		render(<Tooltip trigger={<button type="button">Enabled</button>}>Tooltip content</Tooltip>);
+
+		const button = screen.getByRole("button", { name: "Enabled" });
+		expect(button.parentElement).not.toHaveAttribute("data-part", "trigger-wrapper");
+	});
+
+	it("makes disabled trigger wrapper keyboard focusable", async () => {
+		const user = userEvent.setup();
+		render(
+			<Tooltip
+				trigger={
+					<button type="button" disabled>
+						Deactivate
+					</button>
+				}
+				disabledTrigger
+				openDelay={0}
+			>
+				Cannot deactivate
+			</Tooltip>,
+		);
+
+		const wrapper = screen.getByRole("button", { name: "Deactivate" }).parentElement;
+
+		expect(wrapper).toHaveAttribute("tabindex", "0");
+
+		await user.tab();
+		expect(wrapper).toHaveFocus();
+	});
 });
 
 describe("TooltipProvider", () => {
