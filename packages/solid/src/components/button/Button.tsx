@@ -3,6 +3,7 @@ import type { ButtonProps as CoreButtonProps } from "@temporal-ui/core/button";
 import type { JSX } from "solid-js";
 import { mergeProps, Show, splitProps } from "solid-js";
 import { Loader } from "../loader";
+import { Tooltip } from "../tooltip";
 
 export interface ButtonProps extends CoreButtonProps<JSX.Element>, HTMLProps<"button"> {}
 
@@ -12,14 +13,27 @@ export function Button(_props: ButtonProps) {
 			{ size: "md", variant: "primary", icon: false, type: "button" },
 			_props,
 		),
-		["size", "variant", "icon", "loading", "disabled", "children", "className", "class", "testId"],
+		[
+			"size",
+			"variant",
+			"icon",
+			"loading",
+			"disabled",
+			"children",
+			"className",
+			"class",
+			"testId",
+			"disabledTooltip",
+		],
 	);
 
-	return (
+	const isDisabled = () => props.disabled || props.loading;
+
+	const renderButton = () => (
 		<button
 			{...elementProps}
 			class={props.className || props.class}
-			disabled={props.disabled || props.loading}
+			disabled={isDisabled()}
 			data-component="button"
 			data-size={props.size}
 			data-variant={props.variant}
@@ -36,5 +50,13 @@ export function Button(_props: ButtonProps) {
 			</Show>
 			<span class={"inner"}>{props.children}</span>
 		</button>
+	);
+
+	return (
+		<Show when={props.disabledTooltip && isDisabled()} fallback={renderButton()}>
+			<Tooltip trigger={renderButton} disabledTrigger>
+				{props.disabledTooltip}
+			</Tooltip>
+		</Show>
 	);
 }

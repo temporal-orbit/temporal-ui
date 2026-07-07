@@ -1,4 +1,5 @@
-import { fireEvent, render, screen } from "@testing-library/react";
+import { fireEvent, render, screen, waitFor } from "@testing-library/react";
+import userEvent from "@testing-library/user-event";
 import { Button } from "./Button";
 
 describe("Button Component", () => {
@@ -92,5 +93,28 @@ describe("Button Component", () => {
 		expect(buttonElement).toHaveAttribute("data-variant", "destructive");
 		expect(buttonElement).toHaveAttribute("data-size", "lg");
 		expect(buttonElement).toHaveAttribute("data-icon");
+	});
+
+	it("shows disabledTooltip when the button is disabled", async () => {
+		const user = userEvent.setup();
+		render(
+			<Button disabled disabledTooltip="You cannot perform this action">
+				Deactivate
+			</Button>,
+		);
+
+		const button = screen.getByRole("button", { name: "Deactivate" });
+		const wrapper = button.parentElement;
+
+		expect(wrapper).toHaveAttribute("data-part", "trigger-wrapper");
+
+		await user.hover(wrapper!);
+
+		await waitFor(
+			() => {
+				expect(screen.getByText("You cannot perform this action")).toBeVisible();
+			},
+			{ timeout: 1000 },
+		);
 	});
 });

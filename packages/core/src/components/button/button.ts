@@ -13,4 +13,6 @@ export interface ButtonProps<T> extends BaseComponent<T> {
 	size?: "xs" | "sm" | "md" | "lg" | "xl";
 	/** Whether the button renders icon only. */
 	icon?: boolean;
+	/** Tooltip content shown when the button is disabled or loading. */
+	disabledTooltip?: T;
 }

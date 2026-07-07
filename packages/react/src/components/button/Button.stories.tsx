@@ -69,6 +69,21 @@ export const Disabled: Story = {
 	},
 };
 
+export const DisabledWithTooltip: Story = {
+	args: {
+		...Primary.args,
+		disabled: true,
+		disabledTooltip: "You cannot perform this action right now",
+	},
+	parameters: {
+		docs: {
+			description: {
+				story: "Shows an explanatory tooltip when the button is disabled.",
+			},
+		},
+	},
+};
+
 export const Loading: Story = {
 	args: {
 		...Primary.args,
