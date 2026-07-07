@@ -148,9 +148,7 @@ describe("Tooltip Component", () => {
 	});
 
 	it("does not wrap enabled triggers", () => {
-		render(
-			<Tooltip trigger={<button type="button">Enabled</button>}>Tooltip content</Tooltip>,
-		);
+		render(<Tooltip trigger={<button type="button">Enabled</button>}>Tooltip content</Tooltip>);
 
 		const button = screen.getByRole("button", { name: "Enabled" });
 		expect(button.parentElement).not.toHaveAttribute("data-part", "trigger-wrapper");

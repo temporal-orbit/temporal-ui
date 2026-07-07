@@ -137,7 +137,13 @@ describe("Tooltip Component", () => {
 
 	it("does not wrap enabled triggers", () => {
 		render(() => (
-			<Tooltip trigger={(props) => <button type="button" {...props}>Enabled</button>}>
+			<Tooltip
+				trigger={(props) => (
+					<button type="button" {...props}>
+						Enabled
+					</button>
+				)}
+			>
 				Tooltip content
 			</Tooltip>
 		));

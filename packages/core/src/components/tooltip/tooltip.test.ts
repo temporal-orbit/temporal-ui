@@ -1,8 +1,5 @@
 import { describe, expect, it } from "vitest";
-import {
-	isDisabledControlProps,
-	shouldWrapDisabledTooltipTrigger,
-} from "./tooltip";
+import { isDisabledControlProps, shouldWrapDisabledTooltipTrigger } from "./tooltip";
 
 describe("tooltip disabled-trigger helpers", () => {
 	describe("isDisabledControlProps", () => {
