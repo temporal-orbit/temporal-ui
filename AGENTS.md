@@ -63,3 +63,10 @@ When given a linear issue ID (e.g. `TPX-412`), you must follow instructions in `
 - Do not use `npm install`, `yarn`, or `pnpm`
 - Do not run `eslint` or `prettier`; use Biome
 - Do not run `lint` or `typecheck` without first running `build` (or expect a build to run as part of the pipeline)
+
+## Cursor Cloud specific instructions
+
+- **Tooling drift**: Some docs (README/CLAUDE.md and sections above) still say Biome and `bun@1.2.23`. The repo actually uses **oxlint** (`bun run lint`), **oxfmt** (`bun run format`), `tsgo` for typecheck, and `bun@1.3.12` (see `packageManager` in `package.json`). Trust `package.json` over the prose docs.
+- **`bun install` postinstall fails here (expected)**: The root `postinstall` runs `lefthook install`, which exits 1 in Cursor Cloud because git `core.hooksPath` is set to Cursor's agent hooks and lefthook refuses to override it. Dependencies still install fully — only the git-hook step fails. The startup update script therefore uses `bun install --ignore-scripts`; if you run a plain `bun install` manually and it only errors on `lefthook install`, ignore that error.
+- **The "app" is Storybook** (this is a component library, no backend/DB): React on port 6006 (`bun run react`), Solid on port 6007 (`bun run solid`). Both are long-running dev servers — start them in a background/tmux session. Verify with `curl -s -o /dev/null -w '%{http_code}' http://localhost:6006/`.
+- After changing the selected story in the Storybook sidebar, give the canvas iframe a moment to load; a transiently restarted server can show a briefly blank canvas.
