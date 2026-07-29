@@ -31,6 +31,8 @@ export interface CreateLinearSelectPositioningOptions<T extends SelectPositionin
 	positioning?: T;
 }
 
+const MAX_ALIGN_RETRIES = 12;
+
 /**
  * Builds Ark/Zag positioning options that overlay the menu on the trigger and
  * align the selected item (Linear-style), while chaining any user `updatePosition`.
@@ -59,15 +61,39 @@ export function createLinearSelectPositioning<T extends SelectPositioningOptions
 			const trigger = getSelectTriggerForContent(content);
 			if (!trigger) return;
 
-			alignSelectDropdown({
-				positioner,
-				content,
-				trigger,
-				selectedItem: getSelectedSelectItem(content),
-				overflowPadding:
-					userPositioning?.overflowPadding ?? SELECT_LINEAR_POSITIONING.overflowPadding,
-				maxHeight: options.maxHeight,
-			});
+			const overflowPadding =
+				userPositioning?.overflowPadding ?? SELECT_LINEAR_POSITIONING.overflowPadding;
+
+			const runAlign = () => {
+				alignSelectDropdown({
+					positioner,
+					content,
+					trigger,
+					selectedItem: getSelectedSelectItem(content),
+					overflowPadding,
+					maxHeight: options.maxHeight,
+				});
+			};
+
+			runAlign();
+
+			// First paint can run before items/checked state exist; retry briefly.
+			if (content.dataset.linearAligned !== "true") {
+				let retries = 0;
+				const retry = () => {
+					if (content.dataset.linearAligned === "true" || content.hidden) return;
+					if (retries++ >= MAX_ALIGN_RETRIES) return;
+					requestAnimationFrame(() => {
+						void details.updatePosition().then(() => {
+							runAlign();
+							if (content.dataset.linearAligned !== "true") {
+								retry();
+							}
+						});
+					});
+				};
+				retry();
+			}
 		},
 	} as T;
 }
