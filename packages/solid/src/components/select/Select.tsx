@@ -1,9 +1,12 @@
 import { Select as ArkSelect, useSelect } from "@ark-ui/solid/select";
-import type { SelectProps as CoreSelectProps } from "@temporal-ui/core/select";
+import {
+	createLinearSelectPositioning,
+	type SelectProps as CoreSelectProps,
+} from "@temporal-ui/core/select";
 import { cx } from "@temporal-ui/core/utils/cx";
 import { testId } from "@temporal-ui/core/utils/string";
 import { ChevronsUpDown, X } from "lucide-solid";
-import { mergeProps, Show, splitProps, type JSX } from "solid-js";
+import { createMemo, mergeProps, Show, splitProps, type JSX } from "solid-js";
 import { Portal } from "solid-js/web";
 import { Field, fieldAttributes } from "../field";
 import { SelectContent, type SelectItem } from "./SelectContent";
@@ -22,11 +25,21 @@ export function Select<D = unknown>(_props: SelectProps<D>) {
 		"placeholder",
 	]);
 
+	const positioning = createMemo(() =>
+		createLinearSelectPositioning({
+			maxHeight: controlProps.maxDropdownHeight,
+			positioning: rootProps.positioning,
+		}),
+	);
+
 	const useSelectProps = mergeProps(rootProps, {
 		disabled: fieldProps.disabled,
 		invalid: !!fieldProps.error,
 		required: fieldProps.required,
 		readOnly: fieldProps.readOnly,
+		get positioning() {
+			return positioning();
+		},
 	});
 
 	const select = useSelect(useSelectProps);

@@ -32,5 +32,6 @@ export interface SelectProps<T = unknown> extends FieldProps<T> {
 		indicator?: string;
 		valueText?: string;
 		itemText?: string;
+		scrollCaret?: string;
 	};
 }

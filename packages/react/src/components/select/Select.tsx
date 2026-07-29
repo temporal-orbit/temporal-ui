@@ -1,6 +1,9 @@
 import { Select as ArkSelect, useSelect, type CollectionItem } from "@ark-ui/react/select";
 import { Portal } from "@ark-ui/react/portal";
-import type { SelectProps as CoreSelectProps } from "@temporal-ui/core/select";
+import {
+	createLinearSelectPositioning,
+	type SelectProps as CoreSelectProps,
+} from "@temporal-ui/core/select";
 import { cx } from "@temporal-ui/core/utils/cx";
 import { Field } from "../field";
 import { SelectContent, type SelectItem } from "./SelectContent";
@@ -26,6 +29,7 @@ export function Select<D extends CollectionItem>(props: SelectProps<D>) {
 		className,
 		maxDropdownHeight,
 		deselectable,
+		positioning,
 		...rootProps
 	} = props;
 
@@ -35,6 +39,10 @@ export function Select<D extends CollectionItem>(props: SelectProps<D>) {
 		invalid: !!error,
 		required,
 		readOnly,
+		positioning: createLinearSelectPositioning({
+			maxHeight: maxDropdownHeight,
+			positioning,
+		}),
 	});
 
 	const tid = testId(testIdProp);

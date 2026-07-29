@@ -1,6 +1,8 @@
 import { Select as ArkSelect, useSelectContext } from "@ark-ui/react/select";
 import type { SelectItem as CoreSelectItem } from "@temporal-ui/core/select";
-import { CheckIcon } from "lucide-react";
+import { getSelectScrollState, startSelectCaretAutoScroll } from "@temporal-ui/core/select";
+import { CheckIcon, ChevronDown, ChevronUp } from "lucide-react";
+import { useCallback, useEffect, useRef, useState } from "react";
 
 export type SelectItem<D = unknown> = CoreSelectItem<D, React.ReactNode>;
 
@@ -17,12 +19,81 @@ export interface SelectContentProps {
 		positioner?: string;
 		scrollArea?: string;
 		input?: string;
+		scrollCaret?: string;
 	};
 }
 
 export function SelectContent(props: SelectContentProps) {
 	const { tid, maxHeight = 500, classes } = props;
 	const context = useSelectContext();
+	const listRef = useRef<HTMLDivElement>(null);
+	const stopAutoScrollRef = useRef<(() => void) | null>(null);
+	const [canScrollUp, setCanScrollUp] = useState(false);
+	const [canScrollDown, setCanScrollDown] = useState(false);
+
+	const syncScrollState = useCallback(() => {
+		const list = listRef.current;
+		if (!list) return;
+		const state = getSelectScrollState(list);
+		setCanScrollUp(state.canScrollUp);
+		setCanScrollDown(state.canScrollDown);
+	}, []);
+
+	useEffect(() => {
+		if (!context.open) {
+			setCanScrollUp(false);
+			setCanScrollDown(false);
+			stopAutoScrollRef.current?.();
+			stopAutoScrollRef.current = null;
+			return;
+		}
+
+		const frame = requestAnimationFrame(() => {
+			syncScrollState();
+		});
+
+		return () => {
+			cancelAnimationFrame(frame);
+			stopAutoScrollRef.current?.();
+			stopAutoScrollRef.current = null;
+		};
+	}, [context.open, context.value, syncScrollState]);
+
+	useEffect(() => {
+		const list = listRef.current;
+		if (!list || !context.open) return;
+
+		const observer = new ResizeObserver(() => {
+			syncScrollState();
+		});
+		observer.observe(list);
+		list.addEventListener("scroll", syncScrollState, { passive: true });
+
+		return () => {
+			observer.disconnect();
+			list.removeEventListener("scroll", syncScrollState);
+		};
+	}, [context.open, syncScrollState]);
+
+	const startCaretScroll = (direction: "up" | "down") => {
+		stopAutoScrollRef.current?.();
+		const list = listRef.current;
+		if (!list) return;
+		stopAutoScrollRef.current = startSelectCaretAutoScroll({
+			scroller: list,
+			direction,
+			onScroll: (state) => {
+				setCanScrollUp(state.canScrollUp);
+				setCanScrollDown(state.canScrollDown);
+			},
+		});
+	};
+
+	const stopCaretScroll = () => {
+		stopAutoScrollRef.current?.();
+		stopAutoScrollRef.current = null;
+	};
+
 	return (
 		<ArkSelect.Positioner className={classes?.positioner} data-testid={tid("--positioner")}>
 			<ArkSelect.Content
@@ -30,7 +101,27 @@ export function SelectContent(props: SelectContentProps) {
 				data-testid={tid("--content")}
 				style={{ maxHeight: `${maxHeight}px` }}
 			>
-				<div data-component="select" data-slot="list" data-testid={tid("--content-list")}>
+				<div
+					aria-hidden
+					className={classes?.scrollCaret}
+					data-component="select"
+					data-slot="scroll-caret"
+					data-direction="up"
+					data-visible={canScrollUp ? "" : undefined}
+					data-testid={tid("--scroll-caret-up")}
+					onMouseEnter={() => startCaretScroll("up")}
+					onMouseLeave={stopCaretScroll}
+				>
+					<ChevronUp />
+				</div>
+				<div
+					ref={listRef}
+					data-component="select"
+					data-slot="list"
+					data-testid={tid("--content-list")}
+					style={{ maxHeight: "100%", height: "100%" }}
+					onScroll={syncScrollState}
+				>
 					{context.collection.group().map(([type, group]) => (
 						<ArkSelect.ItemGroup
 							key={type}
@@ -69,6 +160,19 @@ export function SelectContent(props: SelectContentProps) {
 							))}
 						</ArkSelect.ItemGroup>
 					))}
+				</div>
+				<div
+					aria-hidden
+					className={classes?.scrollCaret}
+					data-component="select"
+					data-slot="scroll-caret"
+					data-direction="down"
+					data-visible={canScrollDown ? "" : undefined}
+					data-testid={tid("--scroll-caret-down")}
+					onMouseEnter={() => startCaretScroll("down")}
+					onMouseLeave={stopCaretScroll}
+				>
+					<ChevronDown />
 				</div>
 			</ArkSelect.Content>
 		</ArkSelect.Positioner>

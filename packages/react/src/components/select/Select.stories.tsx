@@ -58,11 +58,57 @@ export const Default: Story = {
 	},
 };
 
+export const LinearAlignedSelection: Story = {
+	...Default,
+	name: "Linear style (aligned selection)",
+	args: {
+		...Default.args,
+		defaultValue: ["mango"],
+		label: "First day of the week",
+		hint: "Used for date pickers",
+	},
+	decorators: [
+		(Story) => (
+			<div
+				style={{
+					minHeight: "70vh",
+					display: "flex",
+					alignItems: "center",
+					justifyContent: "flex-end",
+					padding: "2rem",
+				}}
+			>
+				<Story />
+			</div>
+		),
+	],
+};
+
+export const LinearNearViewportEdge: Story = {
+	...Default,
+	name: "Linear style (near top edge + carets)",
+	args: {
+		...Default.args,
+		defaultValue: ["passionfruit"],
+		maxDropdownHeight: 220,
+		label: "Fruit",
+		hint: "Open near the top of the viewport to see scroll carets",
+	},
+	decorators: [
+		(Story) => (
+			<div style={{ padding: "1rem", display: "flex", justifyContent: "flex-end" }}>
+				<Story />
+			</div>
+		),
+	],
+};
+
 export const MaxDropdownHeight: Story = {
 	...Default,
 	args: {
 		...Default.args,
 		maxDropdownHeight: 150,
+		defaultValue: ["orange"],
 	},
 };
 

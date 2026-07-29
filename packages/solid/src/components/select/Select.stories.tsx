@@ -1,5 +1,6 @@
 import { Banana } from "lucide-solid";
 import type { Meta, StoryObj } from "storybook-solidjs-vite";
+import type { JSX } from "solid-js";
 import { createListCollection } from ".";
 import { Select } from "./Select";
 
@@ -55,11 +56,57 @@ export const Default: Story = {
 	},
 };
 
+export const LinearAlignedSelection: Story = {
+	...Default,
+	name: "Linear style (aligned selection)",
+	args: {
+		...Default.args,
+		defaultValue: ["mango"],
+		label: "First day of the week",
+		hint: "Used for date pickers",
+	},
+	decorators: [
+		(Story: () => JSX.Element) => (
+			<div
+				style={{
+					"min-height": "70vh",
+					display: "flex",
+					"align-items": "center",
+					"justify-content": "flex-end",
+					padding: "2rem",
+				}}
+			>
+				<Story />
+			</div>
+		),
+	],
+};
+
+export const LinearNearViewportEdge: Story = {
+	...Default,
+	name: "Linear style (near top edge + carets)",
+	args: {
+		...Default.args,
+		defaultValue: ["passionfruit"],
+		maxDropdownHeight: 220,
+		label: "Fruit",
+		hint: "Open near the top of the viewport to see scroll carets",
+	},
+	decorators: [
+		(Story: () => JSX.Element) => (
+			<div style={{ padding: "1rem", display: "flex", "justify-content": "flex-end" }}>
+				<Story />
+			</div>
+		),
+	],
+};
+
 export const MaxDropdownHeight: Story = {
 	...Default,
 	args: {
 		...Default.args,
 		maxDropdownHeight: 150,
+		defaultValue: ["orange"],
 	},
 };
 
