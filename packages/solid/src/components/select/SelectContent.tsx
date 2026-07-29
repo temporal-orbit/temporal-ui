@@ -154,7 +154,6 @@ export function SelectContent(_props: SelectContentProps) {
 					data-component="select"
 					data-slot="list"
 					data-testid={props.tid("--content-list")}
-					style={{ "max-height": "100%", height: "100%" }}
 					onScroll={syncScrollState}
 				>
 					<For each={context().collection.group()}>

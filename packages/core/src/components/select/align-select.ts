@@ -73,8 +73,9 @@ export function alignSelectDropdown(options: AlignSelectDropdownOptions): AlignS
 
 	content.style.height = "auto";
 	content.style.maxHeight = "none";
+	scroller.style.height = "auto";
 	scroller.style.maxHeight = "none";
-	const fullHeight = scroller.scrollHeight;
+	const fullHeight = Math.max(scroller.scrollHeight, scroller.offsetHeight);
 
 	const constrainedHeight = Math.min(
 		fullHeight,
