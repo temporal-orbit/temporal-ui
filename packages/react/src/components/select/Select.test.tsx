@@ -1,6 +1,6 @@
 import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
-import { describe, expect, it } from "vitest";
+import { describe, expect, it, vi } from "vitest";
 import { createListCollection, Select, type SelectItem } from ".";
 
 const collection = createListCollection<SelectItem<unknown>>({
@@ -72,7 +72,69 @@ describe("Select", () => {
 		expect(screen.getByTestId("sel3--scroll-caret-up")).toBeInTheDocument();
 		expect(screen.getByTestId("sel3--scroll-caret-down")).toBeInTheDocument();
 
-		// Close to ensure interactions still work
 		await user.keyboard("{Escape}");
+	});
+
+	it("aligns to a late selected value and shows an up scroll caret", async () => {
+		Object.defineProperty(document.documentElement, "clientHeight", {
+			configurable: true,
+			value: 800,
+		});
+		Object.defineProperty(document.documentElement, "clientWidth", {
+			configurable: true,
+			value: 1200,
+		});
+
+		render(
+			<div style={{ paddingTop: 24 }}>
+				<Select
+					testId="sel4"
+					label="Pick"
+					collection={collection}
+					placeholder="Choose"
+					portal={false}
+					defaultValue={["j"]}
+					maxDropdownHeight={120}
+					defaultOpen
+				/>
+			</div>,
+		);
+
+		const list = await screen.findByTestId("sel4--content-list");
+		const selected = list.querySelector<HTMLElement>('[data-state="checked"]');
+		expect(selected).toBeTruthy();
+		expect(selected).toHaveTextContent("Juliet");
+
+		// happy-dom often reports offsetTop as 0; stub layout for the selected row.
+		const items = [...list.querySelectorAll<HTMLElement>('[data-part="item"]')];
+		items.forEach((item, index) => {
+			Object.defineProperty(item, "offsetTop", { configurable: true, value: index * 32 });
+			Object.defineProperty(item, "offsetHeight", { configurable: true, value: 32 });
+		});
+		Object.defineProperty(list, "scrollHeight", { configurable: true, value: items.length * 32 });
+		Object.defineProperty(list, "clientHeight", { configurable: true, value: 120 });
+
+		const content = screen.getByTestId("sel4--content");
+		content.removeAttribute("data-linear-aligned");
+
+		const { alignSelectDropdown, getSelectTriggerForContent } = await import(
+			"@temporal-ui/core/select"
+		);
+		const positioner = screen.getByTestId("sel4--positioner");
+		const trigger = getSelectTriggerForContent(content);
+		expect(trigger).toBeTruthy();
+
+		alignSelectDropdown({
+			positioner,
+			content,
+			trigger: trigger!,
+			selectedItem: selected,
+			hasValue: true,
+			maxHeight: 120,
+		});
+
+		expect(list.scrollTop).toBeGreaterThan(0);
+		const { getSelectScrollState } = await import("@temporal-ui/core/select");
+		expect(getSelectScrollState(list).canScrollUp).toBe(true);
 	});
 });

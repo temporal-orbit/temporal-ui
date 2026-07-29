@@ -55,6 +55,14 @@ function isAlignmentReady(
 	return true;
 }
 
+function isSelectedItemInView(scroller: HTMLElement, selectedItem: HTMLElement): boolean {
+	const top = selectedItem.offsetTop;
+	const bottom = top + selectedItem.offsetHeight;
+	const viewTop = scroller.scrollTop;
+	const viewBottom = viewTop + scroller.clientHeight;
+	return top >= viewTop - SCROLL_EDGE_TOLERANCE && bottom <= viewBottom + SCROLL_EDGE_TOLERANCE;
+}
+
 /**
  * Positions a select dropdown Linear-style: the menu overlays the trigger and
  * the selected item is vertically aligned with it, clamped to the viewport.
@@ -72,10 +80,21 @@ export function alignSelectDropdown(options: AlignSelectDropdownOptions): AlignS
 
 	const scroller = getSelectScroller(content);
 	const ready = isAlignmentReady(content, trigger, selectedItem, hasValue);
-	const alreadyAligned = content.dataset.linearAligned === "true";
+	let alreadyAligned = content.dataset.linearAligned === "true";
 
 	if (!ready && !alreadyAligned) {
 		return getSelectScrollState(scroller);
+	}
+
+	// Unlock if layout finished later and the selected row is no longer in view.
+	if (
+		alreadyAligned &&
+		selectedItem &&
+		scroller.clientHeight > 0 &&
+		!isSelectedItemInView(scroller, selectedItem)
+	) {
+		alreadyAligned = false;
+		content.removeAttribute("data-linear-aligned");
 	}
 
 	const triggerRect = trigger.getBoundingClientRect();
@@ -131,22 +150,32 @@ export function alignSelectDropdown(options: AlignSelectDropdownOptions): AlignS
 		}
 
 		const deltaY = nextTop - positionerRect.top;
-		positioner.style.setProperty("--y", `${currentY + deltaY}px`);
-		content.dataset.linearAligned = "true";
+		const nextY = currentY + deltaY;
+		positioner.style.setProperty("--y", `${nextY}px`);
+		content.dataset.linearY = `${nextY}px`;
+
+		if (!selectedItem || isSelectedItemInView(scroller, selectedItem)) {
+			content.dataset.linearAligned = "true";
+		}
+	} else if (content.dataset.linearY) {
+		positioner.style.setProperty("--y", content.dataset.linearY);
 	}
 
-	const menuWidth = positionerRect.width || content.offsetWidth;
 	let nextLeft = positionerRect.left;
 	const minLeft = overflowPadding;
-	const maxLeft = viewportWidth - menuWidth - overflowPadding;
+	const maxLeft = viewportWidth - (positionerRect.width || content.offsetWidth) - overflowPadding;
 	if (nextLeft < minLeft) {
 		nextLeft = minLeft;
 	} else if (nextLeft > maxLeft) {
 		nextLeft = Math.max(minLeft, maxLeft);
 	}
 	const deltaX = nextLeft - positionerRect.left;
-	if (deltaX !== 0) {
-		positioner.style.setProperty("--x", `${currentX + deltaX}px`);
+	if (!alreadyAligned || deltaX !== 0) {
+		const nextX = currentX + deltaX;
+		positioner.style.setProperty("--x", `${nextX}px`);
+		content.dataset.linearX = `${nextX}px`;
+	} else if (content.dataset.linearX) {
+		positioner.style.setProperty("--x", content.dataset.linearX);
 	}
 
 	const state = getSelectScrollState(scroller);
@@ -162,6 +191,8 @@ export function alignSelectDropdown(options: AlignSelectDropdownOptions): AlignS
 /** Clears one-shot alignment state so the next open can re-align to the selection. */
 export function resetSelectLinearAlignment(content: HTMLElement | null | undefined) {
 	content?.removeAttribute("data-linear-aligned");
+	content?.removeAttribute("data-linear-y");
+	content?.removeAttribute("data-linear-x");
 }
 
 export function getSelectScrollState(scroller: HTMLElement): AlignSelectDropdownResult {
