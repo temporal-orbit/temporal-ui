@@ -63,11 +63,12 @@ export function SelectContent(props: SelectContentProps) {
 			content,
 			trigger,
 			selectedItem: getSelectedSelectItem(content),
+			hasValue: (context.value?.length ?? 0) > 0,
 			maxHeight,
 		});
 		applyScrollState(state);
 		return content.dataset.linearAligned === "true";
-	}, [applyScrollState, maxHeight]);
+	}, [applyScrollState, context.value, maxHeight]);
 
 	useLayoutEffect(() => {
 		if (!context.open) {

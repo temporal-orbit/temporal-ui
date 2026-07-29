@@ -13,6 +13,11 @@ export interface AlignSelectDropdownOptions {
 	 * When omitted, the menu aligns to the top of the trigger (first-item style).
 	 */
 	selectedItem?: HTMLElement | null;
+	/**
+	 * Whether the select currently has a selected value.
+	 * When true, alignment waits until `selectedItem` is present in the DOM.
+	 */
+	hasValue?: boolean;
 	/** Viewport edge padding in CSS pixels. @default 8 */
 	overflowPadding?: number;
 	/** Optional hard cap on menu height (in addition to viewport). */
@@ -31,15 +36,21 @@ function getSelectScroller(content: HTMLElement): HTMLElement {
 function triggerHasSelectedValue(trigger: HTMLElement): boolean {
 	if (trigger.getAttribute("data-placeholder-shown") != null) return false;
 	const valueText = trigger.querySelector<HTMLElement>('[data-part="value-text"]');
-	if (!valueText) return true;
-	return valueText.getAttribute("data-placeholder-shown") == null;
+	if (!valueText) return false;
+	return valueText.getAttribute("data-placeholder-shown") == null && (valueText.textContent?.trim().length ?? 0) > 0;
 }
 
-function isAlignmentReady(content: HTMLElement, trigger: HTMLElement, selectedItem: HTMLElement | null) {
+function isAlignmentReady(
+	content: HTMLElement,
+	trigger: HTMLElement,
+	selectedItem: HTMLElement | null,
+	hasValue?: boolean,
+) {
 	const scroller = getSelectScroller(content);
 	const hasItems = content.querySelector('[data-part="item"]') != null;
 	if (!hasItems || scroller.scrollHeight === 0) return false;
-	if (triggerHasSelectedValue(trigger) && !selectedItem) return false;
+	const expectsSelection = hasValue ?? triggerHasSelectedValue(trigger);
+	if (expectsSelection && !selectedItem) return false;
 	if (selectedItem && selectedItem.offsetHeight <= 0) return false;
 	return true;
 }
@@ -54,12 +65,13 @@ export function alignSelectDropdown(options: AlignSelectDropdownOptions): AlignS
 		content,
 		trigger,
 		selectedItem = null,
+		hasValue,
 		overflowPadding = DEFAULT_OVERFLOW_PADDING,
 		maxHeight,
 	} = options;
 
 	const scroller = getSelectScroller(content);
-	const ready = isAlignmentReady(content, trigger, selectedItem);
+	const ready = isAlignmentReady(content, trigger, selectedItem, hasValue);
 	const alreadyAligned = content.dataset.linearAligned === "true";
 
 	if (!ready && !alreadyAligned) {

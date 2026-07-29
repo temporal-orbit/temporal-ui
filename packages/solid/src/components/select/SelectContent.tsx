@@ -71,6 +71,7 @@ export function SelectContent(_props: SelectContentProps) {
 			content,
 			trigger,
 			selectedItem: getSelectedSelectItem(content),
+			hasValue: (context().value?.length ?? 0) > 0,
 			maxHeight: props.maxHeight,
 		});
 		applyScrollState(state);

@@ -28,6 +28,8 @@ export type SelectPositioningOptions = {
 
 export interface CreateLinearSelectPositioningOptions<T extends SelectPositioningOptions = SelectPositioningOptions> {
 	maxHeight?: number;
+	/** Optional resolver for whether the select currently has a value. */
+	hasValue?: () => boolean;
 	positioning?: T;
 }
 
@@ -70,6 +72,7 @@ export function createLinearSelectPositioning<T extends SelectPositioningOptions
 					content,
 					trigger,
 					selectedItem: getSelectedSelectItem(content),
+					hasValue: options.hasValue?.(),
 					overflowPadding,
 					maxHeight: options.maxHeight,
 				});

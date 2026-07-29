@@ -9,6 +9,7 @@ import { Field } from "../field";
 import { SelectContent, type SelectItem } from "./SelectContent";
 import { testId } from "@temporal-ui/core/utils/string";
 import { ChevronsUpDown, X } from "lucide-react";
+import { useRef } from "react";
 
 export interface SelectProps<D extends CollectionItem = never>
 	extends CoreSelectProps<React.ReactNode>, ArkSelect.RootProps<SelectItem<D>> {}
@@ -33,6 +34,7 @@ export function Select<D extends CollectionItem>(props: SelectProps<D>) {
 		...rootProps
 	} = props;
 
+	const selectRef = useRef<{ value: string[] } | null>(null);
 	const select = useSelect({
 		...rootProps,
 		disabled,
@@ -41,9 +43,11 @@ export function Select<D extends CollectionItem>(props: SelectProps<D>) {
 		readOnly,
 		positioning: createLinearSelectPositioning({
 			maxHeight: maxDropdownHeight,
+			hasValue: () => (selectRef.current?.value.length ?? 0) > 0,
 			positioning,
 		}),
 	});
+	selectRef.current = select;
 
 	const tid = testId(testIdProp);
 
