@@ -60,7 +60,8 @@ function isSelectedItemInView(scroller: HTMLElement, selectedItem: HTMLElement):
 	const bottom = top + selectedItem.offsetHeight;
 	const viewTop = scroller.scrollTop;
 	const viewBottom = viewTop + scroller.clientHeight;
-	return top >= viewTop - SCROLL_EDGE_TOLERANCE && bottom <= viewBottom + SCROLL_EDGE_TOLERANCE;
+	// Partially visible is enough to consider alignment successful.
+	return bottom > viewTop + SCROLL_EDGE_TOLERANCE && top < viewBottom - SCROLL_EDGE_TOLERANCE;
 }
 
 /**

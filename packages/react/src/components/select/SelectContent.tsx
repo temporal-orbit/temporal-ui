@@ -86,16 +86,21 @@ export function SelectContent(props: SelectContentProps) {
 		let retries = 0;
 		let frame = 0;
 		const tryAlign = () => {
-			if (runLinearAlign() || retries++ >= 16) {
-				syncScrollState();
+			const aligned = runLinearAlign();
+			syncScrollState();
+			if (aligned || retries++ >= 24) {
 				return;
 			}
 			frame = requestAnimationFrame(tryAlign);
 		};
 		frame = requestAnimationFrame(tryAlign);
+		const poll = window.setInterval(syncScrollState, 50);
+		const stopPoll = window.setTimeout(() => window.clearInterval(poll), 1000);
 
 		return () => {
 			cancelAnimationFrame(frame);
+			window.clearInterval(poll);
+			window.clearTimeout(stopPoll);
 			stopAutoScrollRef.current?.();
 			stopAutoScrollRef.current = null;
 		};
