@@ -28,6 +28,22 @@ function getSelectScroller(content: HTMLElement): HTMLElement {
 	return content.querySelector<HTMLElement>('[data-component="select"][data-slot="list"]') ?? content;
 }
 
+function triggerHasSelectedValue(trigger: HTMLElement): boolean {
+	if (trigger.getAttribute("data-placeholder-shown") != null) return false;
+	const valueText = trigger.querySelector<HTMLElement>('[data-part="value-text"]');
+	if (!valueText) return true;
+	return valueText.getAttribute("data-placeholder-shown") == null;
+}
+
+function isAlignmentReady(content: HTMLElement, trigger: HTMLElement, selectedItem: HTMLElement | null) {
+	const scroller = getSelectScroller(content);
+	const hasItems = content.querySelector('[data-part="item"]') != null;
+	if (!hasItems || scroller.scrollHeight === 0) return false;
+	if (triggerHasSelectedValue(trigger) && !selectedItem) return false;
+	if (selectedItem && selectedItem.offsetHeight <= 0) return false;
+	return true;
+}
+
 /**
  * Positions a select dropdown Linear-style: the menu overlays the trigger and
  * the selected item is vertically aligned with it, clamped to the viewport.
@@ -43,6 +59,13 @@ export function alignSelectDropdown(options: AlignSelectDropdownOptions): AlignS
 	} = options;
 
 	const scroller = getSelectScroller(content);
+	const ready = isAlignmentReady(content, trigger, selectedItem);
+	const alreadyAligned = content.dataset.linearAligned === "true";
+
+	if (!ready && !alreadyAligned) {
+		return getSelectScrollState(scroller);
+	}
+
 	const triggerRect = trigger.getBoundingClientRect();
 	const viewportHeight = document.documentElement.clientHeight;
 	const viewportWidth = document.documentElement.clientWidth;
@@ -63,15 +86,18 @@ export function alignSelectDropdown(options: AlignSelectDropdownOptions): AlignS
 	content.style.maxHeight = `${constrainedHeight}px`;
 	content.style.height = needsScroll ? `${constrainedHeight}px` : "auto";
 
-	const alreadyAligned = content.dataset.linearAligned === "true";
-	const itemOffset = selectedItem?.offsetTop ?? 0;
-	let nextTop = triggerRect.top - itemOffset;
-	let scrollTop = alreadyAligned ? scroller.scrollTop : 0;
-
-	const minTop = overflowPadding;
-	const maxTop = viewportHeight - constrainedHeight - overflowPadding;
+	const positionerRect = positioner.getBoundingClientRect();
+	const currentY = parseFloat(positioner.style.getPropertyValue("--y") || "0") || 0;
+	const currentX = parseFloat(positioner.style.getPropertyValue("--x") || "0") || 0;
 
 	if (!alreadyAligned) {
+		const itemOffset = selectedItem?.offsetTop ?? 0;
+		let nextTop = triggerRect.top - itemOffset;
+		let scrollTop = 0;
+
+		const minTop = overflowPadding;
+		const maxTop = viewportHeight - constrainedHeight - overflowPadding;
+
 		if (nextTop < minTop) {
 			scrollTop = minTop - nextTop;
 			nextTop = minTop;
@@ -90,20 +116,11 @@ export function alignSelectDropdown(options: AlignSelectDropdownOptions): AlignS
 				scroller.scrollTop = itemBottom - constrainedHeight;
 			}
 		}
-	} else if (nextTop < minTop) {
-		nextTop = minTop;
-	} else if (nextTop > maxTop) {
-		nextTop = Math.max(minTop, maxTop);
+
+		const deltaY = nextTop - positionerRect.top;
+		positioner.style.setProperty("--y", `${currentY + deltaY}px`);
+		content.dataset.linearAligned = "true";
 	}
-
-	content.dataset.linearAligned = "true";
-
-	const positionerRect = positioner.getBoundingClientRect();
-	const currentY = parseFloat(positioner.style.getPropertyValue("--y") || "0") || 0;
-	const currentX = parseFloat(positioner.style.getPropertyValue("--x") || "0") || 0;
-
-	const deltaY = nextTop - positionerRect.top;
-	positioner.style.setProperty("--y", `${currentY + deltaY}px`);
 
 	const menuWidth = positionerRect.width || content.offsetWidth;
 	let nextLeft = positionerRect.left;
