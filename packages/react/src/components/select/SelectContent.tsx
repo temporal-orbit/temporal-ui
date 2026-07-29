@@ -150,6 +150,13 @@ export function SelectContent(props: SelectContentProps) {
 		stopAutoScrollRef.current = null;
 	};
 
+	const nudgeScroll = (direction: "up" | "down") => {
+		const list = listRef.current;
+		if (!list) return;
+		list.scrollTop += direction === "up" ? -40 : 40;
+		syncScrollState();
+	};
+
 	return (
 		<ArkSelect.Positioner className={classes?.positioner} data-testid={tid("--positioner")}>
 			<ArkSelect.Content
@@ -160,6 +167,7 @@ export function SelectContent(props: SelectContentProps) {
 			>
 				<div
 					aria-hidden
+					role="presentation"
 					className={classes?.scrollCaret}
 					data-component="select"
 					data-slot="scroll-caret"
@@ -170,6 +178,7 @@ export function SelectContent(props: SelectContentProps) {
 					onPointerLeave={stopCaretScroll}
 					onMouseEnter={() => startCaretScroll("up")}
 					onMouseLeave={stopCaretScroll}
+					onClick={() => nudgeScroll("up")}
 				>
 					<ChevronUp />
 				</div>
@@ -221,6 +230,7 @@ export function SelectContent(props: SelectContentProps) {
 				</div>
 				<div
 					aria-hidden
+					role="presentation"
 					className={classes?.scrollCaret}
 					data-component="select"
 					data-slot="scroll-caret"
@@ -229,6 +239,9 @@ export function SelectContent(props: SelectContentProps) {
 					data-testid={tid("--scroll-caret-down")}
 					onPointerEnter={() => startCaretScroll("down")}
 					onPointerLeave={stopCaretScroll}
+					onMouseEnter={() => startCaretScroll("down")}
+					onMouseLeave={stopCaretScroll}
+					onClick={() => nudgeScroll("down")}
 				>
 					<ChevronDown />
 				</div>

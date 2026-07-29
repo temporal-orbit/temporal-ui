@@ -137,4 +137,43 @@ describe("Select", () => {
 		const { getSelectScrollState } = await import("@temporal-ui/core/select");
 		expect(getSelectScrollState(list).canScrollUp).toBe(true);
 	});
+
+	it("auto-scrolls the list while hovering a scroll caret", async () => {
+		const user = userEvent.setup();
+		Object.defineProperty(document.documentElement, "clientHeight", {
+			configurable: true,
+			value: 800,
+		});
+
+		render(
+			<Select
+				testId="sel5"
+				label="Pick"
+				collection={collection}
+				placeholder="Choose"
+				portal={false}
+				defaultValue={["a"]}
+				maxDropdownHeight={120}
+				defaultOpen
+			/>,
+		);
+
+		const list = await screen.findByTestId("sel5--content-list");
+		const items = [...list.querySelectorAll<HTMLElement>('[data-part="item"]')];
+		items.forEach((item, index) => {
+			Object.defineProperty(item, "offsetTop", { configurable: true, value: index * 32 });
+			Object.defineProperty(item, "offsetHeight", { configurable: true, value: 32 });
+		});
+		Object.defineProperty(list, "scrollHeight", { configurable: true, value: items.length * 32 });
+		Object.defineProperty(list, "clientHeight", { configurable: true, value: 120 });
+		list.scrollTop = 0;
+
+		const caretDown = screen.getByTestId("sel5--scroll-caret-down");
+		caretDown.setAttribute("data-visible", "");
+		await user.hover(caretDown);
+
+		await vi.waitFor(() => {
+			expect(list.scrollTop).toBeGreaterThan(0);
+		});
+	});
 });

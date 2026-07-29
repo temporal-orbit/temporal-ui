@@ -62,7 +62,7 @@
 		}
 
 		& svg {
-			@apply size-3.5 shrink-0;
+			@apply size-3.5 shrink-0 pointer-events-none;
 		}
 	}
 
