@@ -1,13 +1,16 @@
 import { Select as ArkSelect, useSelectContext } from "@ark-ui/react/select";
 import type { SelectItem as CoreSelectItem } from "@temporal-ui/core/select";
 import {
+	alignSelectDropdown,
+	getSelectedSelectItem,
 	getSelectScrollState,
+	getSelectTriggerForContent,
 	resetSelectLinearAlignment,
 	startSelectCaretAutoScroll,
 	type AlignSelectDropdownResult,
 } from "@temporal-ui/core/select";
 import { CheckIcon, ChevronDown, ChevronUp } from "lucide-react";
-import { useCallback, useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useLayoutEffect, useRef, useState } from "react";
 
 export type SelectItem<D = unknown> = CoreSelectItem<D, React.ReactNode>;
 
@@ -48,7 +51,25 @@ export function SelectContent(props: SelectContentProps) {
 		applyScrollState(getSelectScrollState(list));
 	}, [applyScrollState]);
 
-	useEffect(() => {
+	const runLinearAlign = useCallback(() => {
+		const content = contentRef.current;
+		if (!content || content.hidden) return false;
+		const positioner = content.closest<HTMLElement>('[data-part="positioner"]');
+		const trigger = getSelectTriggerForContent(content);
+		if (!positioner || !trigger) return false;
+
+		const state = alignSelectDropdown({
+			positioner,
+			content,
+			trigger,
+			selectedItem: getSelectedSelectItem(content),
+			maxHeight,
+		});
+		applyScrollState(state);
+		return content.dataset.linearAligned === "true";
+	}, [applyScrollState, maxHeight]);
+
+	useLayoutEffect(() => {
 		if (!context.open) {
 			setCanScrollUp(false);
 			setCanScrollDown(false);
@@ -58,18 +79,26 @@ export function SelectContent(props: SelectContentProps) {
 			return;
 		}
 
-		const frame = requestAnimationFrame(syncScrollState);
-		const poll = window.setInterval(syncScrollState, 50);
-		const stopPoll = window.setTimeout(() => window.clearInterval(poll), 400);
+		// Clear any premature lock from floating-ui's first paint, then align.
+		resetSelectLinearAlignment(contentRef.current);
+
+		let retries = 0;
+		let frame = 0;
+		const tryAlign = () => {
+			if (runLinearAlign() || retries++ >= 16) {
+				syncScrollState();
+				return;
+			}
+			frame = requestAnimationFrame(tryAlign);
+		};
+		frame = requestAnimationFrame(tryAlign);
 
 		return () => {
 			cancelAnimationFrame(frame);
-			window.clearInterval(poll);
-			window.clearTimeout(stopPoll);
 			stopAutoScrollRef.current?.();
 			stopAutoScrollRef.current = null;
 		};
-	}, [context.open, context.value, syncScrollState]);
+	}, [context.open, context.value, runLinearAlign, syncScrollState]);
 
 	useEffect(() => {
 		const content = contentRef.current;

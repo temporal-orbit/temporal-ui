@@ -1,7 +1,10 @@
 import { Select as ArkSelect, useSelectContext } from "@ark-ui/solid/select";
 import type { SelectItem as CoreSelectItem } from "@temporal-ui/core/select";
 import {
+	alignSelectDropdown,
+	getSelectedSelectItem,
 	getSelectScrollState,
+	getSelectTriggerForContent,
 	resetSelectLinearAlignment,
 	startSelectCaretAutoScroll,
 	type AlignSelectDropdownResult,
@@ -56,6 +59,24 @@ export function SelectContent(_props: SelectContentProps) {
 		applyScrollState(getSelectScrollState(list));
 	};
 
+	const runLinearAlign = () => {
+		const content = contentEl();
+		if (!content || content.hidden) return false;
+		const positioner = content.closest<HTMLElement>('[data-part="positioner"]');
+		const trigger = getSelectTriggerForContent(content);
+		if (!positioner || !trigger) return false;
+
+		const state = alignSelectDropdown({
+			positioner,
+			content,
+			trigger,
+			selectedItem: getSelectedSelectItem(content),
+			maxHeight: props.maxHeight,
+		});
+		applyScrollState(state);
+		return content.dataset.linearAligned === "true";
+	};
+
 	createEffect(() => {
 		const open = context().open;
 		const value = context().value;
@@ -70,14 +91,22 @@ export function SelectContent(_props: SelectContentProps) {
 			return;
 		}
 
-		const frame = requestAnimationFrame(syncScrollState);
-		const poll = window.setInterval(syncScrollState, 50);
-		const stopPoll = window.setTimeout(() => window.clearInterval(poll), 400);
+		// Clear any premature lock from floating-ui's first paint, then align.
+		resetSelectLinearAlignment(contentEl());
+
+		let retries = 0;
+		let frame = 0;
+		const tryAlign = () => {
+			if (runLinearAlign() || retries++ >= 16) {
+				syncScrollState();
+				return;
+			}
+			frame = requestAnimationFrame(tryAlign);
+		};
+		frame = requestAnimationFrame(tryAlign);
 
 		onCleanup(() => {
 			cancelAnimationFrame(frame);
-			window.clearInterval(poll);
-			window.clearTimeout(stopPoll);
 			stopAutoScroll?.();
 			stopAutoScroll = null;
 		});
