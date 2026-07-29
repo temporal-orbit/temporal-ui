@@ -1,7 +1,7 @@
 import type { AlignSelectDropdownResult } from "./align-select";
 import { getSelectScrollState } from "./align-select";
 
-const DEFAULT_SCROLL_STEP_PX = 6;
+const DEFAULT_SCROLL_STEP_PX = 18;
 const DEFAULT_SCROLL_INTERVAL_MS = 16;
 
 export interface StartSelectCaretAutoScrollOptions {

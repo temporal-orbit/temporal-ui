@@ -168,6 +168,8 @@ export function SelectContent(props: SelectContentProps) {
 					data-testid={tid("--scroll-caret-up")}
 					onPointerEnter={() => startCaretScroll("up")}
 					onPointerLeave={stopCaretScroll}
+					onMouseEnter={() => startCaretScroll("up")}
+					onMouseLeave={stopCaretScroll}
 				>
 					<ChevronUp />
 				</div>
