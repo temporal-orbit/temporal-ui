@@ -60,7 +60,6 @@ function isSelectedItemInView(scroller: HTMLElement, selectedItem: HTMLElement):
 	const bottom = top + selectedItem.offsetHeight;
 	const viewTop = scroller.scrollTop;
 	const viewBottom = viewTop + scroller.clientHeight;
-	// Partially visible is enough to consider alignment successful.
 	return bottom > viewTop + SCROLL_EDGE_TOLERANCE && top < viewBottom - SCROLL_EDGE_TOLERANCE;
 }
 
@@ -87,7 +86,6 @@ export function alignSelectDropdown(options: AlignSelectDropdownOptions): AlignS
 		return getSelectScrollState(scroller);
 	}
 
-	// Unlock if layout finished later and the selected row is no longer in view.
 	if (
 		alreadyAligned &&
 		selectedItem &&
@@ -103,21 +101,24 @@ export function alignSelectDropdown(options: AlignSelectDropdownOptions): AlignS
 	const viewportWidth = document.documentElement.clientWidth;
 	const availableHeight = Math.max(0, viewportHeight - overflowPadding * 2);
 
-	content.style.height = "auto";
-	content.style.maxHeight = "none";
-	scroller.style.height = "auto";
+	const previousMaxHeight = scroller.style.maxHeight;
+	const previousContentMaxHeight = content.style.maxHeight;
 	scroller.style.maxHeight = "none";
-	const fullHeight = Math.max(scroller.scrollHeight, scroller.offsetHeight);
+	content.style.maxHeight = "none";
+	content.style.height = "auto";
+	const fullHeight = Math.max(scroller.scrollHeight, content.scrollHeight);
+	scroller.style.maxHeight = previousMaxHeight;
+	content.style.maxHeight = previousContentMaxHeight;
 
 	const constrainedHeight = Math.min(
 		fullHeight,
 		availableHeight,
 		maxHeight ?? Number.POSITIVE_INFINITY,
 	);
-	const needsScroll = fullHeight > constrainedHeight + SCROLL_EDGE_TOLERANCE;
 
+	scroller.style.maxHeight = `${constrainedHeight}px`;
 	content.style.maxHeight = `${constrainedHeight}px`;
-	content.style.height = needsScroll ? `${constrainedHeight}px` : "auto";
+	content.style.height = "auto";
 
 	const positionerRect = positioner.getBoundingClientRect();
 	const currentY = parseFloat(positioner.style.getPropertyValue("--y") || "0") || 0;

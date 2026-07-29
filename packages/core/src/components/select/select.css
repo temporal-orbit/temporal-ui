@@ -21,7 +21,7 @@
 
 	[data-scope="combobox"][data-part="content"],
 	[data-scope="select"][data-part="content"] {
-		@apply bg-popover text-popover-foreground relative z-50 flex flex-col overflow-hidden rounded-md border shadow-md w-full min-w-(--reference-width) origin-(--transform-origin);
+		@apply bg-popover text-popover-foreground relative z-50 overflow-hidden rounded-md border shadow-md w-full min-w-(--reference-width) origin-(--transform-origin);
 
 		&[data-state="open"] {
 			@apply animate-in fade-in-0 zoom-in-95;
@@ -37,8 +37,9 @@
 	}
 
 	[data-component="select"][data-slot="list"] {
-		@apply min-h-0 flex-1 overflow-x-hidden overflow-y-auto overscroll-contain py-1;
+		@apply overflow-x-hidden overflow-y-auto overscroll-contain py-1;
 		scrollbar-width: none;
+		max-height: inherit;
 
 		&::-webkit-scrollbar {
 			display: none;
