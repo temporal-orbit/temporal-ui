@@ -101,6 +101,27 @@ export const LinearNearViewportEdge: Story = {
 	],
 };
 
+export const LinearOpenWithCarets: Story = {
+	...Default,
+	name: "Linear style (open with carets)",
+	args: {
+		...Default.args,
+		defaultValue: ["passionfruit"],
+		maxDropdownHeight: 200,
+		defaultOpen: true,
+		label: "Fruit",
+		hint: "Pre-opened near the top so scroll carets are visible",
+		portal: true,
+	},
+	decorators: [
+		(Story: () => JSX.Element) => (
+			<div style={{ padding: "12px 16px", display: "flex", "justify-content": "flex-end" }}>
+				<Story />
+			</div>
+		),
+	],
+};
+
 export const MaxDropdownHeight: Story = {
 	...Default,
 	args: {
