@@ -63,31 +63,40 @@ export function alignSelectDropdown(options: AlignSelectDropdownOptions): AlignS
 	content.style.maxHeight = `${constrainedHeight}px`;
 	content.style.height = needsScroll ? `${constrainedHeight}px` : "auto";
 
+	const alreadyAligned = content.dataset.linearAligned === "true";
 	const itemOffset = selectedItem?.offsetTop ?? 0;
 	let nextTop = triggerRect.top - itemOffset;
-	let scrollTop = 0;
+	let scrollTop = alreadyAligned ? scroller.scrollTop : 0;
 
 	const minTop = overflowPadding;
 	const maxTop = viewportHeight - constrainedHeight - overflowPadding;
 
-	if (nextTop < minTop) {
-		scrollTop = minTop - nextTop;
+	if (!alreadyAligned) {
+		if (nextTop < minTop) {
+			scrollTop = minTop - nextTop;
+			nextTop = minTop;
+		} else if (nextTop > maxTop) {
+			nextTop = Math.max(minTop, maxTop);
+		}
+
+		scroller.scrollTop = scrollTop;
+
+		if (selectedItem) {
+			const itemTop = selectedItem.offsetTop;
+			const itemBottom = itemTop + selectedItem.offsetHeight;
+			if (itemTop < scroller.scrollTop) {
+				scroller.scrollTop = itemTop;
+			} else if (itemBottom > scroller.scrollTop + constrainedHeight) {
+				scroller.scrollTop = itemBottom - constrainedHeight;
+			}
+		}
+	} else if (nextTop < minTop) {
 		nextTop = minTop;
 	} else if (nextTop > maxTop) {
 		nextTop = Math.max(minTop, maxTop);
 	}
 
-	scroller.scrollTop = scrollTop;
-
-	if (selectedItem) {
-		const itemTop = selectedItem.offsetTop;
-		const itemBottom = itemTop + selectedItem.offsetHeight;
-		if (itemTop < scroller.scrollTop) {
-			scroller.scrollTop = itemTop;
-		} else if (itemBottom > scroller.scrollTop + constrainedHeight) {
-			scroller.scrollTop = itemBottom - constrainedHeight;
-		}
-	}
+	content.dataset.linearAligned = "true";
 
 	const positionerRect = positioner.getBoundingClientRect();
 	const currentY = parseFloat(positioner.style.getPropertyValue("--y") || "0") || 0;
@@ -110,7 +119,19 @@ export function alignSelectDropdown(options: AlignSelectDropdownOptions): AlignS
 		positioner.style.setProperty("--x", `${currentX + deltaX}px`);
 	}
 
-	return getSelectScrollState(scroller);
+	const state = getSelectScrollState(scroller);
+	content.dispatchEvent(
+		new CustomEvent("temporal-ui:select-aligned", {
+			bubbles: true,
+			detail: state,
+		}),
+	);
+	return state;
+}
+
+/** Clears one-shot alignment state so the next open can re-align to the selection. */
+export function resetSelectLinearAlignment(content: HTMLElement | null | undefined) {
+	content?.removeAttribute("data-linear-aligned");
 }
 
 export function getSelectScrollState(scroller: HTMLElement): AlignSelectDropdownResult {

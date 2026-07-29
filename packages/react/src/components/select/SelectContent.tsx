@@ -1,6 +1,11 @@
 import { Select as ArkSelect, useSelectContext } from "@ark-ui/react/select";
 import type { SelectItem as CoreSelectItem } from "@temporal-ui/core/select";
-import { getSelectScrollState, startSelectCaretAutoScroll } from "@temporal-ui/core/select";
+import {
+	getSelectScrollState,
+	resetSelectLinearAlignment,
+	startSelectCaretAutoScroll,
+	type AlignSelectDropdownResult,
+} from "@temporal-ui/core/select";
 import { CheckIcon, ChevronDown, ChevronUp } from "lucide-react";
 import { useCallback, useEffect, useRef, useState } from "react";
 
@@ -26,18 +31,22 @@ export interface SelectContentProps {
 export function SelectContent(props: SelectContentProps) {
 	const { tid, maxHeight = 500, classes } = props;
 	const context = useSelectContext();
+	const contentRef = useRef<HTMLDivElement>(null);
 	const listRef = useRef<HTMLDivElement>(null);
 	const stopAutoScrollRef = useRef<(() => void) | null>(null);
 	const [canScrollUp, setCanScrollUp] = useState(false);
 	const [canScrollDown, setCanScrollDown] = useState(false);
 
-	const syncScrollState = useCallback(() => {
-		const list = listRef.current;
-		if (!list) return;
-		const state = getSelectScrollState(list);
+	const applyScrollState = useCallback((state: AlignSelectDropdownResult) => {
 		setCanScrollUp(state.canScrollUp);
 		setCanScrollDown(state.canScrollDown);
 	}, []);
+
+	const syncScrollState = useCallback(() => {
+		const list = listRef.current;
+		if (!list) return;
+		applyScrollState(getSelectScrollState(list));
+	}, [applyScrollState]);
 
 	useEffect(() => {
 		if (!context.open) {
@@ -45,35 +54,50 @@ export function SelectContent(props: SelectContentProps) {
 			setCanScrollDown(false);
 			stopAutoScrollRef.current?.();
 			stopAutoScrollRef.current = null;
+			resetSelectLinearAlignment(contentRef.current);
 			return;
 		}
 
-		const frame = requestAnimationFrame(() => {
-			syncScrollState();
-		});
+		const frame = requestAnimationFrame(syncScrollState);
+		const poll = window.setInterval(syncScrollState, 50);
+		const stopPoll = window.setTimeout(() => window.clearInterval(poll), 400);
 
 		return () => {
 			cancelAnimationFrame(frame);
+			window.clearInterval(poll);
+			window.clearTimeout(stopPoll);
 			stopAutoScrollRef.current?.();
 			stopAutoScrollRef.current = null;
 		};
 	}, [context.open, context.value, syncScrollState]);
 
 	useEffect(() => {
+		const content = contentRef.current;
 		const list = listRef.current;
-		if (!list || !context.open) return;
+		if (!content || !list || !context.open) return;
+
+		const onAligned = (event: Event) => {
+			const detail = (event as CustomEvent<AlignSelectDropdownResult>).detail;
+			if (detail) {
+				applyScrollState(detail);
+			} else {
+				syncScrollState();
+			}
+		};
 
 		const observer = new ResizeObserver(() => {
 			syncScrollState();
 		});
 		observer.observe(list);
+		content.addEventListener("temporal-ui:select-aligned", onAligned);
 		list.addEventListener("scroll", syncScrollState, { passive: true });
 
 		return () => {
 			observer.disconnect();
+			content.removeEventListener("temporal-ui:select-aligned", onAligned);
 			list.removeEventListener("scroll", syncScrollState);
 		};
-	}, [context.open, syncScrollState]);
+	}, [context.open, applyScrollState, syncScrollState]);
 
 	const startCaretScroll = (direction: "up" | "down") => {
 		stopAutoScrollRef.current?.();
@@ -82,10 +106,7 @@ export function SelectContent(props: SelectContentProps) {
 		stopAutoScrollRef.current = startSelectCaretAutoScroll({
 			scroller: list,
 			direction,
-			onScroll: (state) => {
-				setCanScrollUp(state.canScrollUp);
-				setCanScrollDown(state.canScrollDown);
-			},
+			onScroll: applyScrollState,
 		});
 	};
 
@@ -97,6 +118,7 @@ export function SelectContent(props: SelectContentProps) {
 	return (
 		<ArkSelect.Positioner className={classes?.positioner} data-testid={tid("--positioner")}>
 			<ArkSelect.Content
+				ref={contentRef}
 				className={classes?.content}
 				data-testid={tid("--content")}
 				style={{ maxHeight: `${maxHeight}px` }}
@@ -109,8 +131,8 @@ export function SelectContent(props: SelectContentProps) {
 					data-direction="up"
 					data-visible={canScrollUp ? "" : undefined}
 					data-testid={tid("--scroll-caret-up")}
-					onMouseEnter={() => startCaretScroll("up")}
-					onMouseLeave={stopCaretScroll}
+					onPointerEnter={() => startCaretScroll("up")}
+					onPointerLeave={stopCaretScroll}
 				>
 					<ChevronUp />
 				</div>
@@ -169,8 +191,8 @@ export function SelectContent(props: SelectContentProps) {
 					data-direction="down"
 					data-visible={canScrollDown ? "" : undefined}
 					data-testid={tid("--scroll-caret-down")}
-					onMouseEnter={() => startCaretScroll("down")}
-					onMouseLeave={stopCaretScroll}
+					onPointerEnter={() => startCaretScroll("down")}
+					onPointerLeave={stopCaretScroll}
 				>
 					<ChevronDown />
 				</div>

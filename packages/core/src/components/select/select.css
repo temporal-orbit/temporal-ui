@@ -46,22 +46,22 @@
 	}
 
 	[data-component="select"][data-slot="scroll-caret"] {
-		@apply absolute inset-x-0 z-10 flex h-6 items-center justify-center text-muted-foreground pointer-events-none opacity-0 transition-opacity;
+		@apply absolute inset-x-0 z-20 flex h-7 items-center justify-center text-muted-foreground pointer-events-none opacity-0 transition-opacity cursor-default;
 
 		&[data-visible] {
 			@apply pointer-events-auto opacity-100;
 		}
 
 		&[data-direction="up"] {
-			@apply top-0 bg-gradient-to-b from-popover via-popover/90 to-transparent;
+			@apply top-0 bg-gradient-to-b from-popover from-40% via-popover/90 to-transparent;
 		}
 
 		&[data-direction="down"] {
-			@apply bottom-0 bg-gradient-to-t from-popover via-popover/90 to-transparent;
+			@apply bottom-0 bg-gradient-to-t from-popover from-40% via-popover/90 to-transparent;
 		}
 
 		& svg {
-			@apply size-3.5;
+			@apply size-3.5 shrink-0;
 		}
 	}
 
