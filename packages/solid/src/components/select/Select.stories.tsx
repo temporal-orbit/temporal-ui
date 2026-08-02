@@ -71,6 +71,48 @@ export const Deselectable: Story = {
 	},
 };
 
+export const AlignItemWithTrigger: Story = {
+	args: {
+		className: "min-w-[250px]",
+		collection: createListCollection({
+			items: [
+				{ value: "small", label: "Small" },
+				{ value: "medium", label: "Medium" },
+				{ value: "large", label: "Large" },
+				{ value: "xlarge", label: "Extra large" },
+				{ value: "huge", label: "Unbelievably, comically, ridiculously large" },
+			],
+		}),
+		placeholder: "Select a size",
+		label: "Size",
+		portal: true,
+		alignItemWithTrigger: true,
+		defaultValue: ["medium"],
+	},
+	render: (args: Story["args"]) => (
+		<div class="flex min-h-screen items-center justify-center p-8">
+			<Select {...args} />
+		</div>
+	),
+};
+
+export const AlignItemWithTriggerLongList: Story = {
+	args: {
+		className: "min-w-[250px]",
+		collection,
+		placeholder: "Select a fruit",
+		label: "Fruits",
+		portal: true,
+		alignItemWithTrigger: true,
+		defaultValue: ["raspberry"],
+	},
+	render: (args: Story["args"]) => (
+		<div class="flex min-h-screen items-center justify-center p-8">
+			<Select {...args} />
+		</div>
+	),
+};
+
 export const Invalid: Story = {
 	...Default,
 	args: {
