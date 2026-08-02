@@ -1,8 +1,3 @@
-# To get started with Dependabot version updates, you'll need to specify which
-# package ecosystems to update and where the package manifests are located.
-# Please see the documentation for all configuration options:
-# https://docs.github.com/code-security/dependabot/dependabot-version-updates/configuration-options-for-the-dependabot.yml-file
-
 version: 2
 updates:
   - package-ecosystem: bun
@@ -10,16 +5,118 @@ updates:
       - /
       - /packages/*
     schedule:
-      interval: monthly
+      interval: weekly
+      day: monday
+    open-pull-requests-limit: 10
+    ignore:
+      - dependency-name: "@typescript/native-preview"
     groups:
-      bun-dependencies:
+      storybook:
         applies-to: version-updates
-        update-types:
-          - major
-          - minor
-          - patch
+        patterns:
+          - "storybook"
+          - "@storybook/*"
+          - "storybook-solidjs-vite"
+          - "@chromatic-com/storybook"
+        update-types: ["major", "minor", "patch"]
+
+      ark-ui:
+        applies-to: version-updates
+        patterns:
+          - "@ark-ui/*"
+        update-types: ["minor", "patch"]
+
+      tanstack-table:
+        applies-to: version-updates
+        patterns:
+          - "@tanstack/*-table"
+        update-types: ["minor", "patch"]
+
+      tailwind:
+        applies-to: version-updates
+        patterns:
+          - "tailwindcss"
+          - "@tailwindcss/*"
+        update-types: ["major", "minor", "patch"]
+
+      tsdown:
+        applies-to: version-updates
+        patterns:
+          - "tsdown"
+          - "@tsdown/*"
+        update-types: ["major", "minor", "patch"]
+
+      vite:
+        applies-to: version-updates
+        patterns:
+          - "vite"
+          - "@vitejs/*"
+          - "vite-plugin-solid"
+        update-types: ["minor", "patch"]
+
+      testing:
+        applies-to: version-updates
+        patterns:
+          - "vitest"
+          - "@vitest/*"
+          - "@testing-library/*"
+          - "@solidjs/testing-library"
+          - "happy-dom"
+          - "jsdom"
+        update-types: ["minor", "patch"]
+
+      react-runtime:
+        applies-to: version-updates
+        patterns:
+          - "react"
+          - "react-dom"
+          - "@types/react"
+          - "@types/react-dom"
+        update-types: ["minor", "patch"]
+
+      icons:
+        applies-to: version-updates
+        patterns:
+          - "lucide-react"
+          - "lucide-solid"
+        update-types: ["major", "minor", "patch"]
+
+      typescript:
+        applies-to: version-updates
+        patterns:
+          - "typescript"
+          - "@types/*"
+        update-types: ["minor", "patch"]
+
+      build-tooling:
+        applies-to: version-updates
+        patterns:
+          - "turbo"
+          - "rimraf"
+          - "clean-package"
+          - "lefthook"
+        update-types: ["minor", "patch"]
+
+      oxc-toolchain:
+        applies-to: version-updates
+        patterns:
+          - "oxlint"
+          - "oxlint-*"
+          - "oxfmt"
+        update-types: ["major", "minor", "patch"]
+
+      dev-minor-patch:
+        applies-to: version-updates
+        dependency-type: development
+        update-types: ["minor", "patch"]
 
   - package-ecosystem: github-actions
     directory: /
     schedule:
-      interval: monthly
+      interval: weekly
+      day: monday
+    groups:
+      actions:
+        applies-to: version-updates
+        patterns: ["*"]
+        update-types: ["major", "minor", "patch"]
