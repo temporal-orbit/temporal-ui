@@ -1,0 +1,61 @@
+name: Run checks
+description: Run checks on the codebase
+
+runs:
+  using: composite
+  steps:
+    - name: Run format check
+      id: format
+      continue-on-error: true
+      shell: bash
+      run: bun run format:check
+
+    - name: Run lint with warnings as errors
+      id: lint
+      continue-on-error: true
+      shell: bash
+      run: bun run lint -- --deny-warnings --format=github
+
+    - name: Run typecheck
+      id: typecheck
+      continue-on-error: true
+      shell: bash
+      run: bun run typecheck
+
+    - name: Build packages
+      id: build
+      continue-on-error: true
+      shell: bash
+      run: bun run build
+
+    - name: Check for failures
+      if: always()
+      shell: bash
+      run: |
+        results=(
+          "${{ steps.format.outcome }}"
+          "${{ steps.lint.outcome }}"
+          "${{ steps.typecheck.outcome }}"
+          "${{ steps.build.outcome }}"
+        )
+        names=("format" "lint" "typecheck" "build")
+        failed=()
+
+        echo "## Check Results" >> $GITHUB_STEP_SUMMARY
+        echo "| Check | Result |" >> $GITHUB_STEP_SUMMARY
+        echo "|-------|--------|" >> $GITHUB_STEP_SUMMARY
+
+        for i in "${!results[@]}"; do
+          if [ "${results[$i]}" == "success" ]; then
+            echo "| ${names[$i]} | ✅ passed |" >> $GITHUB_STEP_SUMMARY
+          else
+            failed+=("${names[$i]}")
+            echo "| ${names[$i]} | ❌ failed |" >> $GITHUB_STEP_SUMMARY
+            echo "::error::Check failed: ${names[$i]}"
+          fi
+        done
+
+        if [ ${#failed[@]} -gt 0 ]; then
+          exit 1
+        fi
+        echo "✅ All checks passed" >> $GITHUB_STEP_SUMMARY
