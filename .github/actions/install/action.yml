@@ -23,5 +23,4 @@ runs:
 
     - name: Install dependencies
       shell: bash
-      if: steps.cache-node-modules.outputs.cache-hit != 'true'
       run: bun install
