@@ -1,9 +1,9 @@
 // noinspection JSUnusedGlobalSymbols
 
 import type { Meta, StoryObj } from "@storybook/react-vite";
-import { Select } from "./Select";
-import { createListCollection, type SelectItem } from ".";
 import { Banana } from "lucide-react";
+import { createListCollection, type SelectItem } from ".";
+import { Select } from "./Select";
 
 const meta = {
 	title: "React/Select",
@@ -72,6 +72,48 @@ export const Deselectable: Story = {
 		...Default.args,
 		deselectable: true,
 	},
+};
+
+export const AlignItemWithTrigger: Story = {
+	args: {
+		className: "min-w-[250px]",
+		collection: createListCollection({
+			items: [
+				{ value: "small", label: "Small" },
+				{ value: "medium", label: "Medium" },
+				{ value: "large", label: "Large" },
+				{ value: "xlarge", label: "Extra large" },
+				{ value: "huge", label: "Unbelievably, comically, ridiculously large" },
+			],
+		}),
+		placeholder: "Select a size",
+		label: "Size",
+		portal: true,
+		alignItemWithTrigger: true,
+		defaultValue: ["medium"],
+	},
+	render: (args) => (
+		<div className="flex min-h-screen items-center justify-center p-8">
+			<Select {...args} />
+		</div>
+	),
+};
+
+export const AlignItemWithTriggerLongList: Story = {
+	args: {
+		className: "min-w-[250px]",
+		collection,
+		placeholder: "Select a fruit",
+		label: "Fruits",
+		portal: true,
+		alignItemWithTrigger: true,
+		defaultValue: ["raspberry"],
+	},
+	render: (args) => (
+		<div className="flex min-h-screen items-center justify-center p-8">
+			<Select {...args} />
+		</div>
+	),
 };
 
 export const LargeDataset: Story = {

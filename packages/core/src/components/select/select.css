@@ -48,6 +48,85 @@
 		}
 	}
 
+	[data-align-item-with-trigger] {
+		[data-scope="select"][data-part="trigger"] {
+			@apply pl-3;
+		}
+	}
+
+	/* Gated on the positioner itself rather than the root so these rules still
+	   apply when the dropdown is portaled out of the root element. */
+	[data-scope="select"][data-part="positioner"][data-align-item-with-trigger] {
+		&[data-align-item-with-trigger-pending] {
+			opacity: 0;
+			pointer-events: none;
+		}
+
+		&:has([data-align-item-with-trigger-active]) {
+			position: static !important;
+			transform: none !important;
+			top: auto !important;
+			left: auto !important;
+			right: auto !important;
+			bottom: auto !important;
+			width: auto !important;
+			height: auto !important;
+			margin: 0 !important;
+			overflow: visible !important;
+		}
+
+		[data-scope="select"][data-part="content"] {
+			@apply scroll-py-0;
+			animation: none !important;
+			transition: none !important;
+
+			&[data-state="open"],
+			&[data-state="closed"] {
+				animation: none !important;
+			}
+
+			&[data-placement*="bottom"],
+			&[data-placement*="top"],
+			&[data-placement*="left"],
+			&[data-placement*="right"] {
+				@apply translate-x-0 translate-y-0;
+			}
+		}
+
+		[data-align-item-with-trigger-active] {
+			@apply overflow-y-auto overflow-x-hidden;
+			max-height: 100%;
+			overflow-anchor: none;
+			transition: none !important;
+
+			[data-scope="select"][data-part="content"] {
+				max-height: 100%;
+			}
+
+			[data-part="item"] {
+				scroll-margin-block: 0;
+			}
+		}
+
+		[data-scope="select"][data-part="item-group"],
+		[data-component="select"][data-slot="list"] {
+			[data-part="item"] {
+				/* Reserve a left gutter for the check indicator (macOS-style). */
+				@apply pl-8 pr-3;
+			}
+
+			/* Items must not wrap: the popup width derives from the widest item. */
+			[data-part="item-text"],
+			[data-part="item-group-label"] {
+				@apply whitespace-nowrap;
+			}
+
+			[data-part="item-indicator"] {
+				@apply left-2.5 right-auto;
+			}
+		}
+	}
+
 	[data-scope="combobox"][data-part="input"] {
 		@apply w-full outline-none text-sm;
 	}
