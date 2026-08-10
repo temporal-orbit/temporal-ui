@@ -62,7 +62,7 @@
 	},
 	"dependencies": {
 		"@ark-ui/react": "5.37.2",
-		"@tanstack/react-table": "8.21.3",
+		"@tanstack/react-table": "9.1.0",
 		"@temporal-ui/core": "workspace:*"
 	},
 	"devDependencies": {
