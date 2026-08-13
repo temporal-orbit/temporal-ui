@@ -1,6 +1,9 @@
 # Linear issues
 
-Last updated: June, 30th, 2026
+Last updated: August 13, 2026
+
+Project Linear team: Temprix (TPX)
+Required tags: Component=Design System, repo=temprix-hq/temporal-ui
 
 When given a Linear issue ID (e.g. `TPX-123`), agents must follow below instructions. When beginning work on an issue, always set its status to "Development" - even if it’s already in Review or any other status.
 
@@ -34,6 +37,7 @@ Complete all items below before starting implementation.
 
 Complete all items below after finishing the implementation.
 
+[ ] **Update repo docs** if the change added/removed components, shifted package structure, or changed agent workflow (see AGENTS.md → Documentation).
 [ ] **Stage and push all changes** — Always stage and push changes to the remote. Push after follow-up edits unless instructed otherwise.
 [ ] **Create or link a PR** — When ready, create a PR if one does not exist, or link it. Use `gh` CLI if available. Don't create draft PRs.
 [ ] **Set status to "In Review"** — After the PR is created, move the Linear issue status to "In Review".

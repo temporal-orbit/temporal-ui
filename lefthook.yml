@@ -4,7 +4,7 @@ pre-commit:
     - run: bun run format '--' --no-error-on-unmatched-pattern {staged_files}
       stage_fixed: true
 
-    - run: bun run lint:fix '--' --no-error-on-unmatched-pattern {staged_files}
+    - run: bun run lint '--' --no-error-on-unmatched-pattern {staged_files}
       stage_fixed: true
 
     - run: bun run typecheck

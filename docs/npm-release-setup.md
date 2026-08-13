@@ -1,0 +1,66 @@
+# npm release setup (one-time)
+
+This repository publishes `@temporal-ui/core`, `@temporal-ui/react`, and `@temporal-ui/solid` to npmjs.org via GitHub Actions using [npm trusted publishing](https://docs.npmjs.com/trusted-publishers/) (OIDC). No long-lived `NPM_TOKEN` secret is stored in GitHub.
+
+Releases are driven by a single manually triggered workflow: [`.github/workflows/release.yml`](.github/workflows/release.yml).
+
+This document covers the one-time bootstrap.
+
+## GitHub repository settings
+
+On `temprix-hq/temporal-ui`, open **Settings → Actions → General → Workflow permissions**:
+
+1. Select **Read and write permissions** for `GITHUB_TOKEN` (required to commit version bumps during release).
+
+## npm trusted publisher (per package)
+
+For each package (`@temporal-ui/core`, `@temporal-ui/react`, `@temporal-ui/solid`):
+
+1. Open the package on [npmjs.com](https://www.npmjs.com) → **Settings** → **Trusted Publisher** → **GitHub Actions**.
+2. Configure:
+   - **Organization or user:** `temprix-hq`
+   - **Repository:** `temporal-ui`
+   - **Workflow filename:** `release.yml` (filename only, including `.yml`)
+   - **Environment:** leave empty
+   - **Allowed actions:** `npm publish`
+3. After CI publish works, optionally require 2FA and **disallow tokens** so only OIDC (CI) and interactive local 2FA can publish.
+
+Do not rename `release.yml` without updating npm.
+
+## First publish (if packages do not exist on npm yet)
+
+npm cannot attach a trusted publisher until the package **exists** on the registry.
+
+1. On a trusted machine: `npm login` (member of the `@temporal-ui` npm org, with 2FA).
+2. From the repo root: `bun install`, then `bun run build`.
+3. Publish each package once to npmjs.org (order matters: core first, then react and solid):
+
+   ```bash
+   cd packages/core && npm publish --access public
+   cd ../react && npm publish --access public
+   cd ../solid && npm publish --access public
+   ```
+
+   `prepack` / `postpack` scripts rewrite workspace dependencies for publish.
+
+4. Add the trusted publisher on each package (see above).
+5. All subsequent versions go through the release workflow only. Do not leave a bootstrap `NPM_TOKEN` in GitHub secrets.
+
+## Release flow (after setup)
+
+1. **Accumulate changesets on `main`** — feature PRs include `bun run changeset` and merge to `main`. Changeset files sit on `main` until you release; nothing runs automatically.
+2. **When ready to ship** — open **Actions → Release → Run workflow** on `main`. One run does:
+   - Applies all pending changesets (`changeset version`): bumps `package.json` versions, updates changelogs, refreshes `bun.lock`
+   - Commits `chore: version packages` to `main`
+   - Publishes to npmjs.org (OIDC)
+   - Creates git tags and GitHub Releases
+
+Re-run the workflow to retry a failed publish after version bumps are already on `main` (no changesets left, but versions not yet on npm).
+
+## Troubleshooting OIDC publish failures
+
+- `release.yml` must include `permissions.id-token: write`.
+- Do not set `NPM_TOKEN` or `NODE_AUTH_TOKEN` to a real token (OIDC is skipped if auth is present).
+- Publish uses `npm publish` (not `bun publish`); npm CLI must be ≥ 11.5.1 (Node 24 in CI).
+- Trusted publisher fields are case-sensitive; workflow filename must match exactly.
+- Use GitHub-hosted runners (`ubuntu-latest`); self-hosted runners are not supported for npm OIDC.

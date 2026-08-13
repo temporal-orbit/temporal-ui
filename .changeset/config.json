@@ -1,10 +1,10 @@
 {
 	"$schema": "https://unpkg.com/@changesets/config@3.1.1/schema.json",
-	"changelog": false,
+	"changelog": ["@changesets/changelog-github", { "repo": "temprix-hq/temporal-ui" }],
 	"commit": false,
-	"fixed": [],
+	"fixed": [["@temporal-ui/core", "@temporal-ui/react", "@temporal-ui/solid"]],
 	"linked": [],
-	"access": "restricted",
+	"access": "public",
 	"baseBranch": "main",
 	"updateInternalDependencies": "patch",
 	"ignore": []
