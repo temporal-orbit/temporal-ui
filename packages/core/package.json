@@ -3,9 +3,14 @@
 	"version": "0.10.2",
 	"description": "Framework-agnostic core definitions, utils and styles for Temporal UI components",
 	"bugs": {
-		"url": "https://github.com/temporal-app/temporal-ui/issues"
+		"url": "https://github.com/temprix-hq/temporal-ui/issues"
 	},
 	"license": "MIT",
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/temprix-hq/temporal-ui.git",
+		"directory": "packages/core"
+	},
 	"files": [
 		"dist"
 	],
@@ -21,7 +26,8 @@
 		"./package.json": "./package.json"
 	},
 	"publishConfig": {
-		"access": "public"
+		"access": "public",
+		"provenance": true
 	},
 	"scripts": {
 		"build": "tsdown",

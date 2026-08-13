@@ -7,7 +7,7 @@
 	"author": "Temporal",
 	"repository": {
 		"type": "git",
-		"url": "https://github.com/temporal-app/temporal-ui.git"
+		"url": "https://github.com/temprix-hq/temporal-ui.git"
 	},
 	"workspaces": [
 		"packages/*"
@@ -25,11 +25,15 @@
 		"format:check": "oxfmt --check",
 		"typecheck": "turbo run typecheck",
 		"check": "turbo run check",
-		"changeset": "bunx @changesets/cli",
-		"version": "bunx @changesets/cli version",
-		"publish": "bun run build && bunx @changesets/cli publish"
+		"changeset": "changeset",
+		"version": "changeset version",
+		"publish": "bun run build && node scripts/npm-publish.mjs",
+		"ci:version": "changeset version && bun install",
+		"ci:publish": "node scripts/npm-publish.mjs"
 	},
 	"devDependencies": {
+		"@changesets/changelog-github": "0.5.1",
+		"@changesets/cli": "2.29.8",
 		"@temporal-ui/solid": "workspace:*",
 		"@types/bun": "1.3.14",
 		"@types/node": "25.9.1",

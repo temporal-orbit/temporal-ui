@@ -2,8 +2,4 @@
 description: creating vitests
 alwaysApply: false
 ---
-When asked to create vitests, follow these rules:
-- You can run individual test suites via "bun run test -- <path to file>" CLI command. Always run the tests you created yourself first and make sure they work.
-- When mocking Solid components, always use SolidJS For or Index components when iterating over arrays, avoid using map inside rendering functions.
-- Avoid using "any" typescript keyword in your tests if possible.
-- Prefer using test id in test selectors. Amend the implementation files to include testId or data-testid reference where this is not explicitly set but beneficial to do so.
+When asked to create Vitest tests, follow `docs/testing-strategy.md`.
