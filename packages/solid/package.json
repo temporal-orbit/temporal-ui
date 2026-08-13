@@ -82,7 +82,7 @@
 		"@tailwindcss/vite": "4.3.0",
 		"@testing-library/jest-dom": "6.9.1",
 		"@testing-library/user-event": "14.6.1",
-		"happy-dom": "20.11.1",
+		"happy-dom": "20.11.2",
 		"lucide-solid": "1.28.0",
 		"storybook": "10.4.2",
 		"storybook-solidjs-vite": "10.1.1",
